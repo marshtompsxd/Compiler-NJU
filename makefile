@@ -23,6 +23,12 @@ ta : syntax lexical parser
 tb : syntax lexical parser
 	./parser test/B/*.cmm
 
+tc : syntax lexical parser
+	./parser test/C/*.cmm
+
+td : syntax lexical parser
+	./parser test/D/*.cmm
+
 compile: clean syntax lexical parser
 
 debug: clean debug_compile

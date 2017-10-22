@@ -30,6 +30,7 @@ void ErrorTypeBHandler(int lineno, char* msg);
 %left PLUS MINUS 
 %left STAR DIV
 %right NOT
+%nonassoc LOWER_THAN_RP
 %left LP RP LB RB DOT
 %nonassoc LOWER_THAN_ELSE LOWER_THAN_SEMI LOWER_THAN_RC
 %nonassoc ELSE SEMI RC 
@@ -108,6 +109,7 @@ Stmt : Exp SEMI                                 {$$ = GenerateVariableNode(AStmt
     | WHILE LP Exp RP Stmt                      {$$ = GenerateVariableNode(AStmt, 5, $1, $2, $3, $4, $5);}
     | Exp error %prec LOWER_THAN_SEMI           {ErrorTypeBHandler(prev_error_lineno, "Missing \";\".");}
     | Exp error SEMI                            {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \";\", maybe Missing \";\".");}
+    | Exp error COMMA                           {ErrorTypeBHandler(prev_error_lineno, "Syntax error near \",\".");}
     | RETURN Exp error SEMI                     {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \";\".");}
     ;
 
@@ -150,6 +152,9 @@ Exp : Exp ASSIGNOP Exp                          {$$ = GenerateVariableNode(AExp,
     | Exp LB Exp error RB                       {ErrorTypeBHandler(prev_error_lineno, "Missing \"]\".");}
     | Exp LB error RB                           {ErrorTypeBHandler(prev_error_lineno, "Syntax error after \"[\".");}
     | ID LP error RP                            {ErrorTypeBHandler(prev_error_lineno, "Syntax error after \"(\".");}
+    | ID LP Args error RP                       {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \")\".");}
+    | ID LP Args error RB RP                    {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \")\".");} 
+    | ID LP Args error %prec LOWER_THAN_RP      {ErrorTypeBHandler(prev_error_lineno, "Syntax error after \"(\".");}
     ;
 
 Args : Exp COMMA Args                           {$$ = GenerateVariableNode(AArgs, 3, $1, $2, $3);}
