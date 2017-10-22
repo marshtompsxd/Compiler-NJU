@@ -1,0 +1,23 @@
+int dot[10];
+int val = 4;
+
+struct Vector
+{
+    int x, y;
+};
+
+int dotMultiply(struct Vector v1: struct Vector v2)
+{
+    return v1.x*v2.y - v1.y*v2.x;
+}
+
+int main()
+{
+    stuct Vector v1, v2;
+    v1.x = 1.2;
+    v1.y = 3.6;
+    v2.x = v1.x * val;
+    v2.y = 6.7;
+
+    return dotMultiply((v1, v2);
+}

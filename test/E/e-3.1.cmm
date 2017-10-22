@@ -1,0 +1,27 @@
+/*
+* @code
+*/
+
+/*
+* @param int a
+*/
+
+int func(int a) {
+    int i = 1, N = 10;//\/*/\/\/\/\/\/\/\/ i = i +1;
+    int sum;
+    while(i /*>=<*/ <= N) {
+        sum /*/ ~~ */= sum + i;
+        i = i + 1;
+/*
+TODO
+definition 12345
+
+*/
+    }
+
+    put_int/*(*/(sum);
+// assert(sum == ?);
+    return /*-1;*/0;
+
+}
+/* end of function/*\*/

@@ -1,0 +1,14 @@
+float function()
+{
+    float x1 = .e-1;
+    float x2 = 2.34e.-1;
+    return x1 + x2;
+
+}
+
+float function()
+
+{
+    float a = e1.2;
+    float b = e-;
+}

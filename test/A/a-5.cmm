@@ -1,0 +1,6 @@
+int array (int a, int b)
+{
+	int a1, b1[10,2];
+	b1[a] = b;
+	b1[a] = a1 + b1[a];
+}
