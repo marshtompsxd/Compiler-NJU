@@ -8,8 +8,12 @@ int yycolumn = 1;
 #define YY_USER_ACTION \
  yycolumn += yyleng;
 
-void ErrorTypeAHandler(char* msg, int lineno);
-void EmitCommentBlock();
+void MysteriousCharacterHandler(char* msg, int lineno);
+void IllegalOctNumberHandler(char* msg, int lineno);
+void IllegalHexNumberHandler(char* msg, int lineno);
+void IllegalFloatNumberHandler(char* msg, int lineno);
+void CommentUntilEOF(int lineno);
+int EmitCommentBlock();
 %}
 
 %option yylineno
@@ -21,6 +25,9 @@ hex_digit       [0-9a-fA-F]
 TYPE            "int"|"float"
 FLOAT           ([0-9]*\.[0-9]+|[0-9]+\.)([eE][+-]?{digit}+)?
 INT             0|[1-9]{digit}*|0{oct_digit}+|0[xX]{hex_digit}+
+IL_OCT_INT      0{digit}+
+IL_HEX_INT      0[xX][0-9a-zA-Z]+
+IL_FLOAT        {digit}*\.{digit}*[eE][+-]?({digit}*[.]?{digit}*)
 ID              [a-zA-Z_]+[0-9a-zA-Z_]*
 RELOP           ">"|"<"|">="|"<="|"=="|"!="
 COMMENTLINE     \/\/[^\n]*
@@ -29,7 +36,10 @@ WS              [ \t]+
 
 %%
 {FLOAT}         {yylval.node = GenerateTypeNode(AFLOAT, yylineno, yytext);return FLOAT;}
+{IL_FLOAT}      {IllegalFloatNumberHandler(yytext, yylineno);yylval.node = GenerateTypeNode(AFLOAT, yylineno, "0.0");return FLOAT;}
 {INT}           {yylval.node = GenerateTypeNode(AINT, yylineno, yytext);return INT;}
+{IL_OCT_INT}    {IllegalOctNumberHandler(yytext, yylineno);yylval.node = GenerateTypeNode(AINT, yylineno, "0");return INT;}
+{IL_HEX_INT}    {IllegalHexNumberHandler(yytext, yylineno);yylval.node = GenerateTypeNode(AINT, yylineno, "0");return INT;}
 {TYPE}          {yylval.node = GenerateTypeNode(ATYPE, yylineno, yytext);return TYPE;}
 "struct"        {yylval.node = GenerateSimpleTerminalNode(ASTRUCT, yylineno);return STRUCT;}
 "return"        {yylval.node = GenerateSimpleTerminalNode(ARETURN, yylineno);return RETURN;}
@@ -57,19 +67,43 @@ WS              [ \t]+
 "}"             {yylval.node = GenerateSimpleTerminalNode(ARC, yylineno);return RC;}
 \n              {yycolumn=1;}
 {COMMENTLINE}   {;}
-{COMMENTBLOCK}  {EmitCommentBlock();}
+{COMMENTBLOCK}  {if(EmitCommentBlock())return 0;}
 {WS}            {;}
-.               {ParsingSwitch = false;printf("\033[31mError type A at Line %d: Mysterious character \"%s\".\033[0m\n", yylineno, yytext);}
+.               {MysteriousCharacterHandler(yytext, yylineno);}
 
 %%
 
-void ErrorTypeAHandler(char* msg, int lineno)
+void MysteriousCharacterHandler(char* msg, int lineno)
 {
     ParsingSwitch = false;
-    printf("\033[31mError type A at Line %d: \"%s\".\033[0m\n", lineno, msg);    
+    printf("\033[31mError type A at Line %d: Mysterious character \"%s\".\033[0m\n", lineno, msg);    
 }
 
-void EmitCommentBlock()
+void IllegalOctNumberHandler(char* msg, int lineno)
+{
+    ParsingSwitch = false;
+    printf("\033[31mError type A at Line %d: Illegal octal number \"%s\".\033[0m\n",lineno, msg );
+}
+
+void IllegalHexNumberHandler(char* msg, int lineno)
+{
+    ParsingSwitch = false;
+    printf("\033[31mError type A at Line %d: Illegal hexadecimal number \"%s\".\033[0m\n",lineno, msg );
+}
+
+void IllegalFloatNumberHandler(char* msg, int lineno)
+{
+    ParsingSwitch = false;
+    printf("\033[31mError type A at Line %d: Illegal float number \"%s\".\033[0m\n",lineno, msg );
+}
+
+void CommentUntilEOF(int lineno)
+{
+    ParsingSwitch = false;
+    printf("\033[31mError type A at Line %d: block comment met EOF.\033[0m\n",lineno);   
+}
+
+int EmitCommentBlock()
 {
     char c1, c2;
     c1 = 0;
@@ -78,10 +112,11 @@ void EmitCommentBlock()
     {
         if(c2 == EOF)
         {
-           ErrorTypeAHandler("comment until EOF", yylineno);
+           CommentUntilEOF(yylineno);
+           return 1;
         }
         c1 = c2;
         c2 = (char)input();
     }
-    return;
+    return 0;
 }

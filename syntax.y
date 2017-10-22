@@ -33,7 +33,7 @@ void ErrorTypeBHandler(int lineno, char* msg);
 %nonassoc LOWER_THAN_RP
 %left LP RP LB RB DOT
 %nonassoc LOWER_THAN_ELSE LOWER_THAN_SEMI LOWER_THAN_RC
-%nonassoc ELSE SEMI RC 
+%nonassoc ELSE SEMI RC COMMA
 
 %%
 
@@ -107,10 +107,11 @@ Stmt : Exp SEMI                                 {$$ = GenerateVariableNode(AStmt
     | IF LP Exp RP Stmt %prec LOWER_THAN_ELSE   {$$ = GenerateVariableNode(AStmt, 5, $1, $2, $3, $4, $5);}
     | IF LP Exp RP Stmt ELSE Stmt               {$$ = GenerateVariableNode(AStmt, 7, $1, $2, $3, $4, $5, $6, $7);}
     | WHILE LP Exp RP Stmt                      {$$ = GenerateVariableNode(AStmt, 5, $1, $2, $3, $4, $5);}
-    | Exp error %prec LOWER_THAN_SEMI           {ErrorTypeBHandler(prev_error_lineno, "Missing \";\".");}
+    | Exp error %prec LOWER_THAN_RP             {ErrorTypeBHandler(prev_error_lineno, "Missing \";\".");}
     | Exp error SEMI                            {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \";\", maybe Missing \";\".");}
     | Exp error COMMA                           {ErrorTypeBHandler(prev_error_lineno, "Syntax error near \",\".");}
     | RETURN Exp error SEMI                     {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \";\".");}
+    | Exp error RP SEMI                         {ErrorTypeBHandler(prev_error_lineno, "Syntax error near \")\"");}
     ;
 
 /*Local Definitions*/
@@ -120,6 +121,8 @@ DefList :                                       {$$ = NULL;}
 
 Def : Specifier DecList SEMI                    {$$ = GenerateVariableNode(ADef, 3, $1, $2, $3);}
     | Specifier DecList error SEMI              {ErrorTypeBHandler(prev_error_lineno, "Missing \";\".");}
+    | Specifier DecList error %prec LOWER_THAN_SEMI {ErrorTypeBHandler(prev_error_lineno, "Missing \";\".");}
+    | Specifier VarDec ASSIGNOP Exp MINUS error SEMI {ErrorTypeBHandler(prev_error_lineno, "Missing \";\".");}
     ;
 
 DecList : Dec                                   {$$ = GenerateVariableNode(ADecList, 1, $1);}

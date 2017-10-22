@@ -29,6 +29,9 @@ tc : syntax lexical parser
 td : syntax lexical parser
 	./parser test/D/*.cmm
 
+te : syntax lexical parser
+	./parser test/E/*.cmm
+
 compile: clean syntax lexical parser
 
 debug: clean debug_compile
