@@ -18,6 +18,7 @@ void ErrorTypeBHandler(int lineno, char* msg);
 
 %token <node> INT FLOAT ID SEMI COMMA ASSIGNOP RELOP PLUS MINUS STAR DIV OR AND
 %token <node> DOT NOT TYPE LP RP LB RB LC RC STRUCT RETURN IF ELSE WHILE
+%token <node> END
 
 %type <node> Program ExtDefList ExtDef Specifier ExtDecList VarDec StructSpecifier 
 %type <node> OptTag Tag FunDec VarList ParamDec CompSt StmtList Stmt Exp Def DefList Dec DecList Args
@@ -30,8 +31,8 @@ void ErrorTypeBHandler(int lineno, char* msg);
 %left STAR DIV
 %right NOT
 %left LP RP LB RB DOT
-%nonassoc LOWER_THAN_ELSE
-%nonassoc ELSE
+%nonassoc LOWER_THAN_ELSE LOWER_THAN_SEMI LOWER_THAN_RC
+%nonassoc ELSE SEMI RC 
 
 %%
 
@@ -46,6 +47,8 @@ ExtDefList :                                    {$$ = NULL;}
 ExtDef : Specifier ExtDecList SEMI              {$$ = GenerateVariableNode(AExtDef, 3, $1, $2, $3);}
     | Specifier SEMI                            {$$ = GenerateVariableNode(AExtDef, 2, $1, $2);}
     | Specifier FunDec CompSt                   {$$ = GenerateVariableNode(AExtDef, 3, $1, $2, $3);}
+    | Specifier error %prec LOWER_THAN_SEMI     {ErrorTypeBHandler(prev_error_lineno, "Syntax error after \"}\", maybe Missing \";\".");}                    
+    | Specifier ExtDecList error SEMI           {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \";\".");}
     ;
 
 ExtDecList : VarDec                             {$$ = GenerateVariableNode(AExtDecList, 1, $1);}
@@ -71,11 +74,13 @@ Tag : ID                                        {$$ = GenerateVariableNode(ATag,
 /*Declarators*/
 VarDec : ID                                     {$$ = GenerateVariableNode(AVarDec, 1, $1);}
     | VarDec LB INT RB                          {$$ = GenerateVariableNode(AVarDec, 4, $1, $2, $3, $4);}
-    | VarDec LB INT error RB                    {ErrorTypeBHandler(prev_error_lineno, "Missing \"]\".");}
+    | VarDec LB INT error RB                    {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \"]\", maybe Missing \"]\".");}
+    | VarDec LB error RB                        {ErrorTypeBHandler(prev_error_lineno, "Syntax error after \"[\".");}
     ;
 
 FunDec : ID LP VarList RP                       {$$ = GenerateVariableNode(AFunDec, 4, $1, $2, $3, $4);}
     | ID LP RP                                  {$$ = GenerateVariableNode(AFunDec, 3, $1, $2, $3);}
+    | ID LP error RP                            {ErrorTypeBHandler(prev_error_lineno, "Syntax error after \"(\".");}
     ;
 
 VarList : ParamDec COMMA VarList                {$$ = GenerateVariableNode(AVarList, 3, $1, $2, $3);}
@@ -87,7 +92,8 @@ ParamDec : Specifier VarDec                     {$$ = GenerateVariableNode(APara
 
 /*Statements*/
 CompSt : LC DefList StmtList RC                 {$$ = GenerateVariableNode(ACompSt, 4, $1, $2, $3, $4);}
-    |   LC error RC                             {ErrorTypeBHandler(prev_error_lineno, "Syntax error.");}
+    |   LC error %prec LOWER_THAN_RC            {ErrorTypeBHandler(prev_error_lineno, "Missing \"}\"");}
+    |   LC error RC                             {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \"}\".");}
     ;
 
 StmtList :                                      {$$ = NULL;}
@@ -100,7 +106,9 @@ Stmt : Exp SEMI                                 {$$ = GenerateVariableNode(AStmt
     | IF LP Exp RP Stmt %prec LOWER_THAN_ELSE   {$$ = GenerateVariableNode(AStmt, 5, $1, $2, $3, $4, $5);}
     | IF LP Exp RP Stmt ELSE Stmt               {$$ = GenerateVariableNode(AStmt, 7, $1, $2, $3, $4, $5, $6, $7);}
     | WHILE LP Exp RP Stmt                      {$$ = GenerateVariableNode(AStmt, 5, $1, $2, $3, $4, $5);}
-    | Exp error SEMI                            {ErrorTypeBHandler(prev_error_lineno, "Missing \";\".");}
+    | Exp error %prec LOWER_THAN_SEMI           {ErrorTypeBHandler(prev_error_lineno, "Missing \";\".");}
+    | Exp error SEMI                            {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \";\", maybe Missing \";\".");}
+    | RETURN Exp error SEMI                     {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \";\".");}
     ;
 
 /*Local Definitions*/
@@ -140,6 +148,8 @@ Exp : Exp ASSIGNOP Exp                          {$$ = GenerateVariableNode(AExp,
     | INT                                       {$$ = GenerateVariableNode(AExp, 1, $1);} 
     | FLOAT                                     {$$ = GenerateVariableNode(AExp, 1, $1);}
     | Exp LB Exp error RB                       {ErrorTypeBHandler(prev_error_lineno, "Missing \"]\".");}
+    | Exp LB error RB                           {ErrorTypeBHandler(prev_error_lineno, "Syntax error after \"[\".");}
+    | ID LP error RP                            {ErrorTypeBHandler(prev_error_lineno, "Syntax error after \"(\".");}
     ;
 
 Args : Exp COMMA Args                           {$$ = GenerateVariableNode(AArgs, 3, $1, $2, $3);}

@@ -72,7 +72,10 @@ extern int yydebug;
     IF = 282,
     ELSE = 283,
     WHILE = 284,
-    LOWER_THAN_ELSE = 285
+    END = 285,
+    LOWER_THAN_ELSE = 286,
+    LOWER_THAN_SEMI = 287,
+    LOWER_THAN_RC = 288
   };
 #endif
 
@@ -85,7 +88,7 @@ union YYSTYPE
 
     struct ParsingNode *node;
 
-#line 89 "syntax.tab.h" /* yacc.c:1909  */
+#line 92 "syntax.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

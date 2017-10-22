@@ -26,6 +26,7 @@ enum {	AINT = 0, AFLOAT, AID, ASEMI, ACOMMA, AASSIGNOP, ARELOP,
 extern char* symbolsTable[48];
 extern char* typeTables[2];
 extern bool ParsingSwitch;
+
 struct ParsingNode
 {
     int SymbolIndex;

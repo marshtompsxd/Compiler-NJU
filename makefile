@@ -15,9 +15,15 @@ run: syntax lexical parser
 	./parser test/1.cmm
 
 test: syntax lexical parser
-	./parser test/*.cmm 
+	./parser test/samples/*.cmm 
 
-compile: syntax lexical parser
+ta : syntax lexical parser
+	./parser test/A/*.cmm
+
+tb : syntax lexical parser
+	./parser test/B/*.cmm
+
+compile: clean syntax lexical parser
 
 debug: clean debug_compile
 
