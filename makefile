@@ -12,7 +12,7 @@ CFLAGS = -g \
 
 
 run: syntax lexical parser
-	./parser test/1.cmm
+	./parser test/samples/1.cmm
 
 test: syntax lexical parser
 	./parser test/samples/*.cmm 
