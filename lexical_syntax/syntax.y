@@ -41,7 +41,7 @@ void ErrorTypeBHandler(int lineno, char* msg);
 Program : ExtDefList                            {$$ = GenerateVariableNode(AProgram, 1, $1);ParsingRoot = $$;}
     ;
 
-ExtDefList :                                    {$$ = NULL;}
+ExtDefList :                                    {$$ = GenerateDummyNode(AExtDefList);}
     | ExtDef ExtDefList                         {$$ = GenerateVariableNode(AExtDefList, 2, $1, $2);}
     ;
 
@@ -50,6 +50,7 @@ ExtDef : Specifier ExtDecList SEMI              {$$ = GenerateVariableNode(AExtD
     | Specifier FunDec CompSt                   {$$ = GenerateVariableNode(AExtDef, 3, $1, $2, $3);}
     | Specifier error %prec LOWER_THAN_SEMI     {ErrorTypeBHandler(prev_error_lineno, "Syntax error after \"}\", maybe Missing \";\".");}                    
     | Specifier ExtDecList error SEMI           {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \";\".");}
+    | Specifier error SEMI                      {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \";\".");}
     ;
 
 ExtDecList : VarDec                             {$$ = GenerateVariableNode(AExtDecList, 1, $1);}
@@ -63,9 +64,10 @@ Specifier : TYPE                                {$$ = GenerateVariableNode(ASpec
 
 StructSpecifier : STRUCT OptTag LC DefList RC   {$$ = GenerateVariableNode(AStructSpecifier, 5, $1, $2, $3, $4, $5);}
     | STRUCT Tag                                {$$ = GenerateVariableNode(AStructSpecifier, 2, $1, $2);}
+    | STRUCT OptTag LC error RC                 {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \"}\".");}
     ;
 
-OptTag :                                        {$$ = NULL;}
+OptTag :                                        {$$ = GenerateDummyNode(AOptTag);}
     | ID                                        {$$ = GenerateVariableNode(AOptTag, 1, $1);}
     ;
 
@@ -97,7 +99,7 @@ CompSt : LC DefList StmtList RC                 {$$ = GenerateVariableNode(AComp
     |   LC error RC                             {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \"}\".");}
     ;
 
-StmtList :                                      {$$ = NULL;}
+StmtList :                                      {$$ = GenerateDummyNode(AStmtList);}
     | Stmt StmtList                             {$$ = GenerateVariableNode(AStmtList, 2, $1, $2);}
     ;
 
@@ -111,18 +113,22 @@ Stmt : Exp SEMI                                 {$$ = GenerateVariableNode(AStmt
     | Exp error SEMI                            {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \";\", maybe Missing \";\".");}
     | Exp error COMMA                           {ErrorTypeBHandler(prev_error_lineno, "Syntax error near \",\".");}
     | RETURN Exp error SEMI                     {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \";\".");}
+    | RETURN error SEMI                         {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \";\".");}
     | Exp error RP SEMI                         {ErrorTypeBHandler(prev_error_lineno, "Syntax error near \")\"");}
+    | WHILE LP error RP Stmt                    {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \")\"");}
+    | IF LP error RP Stmt %prec LOWER_THAN_ELSE {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \")\"");}
+    | IF LP error RP Stmt ELSE Stmt             {ErrorTypeBHandler(prev_error_lineno, "Syntax error before \")\"");}
     ;
 
 /*Local Definitions*/
-DefList :                                       {$$ = NULL;}
+DefList :                                       {$$ = GenerateDummyNode(ADefList);}
     | Def DefList                               {$$ = GenerateVariableNode(ADefList, 2, $1, $2);}
     ;
 
 Def : Specifier DecList SEMI                    {$$ = GenerateVariableNode(ADef, 3, $1, $2, $3);}
     | Specifier DecList error SEMI              {ErrorTypeBHandler(prev_error_lineno, "Missing \";\".");}
-    | Specifier DecList error %prec LOWER_THAN_SEMI {ErrorTypeBHandler(prev_error_lineno, "Missing \";\".");}
-    | Specifier VarDec ASSIGNOP Exp MINUS error SEMI {ErrorTypeBHandler(prev_error_lineno, "Missing \";\".");}
+    | Specifier DecList error %prec LOWER_THAN_SEMI     {ErrorTypeBHandler(prev_error_lineno, "Missing \";\".");}
+    | Specifier VarDec ASSIGNOP Exp MINUS error SEMI    {ErrorTypeBHandler(prev_error_lineno, "Missing \";\".");}
     ;
 
 DecList : Dec                                   {$$ = GenerateVariableNode(ADecList, 1, $1);}

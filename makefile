@@ -14,23 +14,11 @@ CFLAGS = -g \
 run: syntax lexical parser
 	./parser test/samples/1.cmm
 
-test: syntax lexical parser
-	./parser test/samples/*.cmm 
+test1: syntax lexical parser
+	./parser test/p1/*.cmm 
 
-ta : syntax lexical parser
-	./parser test/A/*.cmm
-
-tb : syntax lexical parser
-	./parser test/B/*.cmm
-
-tc : syntax lexical parser
-	./parser test/C/*.cmm
-
-td : syntax lexical parser
-	./parser test/D/*.cmm
-
-te : syntax lexical parser
-	./parser test/E/*.cmm
+test2: syntax lexical parser
+	./parser test/p2/*.cmm
 
 compile: clean syntax lexical parser
 
@@ -41,13 +29,13 @@ debug_compile: CFLAGS += -DYYDEBUG=1
 debug_compile: compile
 
 lexical:
-	flex --header-file=lex.yy.h lexical.l
+	cd lexical_syntax && flex --header-file=lex.yy.h lexical.l
 
 syntax:
-	bison -d -v syntax.y
+	cd lexical_syntax && bison -d -v syntax.y
 
 parser:
-	gcc main.c syntax.tab.c lex.yy.c ParsingNode.c text.c ${CFLAGS} -lfl -ly -o parser
+	gcc main.c lexical_syntax/syntax.tab.c lexical_syntax/lex.yy.c lexical_syntax/ParsingNode.c lexical_syntax/text.c semantic/semantic.c ${CFLAGS} -lfl -ly -o parser
 
 clean:
 	rm -f parser

@@ -6,7 +6,7 @@
 #include "ParsingNode.h"
 #include "text.h"
 
-char* symbolsTable[48] = 
+static char* symbolsTable[48] = 
 		{"INT", "FLOAT", "ID", "SEMI", "COMMA", "ASSIGNOP", "RELOP", 
 		"PLUS", "MINUS", "STAR", "DIV", "AND", "OR", "DOT", "NOT", "TYPE",
 		"LP", "RP", "LB", "RB", "LC", "RC", "STRUCT", "RETURN", "IF", "ELSE", "WHILE",
@@ -15,7 +15,7 @@ char* symbolsTable[48] =
 		"ParamDec", "CompSt", "StmtList", "Stmt", "Exp", "Def", "DefList", 
 		"Dec","DecList", "Args"};
 
-char* typeTables[2] = {"int", "float"};
+static char* typeTables[2] = {"int", "float"};
 
 ParsingNode* ParsingRoot = NULL;
 
@@ -24,6 +24,7 @@ bool ParsingSwitch = true;
 ParsingNode* GenerateSimpleTerminalNode(int TerminalType, int lineno)
 {
 	ParsingNode *node = (ParsingNode*)malloc(sizeof(ParsingNode));
+	node->kind = Terminal;
 	node->SymbolIndex = TerminalType;
 	node->lineno = lineno;
 	node->firstchild = NULL;
@@ -40,6 +41,7 @@ ParsingNode* GenerateSimpleTerminalNode(int TerminalType, int lineno)
 ParsingNode* GenerateIDNode(int lineno, char* text)
 {
 	ParsingNode *node = (ParsingNode*)malloc(sizeof(ParsingNode));
+	node->kind = Terminal;
 	node->SymbolIndex = AID;
 	node->lineno = lineno;
 	node->firstchild = NULL;
@@ -59,6 +61,7 @@ ParsingNode* GenerateIDNode(int lineno, char* text)
 ParsingNode* GenerateTypeNode(int TerminalType, int lineno, char* text)
 {
 	ParsingNode *node = (ParsingNode*)malloc(sizeof(ParsingNode));
+	node->kind = Terminal;
 	node->SymbolIndex = TerminalType;
 	node->lineno = lineno;
 	node->firstchild = NULL;
@@ -93,43 +96,67 @@ ParsingNode* GenerateTypeNode(int TerminalType, int lineno, char* text)
 	return node;
 }
 
+ParsingNode* GenerateDummyNode(int VariableType)
+{
+	ParsingNode *node = (ParsingNode*)malloc(sizeof(ParsingNode));
+	node->kind = Dummy;
+	node->SymbolIndex = VariableType;
+	node->nextsibiling = NULL;
+	node->firstchild = NULL;
+	node->childrenNum = 0;
+
+	return node;
+}
+
 ParsingNode* GenerateVariableNode(int VariableType, int childrenNum, ...)
 {
 	ParsingNode *node = (ParsingNode*)malloc(sizeof(ParsingNode));
 	ParsingNode *previous;
 	ParsingNode *child;
+	node->kind = Variable;
 	node->SymbolIndex = VariableType;
 	node->nextsibiling = NULL;
 	node->childrenNum = childrenNum;
 
-
-
 	va_list arg_ptr;
 	va_start(arg_ptr, childrenNum);
 	int i;
+	int dummy_num = 0;
+	bool met_first = false;
 	for(i=0;i<childrenNum;i++)
 	{
 		child = va_arg(arg_ptr, ParsingNode*);
-		if(child == NULL)
-		{
-			node->childrenNum--;
-			continue;
-		}
-		child->parent = node;
 		if(i == 0)
 		{
 			node->firstchild = child;
-			node->lineno = child->lineno;
 		}
 		else 
 		{
 			previous->nextsibiling = child;
 		}
+
+		if(child->kind == Dummy)
+		{
+			dummy_num++;
+		}
+		else
+		{
+			if(!met_first)
+			{
+				node->lineno = child->lineno;
+				met_first = true;
+			}
+		}
+
+		child->parent = node;
 		previous = child;
 	}
 	va_end(arg_ptr);
 
-	if(node->childrenNum == 0)return NULL;
+	if(node->childrenNum == dummy_num)
+	{
+		node->kind = Dummy;
+	}
 
 	#ifdef VARIABLE_DEBUG
 	printf("Variable %s at %d\n",symbolsTable[node->SymbolIndex], node->lineno);
@@ -152,20 +179,21 @@ void SetDepthOfParsingTree(ParsingNode* node, int depth)
 	return;
 }
 
-void PrintSpace(ParsingNode* node)
+static void PrintSpace(ParsingNode* node)
 {
+	if(node->kind == Dummy)return;
 	int i;
 	for(i=0;i<node->depth*2;i++) printf(" ");
 }
 
-void PrintParsingNode(ParsingNode* node)
+static void PrintParsingNode(ParsingNode* node)
 {
 	PrintSpace(node);
-	if(node->childrenNum != 0)
+	if(node->kind == Variable)
 	{
 		printf("%s (%d)\n",symbolsTable[node->SymbolIndex], node->lineno );
 	}
-	else
+	else if(node->kind == Terminal)
 	{
 		if(node->SymbolIndex == AID)
 			printf("%s: %s\n",symbolsTable[node->SymbolIndex], node->IDname );

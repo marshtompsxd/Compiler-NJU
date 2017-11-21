@@ -1,11 +1,12 @@
 #include <stdio.h>
 
 
-#include "ParsingNode.h"
-#include "lex.yy.h"
-#include "syntax.tab.h"
+#include "lexical_syntax/ParsingNode.h"
+#include "lexical_syntax/lex.yy.h"
+#include "lexical_syntax/syntax.tab.h"
+#include "semantic/semantic.h"
 
-void ParsingFinalPhase(char* filename)
+static void ParsingFinalPhase(char* filename)
 {
 	if(!ParsingSwitch) 
 	{
@@ -55,11 +56,18 @@ int main(int argc, char** argv)
 #endif
 		yylineno = 1;
 		ParsingSwitch = true;
+
+		// begin lexical and syntax analysis
 		printf("Parsing %s begin...\n", argv[i]);
 		yyparse();
 		fclose(f);
 
 		ParsingFinalPhase(argv[i]);
+
+		// begin semantic analysis
+		if(!ParsingSwitch)return 1;
+		printf("Semantic analysis %s begin...\n", argv[i]);
+		SemanticAnalysis(ParsingRoot);
 		
 	}
 
