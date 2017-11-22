@@ -9,13 +9,29 @@ static FieldList* DecAnalysisInStruct(ParsingNode* node, Type* InheritType);
 static FieldList* DecListAnalysisInStruct(ParsingNode* node, Type* InheritType);
 static FieldList* DefAnalysisInStruct(ParsingNode* node);
 static FieldList* DefListAnalysisInStruct(ParsingNode* node);
+
 static Type* StructSpecifierAnalysis(ParsingNode* node);
 static Type* TYPEAnalysis(ParsingNode* node);
 static Type* SpecifierAnalysis(ParsingNode* node);
 static void VarDecAnalysisGlobal(ParsingNode* node, Type* InheritType);
 static void ExtDecListAnalysis(ParsingNode* node, Type* InheritType);
+
+static SymbolTableEntry* VarDecAnalysisInParam(ParsingNode* node, Type* InheritType);
+static SymbolTableEntry* ParamDecAnalysis(ParsingNode* node);
+static SymbolTableEntry* VarListAnalysis(ParsingNode* node);
+static void VarDecAnalysisInFunction(ParsingNode* node, ParamList* PL, Type* InheritType);
+static void DecAnalysisInFunction(ParsingNode* node, ParamList* PL, Type* InheritType);
+static void DecListAnalysisInFunction(ParsingNode* node, ParamList* PL, Type* InheritType);
+static void DefAnalysisInFunction(ParsingNode* node, ParamList* PL);
+static void DefListAnalysisInFunction(ParsingNode* node, ParamList* PL);
+static void StmtListAnalysis(ParsingNode* node, Type* RetType, ParamList* PL);
+static void CompStAnalysis(ParsingNode* node, Type* RetType, ParamList* PL);
+static ParamList* FunDecAnalysis(ParsingNode* node, Type* RetType);
+
 static void ExtDefAnalysis(ParsingNode* node);
 static void ExtDefListAnalysis(ParsingNode* node);
+
+
 
 int sym_top;
 int struct_top;
@@ -30,7 +46,7 @@ StructTypeTableHead* StructTypeTableStack[STACK_SIZE];
 
 bool SemanticSwitch;
 
-static void InitSymbolTable()
+static void InitTable()
 {
 	SemanticSwitch = true;
 
@@ -303,9 +319,7 @@ static SymbolTableEntry* VarDecAnalysisInParam(ParsingNode* node, Type* InheritT
 		SE->Variable.VariableType = InheritType;
 		SE->tail = NULL;
 
-		//ATTENTION: CHECK ERROR 3 !!!
-		CheckSameVarNameInSymbolTable(SE->Variable.VariableName, SE->lineno, CurrentSymbolTable, true);
-		CheckSameVarNameInStructTypeTable(SE->Variable.VariableName, SE->lineno, CurrentStructTypeTable, true);
+		
 		return SE;
 	}
 }
@@ -352,29 +366,141 @@ static ParamList* FunDecAnalysis(ParsingNode* node, Type* RetType)
 	strcpy(SE->Function.FunName, IDNode->IDname);
 	SE->Function.RetType = RetType;
 	SE->Function.PL = (ParamList*)malloc(sizeof(ParamList));
-	SE->Function.PL->head = VarListAnalysis(thirdchild(node));
 
+	if(node->childrenNum == 4)
+	{
+		SE->Function.PL->head = VarListAnalysis(thirdchild(node));
+	}
+	else
+	{
+		SE->Function.PL->head = NULL;
+	}
+
+	//ATTENTION: CHECK ERROR 4 !!!
 	CheckSameFunNameInSymbolTable(SE->Function.FunName, SE->lineno, CurrentSymbolTable);
 	InsertItemIntoSymbolTable(SE, CurrentSymbolTable);
 
 	return SE->Function.PL;
 }	
 
-static void DefListAnalysisInFunction(ParsingNode* node, ParamList* PL)
+static void VarDecAnalysisInFunction(ParsingNode* node, ParamList* PL, Type* InheritType)
+{
+	assert(node->SymbolIndex == AVarDec);
+
+	if(node->childrenNum == 4)
+	{
+		ParsingNode* TypeNode = thirdchild(node);
+
+		Type* subType = (Type*)malloc(sizeof(Type));
+		subType->kind = ARRAY;
+		subType->array.elem = InheritType;
+		subType->array.size = TypeNode->int_value;
+
+		VarDecAnalysisInFunction(node->firstchild, PL, subType);
+	}
+	else
+	{
+		ParsingNode* IDNode = node->firstchild;
+
+		SymbolTableEntry* SE = (SymbolTableEntry*)malloc(sizeof(SymbolTableEntry));
+		SE->kind = VAR;
+		SE->lineno = IDNode->lineno;
+		SE->Variable.VariableName = (char*)malloc(strlen(IDNode->IDname));
+		strcpy(SE->Variable.VariableName, IDNode->IDname);
+		SE->Variable.VariableType = InheritType;
+		SE->tail = NULL;
+
+		//ATTENTION: CHECK ERROR 3 !!!
+		CheckSameVarNameInSymbolTable(SE->Variable.VariableName, SE->lineno, CurrentSymbolTable, true);
+		CheckSameVarNameInStructTypeTable(SE->Variable.VariableName, SE->lineno, CurrentStructTypeTable, true);
+		CheckSameVarNameInParamList(SE->Variable.VariableName, SE->lineno, PL);
+		InsertItemIntoSymbolTable(SE, CurrentSymbolTable);
+	}
+}
+
+static void DecAnalysisInFunction(ParsingNode* node, ParamList* PL, Type* InheritType)
+{
+	if(node->childrenNum == 3)
+	{
+		// need repair
+		assert(0);
+	}
+	else
+	{
+		VarDecAnalysisInFunction(node->firstchild, PL, InheritType);
+	}
+}
+
+static void DecListAnalysisInFunction(ParsingNode* node, ParamList* PL, Type* InheritType)
 {
 
+	assert(node->SymbolIndex == ADecList);
+
+	if(node->childrenNum == 3)
+	{
+		DecAnalysisInFunction(node->firstchild, PL, InheritType);
+		DecListAnalysisInFunction(thirdchild(node), PL, InheritType);
+	}
+	else
+	{
+		DecAnalysisInFunction(node->firstchild, PL, InheritType);
+	}
 }
+
+static void DefAnalysisInFunction(ParsingNode* node, ParamList* PL)
+{
+	assert(node->SymbolIndex == ADef);
+
+	Type* InheritType = SpecifierAnalysis(node->firstchild);
+
+	if(InheritType == NULL)return;
+
+	DecListAnalysisInFunction(secondchild(node), PL, InheritType);
+
+}
+
+static void DefListAnalysisInFunction(ParsingNode* node, ParamList* PL)
+{
+	assert(node->SymbolIndex == ADefList);
+
+
+	if(node->kind != Dummy)
+	{
+		DefAnalysisInFunction(node->firstchild, PL);
+		DefListAnalysisInFunction(secondchild(node), PL);
+	}
+	else return;
+}
+
 
 static void StmtListAnalysis(ParsingNode* node, Type* RetType, ParamList* PL)
 {
-	
+	ParsingNode* n = NULL;
+	Type* t = NULL;
+	ParamList* p = NULL;
+	node = n;
+	n = node;
+	RetType = t;
+	t = RetType;
+	PL = p;
+	p = PL;
+	return;
 }
+
 
 static void CompStAnalysis(ParsingNode* node, Type* RetType, ParamList* PL)
 {
 	assert(node->SymbolIndex == ACompSt);
 
+	PushPrevTable();
 
+	DefListAnalysisInFunction(secondchild(node), PL);
+	StmtListAnalysis(thirdchild(node), RetType, PL);
+
+	printf("check elem in CurrentSymbolTable\n");
+	CheckElemInTable(CurrentSymbolTable);
+
+	PopPrevTable();
 }
 
 static void ExtDefAnalysis(ParsingNode* node)
@@ -391,8 +517,8 @@ static void ExtDefAnalysis(ParsingNode* node)
 	}
 	else if(secondchild(node)->SymbolIndex == AFunDec)
 	{
-		ParamList* PL = FunDecAnalysis(node->firstchild, InheritType);
-		CompStAnalysis(secondchild(node), InheritType, PL);
+		ParamList* PL = FunDecAnalysis(secondchild(node), InheritType);
+		CompStAnalysis(thirdchild(node), InheritType, PL);
 	}
 	return;
 }
@@ -407,16 +533,25 @@ static void ExtDefListAnalysis(ParsingNode* node)
 		ExtDefListAnalysis(secondchild(node));
 	}
 	else return;
+}
 
+static void ProgramAnalysis(ParsingNode* node)
+{
+	assert(node->SymbolIndex == AProgram);
+	ExtDefListAnalysis(node->firstchild);
 }
 
 void SemanticAnalysis(ParsingNode* node)
 {
-	assert(node->SymbolIndex == AProgram);
+	assert(CurrentSymbolTable == RootSymbolTable);
+	assert(CurrentStructTypeTable == RootStructTypeTable);
 
-	InitSymbolTable();
-	ExtDefListAnalysis(node->firstchild);
+	InitTable();
+	ProgramAnalysis(node);
+
+	assert(CurrentSymbolTable == RootSymbolTable);
+	assert(CurrentStructTypeTable == RootStructTypeTable);
 
 	printf("check elem in root table\n");
-	CheckElemInTable(RootSymbolTable);
+	CheckElemInTable(CurrentSymbolTable);
 }

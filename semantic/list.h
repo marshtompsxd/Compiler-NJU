@@ -2,6 +2,7 @@
 #define __LIST_H__
 
 #include "symbol_table.h"
+#include <stdlib.h>
 
 FieldList* FLTail(FieldList* FL)
 {
@@ -87,6 +88,30 @@ Type* GetStructType(char* structname)
 		idx--;
 	}
 	return NULL;
+}
+
+void PushPrevTable()
+{
+	sym_top++;
+	struct_top++;
+	SymbolTableStack[sym_top] = CurrentSymbolTable;
+	StructTypeTableStack[struct_top] = CurrentStructTypeTable;
+
+	CurrentSymbolTable = (SymbolTableHead*)malloc(sizeof(SymbolTableHead));
+	CurrentSymbolTable->head = NULL;
+	CurrentStructTypeTable = (StructTypeTableHead*)malloc(sizeof(StructTypeTableHead));
+	CurrentStructTypeTable->head = NULL;
+
+}
+
+void PopPrevTable()
+{
+	free(CurrentSymbolTable);
+	free(CurrentStructTypeTable);
+	CurrentSymbolTable = SymbolTableStack[sym_top];
+	CurrentStructTypeTable = StructTypeTableStack[struct_top];
+	sym_top--;
+	struct_top--;
 }
 
 #endif

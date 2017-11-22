@@ -12,11 +12,30 @@ struct position
 	int z = 0;
 };
 
+struct position
+{
+	int a[3];
+};
+
 struct position pos;
+
+struct location loc;
 
 int s;
 
-int main()
+int inc()
 {
-	int b;
+	int x;
+}
+
+int inc()
+{
+
+}
+
+int main(int a, int b)
+{
+	int c;
+	int d;
+	float d;
 }

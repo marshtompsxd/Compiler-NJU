@@ -37,11 +37,13 @@ void CheckSameVarNameInSymbolTable(char* varname, int lineno, SymbolTableHead* t
 			{
 				printf("\033[31mError type 3 at Line %d: Redefined variable \"%s\".\033[0m\n", 
 					lineno,varname);
+				return;
 			}
 			else
 			{
 				printf("\033[31mError type 16 at Line %d: Duplicated name \"%s\".\033[0m\n", 
 					lineno,varname);
+				return;
 			}
 		}
 	}
@@ -57,6 +59,7 @@ void CheckSameFunNameInSymbolTable(char* funname, int lineno, SymbolTableHead* t
 			SemanticSwitch = false;
 			printf("\033[31mError type 4 at Line %d: Redefined function \"%s\".\033[0m\n", 
 					lineno,funname);
+			return;
 		}
 	}
 }
@@ -73,15 +76,31 @@ void CheckSameVarNameInStructTypeTable(char* varname, int lineno, StructTypeTabl
 			{
 				printf("\033[31mError type 3 at Line %d: Redefined variable \"%s\".\033[0m\n", 
 					lineno,varname);
+				return;
 			}
 			else
 			{
 				printf("\033[31mError type 16 at Line %d: Duplicated name \"%s\".\033[0m\n", 
 					lineno,varname);
+				return;
 			}
 		}
+	}	
+}
+
+void CheckSameVarNameInParamList(char* varname, int lineno, ParamList* PL)
+{
+	SymbolTableEntry* SE;
+	for(SE = PL->head; SE != NULL; SE = SE->tail)
+	{
+		if(strcmp(varname, SE->Variable.VariableName)==0)
+		{
+			SemanticSwitch = false;
+			printf("\033[31mError type 3 at Line %d: Redefined variable \"%s\".\033[0m\n", 
+					lineno,varname);
+			return;
+		}
 	}
-	
 }
 
 static char* basictype[2] = {"int", "float"};
@@ -94,7 +113,7 @@ static void PrintType(Type* type)
 	}
 	else if(type->kind == ARRAY)
 	{
-		printf("array size : %d, array elem type : ", type->array.size);
+		printf("array size : %d, array elem type : \n", type->array.size);
 		PrintType(type->array.elem);
 	}
 	else
@@ -122,7 +141,24 @@ void CheckElemInTable(SymbolTableHead* table)
 			PrintType(SE->Variable.VariableType);
 			printf("----------------------------------------------------\n");
 		}
+		else if(SE->kind == FUN)
+		{
+			printf("FUN : %s at line : %d : ", SE->Function.FunName, SE->lineno);
+			printf("Ret Type : ");
+			PrintType(SE->Function.RetType);
+			printf("\n");
+			printf("ParamList : \n");
+			SymbolTableEntry* PLE;
+			for(PLE = SE->Function.PL->head;PLE!=NULL;PLE = PLE->tail)
+			{
+				printf("name : %s ", PLE->Variable.VariableName);
+				PrintType(PLE->Variable.VariableType);
+			}
+
+			printf("----------------------------------------------------\n");
+		}
 	}
+	printf("\n\n");
 }
 
 #endif
