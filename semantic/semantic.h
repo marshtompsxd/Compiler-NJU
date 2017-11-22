@@ -8,4 +8,8 @@
 extern void SemanticAnalysis(ParsingNode* node);
 extern bool SemanticSwitch;
 
+
+
+
+
 #endif

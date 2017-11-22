@@ -47,6 +47,20 @@ void CheckSameVarNameInSymbolTable(char* varname, int lineno, SymbolTableHead* t
 	}
 }
 
+void CheckSameFunNameInSymbolTable(char* funname, int lineno, SymbolTableHead* table)
+{
+	SymbolTableEntry* SE;
+	for(SE = table->head; SE != NULL; SE = SE->tail)
+	{
+		if(SE->kind == FUN && strcmp(funname, SE->Function.FunName)==0)
+		{
+			SemanticSwitch = false;
+			printf("\033[31mError type 4 at Line %d: Redefined function \"%s\".\033[0m\n", 
+					lineno,funname);
+		}
+	}
+}
+
 void CheckSameVarNameInStructTypeTable(char* varname, int lineno, StructTypeTableHead* table, bool isVar)
 {
 	StructTypeTableEntry* STE;

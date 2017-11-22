@@ -9,6 +9,7 @@ typedef struct SymbolTableEntry_ SymbolTableEntry;
 typedef struct SymbolTableHead_ SymbolTableHead;
 typedef struct StructTypeTableEntry_ StructTypeTableEntry;
 typedef struct StructTypeTableHead_ StructTypeTableHead;
+typedef struct ParamList_ ParamList;
 
 enum { BASIC, ARRAY, STRUCTURE };
 enum { VAR, FUN };
@@ -38,7 +39,7 @@ struct SymbolTableEntry_
 	int lineno;
 	union {
 		struct { char* VariableName; Type* VariableType; } Variable;
-		struct { char* FunName; Type* ReturnType; int ParamNum; Type* ParamTypeList; } Fun;
+		struct { char* FunName; Type* RetType; ParamList* PL; } Function;
 	};
 	SymbolTableEntry* tail;
 };
@@ -60,5 +61,22 @@ struct StructTypeTableHead_
 	StructTypeTableEntry* head;
 };
 
+struct ParamList_
+{
+	SymbolTableEntry* head;
+};
+
+#define STACK_SIZE 100
+
+extern int sym_top;
+extern int struct_top;
+
+extern SymbolTableHead* RootSymbolTable;
+extern SymbolTableHead* CurrentSymbolTable;
+extern SymbolTableHead* SymbolTableStack[STACK_SIZE];
+
+extern StructTypeTableHead* RootStructTypeTable;
+extern StructTypeTableHead* CurrentStructTypeTable;
+extern StructTypeTableHead* StructTypeTableStack[STACK_SIZE];
 
 #endif

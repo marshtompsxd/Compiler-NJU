@@ -9,6 +9,7 @@ struct position
 {
 	float x, y;
 	int x;
+	int z = 0;
 };
 
 struct position pos;
