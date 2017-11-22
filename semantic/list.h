@@ -60,7 +60,7 @@ void InsertItemIntoStructTypeTable(StructTypeTableEntry* item, StructTypeTableHe
 }
 
 
-Type* GetStructTypeFromStructTypeTable(char* structname, StructTypeTableHead* table)
+Type* LookUpForStructTypeFromStructTypeTable(char* structname, StructTypeTableHead* table)
 {
 	StructTypeTableEntry* STE;
 	for(STE = table->head; STE != NULL; STE = STE->tail)
@@ -73,17 +73,17 @@ Type* GetStructTypeFromStructTypeTable(char* structname, StructTypeTableHead* ta
 	return NULL;
 }
 
-Type* GetStructType(char* structname)
+Type* LookUpForStructType(char* structname)
 {
 	int idx = struct_top;
 	Type* type;
-	if( (type = GetStructTypeFromStructTypeTable(structname, CurrentStructTypeTable)) != NULL)
+	if( (type = LookUpForStructTypeFromStructTypeTable(structname, CurrentStructTypeTable)) != NULL)
 	{
 		return type;
 	}
 	while(idx >= 0)
 	{
-		if((type = GetStructTypeFromStructTypeTable(structname, StructTypeTableStack[idx])) != NULL)
+		if((type = LookUpForStructTypeFromStructTypeTable(structname, StructTypeTableStack[idx])) != NULL)
 			return type;
 		idx--;
 	}

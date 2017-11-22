@@ -204,7 +204,7 @@ static Type* StructSpecifierAnalysis(ParsingNode* node)
 
 		// Need repair!!!!!
 		// repair OK!
-		SpecifierType = GetStructType(IDNode->IDname);
+		SpecifierType = LookUpForStructType(IDNode->IDname);
 		
 		//ATTENTION: CHECK ERROR #17 !!!
 		if(SpecifierType == NULL)
