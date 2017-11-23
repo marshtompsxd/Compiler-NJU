@@ -1,41 +1,64 @@
 int a;
-int a;
 float b;
-int c[2];
-float d[3][4];
-int c;
+
+int c[5];
 
 struct position
 {
 	float x, y;
-	int x;
-	int z = 0;
 };
 
-struct position
+struct location
 {
-	int a[3];
+	float m, n;
 };
 
 struct position pos;
-
 struct location loc;
 
-int s;
-
-int inc()
+int inc(int t)
 {
 	int x;
 }
 
-int inc()
-{
 
-}
-
-int main(int a, int b)
+int main()
 {
-	int c;
-	int d;
-	float d;
+	inc();
+	inn();
+
+	t = 1;
+	a = a + b;
+
+	if(b){
+
+	}
+	else
+	{
+
+	}
+
+	while(b)
+	{
+
+	}
+
+	b = pos.m;
+	b = a.x;
+
+	a = c;
+
+	pos = loc;
+	a = pos;
+
+	b = inc(a);
+
+	a = inc(a, a);
+
+	a = c[1.1];
+	a = b[0];
+	b = c[0];
+	a = c[0];
+
+	return b;
 }

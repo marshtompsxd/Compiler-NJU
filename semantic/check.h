@@ -3,8 +3,10 @@
 
 #include "symbol_table.h"
 #include "../common.h"
+#include <stdlib.h>
 
 //Error Type 15
+// need repair
 void CheckSameNameInStruct(FieldList* FL)
 {
 	if(FL==NULL)return;
@@ -160,5 +162,106 @@ void CheckElemInTable(SymbolTableHead* table)
 	}
 	printf("\n\n");
 }
+
+bool CheckTypeEquivalence(Type* T1, Type* T2)
+{
+	if(T1->kind != T2->kind)return false;
+	if(T1->kind == BASIC)
+	{
+		if(T1->basic !=  T2->basic)return false;
+	}
+	else if(T1->kind == ARRAY)
+	{
+		if(!CheckTypeEquivalence(T1->array.elem, T2->array.elem))return false;
+	}
+	else if(T1->kind == STRUCTURE)
+	{
+		FieldList* FL1 = T1->structure.member;
+		FieldList* FL2 = T2->structure.member;
+		while(FL1 != NULL && FL2 != NULL)
+		{
+			if(!CheckTypeEquivalence(FL1->type, FL2->type))return false;
+			FL1 = FL1->tail;
+			FL2 = FL2->tail;
+		}
+		if(FL1 != NULL || FL2 != NULL)return false;
+	}
+	return true;
+}
+
+bool IsTypeInt(Type* T)
+{
+	return T->kind == BASIC && T->basic == int_type;
+}
+
+bool IsTypeFloat(Type* T)
+{
+	return T->kind == BASIC && T->basic == float_type;
+}
+
+bool IsTypeStruct(Type* T)
+{
+	return T->kind == STRUCTURE;
+}
+
+bool IsArray(Type* T)
+{
+	return T->kind == ARRAY;
+}
+
+char* GenerateTypeString(Type* TP)
+{
+	if(TP->kind == BASIC)
+	{
+		if(TP->basic == int_type)return "int";
+		else return "float";
+	}
+	else if(TP->kind == ARRAY)
+	{
+		char* tmp = (char*)malloc(sizeof(100));
+		strcpy(tmp, "[]");
+		strcat(tmp, GenerateTypeString(TP->array.elem));
+		return tmp;
+	}
+	else 
+	{
+		char* tmp = (char*)malloc(sizeof(100));
+		strcpy(tmp, "struct ");
+		strcat(tmp, TP->structure.structname);
+		return tmp;
+	}
+}
+
+char* GenerateParamString(ParamList* PL)
+{
+	char* str = (char*)malloc(sizeof(100));
+	strcpy(str, "(");
+
+	SymbolTableEntry* SE;
+	for(SE = PL->head; SE != NULL; SE = SE->tail)
+	{
+		strcat(str, GenerateTypeString(SE->Variable.VariableType));
+		if(SE->tail != NULL) strcat(str, ", ");
+	}
+	strcat(str, ")");
+	return str;
+}
+
+bool CheckParamEquivalence(ParamList* PL1, ParamList* PL2)
+{
+	SymbolTableEntry* SE1 = PL1->head;
+	SymbolTableEntry* SE2 = PL2->head;
+	while(SE1 != NULL && SE2 != NULL)
+	{
+		if(!CheckTypeEquivalence(SE1->Variable.VariableType, SE2->Variable.VariableType))
+			return false;
+		SE1 = SE1->tail;
+		SE2 = SE2->tail;
+	}
+	if(SE1 != NULL || SE2 != NULL)return false;
+
+	return true;
+}
+
 
 #endif

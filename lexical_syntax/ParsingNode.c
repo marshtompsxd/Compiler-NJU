@@ -21,6 +21,19 @@ ParsingNode* ParsingRoot = NULL;
 
 bool ParsingSwitch = true;
 
+bool IsArithmeticNode(ParsingNode* node)
+{
+	if(node->SymbolIndex == APLUS 
+		|| node->SymbolIndex == AMINUS
+		|| node->SymbolIndex == ASTAR
+		|| node->SymbolIndex == ADIV
+		|| node->SymbolIndex == ARELOP
+		|| node->SymbolIndex == AOR
+		|| node->SymbolIndex == AAND)
+		return true;
+	else return false;
+}
+
 ParsingNode* GenerateSimpleTerminalNode(int TerminalType, int lineno)
 {
 	ParsingNode *node = (ParsingNode*)malloc(sizeof(ParsingNode));

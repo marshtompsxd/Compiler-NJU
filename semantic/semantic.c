@@ -28,10 +28,14 @@ static void StmtListAnalysis(ParsingNode* node, Type* RetType, ParamList* PL);
 static void CompStAnalysis(ParsingNode* node, Type* RetType, ParamList* PL);
 static ParamList* FunDecAnalysis(ParsingNode* node, Type* RetType);
 
+static SymbolTableEntry* ArgsAnalysis(ParsingNode* node, ParamList* PL);
+static Type* ExpAnalysis(ParsingNode* node, ParamList* PL);
+static void StmtAnalysis(ParsingNode* node, Type* RetType, ParamList* PL);
+static void StmtListAnalysis(ParsingNode* node, Type* RetType, ParamList* PL);
+
 static void ExtDefAnalysis(ParsingNode* node);
 static void ExtDefListAnalysis(ParsingNode* node);
-
-
+static void ProgramAnalysis(ParsingNode* node);
 
 int sym_top;
 int struct_top;
@@ -65,14 +69,14 @@ static FieldList* VarDecAnalysisInStruct(ParsingNode* node, Type* InheritType)
 
 	if(node->childrenNum == 4)
 	{
-		ParsingNode* TypeNode = thirdchild(node);
+		ParsingNode* IntNode = thirdchild(node);
 
 		FieldList* FL;
 		Type* subType = (Type*)malloc(sizeof(Type));
 
 		subType->kind = ARRAY;
 		subType->array.elem = InheritType;
-		subType->array.size = TypeNode->int_value;
+		subType->array.size = IntNode->int_value;
 		FL = VarDecAnalysisInStruct(node->firstchild, subType);
 
 		return FL;
@@ -270,7 +274,7 @@ static void VarDecAnalysisGlobal(ParsingNode* node, Type* InheritType)
 		SE->Variable.VariableType = InheritType;
 		SE->tail = NULL;
 
-		//ATTENTION: CHECK ERROR 3 !!!
+		//ATTENTION: CHECK ERROR #3 !!!
 		CheckSameVarNameInSymbolTable(SE->Variable.VariableName, SE->lineno, CurrentSymbolTable, true);
 		CheckSameVarNameInStructTypeTable(SE->Variable.VariableName, SE->lineno, CurrentStructTypeTable, true);
 		InsertItemIntoSymbolTable(SE, CurrentSymbolTable);
@@ -376,7 +380,7 @@ static ParamList* FunDecAnalysis(ParsingNode* node, Type* RetType)
 		SE->Function.PL->head = NULL;
 	}
 
-	//ATTENTION: CHECK ERROR 4 !!!
+	//ATTENTION: CHECK ERROR #4 !!!
 	CheckSameFunNameInSymbolTable(SE->Function.FunName, SE->lineno, CurrentSymbolTable);
 	InsertItemIntoSymbolTable(SE, CurrentSymbolTable);
 
@@ -410,7 +414,7 @@ static void VarDecAnalysisInFunction(ParsingNode* node, ParamList* PL, Type* Inh
 		SE->Variable.VariableType = InheritType;
 		SE->tail = NULL;
 
-		//ATTENTION: CHECK ERROR 3 !!!
+		//ATTENTION: CHECK ERROR #3 !!!
 		CheckSameVarNameInSymbolTable(SE->Variable.VariableName, SE->lineno, CurrentSymbolTable, true);
 		CheckSameVarNameInStructTypeTable(SE->Variable.VariableName, SE->lineno, CurrentStructTypeTable, true);
 		CheckSameVarNameInParamList(SE->Variable.VariableName, SE->lineno, PL);
@@ -456,7 +460,6 @@ static void DefAnalysisInFunction(ParsingNode* node, ParamList* PL)
 	if(InheritType == NULL)return;
 
 	DecListAnalysisInFunction(secondchild(node), PL, InheritType);
-
 }
 
 static void DefListAnalysisInFunction(ParsingNode* node, ParamList* PL)
@@ -472,19 +475,341 @@ static void DefListAnalysisInFunction(ParsingNode* node, ParamList* PL)
 	else return;
 }
 
+static SymbolTableEntry* ArgsAnalysis(ParsingNode* node, ParamList* PL)
+{
+	assert(node->SymbolIndex == AArgs);
+
+	Type* ExpType = ExpAnalysis(node->firstchild, PL);
+	if(ExpType == NULL)return NULL;
+
+	SymbolTableEntry* SE = (SymbolTableEntry*)malloc(sizeof(SymbolTableEntry));
+	SE->kind = VAR;
+	SE->Variable.VariableType = ExpType;
+	SE->Variable.VariableName = NULL;
+	SE->tail = NULL;
+
+	if(node->childrenNum == 3) SE->tail = ArgsAnalysis(thirdchild(node), PL);
+	else SE->tail = NULL;
+
+	return SE;
+}
+
+static Type* ExpAnalysis(ParsingNode* node, ParamList* PL)
+{
+	assert(node->SymbolIndex == AExp);
+
+	if(node->childrenNum == 1)
+	{
+		if(node->firstchild->SymbolIndex == AID) // ID
+		{
+			SymbolTableEntry* SE = LookUpForParam(node->firstchild->IDname, PL);
+			if(SE != NULL)return SE->Variable.VariableType;
+			SE = LookUpForVarDef(node->firstchild->IDname);
+
+			//ATTENTION: CHECK ERROR #1 !!!
+			if(SE != NULL)return SE->Variable.VariableType;
+			else{
+				SemanticSwitch = false;
+				printf("\033[31mError type 1 at Line %d: Undefined variable \"%s\".\033[0m\n", 
+					node->firstchild->lineno, node->firstchild->IDname);
+				return NULL;
+			}
+		}
+		else // INT or FLOAT
+		{
+			Type* ExpType;
+			ExpType = (Type*)malloc(sizeof(ExpType));
+			ExpType->kind = BASIC;
+			if(node->firstchild->SymbolIndex == AINT) ExpType->basic = int_type;
+			else ExpType->basic = float_type;
+
+			return ExpType;
+		}
+	}
+	else if(node->childrenNum == 2)
+	{
+		return ExpAnalysis(secondchild(node), PL);
+	}
+	else if(node->childrenNum == 3)
+	{
+		if(secondchild(node)->SymbolIndex == AASSIGNOP)
+		{
+			Type* T1 = ExpAnalysis(node->firstchild, PL);
+			Type* T2 = ExpAnalysis(thirdchild(node), PL);
+			if(T1 == NULL || T2 == NULL)return NULL;
+
+			//ATTENTION: CHECK ERROR #5 !!!
+			if(!CheckTypeEquivalence(T1, T2))
+			{
+				SemanticSwitch = false;
+				printf("\033[31mError type 5 at Line %d: Type mismatched for assignment.\033[0m\n", 
+					secondchild(node)->lineno);
+				return NULL;
+			}
+			if(T1->kind == ARRAY)
+			{
+				SemanticSwitch = false;
+				printf("\033[31mError type 5 at Line %d: Type mismatched for assignment(array type should not be assigned).\033[0m\n", 
+					secondchild(node)->lineno);
+				return NULL;
+			}
+
+			//...........
+
+			return T1;
+		}
+		else if(IsArithmeticNode(secondchild(node)))
+		{
+			Type* T1 = ExpAnalysis(node->firstchild, PL);
+			Type* T2 = ExpAnalysis(thirdchild(node), PL);
+			if(T1 == NULL || T2 == NULL)return NULL;
+
+			//ATTENTION: CHECK ERROR #7 !!!
+			if(!CheckTypeEquivalence(T1, T2))
+			{
+				SemanticSwitch = false;
+				printf("\033[31mError type 7 at Line %d: Type mismatched for operands.\033[0m\n", 
+					secondchild(node)->lineno);
+				return NULL;
+			}
+			if(T1->kind!=BASIC)
+			{
+				SemanticSwitch = false;
+				printf("\033[31mError type 7 at Line %d: Type mismatched for operands(arithmetic operation only applies to int and float).\033[0m\n", 
+					secondchild(node)->lineno);
+				return NULL;
+			}
+
+			return T1;
+		}
+		else if(node->firstchild->SymbolIndex == ALP)
+		{
+			return ExpAnalysis(secondchild(node), PL);
+		}
+		else if(node->firstchild->SymbolIndex == AID)
+		{
+			//check function call
+			SymbolTableEntry* SE;
+			SE = LookUpForFunDef(node->firstchild->IDname);
+
+			//ATTENTION: CHECK ERROR #2 and #11 !!!
+			if(SE == NULL)
+			{
+				SemanticSwitch = false;
+				if(LookUpForVarDef(node->firstchild->IDname) != NULL)
+				{
+					
+					printf("\033[31mError type 11 at Line %d: \"%s\" is not a function.\033[0m\n", 
+						node->firstchild->lineno, node->firstchild->IDname);
+				
+				}
+				else 
+				{
+					printf("\033[31mError type 2 at Line %d: Undefined function \"%s\".\033[0m\n", 
+						node->firstchild->lineno, node->firstchild->IDname);
+				}
+				return NULL;
+			}
+
+			ParamList* DPL = SE->Function.PL;
+			ParamList* SPL = (ParamList*)malloc(sizeof(ParamList));
+			SPL->head = NULL;
+
+			//ATTENTION: CHECK ERROR #9 !!!
+			if(!CheckParamEquivalence(SPL, DPL))
+			{
+				SemanticSwitch = false;
+				char* str1 = GenerateParamString(SPL);
+				char* str2 = GenerateParamString(DPL);
+				
+				printf("\033[31mError type 9 at Line %d: Function \"%s%s\" is not applicable for arguments \"%s\".\033[0m\n", 
+					node->firstchild->lineno, SE->Function.FunName, str2, str1);
+				return NULL;
+			}
+
+			return SE->Function.RetType;
+		}
+		else
+		{
+			assert(secondchild(node)->SymbolIndex == ADOT);
+
+			//check struct field
+			Type* TP = ExpAnalysis(node->firstchild, PL);
+			if(TP == NULL)return NULL;
+
+			//ATTENTION: CHECK ERROR #12 !!!
+			if(!IsTypeStruct(TP))
+			{
+				SemanticSwitch = false;
+				printf("\033[31mError type 13 at Line %d: Illegal use of \".\".\033[0m\n", 
+					secondchild(node)->lineno);
+				return NULL;
+			}
+
+			//ATTENTION: CHECK ERROR #14 !!!
+			Type* FT = LookUpForField(thirdchild(node)->IDname, TP);
+			if( FT == NULL)
+			{
+				SemanticSwitch = false;
+				printf("\033[31mError type 14 at Line %d: Non-existent field \"%s\".\033[0m\n", 
+					secondchild(node)->lineno, thirdchild(node)->IDname);
+				return NULL;
+			}
+
+			return FT;
+
+		}
+	}
+	else 
+	{
+		if(thirdchild(node)->SymbolIndex == AArgs)
+		{
+			//check function call
+			SymbolTableEntry* SE;
+			SE = LookUpForFunDef(node->firstchild->IDname);
+
+			//ATTENTION: CHECK ERROR #2 and #11 !!!
+			if(SE == NULL)
+			{
+				SemanticSwitch = false;
+				if(LookUpForVarDef(node->firstchild->IDname) != NULL)
+				{
+					
+					printf("\033[31mError type 11 at Line %d: \"%s\" is not a function.\033[0m\n", 
+						node->firstchild->lineno, node->firstchild->IDname);
+				
+				}
+				else 
+				{
+					printf("\033[31mError type 2 at Line %d: Undefined function \"%s\".\033[0m\n", 
+						node->firstchild->lineno, node->firstchild->IDname);
+				}
+				return NULL;
+			}
+
+			ParamList* DPL = SE->Function.PL;
+			ParamList* SPL = (ParamList*)malloc(sizeof(ParamList));
+			SPL->head = ArgsAnalysis(thirdchild(node), PL);
+			if(SPL->head == NULL)return NULL;
+
+			//ATTENTION: CHECK ERROR #9 !!!
+			if(!CheckParamEquivalence(SPL, DPL))
+			{
+				SemanticSwitch = false;
+				char* str1 = GenerateParamString(SPL);
+				char* str2 = GenerateParamString(DPL);
+				
+				printf("\033[31mError type 9 at Line %d: Function \"%s%s\" is not applicable for arguments \"%s\".\033[0m\n", 
+					node->firstchild->lineno, SE->Function.FunName, str2, str1);
+				return NULL;
+			}
+
+			return SE->Function.RetType;
+		}
+		else
+		{
+			assert(secondchild(node)->SymbolIndex == ALB);
+			Type* ArrayType = ExpAnalysis(node->firstchild, PL);
+			Type* IndexType = ExpAnalysis(thirdchild(node), PL);
+			if(ArrayType == NULL || IndexType == NULL)return NULL;
+
+			//ATTENTION: CHECK ERROR #12 !!!
+			if(!IsTypeInt(IndexType))
+			{
+				SemanticSwitch = false;			
+				printf("\033[31mError type 12 at Line %d: index is not an integer.\033[0m\n", 
+					thirdchild(node)->lineno);
+				return NULL;
+			}
+
+			//ATTENTION: CHECK ERROR #10 !!!
+			if(!IsArray(ArrayType))
+			{
+				SemanticSwitch = false;			
+				printf("\033[31mError type 10 at Line %d: exp is not an array.\033[0m\n", 
+					node->firstchild->lineno);
+				return NULL;
+			}
+
+			return ArrayType->array.elem;
+
+		}
+	}
+}
+
+static void StmtAnalysis(ParsingNode* node, Type* RetType, ParamList* PL)
+{
+	assert(node->SymbolIndex == AStmt);
+
+	if(node->childrenNum == 1) //CompSt
+	{
+		CompStAnalysis(node->firstchild, RetType, PL);
+	}
+	else if(node->childrenNum == 2)
+	{
+		ExpAnalysis(node->firstchild, PL);
+	}
+	else if(node->childrenNum == 3) //RETURN
+	{
+		assert(node->firstchild->SymbolIndex == ARETURN);
+		Type* ExpType= ExpAnalysis(secondchild(node), PL);
+		if(ExpType == NULL)return;
+
+		//ATTENTION: CHECK ERROR #8 !!!
+		if(!CheckTypeEquivalence(RetType, ExpType))
+		{
+			SemanticSwitch = false;
+			printf("\033[31mError type 8 at Line %d: Type mismatched for return.\033[0m\n", 
+				node->firstchild->lineno);
+		}
+	}
+	else if(node->childrenNum == 5)
+	{
+		assert(node->firstchild->SymbolIndex == AWHILE || node->firstchild->SymbolIndex == AIF);
+		Type* ExpType= ExpAnalysis(thirdchild(node), PL);
+		if(ExpType == NULL)return;
+
+		//ATTENTION: CHECK ERROR #7 !!!
+		if(!IsTypeInt(ExpType))
+		{
+			SemanticSwitch = false;
+			printf("\033[31mError type 7 at Line %d: Type mismatched for operands(if and while condition should be int type).\033[0m\n", 
+				node->firstchild->lineno);
+		}
+
+		StmtAnalysis(fifthchild(node), RetType, PL);
+	}
+	else
+	{
+		assert(node->firstchild->SymbolIndex == AIF);
+		Type* ExpType= ExpAnalysis(thirdchild(node), PL);
+		if(ExpType == NULL)return;
+		
+		//ATTENTION: CHECK ERROR #7 !!!
+		if(!IsTypeInt(ExpType))
+		{
+			SemanticSwitch = false;
+			printf("\033[31mError type 7 at Line %d: Type mismatched for operands(if and while condition should be int type).\033[0m\n", 
+				node->firstchild->lineno);
+		}
+
+		StmtAnalysis(fifthchild(node), RetType, PL);
+		StmtAnalysis(seventhchild(node), RetType, PL);
+		
+	}
+	return;
+}
 
 static void StmtListAnalysis(ParsingNode* node, Type* RetType, ParamList* PL)
 {
-	ParsingNode* n = NULL;
-	Type* t = NULL;
-	ParamList* p = NULL;
-	node = n;
-	n = node;
-	RetType = t;
-	t = RetType;
-	PL = p;
-	p = PL;
-	return;
+	assert(node->SymbolIndex == AStmtList);
+
+	if(node->kind == Dummy)return;
+	else
+	{
+		StmtAnalysis(node->firstchild, RetType, PL);
+		StmtListAnalysis(secondchild(node), RetType, PL);
+	}
 }
 
 

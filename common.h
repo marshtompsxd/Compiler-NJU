@@ -19,7 +19,9 @@ typedef int bool;
 #define secondchild(node) node->firstchild->nextsibiling
 #define thirdchild(node) secondchild(node)->nextsibiling
 #define fourthchild(node) thirdchild(node)->nextsibiling
-
+#define fifthchild(node) fourthchild(node)->nextsibiling
+#define sixthchild(node) fifthchild(node)->nextsibiling
+#define seventhchild(node) sixthchild(node)->nextsibiling
 enum { Terminal, Variable, Dummy };
 
 #endif

@@ -90,6 +90,86 @@ Type* LookUpForStructType(char* structname)
 	return NULL;
 }
 
+SymbolTableEntry* LookUpForVarDefFromSymbolTable(char* varname, SymbolTableHead* table)
+{
+	SymbolTableEntry* SE;
+	for(SE = table->head; SE != NULL; SE = SE->tail)
+	{
+		if(SE->kind == VAR && strcmp(varname, SE->Variable.VariableName)==0)
+		{
+			return SE;			
+		}
+	}
+	return NULL;
+}
+
+SymbolTableEntry* LookUpForVarDef(char* varname)
+{
+	int idx = sym_top;
+	SymbolTableEntry* SE;
+	if( (SE = LookUpForVarDefFromSymbolTable(varname, CurrentSymbolTable)) != NULL)
+	{
+		return SE;
+	}
+	while(idx >= 0)
+	{
+		if((SE = LookUpForVarDefFromSymbolTable(varname, SymbolTableStack[idx])) != NULL)
+			return SE;
+		idx--;
+	}
+	return NULL;
+}
+
+SymbolTableEntry* LookUpForFunDefFromSymbolTable(char* funname, SymbolTableHead* table)
+{
+	SymbolTableEntry* SE;
+	//printf("fun name is %s\n", funname);
+	for(SE = table->head; SE != NULL; SE = SE->tail)
+	{
+		if(SE->kind == FUN && strcmp(funname, SE->Function.FunName)==0)
+		{
+			return SE;			
+		}
+	}
+	return NULL;
+}
+
+SymbolTableEntry* LookUpForFunDef(char* funname)
+{
+	SymbolTableEntry* SE;
+	if( (SE = LookUpForFunDefFromSymbolTable(funname, RootSymbolTable)) != NULL)
+		return SE;
+	else return NULL;
+}
+
+SymbolTableEntry* LookUpForParam(char* varname, ParamList* PL)
+{
+	SymbolTableEntry* SE;
+	for(SE = PL->head; SE!=NULL; SE = SE->tail)
+	{
+		if(strcmp(varname, SE->Variable.VariableName)==0)
+		{
+			return SE;			
+		}
+	}
+	return NULL;
+}
+
+Type* LookUpForField(char* fieldname, Type* TP)
+{
+	assert(TP->kind == STRUCTURE);
+
+	FieldList* FL;
+	for(FL = TP->structure.member; FL != NULL; FL = FL->tail)
+	{
+		if(strcmp(fieldname, FL->name) == 0)
+		{
+			return FL->type;
+		}
+	}
+	return NULL;
+}
+
 void PushPrevTable()
 {
 	sym_top++;

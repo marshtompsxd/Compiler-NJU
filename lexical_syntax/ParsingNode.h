@@ -40,6 +40,8 @@ typedef struct ParsingNode ParsingNode;
 
 extern ParsingNode* ParsingRoot;
 
+extern bool IsArithmeticNode(ParsingNode* node);
+
 extern ParsingNode* GenerateSimpleTerminalNode(int TerminalType, int lineno);
 
 extern ParsingNode* GenerateIDNode(int lineno, char* text);
