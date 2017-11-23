@@ -15,7 +15,7 @@ static void ParsingFinalPhase(char* filename)
 	else
 	{
 		SetDepthOfParsingTree(ParsingRoot, 0);
-		PreorderPrintParsingTree(ParsingRoot);
+		//PreorderPrintParsingTree(ParsingRoot);
 		printf("\033[32mParsing %s over(No error).\033[0m\n\n", filename);
 	}
 	return;
@@ -35,7 +35,7 @@ int main(int argc, char** argv)
 		else
 		{
 			SetDepthOfParsingTree(ParsingRoot, 0);
-			PreorderPrintParsingTree(ParsingRoot);
+			//PreorderPrintParsingTree(ParsingRoot);
 			printf("\033[32mParsing over(with no error).\033[0m\n\n");
 		}
 		return 0;
@@ -65,9 +65,11 @@ int main(int argc, char** argv)
 		ParsingFinalPhase(argv[i]);
 
 		// begin semantic analysis
-		if(!ParsingSwitch)return 1;
-		printf("Semantic analysis %s begin...\n", argv[i]);
-		SemanticAnalysis(ParsingRoot);
+		if(ParsingSwitch)
+		{
+			printf("Semantic analysis %s begin...\n", argv[i]);
+			SemanticAnalysis(ParsingRoot);
+		}
 		
 	}
 

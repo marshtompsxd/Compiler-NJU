@@ -21,6 +21,29 @@ ParsingNode* ParsingRoot = NULL;
 
 bool ParsingSwitch = true;
 
+bool CheckLvalue(ParsingNode* node)
+{
+	assert(node->SymbolIndex == AExp);
+	if(node->childrenNum == 1)
+	{
+		if(node->firstchild->SymbolIndex == AID)return true;
+	}
+	else if(node->childrenNum == 3)
+	{
+		if(node->firstchild->SymbolIndex == AExp
+			&& secondchild(node)->SymbolIndex == ADOT
+			&& thirdchild(node)->SymbolIndex == AID)return true;
+	}
+	else if(node->childrenNum == 4)
+	{
+		if(node->firstchild->SymbolIndex == AExp
+			&& secondchild(node)->SymbolIndex == ALB
+			&& thirdchild(node)->SymbolIndex == AExp
+			&& fourthchild(node)->SymbolIndex == ARB)return true;
+	}
+	return false;
+}
+
 bool IsArithmeticNode(ParsingNode* node)
 {
 	if(node->SymbolIndex == APLUS 

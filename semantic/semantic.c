@@ -19,7 +19,7 @@ static void ExtDecListAnalysis(ParsingNode* node, Type* InheritType);
 static SymbolTableEntry* VarDecAnalysisInParam(ParsingNode* node, Type* InheritType);
 static SymbolTableEntry* ParamDecAnalysis(ParsingNode* node);
 static SymbolTableEntry* VarListAnalysis(ParsingNode* node);
-static void VarDecAnalysisInFunction(ParsingNode* node, ParamList* PL, Type* InheritType);
+static SymbolTableEntry* VarDecAnalysisInFunction(ParsingNode* node, ParamList* PL, Type* InheritType);
 static void DecAnalysisInFunction(ParsingNode* node, ParamList* PL, Type* InheritType);
 static void DecListAnalysisInFunction(ParsingNode* node, ParamList* PL, Type* InheritType);
 static void DefAnalysisInFunction(ParsingNode* node, ParamList* PL);
@@ -209,6 +209,7 @@ static Type* StructSpecifierAnalysis(ParsingNode* node)
 		// Need repair!!!!!
 		// repair OK!
 		SpecifierType = LookUpForStructType(IDNode->IDname);
+	
 		
 		//ATTENTION: CHECK ERROR #17 !!!
 		if(SpecifierType == NULL)
@@ -217,7 +218,7 @@ static Type* StructSpecifierAnalysis(ParsingNode* node)
 			printf("\033[31mError type 17 at Line %d: Undefined structure \"%s\".\033[0m\n", 
 					node->lineno,IDNode->IDname);
 		}
-
+		
 		return SpecifierType;
 	}
 }
@@ -387,7 +388,7 @@ static ParamList* FunDecAnalysis(ParsingNode* node, Type* RetType)
 	return SE->Function.PL;
 }	
 
-static void VarDecAnalysisInFunction(ParsingNode* node, ParamList* PL, Type* InheritType)
+static SymbolTableEntry* VarDecAnalysisInFunction(ParsingNode* node, ParamList* PL, Type* InheritType)
 {
 	assert(node->SymbolIndex == AVarDec);
 
@@ -400,7 +401,7 @@ static void VarDecAnalysisInFunction(ParsingNode* node, ParamList* PL, Type* Inh
 		subType->array.elem = InheritType;
 		subType->array.size = TypeNode->int_value;
 
-		VarDecAnalysisInFunction(node->firstchild, PL, subType);
+		return VarDecAnalysisInFunction(node->firstchild, PL, subType);
 	}
 	else
 	{
@@ -419,6 +420,8 @@ static void VarDecAnalysisInFunction(ParsingNode* node, ParamList* PL, Type* Inh
 		CheckSameVarNameInStructTypeTable(SE->Variable.VariableName, SE->lineno, CurrentStructTypeTable, true);
 		CheckSameVarNameInParamList(SE->Variable.VariableName, SE->lineno, PL);
 		InsertItemIntoSymbolTable(SE, CurrentSymbolTable);
+
+		return SE;
 	}
 }
 
@@ -426,8 +429,25 @@ static void DecAnalysisInFunction(ParsingNode* node, ParamList* PL, Type* Inheri
 {
 	if(node->childrenNum == 3)
 	{
-		// need repair
-		assert(0);
+		SymbolTableEntry* SE = VarDecAnalysisInFunction(node->firstchild, PL, InheritType);
+		Type* VarType = SE->Variable.VariableType;
+		Type* ExpType = ExpAnalysis(thirdchild(node), PL);
+
+		if(ExpType == NULL)return;
+
+		if(!CheckTypeEquivalence(VarType, ExpType))
+		{
+			SemanticSwitch = false;
+			printf("\033[31mError type 5 at Line %d: Type mismatched for assignment.\033[0m\n", 
+				secondchild(node)->lineno);
+		}
+		if(VarType->kind == ARRAY)
+		{
+			SemanticSwitch = false;
+			printf("\033[31mError type 5 at Line %d: Type mismatched for assignment(array type should not be assigned).\033[0m\n", 
+				secondchild(node)->lineno);
+		}
+
 	}
 	else
 	{
@@ -554,7 +574,15 @@ static Type* ExpAnalysis(ParsingNode* node, ParamList* PL)
 				return NULL;
 			}
 
-			//...........
+			//ATTENTION: CHECK ERROR #6 !!!
+			if(!CheckLvalue(node->firstchild))
+			{
+				SemanticSwitch = false;
+				printf("\033[31mError type 6 at Line %d: The left-hand side of an assignment must be a variable.\033[0m\n", 
+					secondchild(node)->lineno);
+				return NULL;
+			}
+
 
 			return T1;
 		}
@@ -811,7 +839,6 @@ static void StmtListAnalysis(ParsingNode* node, Type* RetType, ParamList* PL)
 		StmtListAnalysis(secondchild(node), RetType, PL);
 	}
 }
-
 
 static void CompStAnalysis(ParsingNode* node, Type* RetType, ParamList* PL)
 {

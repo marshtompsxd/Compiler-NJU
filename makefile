@@ -18,7 +18,7 @@ test1: syntax lexical parser
 	./parser test/p1/*.cmm 
 
 test2: syntax lexical parser
-	./parser test/p2/*.cmm
+	./parser test/p2/pretest/*.cmm
 
 compile: clean syntax lexical parser
 

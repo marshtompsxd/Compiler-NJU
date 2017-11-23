@@ -13,6 +13,7 @@ typedef struct ParamList_ ParamList;
 
 enum { BASIC, ARRAY, STRUCTURE };
 enum { VAR, FUN };
+enum { LV, RV };
 
 struct Type_
 {
