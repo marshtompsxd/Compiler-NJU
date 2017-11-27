@@ -10,13 +10,13 @@ static void ParsingFinalPhase(char* filename)
 {
 	if(!ParsingSwitch) 
 	{
-		printf("\033[31mParsing %s over(with syntax or lexical error).\033[0m\n\n", filename);
+		printf("\033[31mParsing %s over(with syntax or lexical error).\033[0m\n", filename);
 	}
 	else
 	{
 		SetDepthOfParsingTree(ParsingRoot, 0);
 		//PreorderPrintParsingTree(ParsingRoot);
-		printf("\033[32mParsing %s over(No error).\033[0m\n\n", filename);
+		printf("\033[32mParsing %s over(No error).\033[0m\n", filename);
 	}
 	return;
 }
@@ -30,13 +30,13 @@ int main(int argc, char** argv)
 		yyparse();
 		if(!ParsingSwitch)
 		{
-			printf("\033[31mParsing over(with syntax or lexical error).\033[0m\n\n");
+			printf("\033[31mParsing over(with syntax or lexical error).\033[0m\n");
 		}
 		else
 		{
 			SetDepthOfParsingTree(ParsingRoot, 0);
 			//PreorderPrintParsingTree(ParsingRoot);
-			printf("\033[32mParsing over(with no error).\033[0m\n\n");
+			printf("\033[32mParsing over(with no error).\033[0m\n");
 		}
 		return 0;
 	}
@@ -69,6 +69,7 @@ int main(int argc, char** argv)
 		{
 			printf("Semantic analysis %s begin...\n", argv[i]);
 			SemanticAnalysis(ParsingRoot);
+			printf("Semantic analysis over.\n\n");
 		}
 		
 	}

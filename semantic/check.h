@@ -7,13 +7,22 @@
 
 //Error Type 15
 // need repair
-void CheckSameNameInStruct(FieldList* FL)
+void CheckDuplicatedFieldNameInOneStruct(Type* TP)
 {
+	assert(TP->kind == STRUCTURE);
+	FieldList* FL = TP->structure.member;
 	if(FL==NULL)return;
 	FieldList* former;
 	FieldList* later;
 	for(former = FL; former->tail != NULL; former = former->tail)
 	{
+		if(strcmp(former->name, TP->structure.structname) == 0)
+		{
+			SemanticSwitch = false;
+			printf("\033[31mError type 15 at Line %d: Redefined field \"%s\".\033[0m\n", 
+				later->lineno, later->name );
+		}
+
 		for(later = former->tail; later != NULL; later = later->tail)
 		{
 			if(strcmp(former->name, later->name)==0)
@@ -27,7 +36,7 @@ void CheckSameNameInStruct(FieldList* FL)
 }
 
 //Error Type 3 and 16
-void CheckSameVarNameInSymbolTable(char* varname, int lineno, SymbolTableHead* table, bool isVar)
+void CheckSameVarNameInSymbolTable(char* varname, int lineno, SymbolTableHead* table, int Name)
 {
 	SymbolTableEntry* SE;
 	for(SE = table->head; SE != NULL; SE = SE->tail)
@@ -35,16 +44,22 @@ void CheckSameVarNameInSymbolTable(char* varname, int lineno, SymbolTableHead* t
 		if(SE->kind == VAR && strcmp(varname, SE->Variable.VariableName)==0)
 		{
 			SemanticSwitch = false;
-			if(isVar)
+			if(Name == VarName)
 			{
 				printf("\033[31mError type 3 at Line %d: Redefined variable \"%s\".\033[0m\n", 
 					lineno,varname);
 				return;
 			}
-			else
+			else if(Name == StructName)
 			{
 				printf("\033[31mError type 16 at Line %d: Duplicated name \"%s\".\033[0m\n", 
 					lineno,varname);
+				return;
+			}
+			else 
+			{
+				printf("\033[31mError type 15 at Line %d: Redefined field \"%s\".\033[0m\n", 
+					lineno, varname );
 				return;
 			}
 		}
@@ -66,7 +81,39 @@ void CheckSameFunNameInSymbolTable(char* funname, int lineno, SymbolTableHead* t
 	}
 }
 
-void CheckSameVarNameInStructTypeTable(char* varname, int lineno, StructTypeTableHead* table, bool isVar)
+void CheckSameFieldNameInStruct(char* fieldname, int lineno, Type* TP, int Name)
+{
+	assert(TP->kind == STRUCTURE);
+
+	FieldList* FL;
+	for(FL = TP->structure.member; FL!=NULL; FL = FL->tail)
+	{
+		if(strcmp(fieldname, FL->name) == 0)
+		{
+			SemanticSwitch = false;
+			if(Name == VarName)
+			{
+				printf("\033[31mError type 3 at Line %d: Redefined variable \"%s\".\033[0m\n", 
+					lineno,fieldname);
+				return;
+			}
+			else if(Name == StructName)
+			{
+				printf("\033[31mError type 16 at Line %d: Duplicated name \"%s\".\033[0m\n", 
+					lineno,fieldname);
+				return;
+			}
+			else 
+			{
+				printf("\033[31mError type 15 at Line %d: Redefined field \"%s\".\033[0m\n", 
+					lineno, fieldname );
+				return;
+			}
+		}
+	}
+}
+
+void CheckSameVarNameInStructTypeTable(char* varname, int lineno, StructTypeTableHead* table, int Name)
 {
 	StructTypeTableEntry* STE;
 	for(STE = table->head; STE != NULL; STE = STE->tail)
@@ -74,19 +121,27 @@ void CheckSameVarNameInStructTypeTable(char* varname, int lineno, StructTypeTabl
 		if(strcmp(varname, STE->TP->structure.structname)==0)
 		{
 			SemanticSwitch = false;
-			if(isVar)
+			if(Name == VarName)
 			{
 				printf("\033[31mError type 3 at Line %d: Redefined variable \"%s\".\033[0m\n", 
 					lineno,varname);
 				return;
 			}
-			else
+			else if(Name == StructName)
 			{
 				printf("\033[31mError type 16 at Line %d: Duplicated name \"%s\".\033[0m\n", 
 					lineno,varname);
 				return;
 			}
+			else 
+			{
+				printf("\033[31mError type 15 at Line %d: Redefined field \"%s\".\033[0m\n", 
+					lineno, varname );
+				return;
+			}
 		}
+
+		CheckSameFieldNameInStruct(varname, lineno, STE->TP, Name);
 	}	
 }
 

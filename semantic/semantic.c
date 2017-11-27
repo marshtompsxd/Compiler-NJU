@@ -92,6 +92,10 @@ static FieldList* VarDecAnalysisInStruct(ParsingNode* node, Type* InheritType)
 		FL->lineno = IDNode->lineno;
 		FL->tail = NULL;
 
+		CheckSameVarNameInSymbolTable(FL->name, FL->lineno, CurrentSymbolTable, FieldName);
+		CheckSameVarNameInStructTypeTable(FL->name, FL->lineno, CurrentStructTypeTable, FieldName);
+
+
 		return FL;
 	}
 }
@@ -187,7 +191,7 @@ static Type* StructSpecifierAnalysis(ParsingNode* node)
 		SpecifierType->structure.member = DefListAnalysisInStruct(fourthchild(node));
 		
 		//ATTENTION: CHECK ERROR #15 !!!
-		CheckSameNameInStruct(SpecifierType->structure.member);
+		CheckDuplicatedFieldNameInOneStruct(SpecifierType);
 
 		StructTypeTableEntry* STE = (StructTypeTableEntry*)malloc(sizeof(StructTypeTableEntry));
 		STE->lineno = node->lineno;
@@ -195,8 +199,8 @@ static Type* StructSpecifierAnalysis(ParsingNode* node)
 		STE->tail = NULL;
 
 		//ATTENTION: CHECK ERROR #16 !!!
-		CheckSameVarNameInSymbolTable(STE->TP->structure.structname, STE->lineno, CurrentSymbolTable, false);
-		CheckSameVarNameInStructTypeTable(STE->TP->structure.structname, STE->lineno, CurrentStructTypeTable, false);
+		CheckSameVarNameInSymbolTable(STE->TP->structure.structname, STE->lineno, CurrentSymbolTable, StructName);
+		CheckSameVarNameInStructTypeTable(STE->TP->structure.structname, STE->lineno, CurrentStructTypeTable, StructName);
 		InsertItemIntoStructTypeTable(STE, CurrentStructTypeTable);
 
 		return SpecifierType;	
@@ -276,8 +280,8 @@ static void VarDecAnalysisGlobal(ParsingNode* node, Type* InheritType)
 		SE->tail = NULL;
 
 		//ATTENTION: CHECK ERROR #3 !!!
-		CheckSameVarNameInSymbolTable(SE->Variable.VariableName, SE->lineno, CurrentSymbolTable, true);
-		CheckSameVarNameInStructTypeTable(SE->Variable.VariableName, SE->lineno, CurrentStructTypeTable, true);
+		CheckSameVarNameInSymbolTable(SE->Variable.VariableName, SE->lineno, CurrentSymbolTable, VarName);
+		CheckSameVarNameInStructTypeTable(SE->Variable.VariableName, SE->lineno, CurrentStructTypeTable, VarName);
 		InsertItemIntoSymbolTable(SE, CurrentSymbolTable);
 	}
 }
@@ -416,8 +420,8 @@ static SymbolTableEntry* VarDecAnalysisInFunction(ParsingNode* node, ParamList* 
 		SE->tail = NULL;
 
 		//ATTENTION: CHECK ERROR #3 !!!
-		CheckSameVarNameInSymbolTable(SE->Variable.VariableName, SE->lineno, CurrentSymbolTable, true);
-		CheckSameVarNameInStructTypeTable(SE->Variable.VariableName, SE->lineno, CurrentStructTypeTable, true);
+		CheckSameVarNameInSymbolTable(SE->Variable.VariableName, SE->lineno, CurrentSymbolTable, VarName);
+		CheckSameVarNameInStructTypeTable(SE->Variable.VariableName, SE->lineno, CurrentStructTypeTable, VarName);
 		CheckSameVarNameInParamList(SE->Variable.VariableName, SE->lineno, PL);
 		InsertItemIntoSymbolTable(SE, CurrentSymbolTable);
 
@@ -849,8 +853,8 @@ static void CompStAnalysis(ParsingNode* node, Type* RetType, ParamList* PL)
 	DefListAnalysisInFunction(secondchild(node), PL);
 	StmtListAnalysis(thirdchild(node), RetType, PL);
 
-	printf("check elem in CurrentSymbolTable\n");
-	CheckElemInTable(CurrentSymbolTable);
+	//printf("check elem in CurrentSymbolTable\n");
+	//CheckElemInTable(CurrentSymbolTable);
 
 	PopPrevTable();
 }
@@ -904,6 +908,6 @@ void SemanticAnalysis(ParsingNode* node)
 	assert(CurrentSymbolTable == RootSymbolTable);
 	assert(CurrentStructTypeTable == RootStructTypeTable);
 
-	printf("check elem in root table\n");
-	CheckElemInTable(CurrentSymbolTable);
+	//printf("check elem in root table\n");
+	//CheckElemInTable(CurrentSymbolTable);
 }

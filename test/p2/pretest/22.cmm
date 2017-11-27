@@ -3,6 +3,7 @@ struct Temp1
     int i;
     float j;
 };
+
 struct Temp2
 {
     int x;
