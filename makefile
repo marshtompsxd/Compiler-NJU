@@ -18,7 +18,10 @@ test1: syntax lexical parser
 	./parser test/p1/*.cmm 
 
 test2: syntax lexical parser
-	./parser test/p2/pretest/*.cmm
+	cd test/p2/pretest && ../../../parser `ls *.cmm | sort -n`
+
+ta: syntax lexical parser
+	cd test/p2/A && ../../../parser `ls *.cmm | sort -n`
 
 compile: clean syntax lexical parser
 

@@ -188,10 +188,14 @@ static Type* StructSpecifierAnalysis(ParsingNode* node)
 
 		//set struct field list
 		
+	
 		SpecifierType->structure.member = DefListAnalysisInStruct(fourthchild(node));
+
 		
 		//ATTENTION: CHECK ERROR #15 !!!
+		
 		CheckDuplicatedFieldNameInOneStruct(SpecifierType);
+	
 
 		StructTypeTableEntry* STE = (StructTypeTableEntry*)malloc(sizeof(StructTypeTableEntry));
 		STE->lineno = node->lineno;
@@ -199,14 +203,17 @@ static Type* StructSpecifierAnalysis(ParsingNode* node)
 		STE->tail = NULL;
 
 		//ATTENTION: CHECK ERROR #16 !!!
-		CheckSameVarNameInSymbolTable(STE->TP->structure.structname, STE->lineno, CurrentSymbolTable, StructName);
-		CheckSameVarNameInStructTypeTable(STE->TP->structure.structname, STE->lineno, CurrentStructTypeTable, StructName);
-		InsertItemIntoStructTypeTable(STE, CurrentStructTypeTable);
-
+		if(STE->TP->structure.structname != NULL)
+		{
+			CheckSameVarNameInSymbolTable(STE->TP->structure.structname, STE->lineno, CurrentSymbolTable, StructName);
+			CheckSameVarNameInStructTypeTable(STE->TP->structure.structname, STE->lineno, CurrentStructTypeTable, StructName);
+			InsertItemIntoStructTypeTable(STE, CurrentStructTypeTable);
+		}
 		return SpecifierType;	
 	}
 	else
 	{
+
 		ParsingNode* TagNode = secondchild(node);
 		ParsingNode* IDNode = TagNode->firstchild;
 
@@ -222,7 +229,8 @@ static Type* StructSpecifierAnalysis(ParsingNode* node)
 			printf("\033[31mError type 17 at Line %d: Undefined structure \"%s\".\033[0m\n", 
 					node->lineno,IDNode->IDname);
 		}
-		
+
+
 		return SpecifierType;
 	}
 }
@@ -248,7 +256,11 @@ static Type* SpecifierAnalysis(ParsingNode* node)
 	}
 	else
 	{
-		return StructSpecifierAnalysis(node->firstchild);
+		Type* T1;
+	
+		T1 = StructSpecifierAnalysis(node->firstchild);
+
+		return T1;
 	}
 }
 
@@ -851,6 +863,8 @@ static void CompStAnalysis(ParsingNode* node, Type* RetType, ParamList* PL)
 	PushPrevTable();
 
 	DefListAnalysisInFunction(secondchild(node), PL);
+
+
 	StmtListAnalysis(thirdchild(node), RetType, PL);
 
 	//printf("check elem in CurrentSymbolTable\n");
@@ -863,18 +877,24 @@ static void ExtDefAnalysis(ParsingNode* node)
 {
 	assert(node->SymbolIndex == AExtDef);
 
+	
 	Type* InheritType = SpecifierAnalysis(node->firstchild);
+	
 
-	if(InheritType == NULL)return;
 
-	if(secondchild(node)->SymbolIndex == AExtDecList)
+	if(node->childrenNum == 3)
 	{
-		ExtDecListAnalysis(secondchild(node), InheritType);
-	}
-	else if(secondchild(node)->SymbolIndex == AFunDec)
-	{
-		ParamList* PL = FunDecAnalysis(secondchild(node), InheritType);
-		CompStAnalysis(thirdchild(node), InheritType, PL);
+		if(InheritType == NULL)return;
+
+		if(secondchild(node)->SymbolIndex == AExtDecList)
+		{
+			ExtDecListAnalysis(secondchild(node), InheritType);
+		}
+		else if(secondchild(node)->SymbolIndex == AFunDec)
+		{
+			ParamList* PL = FunDecAnalysis(secondchild(node), InheritType);
+			CompStAnalysis(thirdchild(node), InheritType, PL);
+		}
 	}
 	return;
 }

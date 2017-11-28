@@ -14,14 +14,20 @@ void CheckDuplicatedFieldNameInOneStruct(Type* TP)
 	if(FL==NULL)return;
 	FieldList* former;
 	FieldList* later;
+
 	for(former = FL; former->tail != NULL; former = former->tail)
 	{
-		if(strcmp(former->name, TP->structure.structname) == 0)
+		/*
+		if(TP->structure.structname != NULL)
 		{
-			SemanticSwitch = false;
-			printf("\033[31mError type 15 at Line %d: Redefined field \"%s\".\033[0m\n", 
-				later->lineno, later->name );
+			if(strcmp(former->name, TP->structure.structname) == 0)
+			{
+				SemanticSwitch = false;
+				printf("\033[31mError type 15 at Line %d: Redefined field \"%s\".\033[0m\n", 
+					later->lineno, later->name );
+			}
 		}
+		*/
 
 		for(later = former->tail; later != NULL; later = later->tail)
 		{
