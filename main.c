@@ -69,8 +69,12 @@ int main(int argc, char** argv)
 		{
 			printf("Semantic analysis %s begin...\n", argv[i]);
 			SemanticAnalysis(ParsingRoot);
-			printf("Semantic analysis over.\n\n");
+			if(SemanticSwitch)
+				printf("\033[32mSemantic analysis %s over(with no error).\033[0m\n", argv[i]);
+			else
+				printf("\033[31mSemantic analysis %s over(with semantic error).\033[0m\n", argv[i]);
 		}
+		printf("\n");
 		
 	}
 

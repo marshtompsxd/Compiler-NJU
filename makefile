@@ -32,6 +32,9 @@ tc: syntax lexical parser
 td: syntax lexical parser
 	cd test/p2/D && ../../../parser `ls *.cmm | sort -n`
 
+te: syntax lexical parser
+	cd test/p2/E && ../../../parser `ls *.cmm | sort -n`
+
 compile: clean syntax lexical parser
 
 debug: clean debug_compile
