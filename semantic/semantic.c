@@ -209,6 +209,7 @@ static Type* StructSpecifierAnalysis(ParsingNode* node)
 			CheckSameVarNameInStructTypeTable(STE->TP->structure.structname, STE->lineno, CurrentStructTypeTable, StructName);
 			InsertItemIntoStructTypeTable(STE, CurrentStructTypeTable);
 		}
+
 		return SpecifierType;	
 	}
 	else
@@ -229,7 +230,6 @@ static Type* StructSpecifierAnalysis(ParsingNode* node)
 			printf("\033[31mError type 17 at Line %d: Undefined structure \"%s\".\033[0m\n", 
 					node->lineno,IDNode->IDname);
 		}
-
 
 		return SpecifierType;
 	}
@@ -256,11 +256,7 @@ static Type* SpecifierAnalysis(ParsingNode* node)
 	}
 	else
 	{
-		Type* T1;
-	
-		T1 = StructSpecifierAnalysis(node->firstchild);
-
-		return T1;
+		return StructSpecifierAnalysis(node->firstchild);
 	}
 }
 
@@ -377,6 +373,7 @@ static SymbolTableEntry* VarListAnalysis(ParsingNode* node)
 static ParamList* FunDecAnalysis(ParsingNode* node, Type* RetType)
 {
 	assert(node->SymbolIndex == AFunDec);
+
 
 	ParsingNode* IDNode = node->firstchild;
 
@@ -740,8 +737,10 @@ static Type* ExpAnalysis(ParsingNode* node, ParamList* PL)
 			if(!CheckParamEquivalence(SPL, DPL))
 			{
 				SemanticSwitch = false;
+				// bugs in below two lines
 				char* str1 = GenerateParamString(SPL);
 				char* str2 = GenerateParamString(DPL);
+
 				
 				printf("\033[31mError type 9 at Line %d: Function \"%s%s\" is not applicable for arguments \"%s\".\033[0m\n", 
 					node->firstchild->lineno, SE->Function.FunName, str2, str1);
@@ -864,7 +863,6 @@ static void CompStAnalysis(ParsingNode* node, Type* RetType, ParamList* PL)
 
 	DefListAnalysisInFunction(secondchild(node), PL);
 
-
 	StmtListAnalysis(thirdchild(node), RetType, PL);
 
 	//printf("check elem in CurrentSymbolTable\n");
@@ -884,10 +882,9 @@ static void ExtDefAnalysis(ParsingNode* node)
 
 	if(node->childrenNum == 3)
 	{
-		if(InheritType == NULL)return;
-
 		if(secondchild(node)->SymbolIndex == AExtDecList)
 		{
+			if(InheritType == NULL)return;
 			ExtDecListAnalysis(secondchild(node), InheritType);
 		}
 		else if(secondchild(node)->SymbolIndex == AFunDec)

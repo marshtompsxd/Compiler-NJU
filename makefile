@@ -23,6 +23,15 @@ test2: syntax lexical parser
 ta: syntax lexical parser
 	cd test/p2/A && ../../../parser `ls *.cmm | sort -n`
 
+tb: syntax lexical parser
+	cd test/p2/B && ../../../parser `ls *.cmm | sort -n`
+
+tc: syntax lexical parser
+	cd test/p2/C && ../../../parser `ls *.cmm | sort -n`
+
+td: syntax lexical parser
+	cd test/p2/D && ../../../parser `ls *.cmm | sort -n`
+
 compile: clean syntax lexical parser
 
 debug: clean debug_compile

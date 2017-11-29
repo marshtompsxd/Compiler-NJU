@@ -226,6 +226,7 @@ void CheckElemInTable(SymbolTableHead* table)
 
 bool CheckTypeEquivalence(Type* T1, Type* T2)
 {
+	if(T1 == NULL || T2 == NULL)return false;
 	if(T1->kind != T2->kind)return false;
 	if(T1->kind == BASIC)
 	{
@@ -279,14 +280,14 @@ char* GenerateTypeString(Type* TP)
 	}
 	else if(TP->kind == ARRAY)
 	{
-		char* tmp = (char*)malloc(sizeof(100));
+		char* tmp = (char*)malloc(100);
 		strcpy(tmp, "[]");
 		strcat(tmp, GenerateTypeString(TP->array.elem));
 		return tmp;
 	}
 	else 
 	{
-		char* tmp = (char*)malloc(sizeof(100));
+		char* tmp = (char*)malloc(100);
 		strcpy(tmp, "struct ");
 		strcat(tmp, TP->structure.structname);
 		return tmp;
@@ -295,9 +296,8 @@ char* GenerateTypeString(Type* TP)
 
 char* GenerateParamString(ParamList* PL)
 {
-	char* str = (char*)malloc(sizeof(100));
+	char* str = (char*)malloc(100);
 	strcpy(str, "(");
-
 	SymbolTableEntry* SE;
 	for(SE = PL->head; SE != NULL; SE = SE->tail)
 	{
