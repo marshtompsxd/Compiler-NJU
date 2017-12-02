@@ -14,10 +14,7 @@ CFLAGS = -g \
 run: syntax lexical parser
 	./parser test/samples/1.cmm
 
-test1: syntax lexical parser
-	./parser test/p1/*.cmm 
-
-test2: syntax lexical parser
+test: syntax lexical parser
 	cd test/p2/pretest && ../../../parser `ls *.cmm | sort -n`
 
 ta: syntax lexical parser
