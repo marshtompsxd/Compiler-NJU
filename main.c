@@ -5,6 +5,7 @@
 #include "lexical_syntax/lex.yy.h"
 #include "lexical_syntax/syntax.tab.h"
 #include "semantic/semantic.h"
+#include "semantic/IC.h"
 
 static void ParsingFinalPhase(char* filename)
 {
@@ -73,6 +74,12 @@ int main(int argc, char** argv)
 				printf("\033[31mSemantic analysis %s over(with semantic error).\033[0m\n", argv[i]);
 		}
 		printf("\n");
+
+        if(SemanticSwitch)
+        {
+            printf("InterCode generation of %s begin...\n", argv[i]);
+            InterCodeGenerator();
+        }
 		
 	}
 
