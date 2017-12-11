@@ -1,9 +1,0 @@
-int float_test()
-{
-    float X_1 = .12E-3;
-    float X_2 = 1.2e+3;
-    float X_3 = 123.4E-4;
-    float X_4 = 12.e+3;
-    float X_5 = 0.123E4;
-    float result = (1.2E1 + X_3) + X_1;
-}
