@@ -15,7 +15,7 @@ run: syntax lexical parser
 	./parser test/samples/1.cmm
 
 test: syntax lexical parser
-	cd test/p2/pretest && ../../../parser `ls *.cmm | sort -n`
+	cd test/ && ../parser `ls *.cmm | sort -n`
 
 ta: syntax lexical parser
 	cd test/p2/A && ../../../parser `ls *.cmm | sort -n`

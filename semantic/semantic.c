@@ -859,7 +859,7 @@ static void CompStAnalysis(ParsingNode* node, Type* RetType, ParamList* PL)
 {
 	assert(node->SymbolIndex == ACompSt);
 
-	PushPrevTable();
+	//PushPrevTable();
 
 	DefListAnalysisInFunction(secondchild(node), PL);
 
@@ -868,7 +868,7 @@ static void CompStAnalysis(ParsingNode* node, Type* RetType, ParamList* PL)
 	//printf("check elem in CurrentSymbolTable\n");
 	//CheckElemInTable(CurrentSymbolTable);
 
-	PopPrevTable();
+	//PopPrevTable();
 }
 
 static void ExtDefAnalysis(ParsingNode* node)
@@ -925,6 +925,6 @@ void SemanticAnalysis(ParsingNode* node)
 	assert(CurrentSymbolTable == RootSymbolTable);
 	assert(CurrentStructTypeTable == RootStructTypeTable);
 
-	//printf("check elem in root table\n");
-	//CheckElemInTable(CurrentSymbolTable);
+	printf("check elem in root table\n");
+	CheckElemInTable(CurrentSymbolTable);
 }

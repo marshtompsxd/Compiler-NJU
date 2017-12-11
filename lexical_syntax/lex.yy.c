@@ -959,7 +959,7 @@ YY_RULE_SETUP
 case 16:
 YY_RULE_SETUP
 #line 53 "lexical.l"
-{yylval.node = GenerateSimpleTerminalNode(ARELOP, yylineno);return RELOP;}
+{yylval.node = GenerateRELOPNode(yylineno, yytext);return RELOP;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP

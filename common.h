@@ -24,6 +24,7 @@ typedef int bool;
 #define seventhchild(node) sixthchild(node)->nextsibiling
 
 enum { Terminal, Variable, Dummy };
+enum { EQ, LT, GT, NEQ, LEQ, GEQ };
 
 
 #endif

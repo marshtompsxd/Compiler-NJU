@@ -15,7 +15,9 @@ static char* symbolsTable[48] =
 		"ParamDec", "CompSt", "StmtList", "Stmt", "Exp", "Def", "DefList", 
 		"Dec","DecList", "Args"};
 
-static char* typeTables[2] = {"int", "float"};
+static char* typeTable[2] = {"int", "float"};
+
+static char* relopTable[6] = {"==", "<", ">", "!=", "<=", ">="};
 
 ParsingNode* ParsingRoot = NULL;
 
@@ -94,6 +96,31 @@ ParsingNode* GenerateIDNode(int lineno, char* text)
     return node;
 }
 
+ParsingNode* GenerateRELOPNode(int lineno, char* text)
+{
+	ParsingNode *node = (ParsingNode*)malloc(sizeof(ParsingNode));
+	node->kind = Terminal;
+	node->SymbolIndex = ARELOP;
+	node->lineno = lineno;
+	node->firstchild = NULL;
+	node->nextsibiling = NULL;
+	node->childrenNum = 0;
+
+	if(strcmp(text, "==") == 0)node->relop_kind = EQ;
+	else if(strcmp(text, "<") == 0)node->relop_kind = LT;
+	else if(strcmp(text, ">") == 0)node->relop_kind = GT;
+	else if(strcmp(text, "!=") == 0)node->relop_kind = NEQ;
+	else if(strcmp(text, "<=") == 0)node->relop_kind = LEQ;
+	else node->relop_kind = GEQ;
+
+	#ifdef TERMINAL_DEBUG
+    printf("Terminal RELOP : %s at %d\n", text, node->lineno);
+    #endif
+
+    return node;
+
+}
+
 ParsingNode* GenerateTypeNode(int TerminalType, int lineno, char* text)
 {
 	ParsingNode *node = (ParsingNode*)malloc(sizeof(ParsingNode));
@@ -110,7 +137,7 @@ ParsingNode* GenerateTypeNode(int TerminalType, int lineno, char* text)
 		else node->type = float_type;
 		
 		#ifdef TERMINAL_DEBUG
-		printf("Terminal %s : %s at %d\n", symbolsTable[node->SymbolIndex], typeTables[node->type], node->lineno);
+		printf("Terminal %s : %s at %d\n", symbolsTable[node->SymbolIndex], typeTable[node->type], node->lineno);
 		#endif
 	}
 	else if(TerminalType == AINT)
@@ -233,8 +260,10 @@ static void PrintParsingNode(ParsingNode* node)
 	{
 		if(node->SymbolIndex == AID)
 			printf("%s: %s\n",symbolsTable[node->SymbolIndex], node->IDname );
+		else if(node->SymbolIndex == ARELOP)
+			printf("%s: %s\n",symbolsTable[node->SymbolIndex], relopTable[node->relop_kind] );
 		else if(node->SymbolIndex == ATYPE)
-			printf("%s: %s\n",symbolsTable[node->SymbolIndex], typeTables[node->type] );
+			printf("%s: %s\n",symbolsTable[node->SymbolIndex], typeTable[node->type] );
 		else if(node->SymbolIndex == AINT)
 			printf("%s: %d\n",symbolsTable[node->SymbolIndex], node->int_value );
 		else if(node->SymbolIndex == AFLOAT)
@@ -256,4 +285,10 @@ void PreorderPrintParsingTree(ParsingNode* node)
 		child = child->nextsibiling;
 	}
 	return;
+}
+
+void SyntaxOutput(ParsingNode* node)
+{
+	SetDepthOfParsingTree(node, 0);
+	PreorderPrintParsingTree(node);
 }

@@ -50,7 +50,7 @@ WS              [ \t]+
 ";"             {yylval.node = GenerateSimpleTerminalNode(ASEMI, yylineno);return SEMI;}
 ","             {yylval.node = GenerateSimpleTerminalNode(ACOMMA, yylineno);return COMMA;}
 "="             {yylval.node = GenerateSimpleTerminalNode(AASSIGNOP, yylineno);return ASSIGNOP;}
-{RELOP}         {yylval.node = GenerateSimpleTerminalNode(ARELOP, yylineno);return RELOP;}
+{RELOP}         {yylval.node = GenerateRELOPNode(yylineno, yytext);return RELOP;}
 "+"             {yylval.node = GenerateSimpleTerminalNode(APLUS, yylineno);return PLUS;}
 "-"             {yylval.node = GenerateSimpleTerminalNode(AMINUS, yylineno);return MINUS;}
 "*"             {yylval.node = GenerateSimpleTerminalNode(ASTAR, yylineno);return STAR;}

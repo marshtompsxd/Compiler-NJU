@@ -33,6 +33,7 @@ struct ParsingNode
 		int type; // for TYPE
     	int int_value; // for INT
     	float float_value; // for FLOAT
+    	int relop_kind; // for RELOP
 	};   
 };
 
@@ -48,6 +49,8 @@ extern ParsingNode* GenerateSimpleTerminalNode(int TerminalType, int lineno);
 
 extern ParsingNode* GenerateIDNode(int lineno, char* text);
 
+extern ParsingNode* GenerateRELOPNode(int lineno, char* text);
+
 extern ParsingNode* GenerateTypeNode(int TerminalType, int lineno, char* text);
 
 extern ParsingNode* GenerateDummyNode(int VariableType);
@@ -57,5 +60,7 @@ extern ParsingNode* GenerateVariableNode(int VariableType, int childrenNum, ...)
 extern void SetDepthOfParsingTree(ParsingNode* node, int depth);
 
 extern void PreorderPrintParsingTree(ParsingNode* node);
+
+extern void SyntaxOutput(ParsingNode* node);
 
 #endif 
