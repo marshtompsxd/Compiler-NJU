@@ -27,7 +27,7 @@ extern Operand* NewICOperand(int ICons);
 
 extern Operand* NewFCOperand(float FCons);
 
-extern Operand* GetLvalueOperand(ParsingNode* node);
+extern Operand* GetLvalueIDOperand(ParsingNode* node);
 
 extern void InsertInterCodeEntry(InterCodeEntry* entry);
 

@@ -22,11 +22,11 @@ static void VarListGenerate(ParsingNode* node);
 static void VarDecGenerateInFunction(ParsingNode* node);
 static void DecGenerateInFunction(ParsingNode* node);
 static void DecListGenerateInFunction(ParsingNode* node);
-static void DefGenerateInFunction(ParsingNode* node);
-static void DefListGenerateInFunction(ParsingNode* node);
-static void StmtListGenerate(ParsingNode* node);
-static void CompStGenerate(ParsingNode* node);
-static void FunDecGenerate(ParsingNode* node);
+static InterCodeListHead* DefGenerateInFunction(ParsingNode* node);
+static InterCodeListHead* DefListGenerateInFunction(ParsingNode* node);
+static InterCodeListHead* StmtListGenerate(ParsingNode* node);
+static InterCodeListHead* CompStGenerate(ParsingNode* node);
+static InterCodeListHead* FunDecGenerate(ParsingNode* node);
 
 static void ArgsGenerate(ParsingNode* node);
 static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* place);
@@ -67,21 +67,32 @@ static void InitICTable()
 
 }
 
-static void DefGenerateInFunction(ParsingNode* node)
+static InterCodeListHead* DefGenerateInFunction(ParsingNode* node)
 {
     assert(skind(node) == ADef);
+    // need fix
+    InterCodeListHead* list = (InterCodeListHead*)malloc(sizeof(InterCodeListHead));
+    list->head = NULL;
+
+    return list;
 }
 
-static void DefListGenerateInFunction(ParsingNode* node)
+static InterCodeListHead* DefListGenerateInFunction(ParsingNode* node)
 {
     assert(skind(node) == ADefList);
 
+    InterCodeListHead* list = (InterCodeListHead*)malloc(sizeof(InterCodeListHead));
+    list->head = NULL;
+
     if(node->kind != Dummy)
     {
-        DefGenerateInFunction(firstchild(node));
-        DefListGenerateInFunction(secondchild(node));
+        InterCodeListHead* sublist1 = DefGenerateInFunction(firstchild(node));
+        MergeInterCodeList(sublist1, list);
+        InterCodeListHead* sublist2 =DefListGenerateInFunction(secondchild(node));
+        MergeInterCodeList(sublist1, list);
+        return list;
     }
-    else return;
+    else return list;
 }
 
 InterCodeListHead* ConditionRELOPGenerate(ParsingNode* node, int LIndexT, int LIndexF)
@@ -156,6 +167,7 @@ InterCodeListHead* ConditionORGenerate(ParsingNode* node, int LIndexT, int LInde
 
 InterCodeListHead* ConditionNOTGenerate(ParsingNode* node, int LIndexT, int LIndexF)
 {
+    assert(skind(firstchild(node)) == ANOT);
     return ConditionGenerate(secondchild(node), LIndexF, LIndexT );
 }
 
@@ -193,8 +205,6 @@ InterCodeListHead* ConditionGenerate(ParsingNode* node, int LIndexT, int LIndexF
         return ConditionOtherGenerate(node, LIndexT, LIndexF);
 }
 
-
-
 static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
 {
     assert(skind(node) == AExp);
@@ -207,17 +217,17 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
         Operand* right;
         if(skind(firstchild(node)) == AID)
         {
-            ICVarEntry* VE = LookUpForICVarEntry(node->IDname);
+            ICVarEntry* VE = LookUpForICVarEntry(firstchild(node)->IDname);
             assert(VE!=NULL);
             right = NewVOperand(OVALUE, VE->VIndex);
         }
         else if(skind(firstchild(node)) == AINT)
         {
-            right = NewICOperand(node->int_value);
+            right = NewICOperand(firstchild(node)->int_value);
         }
         else if(skind(firstchild(node)) == AFLOAT)
         {
-            right = NewFCOperand(node->float_value);
+            right = NewFCOperand(firstchild(node)->float_value);
         }
         else assert(0);
 
@@ -259,16 +269,50 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
         }
         else if(IsRELOPNode(secondchild(node)) || IsLogicNode(secondchild(node)))
         {
+            int LIndex1 = NewLabelIndex();
+            int LIndex2 = NewLabelIndex();
+
+            InterCodeEntry *ICE2 = NewInterCodeEntryLABELDEC(LIndex1);
+            InterCodeEntry *ICE4 = NewInterCodeEntryLABELDEC(LIndex2);
+            InterCodeListHead* sublist = ConditionGenerate(node, LIndex1, LIndex2);
+
+
+            if(result!=NULL)
+            {
+                Operand *zero = NewICOperand(0);
+                InterCodeEntry *ICE1 = NewInterCodeEntryASSIGN(result, zero);
+                InsertEntryIntoInterCodeList(ICE1, list);
+            }
+            MergeInterCodeList(sublist, list);
+            InsertEntryIntoInterCodeList(ICE2, list);
+            if(result!=NULL) {
+                Operand *one = NewICOperand(1);
+                InterCodeEntry *ICE3 = NewInterCodeEntryASSIGN(result, one);
+                InsertEntryIntoInterCodeList(ICE3, list);
+            }
+            InsertEntryIntoInterCodeList(ICE4, list);
+
 
         }
         else if(skind(secondchild(node)) == AASSIGNOP)
         {
-            Operand* left = GetLvalueOperand(firstchild(node));
+            Operand* left;
+            if(skind(firstchild(firstchild(node))) == AID)
+            {
+                left = GetLvalueIDOperand(firstchild(node));
+            }
+            else
+            {
+                left = NewTOperand(OADDR);
+                InterCodeListHead* sublist1 = ExpGenerate(firstchild(node), left);
+                MergeInterCodeList(sublist1, list);
+            }
+
             Operand* right = NewTOperand(OVALUE);
-            InterCodeListHead* sublist = ExpGenerate(thirdchild(node), right);
+            InterCodeListHead* sublist2 = ExpGenerate(thirdchild(node), right);
+            MergeInterCodeList(sublist2, list);
 
             InterCodeEntry* ICE1 = NewInterCodeEntryASSIGN(left, right);
-            MergeInterCodeList(sublist, list);
             InsertEntryIntoInterCodeList(ICE1, list);
 
             if(result!=NULL){
@@ -310,7 +354,8 @@ static InterCodeListHead* StmtGenerate(ParsingNode* node)
 
     if(node->childrenNum == 1)
     {
-        CompStGenerate(firstchild(node));
+        //CompStGenerate(firstchild(node));
+        return list;
     }
     else if(node->childrenNum == 2)
     {
@@ -324,24 +369,48 @@ static InterCodeListHead* StmtGenerate(ParsingNode* node)
     }
 }
 
-static void StmtListGenerate(ParsingNode* node)
+static InterCodeListHead* StmtListGenerate(ParsingNode* node)
 {
     assert(skind(node) == AStmtList);
 
+    InterCodeListHead* list = (InterCodeListHead*)malloc(sizeof(InterCodeListHead));
+    list->head = NULL;
+
     if(node->kind != Dummy)
     {
-        StmtGenerate(firstchild(node));
-        StmtListGenerate(secondchild(node));
+        InterCodeListHead* sublist1 = StmtGenerate(firstchild(node));
+        MergeInterCodeList(sublist1, list);
+        InterCodeListHead* sublist2 = StmtListGenerate(secondchild(node));
+        MergeInterCodeList(sublist2, list);
+        return list;
     }
-    else return;
+    else return list;
 }
 
-static void CompStGenerate(ParsingNode* node)
+static InterCodeListHead* CompStGenerate(ParsingNode* node)
 {
     assert(skind(node) == ACompSt);
 
-    DefListGenerateInFunction(secondchild(node));
-    StmtListGenerate(thirdchild(node));
+
+    InterCodeListHead* list = (InterCodeListHead*)malloc(sizeof(InterCodeListHead));
+    list->head = NULL;
+
+    //InterCodeListHead* sublist1 = DefListGenerateInFunction(secondchild(node));
+    //MergeInterCodeList(sublist1, list);
+    InterCodeListHead* sublist2 = StmtListGenerate(thirdchild(node));
+    MergeInterCodeList(sublist2, list);
+    return list;
+}
+
+static InterCodeListHead* FunDecGenerate(ParsingNode* node)
+{
+    assert(skind(node) == AFunDec);
+
+
+    InterCodeListHead* list = (InterCodeListHead*)malloc(sizeof(InterCodeListHead));
+    list->head = NULL;
+    //...
+    return list;
 }
 
 static void ExtDefGenerate(ParsingNode* node)
@@ -352,7 +421,8 @@ static void ExtDefGenerate(ParsingNode* node)
     {
         if(skind(secondchild(node)) == AFunDec)
         {
-            CompStGenerate(secondchild(node));
+            InterCodeListHead* sublist1 = FunDecGenerate(secondchild(node));
+            InterCodeListHead* sublist2 = CompStGenerate(thirdchild(node));
         }
     }
     else return;
@@ -382,4 +452,6 @@ void InterCodeGenerator()
     CheckElemInICVarTable(RootICVarTable);
     printf("print ICFunTable\n");
     CheckElemInICFunTable(RootICFunTable);
+
+    ProgramGenerate(ParsingRoot);
 }

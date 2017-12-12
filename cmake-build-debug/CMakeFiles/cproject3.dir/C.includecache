@@ -103,6 +103,8 @@ ParsingNode.h
 /home/sunxudong/CLionProjects/cproject3/semantic/list.h
 ../semantic/check.h
 /home/sunxudong/CLionProjects/cproject3/semantic/check.h
+InterCode.h
+/home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h
 
 /home/sunxudong/CLionProjects/cproject3/intercode/ICTable.h
 InterCode.h

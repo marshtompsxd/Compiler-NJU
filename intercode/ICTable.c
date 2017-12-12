@@ -177,25 +177,15 @@ int arithmeticConvert(int arithmetic)
     }
 }
 
-Operand* GetLvalueOperand(ParsingNode* node)
+Operand* GetLvalueIDOperand(ParsingNode* node)
 {
-    assert(skind(node) == AExp);
+    assert(skind(firstchild(node)) == AID);
 
-    if(node->childrenNum == 1 && skind(firstchild(node)) == AID)
-    {
-        ICVarEntry* VE = LookUpForICVarEntry(firstchild(node)->IDname);
-        assert(VE!=NULL);
-        Operand* OP = NewVOperand(OVALUE, VE->VIndex);
-        return OP;
-    }
-    else if(node->childrenNum == 3 && skind(secondchild(node)) == ADOT)
-    {
-        assert(0);
-    }
-    else if(node->childrenNum == 4 && skind(secondchild(node)) == ALB)
-    {
-        assert(0);
-    }
+    ICVarEntry* VE = LookUpForICVarEntry(firstchild(node)->IDname);
+    assert(VE!=NULL);
+    Operand* OP = NewVOperand(OVALUE, VE->VIndex);
+    return OP;
+
 }
 
 void InsertEntryIntoInterCodeList(InterCodeEntry* entry, InterCodeListHead* list)
@@ -224,6 +214,7 @@ void InsertInterCodeEntry(InterCodeEntry* entry)
 
 void MergeInterCodeList(InterCodeListHead* sublist, InterCodeListHead* list)
 {
+    if(sublist->head == NULL)return;
     InterCodeEntry* ICEHead = sublist->head;
     InterCodeEntry* ICETail = ICEHead->prev;
     ICETail->next = NULL;
@@ -242,6 +233,9 @@ InterCodeEntry* NewInterCodeEntryBINOP(int kind, Operand* result, Operand* op1, 
     InterCode* IC = (InterCode*)malloc(sizeof(InterCode));
 
     IC->kind = kind;
+    IC->BINOP.op1 = (Operand*)malloc(sizeof(Operand));
+    IC->BINOP.op2 = (Operand*)malloc(sizeof(Operand));
+    IC->BINOP.result = (Operand*)malloc(sizeof(Operand));
 
     memcpy(IC->BINOP.op1, op1, sizeof(Operand));
     memcpy(IC->BINOP.op2, op2, sizeof(Operand));
@@ -257,6 +251,8 @@ InterCodeEntry* NewInterCodeEntryASSIGN(Operand* left, Operand* right)
     InterCode* IC = (InterCode*)malloc(sizeof(InterCode));
 
     IC->kind = IASSIGN;
+    IC->ASSIGN.left = (Operand*)malloc(sizeof(Operand));
+    IC->ASSIGN.right = (Operand*)malloc(sizeof(Operand));
 
     memcpy(IC->ASSIGN.left, left, sizeof(Operand));
     memcpy(IC->ASSIGN.right, right, sizeof(Operand));
@@ -268,6 +264,10 @@ InterCodeEntry* NewInterCodeEntryASSIGN(Operand* left, Operand* right)
 static Cond* NewCond(Operand* op1, Operand* op2, int relop)
 {
     Cond* CD = (Cond*)malloc(sizeof(Cond));
+
+    CD->op1 = (Operand*)malloc(sizeof(Operand));
+    CD->op2 = (Operand*)malloc(sizeof(Operand));
+
     memcpy(CD->op1, op1, sizeof(Operand));
     memcpy(CD->op2, op2, sizeof(Operand));
     CD->relop = relop;
