@@ -4,7 +4,7 @@
 
 #include "symbol_table.h"
 #include "semantic.h"
-#include "InterCode.h"
+#include "../intercode/InterCode.h"
 #include "../common.h"
 #include <stdlib.h>
 
@@ -171,7 +171,7 @@ void CheckSameVarNameInParamList(char* varname, int lineno, ParamList* PL)
 
 static char* basictype[2] = {"int", "float"};
 
-static void PrintType(Type* type)
+void PrintType(Type* type)
 {
     if(type->kind == BASIC)
     {
@@ -327,32 +327,3 @@ bool CheckParamEquivalence(ParamList* PL1, ParamList* PL2)
     return true;
 }
 
-
-void CheckElemInICVarTable(ICVarTableHead* table)
-{
-    ICVarEntry* VE;
-    printf("---------------------------------------------------\n");
-    for(VE = table->head; VE != NULL; VE = VE->next)
-    {
-
-        printf("VAR : %s , type : ", VE->VariableName);
-        PrintType(VE->VariableType);
-        printf("----------------------------------------------------\n");
-
-    }
-    printf("\n\n");
-}
-
-void CheckElemInICFunTable(ICFunTableHead* table)
-{
-    ICFunEntry* FE;
-    printf("---------------------------------------------------\n");
-    for(FE = table->head; FE != NULL; FE = FE->next)
-    {
-
-        printf("FUN : %s\n", FE->FunName);
-        printf("----------------------------------------------------\n");
-
-    }
-    printf("\n\n");
-}

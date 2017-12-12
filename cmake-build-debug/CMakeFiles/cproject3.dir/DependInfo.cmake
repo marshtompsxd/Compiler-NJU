@@ -4,11 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/home/sunxudong/CLionProjects/cproject3/intercode/ICTable.c" "/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/ICTable.c.o"
+  "/home/sunxudong/CLionProjects/cproject3/intercode/InterCode.c" "/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/InterCode.c.o"
   "/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/lex.yy.c" "/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles/cproject3.dir/lex.yy.c.o"
   "/home/sunxudong/CLionProjects/cproject3/lexical_syntax/ParsingNode.c" "/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.o"
   "/home/sunxudong/CLionProjects/cproject3/lexical_syntax/text.c" "/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles/cproject3.dir/lexical_syntax/text.c.o"
   "/home/sunxudong/CLionProjects/cproject3/main.c" "/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles/cproject3.dir/main.c.o"
-  "/home/sunxudong/CLionProjects/cproject3/semantic/InterCode.c" "/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles/cproject3.dir/semantic/InterCode.c.o"
   "/home/sunxudong/CLionProjects/cproject3/semantic/check.c" "/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles/cproject3.dir/semantic/check.c.o"
   "/home/sunxudong/CLionProjects/cproject3/semantic/list.c" "/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles/cproject3.dir/semantic/list.c.o"
   "/home/sunxudong/CLionProjects/cproject3/semantic/semantic.c" "/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles/cproject3.dir/semantic/semantic.c.o"

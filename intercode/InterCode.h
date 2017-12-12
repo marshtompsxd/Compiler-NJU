@@ -16,7 +16,8 @@ typedef struct ICVarTableHead_ ICVarTableHead;
 typedef struct ICFunTableHead_ ICFunTableHead;
 typedef struct InterCodeListHead_ InterCodeListHead;
 
-enum { VARIABLE, CONSTANT, ADDRESS, REFERENCE };
+enum { VARIABLE, TEMP, CONSTANT };
+enum { VALUE, ADDRESS, REFERENCE };
 enum { 	ASSIGN, ADD, SUB, MUL, DIV, GOTO, IF, 
 		RETURN, DEC, ARG, CALL, PARAM, READ, WRITE };
 
@@ -24,9 +25,12 @@ extern ICVarTableHead* RootICVarTable;
 extern ICFunTableHead* RootICFunTable;
 extern InterCodeListHead* RootInterCodeList;
 
+extern int VIndex, TIndex;
+
 struct ICVarEntry_{
 	char* VariableName; 
 	Type* VariableType;
+    int VIndex;
 	ICVarEntry* next;
 };
 
@@ -37,6 +41,7 @@ struct ICFunEntry_{
 
 struct InterCodeEntry_{
 	InterCode* IC;
+    InterCodeEntry* prev;
 	InterCodeEntry* next;
 };
 
@@ -56,13 +61,14 @@ struct InterCodeListHead_{
 
 struct Operand_ {
 	int kind;
+    int attr;
 	union
 	{
-		char* varName;
-		int consValue;
-		char* addrName;
+        int VIndex;
+        int TIndex;
+        int consValue;
 	};
-	char* ICName;
+
 };
 
 struct Cond_ {

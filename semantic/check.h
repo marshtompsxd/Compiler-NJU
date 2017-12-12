@@ -38,9 +38,7 @@ extern char* GenerateParamString(ParamList* PL);
 
 extern bool CheckParamEquivalence(ParamList* PL1, ParamList* PL2);
 
-extern void CheckElemInICVarTable(ICVarTableHead* table);
-
-extern void CheckElemInICFunTable(ICFunTableHead* table);
+extern void PrintType(Type* type);
 
 
 #endif

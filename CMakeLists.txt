@@ -12,7 +12,7 @@ add_flex_bison_dependency(Scanner Parser)
 
 set(SOURCE_FILES ${BISON_Parser_OUTPUTS} ${FLEX_Scanner_OUTPUTS}
         lexical_syntax/lexical.l lexical_syntax/syntax.y lexical_syntax/ParsingNode.c lexical_syntax/text.c
-        semantic/semantic.c semantic/check.h semantic/list.h semantic/symbol_table.h semantic/InterCode.c semantic/InterCode.h
-        main.c semantic/IC.h common.h semantic/list.c semantic/check.c)
+        semantic/semantic.c semantic/check.h semantic/list.h semantic/symbol_table.h intercode/InterCode.c intercode/InterCode.h
+        main.c intercode/IC.h common.h semantic/list.c semantic/check.c intercode/ICTable.c intercode/ICTable.h)
 add_executable(cproject3 ${SOURCE_FILES})
 target_link_libraries(cproject3 ${FLEX_LIBRARIES} ${BISON_LIBRARIES})

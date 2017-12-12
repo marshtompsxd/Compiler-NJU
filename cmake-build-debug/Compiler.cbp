@@ -108,6 +108,21 @@
 		<Unit filename="/home/sunxudong/CLionProjects/cproject3/common.h">
 			<Option target="cproject3"/>
 		</Unit>
+		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/IC.h">
+			<Option target="cproject3"/>
+		</Unit>
+		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/ICTable.c">
+			<Option target="cproject3"/>
+		</Unit>
+		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/ICTable.h">
+			<Option target="cproject3"/>
+		</Unit>
+		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/InterCode.c">
+			<Option target="cproject3"/>
+		</Unit>
+		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h">
+			<Option target="cproject3"/>
+		</Unit>
 		<Unit filename="/home/sunxudong/CLionProjects/cproject3/lexical_syntax/ParsingNode.c">
 			<Option target="cproject3"/>
 		</Unit>
@@ -127,15 +142,6 @@
 			<Option target="cproject3"/>
 		</Unit>
 		<Unit filename="/home/sunxudong/CLionProjects/cproject3/main.c">
-			<Option target="cproject3"/>
-		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/semantic/IC.h">
-			<Option target="cproject3"/>
-		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/semantic/InterCode.c">
-			<Option target="cproject3"/>
-		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/semantic/InterCode.h">
 			<Option target="cproject3"/>
 		</Unit>
 		<Unit filename="/home/sunxudong/CLionProjects/cproject3/semantic/check.c">

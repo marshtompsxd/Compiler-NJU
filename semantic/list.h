@@ -2,7 +2,7 @@
 #define __LIST_H__
 
 #include "symbol_table.h"
-#include "InterCode.h"
+#include "../intercode/InterCode.h"
 #include <stdlib.h>
 
 extern FieldList* FLTail(FieldList* FL);
@@ -26,14 +26,6 @@ extern SymbolTableEntry* LookUpForFunDef(char* funname);
 extern SymbolTableEntry* LookUpForParam(char* varname, ParamList* PL);
 
 extern Type* LookUpForField(char* fieldname, Type* TP);
-
-extern void InsertEntryIntoICVarTable(ICVarEntry* entry, ICVarTableHead* table);
-
-extern void InsertEntryIntoICFunTable(ICFunEntry* entry, ICFunTableHead* table);
-
-extern void GenerateICVarTable(SymbolTableHead* table);
-
-extern void GenerateICFunTable(SymbolTableHead* table);
 
 extern void PushPrevTable();
 

@@ -17,15 +17,16 @@
 
 typedef int bool;
 
-#define secondchild(node) node->firstchild->nextsibiling
+#define skind(node) node->SymbolIndex
+
+#define firstchild(node) node->firstchild
+#define secondchild(node) firstchild(node)->nextsibiling
 #define thirdchild(node) secondchild(node)->nextsibiling
 #define fourthchild(node) thirdchild(node)->nextsibiling
 #define fifthchild(node) fourthchild(node)->nextsibiling
 #define sixthchild(node) fifthchild(node)->nextsibiling
 #define seventhchild(node) sixthchild(node)->nextsibiling
 
-enum { Terminal, Variable, Dummy };
-enum { EQ, LT, GT, NEQ, LEQ, GEQ };
 
 
 #endif

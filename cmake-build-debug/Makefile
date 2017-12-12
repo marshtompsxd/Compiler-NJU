@@ -123,6 +123,60 @@ cproject3/fast:
 	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/build
 .PHONY : cproject3/fast
 
+intercode/ICTable.o: intercode/ICTable.c.o
+
+.PHONY : intercode/ICTable.o
+
+# target to build an object file
+intercode/ICTable.c.o:
+	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/ICTable.c.o
+.PHONY : intercode/ICTable.c.o
+
+intercode/ICTable.i: intercode/ICTable.c.i
+
+.PHONY : intercode/ICTable.i
+
+# target to preprocess a source file
+intercode/ICTable.c.i:
+	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/ICTable.c.i
+.PHONY : intercode/ICTable.c.i
+
+intercode/ICTable.s: intercode/ICTable.c.s
+
+.PHONY : intercode/ICTable.s
+
+# target to generate assembly for a file
+intercode/ICTable.c.s:
+	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/ICTable.c.s
+.PHONY : intercode/ICTable.c.s
+
+intercode/InterCode.o: intercode/InterCode.c.o
+
+.PHONY : intercode/InterCode.o
+
+# target to build an object file
+intercode/InterCode.c.o:
+	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/InterCode.c.o
+.PHONY : intercode/InterCode.c.o
+
+intercode/InterCode.i: intercode/InterCode.c.i
+
+.PHONY : intercode/InterCode.i
+
+# target to preprocess a source file
+intercode/InterCode.c.i:
+	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/InterCode.c.i
+.PHONY : intercode/InterCode.c.i
+
+intercode/InterCode.s: intercode/InterCode.c.s
+
+.PHONY : intercode/InterCode.s
+
+# target to generate assembly for a file
+intercode/InterCode.c.s:
+	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/InterCode.c.s
+.PHONY : intercode/InterCode.c.s
+
 lex.yy.o: lex.yy.c.o
 
 .PHONY : lex.yy.o
@@ -230,33 +284,6 @@ main.s: main.c.s
 main.c.s:
 	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/main.c.s
 .PHONY : main.c.s
-
-semantic/InterCode.o: semantic/InterCode.c.o
-
-.PHONY : semantic/InterCode.o
-
-# target to build an object file
-semantic/InterCode.c.o:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/semantic/InterCode.c.o
-.PHONY : semantic/InterCode.c.o
-
-semantic/InterCode.i: semantic/InterCode.c.i
-
-.PHONY : semantic/InterCode.i
-
-# target to preprocess a source file
-semantic/InterCode.c.i:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/semantic/InterCode.c.i
-.PHONY : semantic/InterCode.c.i
-
-semantic/InterCode.s: semantic/InterCode.c.s
-
-.PHONY : semantic/InterCode.s
-
-# target to generate assembly for a file
-semantic/InterCode.c.s:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/semantic/InterCode.c.s
-.PHONY : semantic/InterCode.c.s
 
 semantic/check.o: semantic/check.c.o
 
@@ -375,6 +402,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... cproject3"
+	@echo "... intercode/ICTable.o"
+	@echo "... intercode/ICTable.i"
+	@echo "... intercode/ICTable.s"
+	@echo "... intercode/InterCode.o"
+	@echo "... intercode/InterCode.i"
+	@echo "... intercode/InterCode.s"
 	@echo "... lex.yy.o"
 	@echo "... lex.yy.i"
 	@echo "... lex.yy.s"
@@ -387,9 +420,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... semantic/InterCode.o"
-	@echo "... semantic/InterCode.i"
-	@echo "... semantic/InterCode.s"
 	@echo "... semantic/check.o"
 	@echo "... semantic/check.i"
 	@echo "... semantic/check.s"

@@ -7,10 +7,11 @@ file(REMOVE_RECURSE
   "CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.o"
   "CMakeFiles/cproject3.dir/lexical_syntax/text.c.o"
   "CMakeFiles/cproject3.dir/semantic/semantic.c.o"
-  "CMakeFiles/cproject3.dir/semantic/InterCode.c.o"
+  "CMakeFiles/cproject3.dir/intercode/InterCode.c.o"
   "CMakeFiles/cproject3.dir/main.c.o"
   "CMakeFiles/cproject3.dir/semantic/list.c.o"
   "CMakeFiles/cproject3.dir/semantic/check.c.o"
+  "CMakeFiles/cproject3.dir/intercode/ICTable.c.o"
   "cproject3.pdb"
   "cproject3"
 )

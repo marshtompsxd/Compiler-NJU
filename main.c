@@ -5,7 +5,7 @@
 #include "lexical_syntax/lex.yy.h"
 #include "lexical_syntax/syntax.tab.h"
 #include "semantic/semantic.h"
-#include "semantic/IC.h"
+#include "intercode/IC.h"
 
 static void ParsingFinalPhase(char* filename)
 {

@@ -31,7 +31,7 @@ static ParamList* FunDecAnalysis(ParsingNode* node, Type* RetType);
 static SymbolTableEntry* ArgsAnalysis(ParsingNode* node, ParamList* PL);
 static Type* ExpAnalysis(ParsingNode* node, ParamList* PL);
 static void StmtAnalysis(ParsingNode* node, Type* RetType, ParamList* PL);
-static void StmtListAnalysis(ParsingNode* node, Type* RetType, ParamList* PL);
+;
 
 static void ExtDefAnalysis(ParsingNode* node);
 static void ExtDefListAnalysis(ParsingNode* node);

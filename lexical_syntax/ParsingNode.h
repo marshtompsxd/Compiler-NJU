@@ -15,6 +15,10 @@ enum {	AINT = 0, AFLOAT, AID, ASEMI, ACOMMA, AASSIGNOP, ARELOP,
 		AParamDec, ACompSt, AStmtList, AStmt, AExp, ADef, ADefList, 
 		ADec, ADecList, AArgs};
 
+enum { Terminal, Variable, Dummy };
+
+enum { EQ, LT, GT, NEQ, LEQ, GEQ };
+
 extern bool ParsingSwitch;
 
 struct ParsingNode
