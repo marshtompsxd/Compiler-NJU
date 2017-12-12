@@ -599,7 +599,9 @@ static Type* ExpAnalysis(ParsingNode* node, ParamList* PL)
 
 			return T1;
 		}
-		else if(IsArithmeticNode(secondchild(node)))
+		else if( IsArithmeticNode(secondchild(node))
+				|| IsLogicNode(secondchild(node))
+				|| IsRELOPNode(secondchild(node)))
 		{
 			Type* T1 = ExpAnalysis(node->firstchild, PL);
 			Type* T2 = ExpAnalysis(thirdchild(node), PL);

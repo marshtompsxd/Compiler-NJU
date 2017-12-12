@@ -95,6 +95,8 @@ stdlib.h
 /home/sunxudong/CLionProjects/cproject3/intercode/IC.h
 
 /home/sunxudong/CLionProjects/cproject3/intercode/ICTable.c
+ParsingNode.h
+-
 ../common.h
 /home/sunxudong/CLionProjects/cproject3/common.h
 ../semantic/list.h
@@ -105,6 +107,8 @@ stdlib.h
 /home/sunxudong/CLionProjects/cproject3/intercode/ICTable.h
 InterCode.h
 /home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h
+ParsingNode.h
+/home/sunxudong/CLionProjects/cproject3/intercode/ParsingNode.h
 
 /home/sunxudong/CLionProjects/cproject3/intercode/InterCode.c
 InterCode.h

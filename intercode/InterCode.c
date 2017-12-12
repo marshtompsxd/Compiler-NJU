@@ -41,11 +41,11 @@ static void ProgramGenerate(ParsingNode* node);
 ICVarTableHead* RootICVarTable;
 ICFunTableHead* RootICFunTable;
 InterCodeListHead* RootInterCodeList;
-int VIndex, TIndex;
+int VIndex, TIndex, LIndex;
 
 static void InitICTable()
 {
-    VIndex = TIndex = 0;
+    VIndex = TIndex = LIndex = 0;
 
     RootICVarTable = (ICVarTableHead*)malloc(sizeof(ICVarTableHead));
     RootICVarTable->head = NULL;
@@ -82,7 +82,46 @@ static Operand* ExpGenerate(ParsingNode* node)
 {
     assert(skind(node) == AExp);
 
-    
+    if(node->childrenNum == 1)
+    {
+        Operand* OP;
+        if(skind(firstchild(node)) == AID)
+        {
+            ICVarEntry* VE = LookUpForICVarEntry(node->IDname);
+            assert(VE!=NULL);
+            OP = NewVOperand(OVALUE, VE->VIndex);
+        }
+        else if(skind(firstchild(node)) == AINT)
+        {
+            OP = NewICOperand(node->int_value);
+        }
+        else if(skind(firstchild(node)) == AFLOAT)
+        {
+            OP = NewFCOperand(node->float_value);
+        }
+        else assert(0);
+
+        return OP;
+    }
+    else if(node->childrenNum == 2)
+    {
+        return NULL;
+    }
+    else if(node->childrenNum == 3)
+    {
+        //return NULL;
+        if(IsArithmeticNode(secondchild(node)))
+        {
+            Operand* op1 = ExpGenerate(firstchild(node));
+            Operand* op2 = ExpGenerate(thirdchild(node));
+            Operand* result = NewTOperand(OVALUE);
+        }
+    }
+    else
+    {
+        return NULL;
+    }
+
 
 }
 

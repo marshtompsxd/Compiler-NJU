@@ -49,6 +49,10 @@ extern bool CheckLvalue(ParsingNode* node);
 
 extern bool IsArithmeticNode(ParsingNode* node);
 
+extern bool IsLogicNode(ParsingNode* node);
+
+extern bool IsRELOPNode(ParsingNode* node);
+
 extern ParsingNode* GenerateSimpleTerminalNode(int TerminalType, int lineno);
 
 extern ParsingNode* GenerateIDNode(int lineno, char* text);

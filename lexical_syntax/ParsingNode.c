@@ -51,12 +51,20 @@ bool IsArithmeticNode(ParsingNode* node)
 	if(node->SymbolIndex == APLUS 
 		|| node->SymbolIndex == AMINUS
 		|| node->SymbolIndex == ASTAR
-		|| node->SymbolIndex == ADIV
-		|| node->SymbolIndex == ARELOP
-		|| node->SymbolIndex == AOR
-		|| node->SymbolIndex == AAND)
+		|| node->SymbolIndex == ADIV)
 		return true;
 	else return false;
+}
+
+bool IsLogicNode(ParsingNode* node)
+{
+	if(node->SymbolIndex == AOR || node->SymbolIndex == AAND)return true;
+	else return false;
+}
+
+bool IsRELOPNode(ParsingNode* node)
+{
+	return node->SymbolIndex == ARELOP;
 }
 
 ParsingNode* GenerateSimpleTerminalNode(int TerminalType, int lineno)

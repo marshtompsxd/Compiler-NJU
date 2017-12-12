@@ -1,9 +1,11 @@
 //
 // Created by sunxudong on 12/11/17.
 //
+#include <ParsingNode.h>
 #include "../common.h"
 #include "../semantic/list.h"
 #include "../semantic/check.h"
+#include "InterCode.h"
 
 void CheckElemInICVarTable(ICVarTableHead* table)
 {
@@ -110,4 +112,60 @@ void GenerateICFunTable(SymbolTableHead* table)
             InsertEntryIntoICFunTable(FE, RootICFunTable);
         }
     }
+}
+
+ICVarEntry* LookUpForICVarEntry(char* VariableName)
+{
+    ICVarEntry* VE;
+    for(VE = RootICVarTable->head;VE!=NULL; VE = VE->next)
+    {
+        if(strcmp(VariableName, VE->VariableName) == 0)return VE;
+    }
+    return NULL;
+}
+
+
+Operand* NewVOperand(int attr, int VIndex)
+{
+    Operand* OP = (Operand*)malloc(sizeof(Operand));
+    OP->kind = OVAR;
+    OP->attr = attr;
+    OP->VIndex = VIndex;
+    return OP;
+}
+
+Operand* NewTOperand(int attr)
+{
+    Operand* OP = (Operand*)malloc(sizeof(Operand));
+    OP->kind = OTEMP;
+    OP->attr = attr;
+    OP->TIndex = ++TIndex;
+    return OP;
+}
+
+Operand* NewICOperand(int ICons)
+{
+    Operand* OP = (Operand*)malloc(sizeof(Operand));
+    OP->kind = OICONS;
+    OP->attr = OVALUE;
+    OP->ICons = ICons;
+    return OP;
+}
+
+Operand* NewFCOperand(float FCons)
+{
+    Operand* OP = (Operand*)malloc(sizeof(Operand));
+    OP->kind = OFCONS;
+    OP->attr = OVALUE;
+    OP->FCons = FCons;
+    return OP;
+}
+
+InterCode* NewInterCodeBINOP(int kind, Operand* op1, Operand* op2, Operand* result)
+{
+    InterCode* IC = (InterCode*)malloc(sizeof(InterCode));
+    IC->kind = kind;
+    memcpy(IC->BINOP.op1, op1, sizeof(Operand));
+    memcpy(IC->BINOP.op2, op2, sizeof(Operand));
+    memcpy(IC->BINOP.result, result, sizeof(Operand));
 }

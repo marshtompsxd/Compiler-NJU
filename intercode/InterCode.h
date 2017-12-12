@@ -16,16 +16,16 @@ typedef struct ICVarTableHead_ ICVarTableHead;
 typedef struct ICFunTableHead_ ICFunTableHead;
 typedef struct InterCodeListHead_ InterCodeListHead;
 
-enum { VARIABLE, TEMP, CONSTANT };
-enum { VALUE, ADDRESS, REFERENCE };
-enum { 	ASSIGN, ADD, SUB, MUL, DIV, GOTO, IF, 
-		RETURN, DEC, ARG, CALL, PARAM, READ, WRITE };
+enum { OVAR, OTEMP, OICONS, OFCONS }; 	//kind of Operand
+enum { OVALUE, OADDR, OREF };			//attr of Operand
+enum { 	IASSIGN, IADD, ISUB, IMUL, IDIV, IGOTO, IIF,
+		IRETURN, IDEC, IARG, ICALL, IPARAM, IREAD, IWRITE }; //kind of InterCode
 
 extern ICVarTableHead* RootICVarTable;
 extern ICFunTableHead* RootICFunTable;
 extern InterCodeListHead* RootInterCodeList;
 
-extern int VIndex, TIndex;
+extern int VIndex, TIndex, LIndex;
 
 struct ICVarEntry_{
 	char* VariableName; 
@@ -66,7 +66,8 @@ struct Operand_ {
 	{
         int VIndex;
         int TIndex;
-        int consValue;
+        int ICons;
+		float FCons;
 	};
 
 };
@@ -74,66 +75,36 @@ struct Operand_ {
 struct Cond_ {
 	Operand* op1, op2;
 	int relop;
-	
 };
 
 struct InterCode_ {
 	int kind;
 	union {
-		struct {
-			char* dstLabel;
-		}labelDec;
+		struct { int LIndex; }LABELDEC;
 
-		struct {
-			char* funName;
-		}funDec;
+		struct { char* funName; }FUNDEC;
 
-		struct {
-			Operand *right, *left;
-		}assign;
+		struct { Operand *right, *left; }ASSIGN;
 
-		struct {
-			Operand *result, *op1, *op2;
-		}binop;
+		struct { Operand *result, *op1, *op2; }BINOP;
 
-		struct {
-			char* dstLabel;
-		}gt;
+		struct { int LIndex; }GT;
 
-		struct {
-			Cond* condition;
-			char* dstLabel;
-		}ifgt;
+		struct { Cond* condition; int LIndex; }IFGT;
 
-		struct {
-			Operand* retValue;
-		}ret;
+		struct { Operand* retValue; }RET;
 
-		struct {
-			Operand* address;
-			int size;
-		}spaceDec;
+		struct { Operand* address; int size; }SPACEDEC;
 
-		struct {
-			Operand* argument;
-		}arg;
+		struct { Operand* argument; }ARG;
 
-		struct {
-			Operand* dst;
-			char* funName;
-		}call;
+		struct { Operand* dst; char* funName; }CALL;
 
-		struct {
-			Operand* parameter;
-		}param;
+		struct { Operand* parameter; }PARAM;
 
-		struct {
-			Operand* input;
-		}readFun;
+		struct { Operand* input; }READ;
 
-		struct {
-			Operand* output;
-		}writeFun;
+		struct { Operand* output; }WRITE;
 	};
 };
 
