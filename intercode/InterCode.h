@@ -18,7 +18,7 @@ typedef struct InterCodeListHead_ InterCodeListHead;
 
 enum { OVAR, OTEMP, OICONS, OFCONS }; 	//kind of Operand
 enum { OVALUE, OADDR, OREF };			//attr of Operand
-enum { 	IASSIGN, IADD, ISUB, IMUL, IDIV, IGOTO, IIF,
+enum { 	IASSIGN, IADD, ISUB, IMUL, IDIV, ILABEL, IGOTO, IIFGOTO,
 		IRETURN, IDEC, IARG, ICALL, IPARAM, IREAD, IWRITE }; //kind of InterCode
 
 extern ICVarTableHead* RootICVarTable;
@@ -73,7 +73,7 @@ struct Operand_ {
 };
 
 struct Cond_ {
-	Operand* op1, op2;
+	Operand *op1, *op2;
 	int relop;
 };
 

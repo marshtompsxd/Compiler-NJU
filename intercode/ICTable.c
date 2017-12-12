@@ -36,7 +36,7 @@ void CheckElemInICFunTable(ICFunTableHead* table)
     printf("\n\n");
 }
 
-void InsertEntryIntoICVarTable(ICVarEntry* entry, ICVarTableHead* table)
+static void InsertEntryIntoICVarTable(ICVarEntry* entry, ICVarTableHead* table)
 {
     if(table->head == NULL)
     {
@@ -52,7 +52,7 @@ void InsertEntryIntoICVarTable(ICVarEntry* entry, ICVarTableHead* table)
     }
 }
 
-void InsertEntryIntoICFunTable(ICFunEntry* entry, ICFunTableHead* table)
+static void InsertEntryIntoICFunTable(ICFunEntry* entry, ICFunTableHead* table)
 {
     if(table->head == NULL)
     {
@@ -124,6 +124,10 @@ ICVarEntry* LookUpForICVarEntry(char* VariableName)
     return NULL;
 }
 
+int NewLabelIndex()
+{
+    return ++LIndex;
+}
 
 Operand* NewVOperand(int attr, int VIndex)
 {
@@ -161,11 +165,153 @@ Operand* NewFCOperand(float FCons)
     return OP;
 }
 
-InterCode* NewInterCodeBINOP(int kind, Operand* op1, Operand* op2, Operand* result)
+int arithmeticConvert(int arithmetic)
 {
+    switch (arithmetic)
+    {
+        case APLUS: return IADD;
+        case AMINUS: return ISUB;
+        case ASTAR: return IMUL;
+        case ADIV: return IDIV;
+        default: assert(0);
+    }
+}
+
+Operand* GetLvalueOperand(ParsingNode* node)
+{
+    assert(skind(node) == AExp);
+
+    if(node->childrenNum == 1 && skind(firstchild(node)) == AID)
+    {
+        ICVarEntry* VE = LookUpForICVarEntry(firstchild(node)->IDname);
+        assert(VE!=NULL);
+        Operand* OP = NewVOperand(OVALUE, VE->VIndex);
+        return OP;
+    }
+    else if(node->childrenNum == 3 && skind(secondchild(node)) == ADOT)
+    {
+        assert(0);
+    }
+    else if(node->childrenNum == 4 && skind(secondchild(node)) == ALB)
+    {
+        assert(0);
+    }
+}
+
+void InsertEntryIntoInterCodeList(InterCodeEntry* entry, InterCodeListHead* list)
+{
+    if(list->head == NULL)
+    {
+        list->head = entry;
+        entry->prev = entry->next = entry;
+    }
+    else
+    {
+        InterCodeEntry *ICEHead, *ICETail;
+        ICEHead = list->head;
+        ICETail = list->head->prev;
+        ICEHead->prev = entry;
+        ICETail->next = entry;
+        entry->prev = ICETail;
+        entry->next = ICEHead;
+    }
+}
+
+void InsertInterCodeEntry(InterCodeEntry* entry)
+{
+    InsertEntryIntoInterCodeList(entry, RootInterCodeList);
+}
+
+void MergeInterCodeList(InterCodeListHead* sublist, InterCodeListHead* list)
+{
+    InterCodeEntry* ICEHead = sublist->head;
+    InterCodeEntry* ICETail = ICEHead->prev;
+    ICETail->next = NULL;
+    InterCodeEntry* ICE = ICEHead;
+    while(ICE!=NULL)
+    {
+        InterCodeEntry* NICE = ICE->next;
+        InsertEntryIntoInterCodeList(ICE, list);
+        ICE = NICE;
+    }
+}
+
+InterCodeEntry* NewInterCodeEntryBINOP(int kind, Operand* result, Operand* op1, Operand* op2)
+{
+    InterCodeEntry* ICE = (InterCodeEntry*)malloc(sizeof(InterCodeEntry));
     InterCode* IC = (InterCode*)malloc(sizeof(InterCode));
+
     IC->kind = kind;
+
     memcpy(IC->BINOP.op1, op1, sizeof(Operand));
     memcpy(IC->BINOP.op2, op2, sizeof(Operand));
     memcpy(IC->BINOP.result, result, sizeof(Operand));
+    ICE->IC = IC;
+    ICE->prev = ICE->next = NULL;
+    return ICE;
+}
+
+InterCodeEntry* NewInterCodeEntryASSIGN(Operand* left, Operand* right)
+{
+    InterCodeEntry* ICE = (InterCodeEntry*)malloc(sizeof(InterCodeEntry));
+    InterCode* IC = (InterCode*)malloc(sizeof(InterCode));
+
+    IC->kind = IASSIGN;
+
+    memcpy(IC->ASSIGN.left, left, sizeof(Operand));
+    memcpy(IC->ASSIGN.right, right, sizeof(Operand));
+    ICE->IC = IC;
+    ICE->prev = ICE->next = NULL;
+    return ICE;
+}
+
+static Cond* NewCond(Operand* op1, Operand* op2, int relop)
+{
+    Cond* CD = (Cond*)malloc(sizeof(Cond));
+    memcpy(CD->op1, op1, sizeof(Operand));
+    memcpy(CD->op2, op2, sizeof(Operand));
+    CD->relop = relop;
+    return CD;
+}
+
+InterCodeEntry* NewInterCodeEntryIFGT(Operand* op1, Operand* op2, int relop, int LIndex)
+{
+    InterCodeEntry* ICE = (InterCodeEntry*)malloc(sizeof(InterCodeEntry));
+    InterCode* IC = (InterCode*)malloc(sizeof(InterCode));
+
+    IC->kind = IIFGOTO;
+
+    Cond* CD = NewCond(op1, op2, relop);
+    IC->IFGT.condition = CD;
+    IC->IFGT.LIndex = LIndex;
+    ICE->IC = IC;
+    ICE->prev = ICE->next = NULL;
+    return ICE;
+}
+
+
+InterCodeEntry* NewInterCodeEntryGT(int LIndex)
+{
+    InterCodeEntry* ICE = (InterCodeEntry*)malloc(sizeof(InterCodeEntry));
+    InterCode* IC = (InterCode*)malloc(sizeof(InterCode));
+
+    IC->kind = IGOTO;
+
+    IC->GT.LIndex = LIndex;
+    ICE->IC = IC;
+    ICE->prev = ICE->next = NULL;
+    return ICE;
+}
+
+InterCodeEntry* NewInterCodeEntryLABELDEC(int LIndex)
+{
+    InterCodeEntry* ICE = (InterCodeEntry*)malloc(sizeof(InterCodeEntry));
+    InterCode* IC = (InterCode*)malloc(sizeof(InterCode));
+
+    IC->kind = ILABEL;
+
+    IC->LABELDEC.LIndex = LIndex;
+    ICE->IC = IC;
+    ICE->prev = ICE->next = NULL;
+    return ICE;
 }
