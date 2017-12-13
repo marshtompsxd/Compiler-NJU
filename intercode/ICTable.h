@@ -47,6 +47,6 @@ extern InterCodeEntry* NewInterCodeEntryGT(int LIndex);
 
 extern InterCodeEntry* NewInterCodeEntryLABELDEC(int LIndex);
 
-
+extern void PrintInterCodeList(InterCodeListHead* list);
 
 #endif //COMPILER_ICTABLE_H

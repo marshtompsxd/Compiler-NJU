@@ -15,6 +15,9 @@
       <change beforePath="$PROJECT_DIR$/intercode/ICTable.c" afterPath="$PROJECT_DIR$/intercode/ICTable.c" />
       <change beforePath="$PROJECT_DIR$/intercode/ICTable.h" afterPath="$PROJECT_DIR$/intercode/ICTable.h" />
       <change beforePath="$PROJECT_DIR$/intercode/InterCode.c" afterPath="$PROJECT_DIR$/intercode/InterCode.c" />
+      <change beforePath="$PROJECT_DIR$/lexical_syntax/ParsingNode.c" afterPath="$PROJECT_DIR$/lexical_syntax/ParsingNode.c" />
+      <change beforePath="$PROJECT_DIR$/lexical_syntax/ParsingNode.h" afterPath="$PROJECT_DIR$/lexical_syntax/ParsingNode.h" />
+      <change beforePath="$PROJECT_DIR$/test/1.cmm" afterPath="$PROJECT_DIR$/test/1.cmm" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,33 +29,17 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.55159706">
+    <splitter split-orientation="horizontal" split-proportion="0.6468059">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="InterCode.c" pinned="false" current-in-tab="false">
+          <file leaf-file-name="InterCode.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/intercode/InterCode.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="232">
-                  <caret line="235" column="0" lean-forward="false" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
+                <state relative-caret-position="-1747">
+                  <caret line="315" column="79" lean-forward="false" selection-start-line="315" selection-start-column="79" selection-end-line="315" selection-end-column="79" />
                   <folding>
                     <element signature="e#0#22#0" expanded="true" />
-                    <element signature="e#3519#4363#0" expanded="false" />
-                    <element signature="e#4365#5031#0" expanded="false" />
-                    <element signature="e#5033#5697#0" expanded="false" />
-                    <element signature="e#5699#5900#0" expanded="false" />
-                    <element signature="e#5902#6495#0" expanded="false" />
-                    <element signature="e#6497#7112#0" expanded="false" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="cproject3 (disassembly)" pinned="false" current-in-tab="false">
-            <entry file="mock:///cproject3 (disassembly)">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -60,24 +47,34 @@
           <file leaf-file-name="ParsingNode.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/lexical_syntax/ParsingNode.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="792">
-                  <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+                <state relative-caret-position="324">
+                  <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ICTable.c" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ICTable.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/intercode/ICTable.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="350">
-                  <caret line="236" column="29" lean-forward="false" selection-start-line="236" selection-start-column="29" selection-end-line="236" selection-end-column="29" />
+                <state relative-caret-position="1337">
+                  <caret line="392" column="21" lean-forward="false" selection-start-line="392" selection-start-column="21" selection-end-line="392" selection-end-column="21" />
                   <folding>
                     <element signature="e#43#67#0" expanded="true" />
+                    <element signature="e#176#596#0" expanded="false" />
+                    <element signature="e#598#944#0" expanded="false" />
                     <element signature="e#946#1289#0" expanded="false" />
                     <element signature="e#1291#1634#0" expanded="false" />
                     <element signature="e#1636#2784#0" expanded="false" />
                     <element signature="e#2786#3231#0" expanded="false" />
+                    <element signature="e#3233#3462#0" expanded="false" />
+                    <element signature="e#3464#3508#0" expanded="false" />
+                    <element signature="e#3510#3691#0" expanded="false" />
+                    <element signature="e#3693#3865#0" expanded="false" />
+                    <element signature="e#3867#4040#0" expanded="false" />
+                    <element signature="e#4042#4217#0" expanded="false" />
+                    <element signature="e#4458#4710#0" expanded="false" />
+                    <element signature="e#5190#5302#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -86,8 +83,8 @@
           <file leaf-file-name="1.cmm" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test/1.cmm">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+                <state relative-caret-position="54">
+                  <caret line="3" column="16" lean-forward="false" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
                   <folding />
                 </state>
               </provider>
@@ -120,11 +117,21 @@
           <file leaf-file-name="InterCode.h" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/intercode/InterCode.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-846">
-                  <caret line="16" column="52" lean-forward="true" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+                <state relative-caret-position="-360">
+                  <caret line="4" column="25" lean-forward="true" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
                   <folding>
                     <element signature="e#47#69#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ParsingNode.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lexical_syntax/ParsingNode.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="108">
+                  <caret line="6" column="24" lean-forward="true" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -142,8 +149,8 @@
           <file leaf-file-name="ICTable.h" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/intercode/ICTable.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="405">
-                  <caret line="29" column="27" lean-forward="false" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+                <state relative-caret-position="882">
+                  <caret line="49" column="56" lean-forward="false" selection-start-line="49" selection-start-column="56" selection-end-line="49" selection-end-column="56" />
                   <folding>
                     <element signature="e#98#120#0" expanded="true" />
                   </folding>
@@ -175,7 +182,6 @@
         <option value="$PROJECT_DIR$/semantic/InterCode.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/main.c" />
-        <option value="$PROJECT_DIR$/test/1.cmm" />
         <option value="$PROJECT_DIR$/semantic/InterCode.c" />
         <option value="$PROJECT_DIR$/semantic/list.h" />
         <option value="$PROJECT_DIR$/semantic/list.c" />
@@ -183,13 +189,14 @@
         <option value="$PROJECT_DIR$/semantic/check.h" />
         <option value="$PROJECT_DIR$/common.h" />
         <option value="$PROJECT_DIR$/lexical_syntax/syntax.y" />
-        <option value="$PROJECT_DIR$/lexical_syntax/ParsingNode.c" />
-        <option value="$PROJECT_DIR$/lexical_syntax/ParsingNode.h" />
         <option value="$PROJECT_DIR$/semantic/semantic.c" />
         <option value="$PROJECT_DIR$/intercode/InterCode.h" />
+        <option value="$PROJECT_DIR$/lexical_syntax/ParsingNode.c" />
+        <option value="$PROJECT_DIR$/lexical_syntax/ParsingNode.h" />
         <option value="$PROJECT_DIR$/intercode/ICTable.h" />
-        <option value="$PROJECT_DIR$/intercode/InterCode.c" />
+        <option value="$PROJECT_DIR$/test/1.cmm" />
         <option value="$PROJECT_DIR$/intercode/ICTable.c" />
+        <option value="$PROJECT_DIR$/intercode/InterCode.c" />
       </list>
     </option>
   </component>
@@ -304,12 +311,12 @@
       <option name="presentableId" value="Default" />
       <updated>1512993082601</updated>
       <workItem from="1512993084057" duration="73000" />
-      <workItem from="1512993172742" duration="35863000" />
+      <workItem from="1512993172742" duration="43259000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35936000" />
+    <option name="totallyTimeSpent" value="43332000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -322,11 +329,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.01577287" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.6309148" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.038906414" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3743428" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -345,27 +352,37 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/intercode/InterCode.c</url>
-          <line>455</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/intercode/ICTable.c</url>
+          <line>308</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/intercode/InterCode.c</url>
-          <line>347</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/intercode/ICTable.c</url>
+          <line>295</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/intercode/InterCode.c</url>
-          <line>210</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/intercode/ICTable.c</url>
+          <line>279</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/intercode/InterCode.c</url>
-          <line>245</line>
-          <option name="timeStamp" value="7" />
+          <url>file://$PROJECT_DIR$/intercode/ICTable.c</url>
+          <line>266</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/intercode/ICTable.c</url>
+          <line>250</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/intercode/ICTable.c</url>
+          <line>232</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="8" />
+      <option name="time" value="20" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -514,56 +531,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lexical_syntax/ParsingNode.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/intercode/ICTable.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="29" column="27" lean-forward="false" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
-          <folding>
-            <element signature="e#98#120#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/1.cmm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lexical_syntax/ParsingNode.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/intercode/InterCode.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="235" column="0" lean-forward="false" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-            <element signature="e#3519#4363#0" expanded="false" />
-            <element signature="e#4365#5031#0" expanded="false" />
-            <element signature="e#5033#5697#0" expanded="false" />
-            <element signature="e#5699#5900#0" expanded="false" />
-            <element signature="e#5902#6495#0" expanded="false" />
-            <element signature="e#6497#7112#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lexical_syntax/syntax.y">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-378">
@@ -572,26 +539,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lexical_syntax/ParsingNode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="24" lean-forward="true" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/intercode/ICTable.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="882">
+          <caret line="49" column="56" lean-forward="false" selection-start-line="49" selection-start-column="56" selection-end-line="49" selection-end-column="56" />
+          <folding>
+            <element signature="e#98#120#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/intercode/InterCode.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-846">
-          <caret line="16" column="52" lean-forward="true" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+        <state relative-caret-position="-360">
+          <caret line="4" column="25" lean-forward="true" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
           <folding>
             <element signature="e#47#69#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lexical_syntax/ParsingNode.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/1.cmm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="16" lean-forward="false" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/intercode/ICTable.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="236" column="29" lean-forward="false" selection-start-line="236" selection-start-column="29" selection-end-line="236" selection-end-column="29" />
+        <state relative-caret-position="1337">
+          <caret line="392" column="21" lean-forward="false" selection-start-line="392" selection-start-column="21" selection-end-line="392" selection-end-column="21" />
           <folding>
             <element signature="e#43#67#0" expanded="true" />
+            <element signature="e#176#596#0" expanded="false" />
+            <element signature="e#598#944#0" expanded="false" />
             <element signature="e#946#1289#0" expanded="false" />
             <element signature="e#1291#1634#0" expanded="false" />
             <element signature="e#1636#2784#0" expanded="false" />
             <element signature="e#2786#3231#0" expanded="false" />
+            <element signature="e#3233#3462#0" expanded="false" />
+            <element signature="e#3464#3508#0" expanded="false" />
+            <element signature="e#3510#3691#0" expanded="false" />
+            <element signature="e#3693#3865#0" expanded="false" />
+            <element signature="e#3867#4040#0" expanded="false" />
+            <element signature="e#4042#4217#0" expanded="false" />
+            <element signature="e#4458#4710#0" expanded="false" />
+            <element signature="e#5190#5302#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/intercode/InterCode.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1747">
+          <caret line="315" column="79" lean-forward="false" selection-start-line="315" selection-start-column="79" selection-end-line="315" selection-end-column="79" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
           </folding>
         </state>
       </provider>

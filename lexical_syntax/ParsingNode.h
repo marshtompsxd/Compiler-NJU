@@ -21,6 +21,8 @@ enum { EQ, LT, GT, NEQ, LEQ, GEQ };
 
 extern bool ParsingSwitch;
 
+extern char* relopTable[6];
+
 struct ParsingNode
 {
 	int kind;

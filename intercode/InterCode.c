@@ -187,6 +187,8 @@ InterCodeListHead* ConditionOtherGenerate(ParsingNode* node, int LIndexT, int LI
     MergeInterCodeList(sublist, list);
     InsertEntryIntoInterCodeList(ICE1, list);
     InsertEntryIntoInterCodeList(ICE2, list);
+
+    return list;
 }
 
 InterCodeListHead* ConditionGenerate(ParsingNode* node, int LIndexT, int LIndexF)
@@ -252,7 +254,7 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
             Operand* op2 = NewTOperand(OVALUE);
 
             InterCodeListHead* sublist1 = ExpGenerate(firstchild(node), op1);
-            InterCodeListHead* sublist2 = ExpGenerate(firstchild(node), op2);
+            InterCodeListHead* sublist2 = ExpGenerate(thirdchild(node), op2);
 
             MergeInterCodeList(sublist1, list);
             MergeInterCodeList(sublist2, list);
@@ -291,6 +293,7 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
                 InsertEntryIntoInterCodeList(ICE3, list);
             }
             InsertEntryIntoInterCodeList(ICE4, list);
+            return list;
 
 
         }
@@ -303,7 +306,8 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
             }
             else
             {
-                left = NewTOperand(OADDR);
+                assert(0);
+                left = NewTOperand(OVALUE);
                 InterCodeListHead* sublist1 = ExpGenerate(firstchild(node), left);
                 MergeInterCodeList(sublist1, list);
             }
@@ -319,7 +323,6 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
                 InterCodeEntry* ICE2 = NewInterCodeEntryASSIGN(result, left);
                 InsertEntryIntoInterCodeList(ICE2, list);
             }
-
 
             return list;
         }
@@ -339,7 +342,7 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
     }
     else
     {
-        return NULL;
+        assert(0);
     }
 
 
@@ -421,8 +424,10 @@ static void ExtDefGenerate(ParsingNode* node)
     {
         if(skind(secondchild(node)) == AFunDec)
         {
-            InterCodeListHead* sublist1 = FunDecGenerate(secondchild(node));
+            //InterCodeListHead* sublist1 = FunDecGenerate(secondchild(node));
+            //MergeInterCodeList(sublist1, RootInterCodeList);
             InterCodeListHead* sublist2 = CompStGenerate(thirdchild(node));
+            MergeInterCodeList(sublist2, RootInterCodeList);
         }
     }
     else return;
@@ -454,4 +459,5 @@ void InterCodeGenerator()
     CheckElemInICFunTable(RootICFunTable);
 
     ProgramGenerate(ParsingRoot);
+    PrintInterCodeList(RootInterCodeList);
 }

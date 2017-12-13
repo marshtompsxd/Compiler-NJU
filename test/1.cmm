@@ -1,18 +1,7 @@
-int test()
-{
-	int t;
-	float fp[5];
-}
-
-int go(int magic)
-{
-	float x, y, z;
-}
-
 int main(int argc, int argv)
 {
 	int a, b;
 	int c, d, e;
-	c = a * (b *(e + d) );
+	a = b > c;
 	
 }

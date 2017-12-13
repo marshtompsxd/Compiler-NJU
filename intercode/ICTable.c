@@ -190,6 +190,7 @@ Operand* GetLvalueIDOperand(ParsingNode* node)
 
 void InsertEntryIntoInterCodeList(InterCodeEntry* entry, InterCodeListHead* list)
 {
+    assert(entry != NULL);
     if(list->head == NULL)
     {
         list->head = entry;
@@ -315,3 +316,102 @@ InterCodeEntry* NewInterCodeEntryLABELDEC(int LIndex)
     ICE->prev = ICE->next = NULL;
     return ICE;
 }
+
+void PrintOperand(Operand* op)
+{
+    if(op->attr == OADDR)printf("*");
+    else if(op->attr == OREF)printf("&");
+    if(op->kind == OVAR)
+    {
+        printf("v%d", op->VIndex);
+    }
+    else if(op->kind == OTEMP)
+    {
+        printf("t%d", op->TIndex);
+    }
+    else if(op->kind == OICONS)
+    {
+        printf("#%d", op->ICons);
+    }
+    else if(op->kind == OFCONS)
+    {
+        printf("#%f", op->FCons);
+    }
+    else assert(0);
+}
+
+void PrintCond(Cond* condition)
+{
+    printf("IF ");
+    PrintOperand(condition->op1);
+    printf(" %s ", relopTable[condition->relop]);
+    PrintOperand(condition->op2);
+
+}
+
+void PrintInterCodeEntry(InterCodeEntry* ICE)
+{
+    InterCode* code = ICE->IC;
+    switch (code->kind)
+    {
+        case IASSIGN:{
+            PrintOperand(code->ASSIGN.left);
+            printf(" := ");
+            PrintOperand(code->ASSIGN.right);
+            break;
+        }
+        case IADD:{
+            PrintOperand(code->BINOP.result);printf(" := ");
+            PrintOperand(code->BINOP.op1);printf(" + ");PrintOperand(code->BINOP.op2);
+            break;
+        }
+        case ISUB:{
+            PrintOperand(code->BINOP.result);printf(" := ");
+            PrintOperand(code->BINOP.op1);printf(" - ");PrintOperand(code->BINOP.op2);
+            break;
+        }
+        case IMUL:{
+            PrintOperand(code->BINOP.result);printf(" := ");
+            PrintOperand(code->BINOP.op1);printf(" * ");PrintOperand(code->BINOP.op2);
+            break;
+        }
+        case IDIV:{
+            PrintOperand(code->BINOP.result);printf(" := ");
+            PrintOperand(code->BINOP.op1);printf(" / ");PrintOperand(code->BINOP.op2);
+            break;
+        }
+        case ILABEL:{
+            printf("LABEL L%d :",code->LABELDEC.LIndex);
+            break;
+        }
+        case IGOTO:{
+            printf("GOTO L%d",code->LABELDEC.LIndex);
+            break;
+        }
+        case IIFGOTO:{
+            PrintCond(code->IFGT.condition);
+            printf(" GOTO L%d", code->IFGT.LIndex);
+            break;
+        }
+        default:assert(0);
+    }
+
+    printf("\n");
+}
+
+void PrintInterCodeList(InterCodeListHead* list)
+{
+    InterCodeEntry* ICE;
+    PrintInterCodeEntry(list->head);
+    for(ICE = list->head->next; ICE!=list->head; ICE = ICE->next)
+    {
+        PrintInterCodeEntry(ICE);
+    }
+}
+
+
+
+
+
+
+

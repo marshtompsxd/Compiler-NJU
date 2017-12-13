@@ -17,7 +17,7 @@ static char* symbolsTable[48] =
 
 static char* typeTable[2] = {"int", "float"};
 
-static char* relopTable[6] = {"==", "<", ">", "!=", "<=", ">="};
+char* relopTable[6] = {"==", "<", ">", "!=", "<=", ">="};
 
 ParsingNode* ParsingRoot = NULL;
 
