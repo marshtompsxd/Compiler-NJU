@@ -1,6 +1,7 @@
 #include "semantic.h"
 #include "list.h"
 #include "check.h"
+#include "symbol_table.h"
 #include <stdlib.h>
 
 
@@ -31,11 +32,12 @@ static ParamList* FunDecAnalysis(ParsingNode* node, Type* RetType);
 static SymbolTableEntry* ArgsAnalysis(ParsingNode* node, ParamList* PL);
 static Type* ExpAnalysis(ParsingNode* node, ParamList* PL);
 static void StmtAnalysis(ParsingNode* node, Type* RetType, ParamList* PL);
-;
 
 static void ExtDefAnalysis(ParsingNode* node);
 static void ExtDefListAnalysis(ParsingNode* node);
 static void ProgramAnalysis(ParsingNode* node);
+
+static void InsertReadWriteIntoSymbolTable();
 
 int sym_top;
 int struct_top;
@@ -61,6 +63,41 @@ static void InitTable()
 	struct_top = -1; // top is -1 means stack is empty
 	CurrentStructTypeTable = RootStructTypeTable = (StructTypeTableHead*)malloc(sizeof(StructTypeTableHead));
 	RootStructTypeTable->head = NULL;
+
+    InsertReadWriteIntoSymbolTable();
+}
+
+static void InsertReadWriteIntoSymbolTable()
+{
+    Type* IntType = (Type*)malloc(sizeof(Type));
+    IntType->kind = BASIC;
+    IntType->basic = int_type;
+
+    SymbolTableEntry* READ = (SymbolTableEntry*)malloc(sizeof(SymbolTableEntry));
+    READ->kind = FUN;
+    READ->lineno = 0;
+    READ->Function.FunName = (char*)malloc(sizeof("read"));
+    strcpy(READ->Function.FunName, "read");
+    READ->Function.RetType = IntType;
+    READ->Function.PL = (ParamList*)malloc(sizeof(ParamList));
+    READ->Function.PL->head = NULL;
+    InsertItemIntoSymbolTable(READ, RootSymbolTable);
+
+    SymbolTableEntry* WRITE = (SymbolTableEntry*)malloc(sizeof(SymbolTableEntry));
+    WRITE->kind = FUN;
+    WRITE->lineno = 0;
+    WRITE->Function.FunName = (char*)malloc(sizeof("write"));
+    strcpy(WRITE->Function.FunName, "write");
+    WRITE->Function.RetType = IntType;
+    WRITE->Function.PL = (ParamList*)malloc(sizeof(ParamList));
+    WRITE->Function.PL->head = (SymbolTableEntry*)malloc(sizeof(SymbolTableEntry));
+    WRITE->Function.PL->head->lineno = 0;
+    WRITE->Function.PL->head->kind = VAR;
+    WRITE->Function.PL->head->Variable.VariableType = IntType;
+    WRITE->Function.PL->head->Variable.VariableName = (char*)malloc(sizeof("???"));
+    strcpy(WRITE->Function.PL->head->Variable.VariableName, "???");
+    InsertItemIntoSymbolTable(WRITE, RootSymbolTable);
+
 }
 
 static FieldList* VarDecAnalysisInStruct(ParsingNode* node, Type* InheritType)
@@ -164,6 +201,15 @@ static FieldList* DefListAnalysisInStruct(ParsingNode* node)
 	}
 }
 
+static char* AnonymousStructSuffix()
+{
+    static int suffix = 0;
+    char* s = (char*)malloc(100);
+    sprintf(s, "%d", suffix);
+    suffix++;
+    return s;
+}
+
 static Type* StructSpecifierAnalysis(ParsingNode* node)
 {
 	assert(node->SymbolIndex == AStructSpecifier);
@@ -183,7 +229,11 @@ static Type* StructSpecifierAnalysis(ParsingNode* node)
 		}
 		else
 		{
-			SpecifierType->structure.structname = NULL;
+            char* name = AnonymousStructSuffix();
+            ParsingNode* IDNode = GenerateIDNode(node->lineno, name);
+            OptTagNode->firstchild = IDNode;
+            SpecifierType->structure.structname = (char*)malloc(strlen(IDNode->IDname));
+            strcpy(SpecifierType->structure.structname, IDNode->IDname);
 		}
 
 		//set struct field list

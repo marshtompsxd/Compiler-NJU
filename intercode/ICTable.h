@@ -31,6 +31,8 @@ extern Operand* GetLvalueIDOperand(ParsingNode* node);
 
 extern void InsertInterCodeEntry(InterCodeEntry* entry);
 
+extern void PushEntryIntoArgList(ArgEntry* entry, ArgListHead* list);
+
 extern void InsertEntryIntoInterCodeList(InterCodeEntry* entry, InterCodeListHead* list);
 
 extern void MergeInterCodeList(InterCodeListHead* sublist, InterCodeListHead* list);
@@ -48,6 +50,20 @@ extern InterCodeEntry* NewInterCodeEntryGT(int LIndex);
 extern InterCodeEntry* NewInterCodeEntryLABELDEC(int LIndex);
 
 extern InterCodeEntry* NewInterCodeEntryCALL(Operand* ret, char* funName);
+
+extern InterCodeEntry* NewInterCodeEntryRET(Operand* ret);
+
+extern InterCodeEntry* NewInterCodeEntryREAD(Operand* input);
+
+extern InterCodeEntry* NewInterCodeEntryWRITE(Operand* output);
+
+extern InterCodeEntry* NewInterCodeEntryARG(Operand* arg);
+
+extern InterCodeEntry* NewInterCodeEntryDEC(Operand* address, int size);
+
+extern InterCodeEntry* NewInterCodeEntryFUN(char* funName);
+
+extern ArgEntry* NewArgEntry(Operand* op);
 
 extern void PrintInterCodeList(InterCodeListHead* list);
 

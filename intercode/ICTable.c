@@ -2,6 +2,7 @@
 // Created by sunxudong on 12/11/17.
 //
 #include <ParsingNode.h>
+#include <symbol_table.h>
 #include "../common.h"
 #include "../semantic/list.h"
 #include "../semantic/check.h"
@@ -85,6 +86,8 @@ void GenerateICVarTable(SymbolTableHead* table)
         }
         else
         {
+            if(strcmp(SE->Function.FunName, "read") == 0 || strcmp(SE->Function.FunName, "write") == 0)
+                continue;
             SymbolTableEntry* PSE;
             for(PSE = SE->Function.PL->head; PSE!=NULL; PSE = PSE->tail)
             {
@@ -112,6 +115,13 @@ void GenerateICFunTable(SymbolTableHead* table)
             InsertEntryIntoICFunTable(FE, RootICFunTable);
         }
     }
+}
+
+void PushEntryIntoArgList(ArgEntry* entry, ArgListHead* list)
+{
+    assert(entry != NULL);
+    entry->next = list->head;
+    list->head = entry;
 }
 
 ICVarEntry* LookUpForICVarEntry(char* VariableName)
@@ -334,7 +344,113 @@ InterCodeEntry* NewInterCodeEntryCALL(Operand* ret, char* funName)
     return ICE;
 }
 
-void PrintOperand(Operand* op)
+InterCodeEntry* NewInterCodeEntryRET(Operand* ret)
+{
+    InterCodeEntry* ICE = (InterCodeEntry*)malloc(sizeof(InterCodeEntry));
+    InterCode* IC = (InterCode*)malloc(sizeof(InterCode));
+
+    IC->kind = IRETURN;
+
+    IC->RET.ret = (Operand*)malloc(sizeof(Operand));
+    memcpy(IC->CALL.ret, ret, sizeof(Operand));
+
+
+    ICE->IC = IC;
+    ICE->prev = ICE->next = NULL;
+    return ICE;
+}
+
+InterCodeEntry* NewInterCodeEntryREAD(Operand* input)
+{
+    InterCodeEntry* ICE = (InterCodeEntry*)malloc(sizeof(InterCodeEntry));
+    InterCode* IC = (InterCode*)malloc(sizeof(InterCode));
+
+    IC->kind = IREAD;
+
+    IC->READ.input = (Operand*)malloc(sizeof(Operand));
+    memcpy(IC->READ.input, input, sizeof(Operand));
+
+
+    ICE->IC = IC;
+    ICE->prev = ICE->next = NULL;
+    return ICE;
+}
+
+InterCodeEntry* NewInterCodeEntryWRITE(Operand* output)
+{
+    InterCodeEntry* ICE = (InterCodeEntry*)malloc(sizeof(InterCodeEntry));
+    InterCode* IC = (InterCode*)malloc(sizeof(InterCode));
+
+    IC->kind = IWRITE;
+
+    IC->WRITE.output = (Operand*)malloc(sizeof(Operand));
+    memcpy(IC->WRITE.output, output, sizeof(Operand));
+
+
+    ICE->IC = IC;
+    ICE->prev = ICE->next = NULL;
+    return ICE;
+}
+
+InterCodeEntry* NewInterCodeEntryARG(Operand* arg)
+{
+    InterCodeEntry* ICE = (InterCodeEntry*)malloc(sizeof(InterCodeEntry));
+    InterCode* IC = (InterCode*)malloc(sizeof(InterCode));
+
+    IC->kind = IARG;
+
+    IC->ARG.argument = (Operand*)malloc(sizeof(Operand));
+    memcpy(IC->ARG.argument, arg, sizeof(Operand));
+
+
+    ICE->IC = IC;
+    ICE->prev = ICE->next = NULL;
+    return ICE;
+}
+
+InterCodeEntry* NewInterCodeEntryDEC(Operand* address, int size)
+{
+    InterCodeEntry* ICE = (InterCodeEntry*)malloc(sizeof(InterCodeEntry));
+    InterCode* IC = (InterCode*)malloc(sizeof(InterCode));
+
+    IC->kind = IDEC;
+
+    IC->DEC.address = (Operand*)malloc(sizeof(Operand));
+    memcpy(IC->DEC.address, address, sizeof(Operand));
+    IC->DEC.size = size;
+
+    ICE->IC = IC;
+    ICE->prev = ICE->next = NULL;
+    return ICE;
+}
+
+InterCodeEntry* NewInterCodeEntryFUN(char* funName)
+{
+    InterCodeEntry* ICE = (InterCodeEntry*)malloc(sizeof(InterCodeEntry));
+    InterCode* IC = (InterCode*)malloc(sizeof(InterCode));
+
+    IC->kind = IFUNCTION;
+
+    IC->FUN.funName = (char*)malloc(sizeof(funName));
+    strcpy(IC->FUN.funName, funName);
+
+    ICE->IC = IC;
+    ICE->prev = ICE->next = NULL;
+    return ICE;
+}
+
+ArgEntry* NewArgEntry(Operand* op)
+{
+    ArgEntry* AE = (ArgEntry*)malloc(sizeof(ArgEntry));
+    AE->arg = (Operand*)malloc(sizeof(Operand));
+    memcpy(AE->arg, op, sizeof(Operand));
+    AE->next = NULL;
+
+    return AE;
+}
+
+
+static void PrintOperand(Operand* op)
 {
     if(op->attr == OADDR)printf("*");
     else if(op->attr == OREF)printf("&");
@@ -357,7 +473,7 @@ void PrintOperand(Operand* op)
     else assert(0);
 }
 
-void PrintCond(Cond* condition)
+static void PrintCond(Cond* condition)
 {
     printf("IF ");
     PrintOperand(condition->op1);
@@ -366,7 +482,7 @@ void PrintCond(Cond* condition)
 
 }
 
-void PrintInterCodeEntry(InterCodeEntry* ICE)
+static void PrintInterCodeEntry(InterCodeEntry* ICE)
 {
     InterCode* code = ICE->IC;
     switch (code->kind)
@@ -413,6 +529,32 @@ void PrintInterCodeEntry(InterCodeEntry* ICE)
         case ICALL:{
             PrintOperand(code->CALL.ret);
             printf(" := CALL %s", code->CALL.funName);
+            break;
+        }
+        case IRETURN:{
+            printf("RETURN ");
+            PrintOperand(code->RET.ret);
+            break;
+        }
+        case IREAD:{
+            printf("READ ");
+            PrintOperand(code->READ.input);
+            break;
+        }
+        case IWRITE:{
+            printf("WRITE ");
+            PrintOperand(code->WRITE.output);
+            break;
+        }
+        case IARG:{
+            printf("ARG ");
+            PrintOperand(code->ARG.argument);
+            break;
+        }
+        case IDEC: {
+            printf("DEC ");
+            PrintOperand(code->DEC.address);
+            printf(" %d", code->DEC.size);
             break;
         }
         default:assert(0);

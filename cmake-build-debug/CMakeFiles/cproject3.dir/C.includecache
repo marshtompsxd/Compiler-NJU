@@ -97,6 +97,8 @@ stdlib.h
 /home/sunxudong/CLionProjects/cproject3/intercode/ICTable.c
 ParsingNode.h
 -
+symbol_table.h
+-
 ../common.h
 /home/sunxudong/CLionProjects/cproject3/common.h
 ../semantic/list.h
@@ -229,6 +231,8 @@ list.h
 /home/sunxudong/CLionProjects/cproject3/semantic/list.h
 check.h
 /home/sunxudong/CLionProjects/cproject3/semantic/check.h
+symbol_table.h
+/home/sunxudong/CLionProjects/cproject3/semantic/symbol_table.h
 stdlib.h
 -
 

@@ -184,7 +184,7 @@ void PrintType(Type* type)
     }
     else
     {
-        printf("struct member : \n");
+        printf("struct name : %s member : \n", type->structure.structname);
         FieldList* FL;
         for(FL = type->structure.member; FL != NULL; FL = FL->tail)
         {

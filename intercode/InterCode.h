@@ -11,15 +11,17 @@ typedef struct Cond_ Cond;
 typedef struct ICVarEntry_ ICVarEntry;
 typedef struct ICFunEntry_ ICFunEntry;
 typedef struct InterCodeEntry_ InterCodeEntry;
+typedef struct ArgEntry_ ArgEntry;
 
 typedef struct ICVarTableHead_ ICVarTableHead;
 typedef struct ICFunTableHead_ ICFunTableHead;
 typedef struct InterCodeListHead_ InterCodeListHead;
+typedef struct ArgListHead_ ArgListHead;
 
 enum { OVAR, OTEMP, OICONS, OFCONS }; 	//kind of Operand
 enum { OVALUE, OADDR, OREF };			//attr of Operand
 enum { 	IASSIGN, IADD, ISUB, IMUL, IDIV, ILABEL, IGOTO, IIFGOTO,
-		IRETURN, IDEC, IARG, ICALL, IPARAM, IREAD, IWRITE }; //kind of InterCode
+		IRETURN, IDEC, IARG, ICALL, IPARAM, IREAD, IWRITE, IFUNCTION }; //kind of InterCode
 
 extern ICVarTableHead* RootICVarTable;
 extern ICFunTableHead* RootICFunTable;
@@ -59,6 +61,15 @@ struct InterCodeListHead_{
 	InterCodeEntry* head;
 };
 
+struct ArgEntry_{
+    Operand* arg;
+    ArgEntry* next;
+};
+
+struct ArgListHead_{
+    ArgEntry* head;
+};
+
 struct Operand_ {
 	int kind;
     int attr;
@@ -82,7 +93,7 @@ struct InterCode_ {
 	union {
 		struct { int LIndex; }LABELDEC;
 
-		struct { char* funName; }FUNDEC;
+		struct { char* funName; }FUN;
 
 		struct { Operand *right, *left; }ASSIGN;
 
@@ -92,9 +103,9 @@ struct InterCode_ {
 
 		struct { Cond* condition; int LIndex; }IFGT;
 
-		struct { Operand* retValue; }RET;
+		struct { Operand* ret; }RET;
 
-		struct { Operand* address; int size; }SPACEDEC;
+		struct { Operand* address; int size; }DEC;
 
 		struct { Operand* argument; }ARG;
 

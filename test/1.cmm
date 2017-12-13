@@ -1,15 +1,20 @@
-int test()
+int add(int x, int y)
 {
+    return x + y;
 }
 
 int main()
 {
-	int a, b;
-	int c, d, e;
-	//a = b > c;
-	//a = -b;
-	//a = ! (b > c);
-	a = b || c;
-	a = b && c;
-	a = test();
+	int a, b, c;
+	int arr[10];
+	int arr1[100];
+	a = read();
+	while(a < 100)
+	{
+	    b = b + 1;
+	}
+	write(b);
+	c = add(a, b);
+
+	return b;
 }
