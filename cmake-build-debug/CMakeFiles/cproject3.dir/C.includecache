@@ -167,6 +167,8 @@ string.h
 -
 text.h
 /home/sunxudong/CLionProjects/cproject3/lexical_syntax/text.h
+../common.h
+/home/sunxudong/CLionProjects/cproject3/common.h
 
 /home/sunxudong/CLionProjects/cproject3/lexical_syntax/text.h
 

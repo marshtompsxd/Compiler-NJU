@@ -1,7 +1,15 @@
-int main(int argc, int argv)
+int test()
+{
+}
+
+int main()
 {
 	int a, b;
 	int c, d, e;
-	a = b > c;
-	
+	//a = b > c;
+	//a = -b;
+	//a = ! (b > c);
+	a = b || c;
+	a = b && c;
+	a = test();
 }

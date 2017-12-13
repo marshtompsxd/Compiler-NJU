@@ -158,7 +158,7 @@ ParsingNode* GenerateTypeNode(int TerminalType, int lineno, char* text)
 	}
 	else
 	{
-		node->float_value = atof(text);
+		node->float_value = (float)strtod(text, NULL);
 
 		#ifdef TERMINAL_DEBUG
 		printf("Terminal %s : %f at %d\n", symbolsTable[node->SymbolIndex], node->float_value, node->lineno);

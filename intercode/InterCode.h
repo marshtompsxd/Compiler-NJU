@@ -98,7 +98,7 @@ struct InterCode_ {
 
 		struct { Operand* argument; }ARG;
 
-		struct { Operand* dst; char* funName; }CALL;
+		struct { Operand* ret; char* funName; }CALL;
 
 		struct { Operand* parameter; }PARAM;
 

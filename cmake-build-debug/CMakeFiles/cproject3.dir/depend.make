@@ -26,6 +26,7 @@ CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.o: ../lexical_syntax/Parsi
 CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.o: ../lexical_syntax/ParsingNode.h
 CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.o: ../lexical_syntax/text.h
 
+CMakeFiles/cproject3.dir/lexical_syntax/text.c.o: ../common.h
 CMakeFiles/cproject3.dir/lexical_syntax/text.c.o: ../lexical_syntax/text.c
 CMakeFiles/cproject3.dir/lexical_syntax/text.c.o: ../lexical_syntax/text.h
 

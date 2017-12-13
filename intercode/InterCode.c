@@ -195,7 +195,9 @@ InterCodeListHead* ConditionGenerate(ParsingNode* node, int LIndexT, int LIndexF
 {
     assert(skind(node) == AExp);
 
-    if(skind(secondchild(node)) == ARELOP)
+    if(node->childrenNum == 1)
+        return ConditionOtherGenerate(node, LIndexT, LIndexF);
+    else if(skind(secondchild(node)) == ARELOP)
         return ConditionRELOPGenerate(node, LIndexT, LIndexF);
     else if(skind(secondchild(node)) == AAND)
         return ConditionANDGenerate(node, LIndexT, LIndexF);
@@ -203,6 +205,8 @@ InterCodeListHead* ConditionGenerate(ParsingNode* node, int LIndexT, int LIndexF
         return ConditionORGenerate(node, LIndexT, LIndexF);
     else if(skind(firstchild(node)) == ANOT)
         return ConditionNOTGenerate(node, LIndexT, LIndexF);
+    else if(skind(firstchild(node)) == ALP)
+        return ConditionGenerate(secondchild(node), LIndexT, LIndexF);
     else
         return ConditionOtherGenerate(node, LIndexT, LIndexF);
 }
@@ -243,7 +247,48 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
     }
     else if(node->childrenNum == 2)
     {
-        return NULL;
+        if(skind(firstchild(node)) == AMINUS)
+        {
+            Operand* t = NewTOperand(OVALUE);
+            Operand* zero = NewICOperand(0);
+            InterCodeListHead* sublist = ExpGenerate(secondchild(node), t);
+            MergeInterCodeList(sublist, list);
+
+            if(result!=NULL)
+            {
+                InterCodeEntry* ICE = NewInterCodeEntryBINOP(ISUB, result, zero, t);
+                InsertEntryIntoInterCodeList(ICE, list);
+            }
+
+            return list;
+        }
+        else if(skind(firstchild(node)) == ANOT)
+        {
+            int LIndex1 = NewLabelIndex();
+            int LIndex2 = NewLabelIndex();
+
+            InterCodeEntry *ICE2 = NewInterCodeEntryLABELDEC(LIndex1);
+            InterCodeEntry *ICE4 = NewInterCodeEntryLABELDEC(LIndex2);
+            InterCodeListHead* sublist = ConditionGenerate(node, LIndex1, LIndex2);
+
+
+            if(result!=NULL)
+            {
+                Operand *zero = NewICOperand(0);
+                InterCodeEntry *ICE1 = NewInterCodeEntryASSIGN(result, zero);
+                InsertEntryIntoInterCodeList(ICE1, list);
+            }
+            MergeInterCodeList(sublist, list);
+            InsertEntryIntoInterCodeList(ICE2, list);
+            if(result!=NULL) {
+                Operand *one = NewICOperand(1);
+                InterCodeEntry *ICE3 = NewInterCodeEntryASSIGN(result, one);
+                InsertEntryIntoInterCodeList(ICE3, list);
+            }
+            InsertEntryIntoInterCodeList(ICE4, list);
+            return list;
+        }
+        else assert(0);
     }
     else if(node->childrenNum == 3)
     {
@@ -333,10 +378,13 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
         else if(skind(firstchild(node)) == AID) // call function
         {
 
+            InterCodeEntry* ICE = NewInterCodeEntryCALL(result, firstchild(node)->IDname);
+            InsertEntryIntoInterCodeList(ICE, list);
+            return list;
         }
         else if(skind(secondchild(node)) == ADOT) // structure field
         {
-
+            assert(0);
         }
         else assert(0);
     }
@@ -357,7 +405,8 @@ static InterCodeListHead* StmtGenerate(ParsingNode* node)
 
     if(node->childrenNum == 1)
     {
-        //CompStGenerate(firstchild(node));
+        InterCodeListHead* sublist = CompStGenerate(firstchild(node));
+        MergeInterCodeList(sublist, list);
         return list;
     }
     else if(node->childrenNum == 2)
@@ -370,6 +419,15 @@ static InterCodeListHead* StmtGenerate(ParsingNode* node)
     {
         assert(0);
     }
+    else if(node->childrenNum == 5)
+    {
+        assert(0);
+    }
+    else if(node->childrenNum == 7)
+    {
+        assert(0);
+    }
+    else assert(0);
 }
 
 static InterCodeListHead* StmtListGenerate(ParsingNode* node)

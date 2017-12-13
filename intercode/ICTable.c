@@ -317,6 +317,23 @@ InterCodeEntry* NewInterCodeEntryLABELDEC(int LIndex)
     return ICE;
 }
 
+InterCodeEntry* NewInterCodeEntryCALL(Operand* ret, char* funName)
+{
+    InterCodeEntry* ICE = (InterCodeEntry*)malloc(sizeof(InterCodeEntry));
+    InterCode* IC = (InterCode*)malloc(sizeof(InterCode));
+
+    IC->kind = ICALL;
+
+    IC->CALL.ret = (Operand*)malloc(sizeof(Operand));
+    memcpy(IC->CALL.ret, ret, sizeof(Operand));
+    IC->CALL.funName = (char*)malloc(sizeof(strlen(funName)));
+    strcpy(IC->CALL.funName, funName);
+
+    ICE->IC = IC;
+    ICE->prev = ICE->next = NULL;
+    return ICE;
+}
+
 void PrintOperand(Operand* op)
 {
     if(op->attr == OADDR)printf("*");
@@ -391,6 +408,11 @@ void PrintInterCodeEntry(InterCodeEntry* ICE)
         case IIFGOTO:{
             PrintCond(code->IFGT.condition);
             printf(" GOTO L%d", code->IFGT.LIndex);
+            break;
+        }
+        case ICALL:{
+            PrintOperand(code->CALL.ret);
+            printf(" := CALL %s", code->CALL.funName);
             break;
         }
         default:assert(0);
