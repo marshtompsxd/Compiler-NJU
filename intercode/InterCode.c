@@ -111,7 +111,6 @@ static InterCodeListHead* DecGenerateInFunction(ParsingNode* node, int size)
     return list;
 }
 
-
 static InterCodeListHead* DecListGenerateInFunction(ParsingNode* node, int size)
 {
     assert(skind(node) == ADecList);
@@ -686,6 +685,60 @@ static InterCodeListHead* CompStGenerate(ParsingNode* node)
     return list;
 }
 
+static InterCodeListHead* VarDecGenerateInParam(ParsingNode* node)
+{
+    assert(skind(node) == AVarDec);
+
+    InterCodeListHead* list = (InterCodeListHead*)malloc(sizeof(InterCodeListHead));
+    list->head = NULL;
+
+    if(node->childrenNum == 1)
+    {
+        Operand* param = GetLvalueIDOperand(node);
+        InterCodeEntry* ICE = NewInterCodeEntryPARAM(param);
+        InsertEntryIntoInterCodeList(ICE, list);
+    }
+    else
+    {
+        InterCodeListHead* sublist = VarDecGenerateInParam(firstchild(node));
+        MergeInterCodeList(sublist, list);
+    }
+    return list;
+}
+
+static InterCodeListHead* ParamDecGenerate(ParsingNode* node)
+{
+    assert(skind(node) == AParamDec);
+
+    InterCodeListHead* list = (InterCodeListHead*)malloc(sizeof(InterCodeListHead));
+    list->head = NULL;
+    InterCodeListHead* sublist = VarDecGenerateInParam(secondchild(node));
+    MergeInterCodeList(sublist, list);
+
+    return list;
+}
+
+static InterCodeListHead* VarListGenerate(ParsingNode* node)
+{
+    assert(skind(node) == AVarList);
+    InterCodeListHead* list = (InterCodeListHead*)malloc(sizeof(InterCodeListHead));
+    list->head = NULL;
+
+    if(node->childrenNum == 1)
+    {
+        InterCodeListHead* sublist = ParamDecGenerate(firstchild(node));
+        MergeInterCodeList(sublist, list);
+    }
+    else
+    {
+        InterCodeListHead* sublist1 = ParamDecGenerate(firstchild(node));
+        InterCodeListHead* sublist2 = VarListGenerate(thirdchild(node));
+        MergeInterCodeList(sublist1, list);
+        MergeInterCodeList(sublist2, list);
+    }
+    return list;
+}
+
 static InterCodeListHead* FunDecGenerate(ParsingNode* node)
 {
     assert(skind(node) == AFunDec);
@@ -693,7 +746,16 @@ static InterCodeListHead* FunDecGenerate(ParsingNode* node)
 
     InterCodeListHead* list = (InterCodeListHead*)malloc(sizeof(InterCodeListHead));
     list->head = NULL;
-    //...
+
+    InterCodeEntry* ICE = NewInterCodeEntryFUN(firstchild(node)->IDname);
+    InsertEntryIntoInterCodeList(ICE, list);
+
+    if(node->childrenNum == 4)
+    {
+        InterCodeListHead* sublist = VarListGenerate(thirdchild(node));
+        MergeInterCodeList(sublist, list);
+    }
+
     return list;
 }
 
@@ -705,13 +767,12 @@ static void ExtDefGenerate(ParsingNode* node)
     {
         if(skind(secondchild(node)) == AFunDec)
         {
-            //InterCodeListHead* sublist1 = FunDecGenerate(secondchild(node));
-            //MergeInterCodeList(sublist1, RootInterCodeList);
+            InterCodeListHead* sublist1 = FunDecGenerate(secondchild(node));
+            MergeInterCodeList(sublist1, RootInterCodeList);
             InterCodeListHead* sublist2 = CompStGenerate(thirdchild(node));
             MergeInterCodeList(sublist2, RootInterCodeList);
         }
     }
-    else return;
 }
 
 static void ExtDefListGenerate(ParsingNode* node)

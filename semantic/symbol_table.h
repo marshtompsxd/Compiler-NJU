@@ -22,7 +22,7 @@ struct Type_
 	union
 	{
 		int basic;
-		struct { Type* elem; int size; } array;
+		struct { Type* elem; int size; int * DimSize; int dim;} array;
 		struct { char* structname; FieldList* member;} structure;
 	};
 };

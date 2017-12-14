@@ -63,6 +63,8 @@ extern InterCodeEntry* NewInterCodeEntryDEC(Operand* address, int size);
 
 extern InterCodeEntry* NewInterCodeEntryFUN(char* funName);
 
+extern InterCodeEntry* NewInterCodeEntryPARAM(Operand* parameter);
+
 extern ArgEntry* NewArgEntry(Operand* op);
 
 extern void PrintInterCodeList(InterCodeListHead* list);

@@ -175,12 +175,25 @@ void PrintType(Type* type)
 {
     if(type->kind == BASIC)
     {
-        printf("basic type : %s\n", basictype[type->basic]);
+        printf("%s\n", basictype[type->basic]);
     }
     else if(type->kind == ARRAY)
     {
-        printf("array size : %d, array elem type : \n", type->array.size);
-        PrintType(type->array.elem);
+        printf("array dim : %d\n", type->array.dim);
+        printf("sizes of all dim are : ");
+        int i;
+        for(i = 0; i<type->array.dim; i++)
+        {
+            printf("%d ", type->array.DimSize[i]);
+        }
+        printf("\n");
+        Type* elem = type;
+        while (elem->kind == ARRAY)
+        {
+            elem = elem->array.elem;
+        }
+        printf("array elem type : ");
+        PrintType(elem);
     }
     else
     {

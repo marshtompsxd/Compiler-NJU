@@ -69,6 +69,28 @@ static void InsertEntryIntoICFunTable(ICFunEntry* entry, ICFunTableHead* table)
     }
 }
 
+void ProcessArrayType(Type* type)
+{
+    assert(type->kind == ARRAY);
+
+    int dim = 0;
+    Type* subarray = type;
+    while (subarray->kind == ARRAY)
+    {
+        dim++;
+        subarray = subarray->array.elem;
+    }
+    type->array.dim = dim;
+    type->array.DimSize = (int*)malloc((unsigned)dim);
+    int i = 0;
+    for(subarray = type; subarray->kind == ARRAY; subarray = subarray->array.elem)
+    {
+        type->array.DimSize[i] = subarray->array.size;
+        i++;
+    }
+
+}
+
 void GenerateICVarTable(SymbolTableHead* table)
 {
     SymbolTableEntry* SE;
@@ -81,6 +103,9 @@ void GenerateICVarTable(SymbolTableHead* table)
             VE->VariableName = (char*)malloc(strlen(SE->Variable.VariableName));
             strcpy(VE->VariableName, SE->Variable.VariableName);
             VE->VariableType = SE->Variable.VariableType;
+
+            if(VE->VariableType->kind == ARRAY)ProcessArrayType(VE->VariableType);
+
             VE->VIndex = ++VIndex;
             InsertEntryIntoICVarTable(VE, RootICVarTable);
         }
@@ -236,6 +261,7 @@ void MergeInterCodeList(InterCodeListHead* sublist, InterCodeListHead* list)
         InsertEntryIntoInterCodeList(ICE, list);
         ICE = NICE;
     }
+    sublist->head = NULL;
 }
 
 InterCodeEntry* NewInterCodeEntryBINOP(int kind, Operand* result, Operand* op1, Operand* op2)
@@ -439,6 +465,23 @@ InterCodeEntry* NewInterCodeEntryFUN(char* funName)
     return ICE;
 }
 
+InterCodeEntry* NewInterCodeEntryPARAM(Operand* parameter)
+{
+    InterCodeEntry* ICE = (InterCodeEntry*)malloc(sizeof(InterCodeEntry));
+    InterCode* IC = (InterCode*)malloc(sizeof(InterCode));
+
+    IC->kind = IPARAM;
+
+    IC->PARAM.parameter = (Operand*)malloc(sizeof(Operand));
+    memcpy(IC->PARAM.parameter, parameter, sizeof(Operand));
+
+
+    ICE->IC = IC;
+    ICE->prev = ICE->next = NULL;
+    return ICE;
+}
+
+
 ArgEntry* NewArgEntry(Operand* op)
 {
     ArgEntry* AE = (ArgEntry*)malloc(sizeof(ArgEntry));
@@ -555,6 +598,15 @@ static void PrintInterCodeEntry(InterCodeEntry* ICE)
             printf("DEC ");
             PrintOperand(code->DEC.address);
             printf(" %d", code->DEC.size);
+            break;
+        }
+        case IPARAM:{
+            printf("PARAM ");
+            PrintOperand(code->PARAM.parameter);
+            break;
+        }
+        case IFUNCTION:{
+            printf("FUNCTION %s : ", code->FUN.funName);
             break;
         }
         default:assert(0);

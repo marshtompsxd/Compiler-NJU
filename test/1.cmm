@@ -6,7 +6,7 @@ int add(int x, int y)
 int main()
 {
 	int a, b, c;
-	int arr[10];
+	int arr[10][20][5];
 	int arr1[100];
 	a = read();
 	while(a < 100)
