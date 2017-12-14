@@ -29,6 +29,10 @@ extern Operand* NewFCOperand(float FCons);
 
 extern Operand* GetLvalueIDOperand(ParsingNode* node);
 
+extern int GetAccumulatedSizeReverse(ICVarEntry* VE, int rdim);
+
+extern bool IsARRAYID(char* VariableName);
+
 extern void InsertInterCodeEntry(InterCodeEntry* entry);
 
 extern void PushEntryIntoArgList(ArgEntry* entry, ArgListHead* list);

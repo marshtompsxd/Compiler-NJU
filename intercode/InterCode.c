@@ -296,6 +296,61 @@ InterCodeListHead* ConditionGenerate(ParsingNode* node, int LIndexT, int LIndexF
         return ConditionOtherGenerate(node, LIndexT, LIndexF);
 }
 
+static InterCodeListHead* ArrayGenerate(ParsingNode* node, Operand* result, int height, ICVarEntry* VE)
+{
+    assert(skind(node) == AExp && skind(secondchild(node)) == ALB);
+
+    InterCodeListHead* list = (InterCodeListHead*)malloc(sizeof(InterCodeListHead));
+    list->head = NULL;
+
+    if(skind(firstchild(firstchild(node))) == AID)
+    {
+        Operand* arr = GetLvalueIDOperand(firstchild(node));
+        Operand* off = NewTOperand(OVALUE);
+        Operand *t1, *t2, *t3;
+        t1 = NewTOperand(OVALUE);
+        t2 = NewTOperand(OVALUE);
+        t3 = NewTOperand(OVALUE);
+
+        InterCodeListHead* sublist = ExpGenerate(thirdchild(node), off);
+        MergeInterCodeList(sublist, list);
+
+        int accumulatedSize = GetAccumulatedSizeReverse(VE, height);
+        Operand* as = NewICOperand(accumulatedSize);
+
+        InterCodeEntry* ICE1 = NewInterCodeEntryASSIGN(t1, arr);
+        InterCodeEntry* ICE2 = NewInterCodeEntryBINOP(IMUL, t2, off, as);
+        InterCodeEntry* ICE3 = NewInterCodeEntryBINOP(IADD, t3, t1, t2);
+        InterCodeEntry* ICE4 = NewInterCodeEntryASSIGN(result, t3);
+
+        InsertEntryIntoInterCodeList(ICE1, list);
+        InsertEntryIntoInterCodeList(ICE2, list);
+        InsertEntryIntoInterCodeList(ICE3, list);
+        InsertEntryIntoInterCodeList(ICE4, list);
+
+    }
+
+    return list;
+}
+
+static InterCodeListHead* PreArrayGenerate(ParsingNode* node, Operand* result)
+{
+    assert(skind(node) == AExp && skind(secondchild(node)) == ALB);
+
+    InterCodeListHead* list = (InterCodeListHead*)malloc(sizeof(InterCodeListHead));
+    list->head = NULL;
+
+    ParsingNode* next = firstchild(node);
+    while (next->childrenNum!=1)next = next->firstchild;
+    assert(skind(next) == AID);
+    ICVarEntry* VE = LookUpForICVarEntry(next->IDname);
+
+    InterCodeListHead* sublist = ArrayGenerate(node, result, 0, VE);
+    MergeInterCodeList(sublist, list);
+
+    return list;
+}
+
 static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
 {
     assert(skind(node) == AExp);
@@ -528,28 +583,31 @@ static InterCodeListHead* ArgsGenerate(ParsingNode* node, ArgListHead* alist)
     InterCodeListHead* list = (InterCodeListHead*)malloc(sizeof(InterCodeListHead));
     list->head = NULL;
 
-    if(node->childrenNum == 1)
+    if(skind(firstchild(firstchild(node))) == AID && firstchild(node)->childrenNum == 1)
+    {
+        Operand* left = GetLvalueIDOperand(firstchild(node));
+        ArgEntry* AE = NewArgEntry(left);
+        PushEntryIntoArgList(AE, alist);
+
+    }
+    else
     {
         Operand* t = NewTOperand(OVALUE);
         InterCodeListHead* sublist = ExpGenerate(firstchild(node), t);
         ArgEntry* AE = NewArgEntry(t);
         PushEntryIntoArgList(AE, alist);
         MergeInterCodeList(sublist, list);
-        return list;
-
     }
-    else
-    {
-        Operand* t = NewTOperand(OVALUE);
-        InterCodeListHead* sublist1 = ExpGenerate(firstchild(node), t);
-        ArgEntry* AE = NewArgEntry(t);
-        PushEntryIntoArgList(AE, alist);
-        InterCodeListHead* sublist2 = ArgsGenerate(thirdchild(node), alist);
 
-        MergeInterCodeList(sublist1, list);
+
+    if(node->childrenNum == 3)
+    {
+        InterCodeListHead* sublist2 = ArgsGenerate(thirdchild(node), alist);
         MergeInterCodeList(sublist2, list);
         return list;
     }
+
+    return list;
 
 }
 

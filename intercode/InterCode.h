@@ -33,6 +33,7 @@ struct ICVarEntry_{
 	char* VariableName; 
 	Type* VariableType;
     int VIndex;
+    int attr;
 	ICVarEntry* next;
 };
 

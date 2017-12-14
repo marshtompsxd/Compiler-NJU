@@ -10,12 +10,14 @@
 
 void CheckElemInICVarTable(ICVarTableHead* table)
 {
+    char* string[4] = {"VALUE", "ADDR", "REF"};
     ICVarEntry* VE;
     printf("---------------------------------------------------\n");
     for(VE = table->head; VE != NULL; VE = VE->next)
     {
 
-        printf("VAR : %s , index : %d, type : ", VE->VariableName, VE->VIndex);
+        printf("VAR : %s , index : %d, attr : %s, type : ",
+               VE->VariableName, VE->VIndex, string[VE->attr]);
         PrintType(VE->VariableType);
         printf("----------------------------------------------------\n");
 
@@ -91,6 +93,22 @@ void ProcessArrayType(Type* type)
 
 }
 
+static int GetAccumulatedSize(ICVarEntry* VE, int dim)
+{
+    int i;
+    int accumulatedSize = 1;
+    for(i = dim + 1;i<VE->VariableType->array.dim;i++)
+    {
+        accumulatedSize = accumulatedSize*VE->VariableType->array.DimSize[i];
+    }
+    return accumulatedSize * 4;
+}
+
+int GetAccumulatedSizeReverse(ICVarEntry* VE, int rdim)
+{
+    return GetAccumulatedSize(VE, VE->VariableType->array.dim - rdim - 1);
+}
+
 void GenerateICVarTable(SymbolTableHead* table)
 {
     SymbolTableEntry* SE;
@@ -103,7 +121,7 @@ void GenerateICVarTable(SymbolTableHead* table)
             VE->VariableName = (char*)malloc(strlen(SE->Variable.VariableName));
             strcpy(VE->VariableName, SE->Variable.VariableName);
             VE->VariableType = SE->Variable.VariableType;
-
+            VE->attr = OVALUE;
             if(VE->VariableType->kind == ARRAY)ProcessArrayType(VE->VariableType);
 
             VE->VIndex = ++VIndex;
@@ -120,6 +138,12 @@ void GenerateICVarTable(SymbolTableHead* table)
                 VE->VariableName = (char*)malloc(strlen(PSE->Variable.VariableName));
                 strcpy(VE->VariableName, PSE->Variable.VariableName);
                 VE->VariableType = PSE->Variable.VariableType;
+                VE->attr = OVALUE;
+                if(VE->VariableType->kind == ARRAY)
+                {
+                    ProcessArrayType(VE->VariableType);
+                    VE->attr = OREF;
+                }
                 VE->VIndex = ++VIndex;
                 InsertEntryIntoICVarTable(VE, RootICVarTable);
             }
@@ -212,13 +236,37 @@ int arithmeticConvert(int arithmetic)
     }
 }
 
+bool IsARRAYID(char* VariableName)
+{
+    ICVarEntry* VE;
+    for(VE = RootICVarTable->head;VE!=NULL; VE = VE->next)
+    {
+        if(strcmp(VariableName, VE->VariableName) == 0 && VE->VariableType->kind == ARRAY)
+            return true;
+    }
+    return false;
+}
+
 Operand* GetLvalueIDOperand(ParsingNode* node)
 {
-    assert(skind(firstchild(node)) == AID);
+    assert(skind(firstchild(node)) == AID && node->childrenNum == 1);
+
+    /*
+     * if ID is a basic type , just return a OVALUE
+     * else if ID is an array, return the array address
+     */
 
     ICVarEntry* VE = LookUpForICVarEntry(firstchild(node)->IDname);
     assert(VE!=NULL);
-    Operand* OP = NewVOperand(OVALUE, VE->VIndex);
+    Operand* OP;
+    if(VE->VariableType->kind == BASIC)
+        OP = NewVOperand(OVALUE, VE->VIndex);
+    else if(VE->VariableType->kind == ARRAY && VE->attr == OREF)
+        OP = NewVOperand(OVALUE, VE->VIndex);
+    else if(VE->VariableType->kind == ARRAY && VE->attr == OVALUE)
+        OP = NewVOperand(OADDR, VE->VIndex);
+    else assert(0);
+
     return OP;
 
 }
@@ -493,10 +541,13 @@ ArgEntry* NewArgEntry(Operand* op)
 }
 
 
-static void PrintOperand(Operand* op)
+static void PrintOperand(Operand* op, bool flag)
 {
-    if(op->attr == OADDR)printf("*");
-    else if(op->attr == OREF)printf("&");
+    if(flag)
+    {
+        if(op->attr == OADDR)printf("&");
+        else if(op->attr == OREF)printf("*");
+    }
     if(op->kind == OVAR)
     {
         printf("v%d", op->VIndex);
@@ -519,9 +570,9 @@ static void PrintOperand(Operand* op)
 static void PrintCond(Cond* condition)
 {
     printf("IF ");
-    PrintOperand(condition->op1);
+    PrintOperand(condition->op1, true);
     printf(" %s ", relopTable[condition->relop]);
-    PrintOperand(condition->op2);
+    PrintOperand(condition->op2, true);
 
 }
 
@@ -531,29 +582,29 @@ static void PrintInterCodeEntry(InterCodeEntry* ICE)
     switch (code->kind)
     {
         case IASSIGN:{
-            PrintOperand(code->ASSIGN.left);
+            PrintOperand(code->ASSIGN.left, true);
             printf(" := ");
-            PrintOperand(code->ASSIGN.right);
+            PrintOperand(code->ASSIGN.right, true);
             break;
         }
         case IADD:{
-            PrintOperand(code->BINOP.result);printf(" := ");
-            PrintOperand(code->BINOP.op1);printf(" + ");PrintOperand(code->BINOP.op2);
+            PrintOperand(code->BINOP.result, true);printf(" := ");
+            PrintOperand(code->BINOP.op1, true);printf(" + ");PrintOperand(code->BINOP.op2, true);
             break;
         }
         case ISUB:{
-            PrintOperand(code->BINOP.result);printf(" := ");
-            PrintOperand(code->BINOP.op1);printf(" - ");PrintOperand(code->BINOP.op2);
+            PrintOperand(code->BINOP.result, true);printf(" := ");
+            PrintOperand(code->BINOP.op1, true);printf(" - ");PrintOperand(code->BINOP.op2, true);
             break;
         }
         case IMUL:{
-            PrintOperand(code->BINOP.result);printf(" := ");
-            PrintOperand(code->BINOP.op1);printf(" * ");PrintOperand(code->BINOP.op2);
+            PrintOperand(code->BINOP.result, true);printf(" := ");
+            PrintOperand(code->BINOP.op1, true);printf(" * ");PrintOperand(code->BINOP.op2, true);
             break;
         }
         case IDIV:{
-            PrintOperand(code->BINOP.result);printf(" := ");
-            PrintOperand(code->BINOP.op1);printf(" / ");PrintOperand(code->BINOP.op2);
+            PrintOperand(code->BINOP.result, true);printf(" := ");
+            PrintOperand(code->BINOP.op1, true);printf(" / ");PrintOperand(code->BINOP.op2, true);
             break;
         }
         case ILABEL:{
@@ -570,39 +621,39 @@ static void PrintInterCodeEntry(InterCodeEntry* ICE)
             break;
         }
         case ICALL:{
-            PrintOperand(code->CALL.ret);
+            PrintOperand(code->CALL.ret, true);
             printf(" := CALL %s", code->CALL.funName);
             break;
         }
         case IRETURN:{
             printf("RETURN ");
-            PrintOperand(code->RET.ret);
+            PrintOperand(code->RET.ret, true);
             break;
         }
         case IREAD:{
             printf("READ ");
-            PrintOperand(code->READ.input);
+            PrintOperand(code->READ.input, true);
             break;
         }
         case IWRITE:{
             printf("WRITE ");
-            PrintOperand(code->WRITE.output);
+            PrintOperand(code->WRITE.output, true);
             break;
         }
         case IARG:{
             printf("ARG ");
-            PrintOperand(code->ARG.argument);
+            PrintOperand(code->ARG.argument, true);
             break;
         }
         case IDEC: {
             printf("DEC ");
-            PrintOperand(code->DEC.address);
+            PrintOperand(code->DEC.address, false);
             printf(" %d", code->DEC.size);
             break;
         }
         case IPARAM:{
             printf("PARAM ");
-            PrintOperand(code->PARAM.parameter);
+            PrintOperand(code->PARAM.parameter, false);
             break;
         }
         case IFUNCTION:{
