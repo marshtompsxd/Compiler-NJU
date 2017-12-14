@@ -2,6 +2,7 @@
 #include "../common.h"
 #include "ICTable.h"
 #include "ParsingNode.h"
+#include "IC.h"
 
 static int StructSpecifierGenerate(ParsingNode* node);
 static int SpecifierGenerate(ParsingNode* node);
@@ -38,10 +39,12 @@ ICVarTableHead* RootICVarTable;
 ICFunTableHead* RootICFunTable;
 InterCodeListHead* RootInterCodeList;
 int VIndex, TIndex, LIndex;
+bool ICSwitch;
 
 static void InitICTable()
 {
     VIndex = TIndex = LIndex = 0;
+    ICSwitch = true;
 
     RootICVarTable = (ICVarTableHead*)malloc(sizeof(ICVarTableHead));
     RootICVarTable->head = NULL;
@@ -329,6 +332,34 @@ static InterCodeListHead* ArrayGenerate(ParsingNode* node, Operand* result, int 
         InsertEntryIntoInterCodeList(ICE4, list);
 
     }
+    else
+    {
+        Operand* arr = NewTOperand(OVALUE);
+        Operand* off = NewTOperand(OVALUE);
+        Operand *t1, *t2;
+        t1 = NewTOperand(OVALUE);
+        t2 = NewTOperand(OVALUE);
+
+        InterCodeListHead* sublist1 = ArrayGenerate(firstchild(node), arr, height+1, VE );
+        MergeInterCodeList(sublist1, list);
+
+        InterCodeListHead* sublist2 = ExpGenerate(thirdchild(node), off);
+        MergeInterCodeList(sublist2, list);
+
+        int accumulatedSize = GetAccumulatedSizeReverse(VE, height);
+        Operand* as = NewICOperand(accumulatedSize);
+
+        InterCodeEntry* ICE1 = NewInterCodeEntryBINOP(IMUL, t1, off, as);
+        InterCodeEntry* ICE2 = NewInterCodeEntryBINOP(IADD, t2, arr, t1);
+        InterCodeEntry* ICE3 = NewInterCodeEntryASSIGN(result, t2);
+
+
+        InsertEntryIntoInterCodeList(ICE1, list);
+        InsertEntryIntoInterCodeList(ICE2, list);
+        InsertEntryIntoInterCodeList(ICE3, list);
+
+
+    }
 
     return list;
 }
@@ -342,6 +373,7 @@ static InterCodeListHead* PreArrayGenerate(ParsingNode* node, Operand* result)
 
     ParsingNode* next = firstchild(node);
     while (next->childrenNum!=1)next = next->firstchild;
+    next = next->firstchild;
     assert(skind(next) == AID);
     ICVarEntry* VE = LookUpForICVarEntry(next->IDname);
 
@@ -489,13 +521,14 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
             {
                 left = GetLvalueIDOperand(firstchild(node));
             }
-            else
+            else if(skind(secondchild(firstchild(node))) == ALB)
             {
-                assert(0);
                 left = NewTOperand(OVALUE);
-                InterCodeListHead* sublist1 = ExpGenerate(firstchild(node), left);
+                InterCodeListHead* sublist1 = PreArrayGenerate(firstchild(node), left);
                 MergeInterCodeList(sublist1, list);
+                left->attr = OREF;
             }
+            else assert(0);
 
             Operand* right = NewTOperand(OVALUE);
             InterCodeListHead* sublist2 = ExpGenerate(thirdchild(node), right);
@@ -569,7 +602,18 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
         }
         else
         {
-            assert(0);
+            Operand* addr = NewTOperand(OVALUE);
+            InterCodeListHead* sublist = PreArrayGenerate(node, addr);
+            MergeInterCodeList(sublist, list);
+
+            addr->attr = OREF;
+            if(result!=NULL)
+            {
+                InterCodeEntry* ICE = NewInterCodeEntryASSIGN(result, addr);
+                InsertEntryIntoInterCodeList(ICE, list);
+            }
+
+            return list;
         }
     }
 
@@ -853,11 +897,13 @@ static void ProgramGenerate(ParsingNode* node)
 void InterCodeGenerator()
 {
     InitICTable();
-    printf("print ICVarTable\n");
-    CheckElemInICVarTable(RootICVarTable);
-    //printf("print ICFunTable\n");
-    //CheckElemInICFunTable(RootICFunTable);
 
-    ProgramGenerate(ParsingRoot);
-    PrintInterCodeList(RootInterCodeList);
+    if(ICSwitch)
+    {
+        printf("print ICVarTable\n");
+        CheckElemInICVarTable(RootICVarTable);
+        ProgramGenerate(ParsingRoot);
+        PrintInterCodeList(RootInterCodeList);
+    }
+
 }

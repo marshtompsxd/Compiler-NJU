@@ -7,6 +7,9 @@
 #include "../semantic/list.h"
 #include "../semantic/check.h"
 #include "InterCode.h"
+#include "IC.h"
+
+static char* ICFileName = "IC.ir";
 
 void CheckElemInICVarTable(ICVarTableHead* table)
 {
@@ -115,6 +118,14 @@ void GenerateICVarTable(SymbolTableHead* table)
     SymbolTableEntry* TE;
     for(SE = table->head; SE != NULL; SE = SE->tail)
     {
+        if(SE->kind == VAR && SE->Variable.VariableType->kind == STRUCTURE)
+        {
+            ICSwitch = false;
+            printf("\033[31mCannot translate: Code contains variables or parameters of structure type.\033[0m\n");
+            return;
+        }
+
+
         if(SE->kind == VAR)
         {
             ICVarEntry* VE = (ICVarEntry*)malloc(sizeof(ICVarEntry));
@@ -541,143 +552,157 @@ ArgEntry* NewArgEntry(Operand* op)
 }
 
 
-static void PrintOperand(Operand* op, bool flag)
+static void PrintOperand(FILE *stream, Operand* op, bool flag)
 {
     if(flag)
     {
-        if(op->attr == OADDR)printf("&");
-        else if(op->attr == OREF)printf("*");
+        if(op->attr == OADDR)fprintf(stream, "&");
+        else if(op->attr == OREF)fprintf(stream, "*");
     }
     if(op->kind == OVAR)
     {
-        printf("v%d", op->VIndex);
+        fprintf(stream, "v%d", op->VIndex);
     }
     else if(op->kind == OTEMP)
     {
-        printf("t%d", op->TIndex);
+        fprintf(stream, "t%d", op->TIndex);
     }
     else if(op->kind == OICONS)
     {
-        printf("#%d", op->ICons);
+        fprintf(stream, "#%d", op->ICons);
     }
     else if(op->kind == OFCONS)
     {
-        printf("#%f", op->FCons);
+        fprintf(stream, "#%f", op->FCons);
     }
     else assert(0);
 }
 
-static void PrintCond(Cond* condition)
+static void PrintCond(FILE *stream, Cond* condition)
 {
-    printf("IF ");
-    PrintOperand(condition->op1, true);
-    printf(" %s ", relopTable[condition->relop]);
-    PrintOperand(condition->op2, true);
+    fprintf(stream, "IF ");
+    PrintOperand(stream, condition->op1, true);
+    fprintf(stream, " %s ", relopTable[condition->relop]);
+    PrintOperand(stream, condition->op2, true);
 
 }
 
-static void PrintInterCodeEntry(InterCodeEntry* ICE)
+static void PrintInterCodeEntry(FILE *stream, InterCodeEntry* ICE)
 {
     InterCode* code = ICE->IC;
     switch (code->kind)
     {
         case IASSIGN:{
-            PrintOperand(code->ASSIGN.left, true);
-            printf(" := ");
-            PrintOperand(code->ASSIGN.right, true);
+            PrintOperand(stream, code->ASSIGN.left, true);
+            fprintf(stream, " := ");
+            PrintOperand(stream, code->ASSIGN.right, true);
             break;
         }
         case IADD:{
-            PrintOperand(code->BINOP.result, true);printf(" := ");
-            PrintOperand(code->BINOP.op1, true);printf(" + ");PrintOperand(code->BINOP.op2, true);
+            PrintOperand(stream, code->BINOP.result, true);fprintf(stream, " := ");
+            PrintOperand(stream, code->BINOP.op1, true);fprintf(stream, " + ");PrintOperand(stream, code->BINOP.op2, true);
             break;
         }
         case ISUB:{
-            PrintOperand(code->BINOP.result, true);printf(" := ");
-            PrintOperand(code->BINOP.op1, true);printf(" - ");PrintOperand(code->BINOP.op2, true);
+            PrintOperand(stream, code->BINOP.result, true);fprintf(stream, " := ");
+            PrintOperand(stream, code->BINOP.op1, true);fprintf(stream, " - ");PrintOperand(stream, code->BINOP.op2, true);
             break;
         }
         case IMUL:{
-            PrintOperand(code->BINOP.result, true);printf(" := ");
-            PrintOperand(code->BINOP.op1, true);printf(" * ");PrintOperand(code->BINOP.op2, true);
+            PrintOperand(stream, code->BINOP.result, true);fprintf(stream, " := ");
+            PrintOperand(stream, code->BINOP.op1, true);fprintf(stream, " * ");PrintOperand(stream, code->BINOP.op2, true);
             break;
         }
         case IDIV:{
-            PrintOperand(code->BINOP.result, true);printf(" := ");
-            PrintOperand(code->BINOP.op1, true);printf(" / ");PrintOperand(code->BINOP.op2, true);
+            PrintOperand(stream, code->BINOP.result, true);fprintf(stream, " := ");
+            PrintOperand(stream, code->BINOP.op1, true);fprintf(stream, " / ");PrintOperand(stream, code->BINOP.op2, true);
             break;
         }
         case ILABEL:{
-            printf("LABEL L%d :",code->LABELDEC.LIndex);
+            fprintf(stream, "LABEL L%d :",code->LABELDEC.LIndex);
             break;
         }
         case IGOTO:{
-            printf("GOTO L%d",code->LABELDEC.LIndex);
+            fprintf(stream, "GOTO L%d",code->LABELDEC.LIndex);
             break;
         }
         case IIFGOTO:{
-            PrintCond(code->IFGT.condition);
-            printf(" GOTO L%d", code->IFGT.LIndex);
+            PrintCond(stream, code->IFGT.condition);
+            fprintf(stream, " GOTO L%d", code->IFGT.LIndex);
             break;
         }
         case ICALL:{
-            PrintOperand(code->CALL.ret, true);
-            printf(" := CALL %s", code->CALL.funName);
+            PrintOperand(stream, code->CALL.ret, true);
+            fprintf(stream, " := CALL %s", code->CALL.funName);
             break;
         }
         case IRETURN:{
-            printf("RETURN ");
-            PrintOperand(code->RET.ret, true);
+            fprintf(stream, "RETURN ");
+            PrintOperand(stream, code->RET.ret, true);
             break;
         }
         case IREAD:{
-            printf("READ ");
-            PrintOperand(code->READ.input, true);
+            fprintf(stream, "READ ");
+            PrintOperand(stream, code->READ.input, true);
             break;
         }
         case IWRITE:{
-            printf("WRITE ");
-            PrintOperand(code->WRITE.output, true);
+            fprintf(stream, "WRITE ");
+            PrintOperand(stream, code->WRITE.output, true);
             break;
         }
         case IARG:{
-            printf("ARG ");
-            PrintOperand(code->ARG.argument, true);
+            fprintf(stream, "ARG ");
+            PrintOperand(stream, code->ARG.argument, true);
             break;
         }
         case IDEC: {
-            printf("DEC ");
-            PrintOperand(code->DEC.address, false);
-            printf(" %d", code->DEC.size);
+            fprintf(stream, "DEC ");
+            PrintOperand(stream, code->DEC.address, false);
+            fprintf(stream, " %d", code->DEC.size);
             break;
         }
         case IPARAM:{
-            printf("PARAM ");
-            PrintOperand(code->PARAM.parameter, false);
+            fprintf(stream, "PARAM ");
+            PrintOperand(stream, code->PARAM.parameter, false);
             break;
         }
         case IFUNCTION:{
-            printf("FUNCTION %s : ", code->FUN.funName);
+            fprintf(stream, "FUNCTION %s : ", code->FUN.funName);
             break;
         }
         default:assert(0);
     }
 
-    printf("\n");
+    fprintf(stream, "\n");
 }
 
 void PrintInterCodeList(InterCodeListHead* list)
 {
     InterCodeEntry* ICE;
-    PrintInterCodeEntry(list->head);
+    FILE* fp=fopen(ICFileName, "w");
+    PrintInterCodeEntry(fp, list->head);
     for(ICE = list->head->next; ICE!=list->head; ICE = ICE->next)
     {
-        PrintInterCodeEntry(ICE);
+        PrintInterCodeEntry(fp, ICE);
     }
+    fclose(fp);
 }
 
 
+void DeleteInterCodeEntry(InterCodeEntry* ICE, InterCodeListHead* list)
+{
+    InterCodeEntry *pre, *next;
+    pre = ICE->prev;
+    next = ICE->next;
+    pre->next = next;
+    next->prev = pre;
 
+    if(list->head == ICE)
+    {
+        list->head = next;
+    }
+}
 
 
 

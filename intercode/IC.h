@@ -5,6 +5,8 @@
 #ifndef COMPILER_IC_H
 #define COMPILER_IC_H
 
-void InterCodeGenerator();
+extern void InterCodeGenerator();
+
+extern bool ICSwitch;
 
 #endif //COMPILER_IC_H

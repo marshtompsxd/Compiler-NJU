@@ -177,6 +177,33 @@ intercode/InterCode.c.s:
 	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/InterCode.c.s
 .PHONY : intercode/InterCode.c.s
 
+intercode/optimazition.o: intercode/optimazition.c.o
+
+.PHONY : intercode/optimazition.o
+
+# target to build an object file
+intercode/optimazition.c.o:
+	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/optimazition.c.o
+.PHONY : intercode/optimazition.c.o
+
+intercode/optimazition.i: intercode/optimazition.c.i
+
+.PHONY : intercode/optimazition.i
+
+# target to preprocess a source file
+intercode/optimazition.c.i:
+	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/optimazition.c.i
+.PHONY : intercode/optimazition.c.i
+
+intercode/optimazition.s: intercode/optimazition.c.s
+
+.PHONY : intercode/optimazition.s
+
+# target to generate assembly for a file
+intercode/optimazition.c.s:
+	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/optimazition.c.s
+.PHONY : intercode/optimazition.c.s
+
 lex.yy.o: lex.yy.c.o
 
 .PHONY : lex.yy.o
@@ -408,6 +435,9 @@ help:
 	@echo "... intercode/InterCode.o"
 	@echo "... intercode/InterCode.i"
 	@echo "... intercode/InterCode.s"
+	@echo "... intercode/optimazition.o"
+	@echo "... intercode/optimazition.i"
+	@echo "... intercode/optimazition.s"
 	@echo "... lex.yy.o"
 	@echo "... lex.yy.i"
 	@echo "... lex.yy.s"

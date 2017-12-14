@@ -4,6 +4,7 @@
 CMakeFiles/cproject3.dir/intercode/ICTable.c.o: ../lexical_syntax/ParsingNode.h
 CMakeFiles/cproject3.dir/intercode/ICTable.c.o: ../semantic/symbol_table.h
 CMakeFiles/cproject3.dir/intercode/ICTable.c.o: ../common.h
+CMakeFiles/cproject3.dir/intercode/ICTable.c.o: ../intercode/IC.h
 CMakeFiles/cproject3.dir/intercode/ICTable.c.o: ../intercode/ICTable.c
 CMakeFiles/cproject3.dir/intercode/ICTable.c.o: ../intercode/InterCode.h
 CMakeFiles/cproject3.dir/intercode/ICTable.c.o: ../semantic/check.h
@@ -12,6 +13,7 @@ CMakeFiles/cproject3.dir/intercode/ICTable.c.o: ../semantic/list.h
 CMakeFiles/cproject3.dir/intercode/InterCode.c.o: ../lexical_syntax/ParsingNode.h
 CMakeFiles/cproject3.dir/intercode/InterCode.c.o: ../semantic/symbol_table.h
 CMakeFiles/cproject3.dir/intercode/InterCode.c.o: ../common.h
+CMakeFiles/cproject3.dir/intercode/InterCode.c.o: ../intercode/IC.h
 CMakeFiles/cproject3.dir/intercode/InterCode.c.o: ../intercode/ICTable.h
 CMakeFiles/cproject3.dir/intercode/InterCode.c.o: ../intercode/InterCode.c
 CMakeFiles/cproject3.dir/intercode/InterCode.c.o: ../intercode/InterCode.h

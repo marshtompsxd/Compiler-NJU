@@ -107,6 +107,8 @@ symbol_table.h
 /home/sunxudong/CLionProjects/cproject3/semantic/check.h
 InterCode.h
 /home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h
+IC.h
+/home/sunxudong/CLionProjects/cproject3/intercode/IC.h
 
 /home/sunxudong/CLionProjects/cproject3/intercode/ICTable.h
 InterCode.h
@@ -123,6 +125,8 @@ ICTable.h
 /home/sunxudong/CLionProjects/cproject3/intercode/ICTable.h
 ParsingNode.h
 /home/sunxudong/CLionProjects/cproject3/intercode/ParsingNode.h
+IC.h
+/home/sunxudong/CLionProjects/cproject3/intercode/IC.h
 
 /home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h
 ../common.h

@@ -1,27 +1,12 @@
-int test(int arg[10])
-{
-
-}
-
-int add(int x, int y)
-{
-    return x + y;
-}
-
 int main()
 {
-	int a, b, c;
-	int arr[10][20][5];
-	int arr1[100];
-	int arr2[10];
-	a = read();
-	while(a < 100)
-	{
-	    b = b + 1;
-	}
-	write(b);
-	c = add(a, b);
-	c = test(arr2);
-
-	return b;
+	int n;
+	n = read();
+	if( n > 0)
+		write(1);
+	else if( n < 0)
+		write(-1);
+	else
+		write(0);
+	return 0;
 }
