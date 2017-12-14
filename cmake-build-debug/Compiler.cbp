@@ -123,10 +123,10 @@
 		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h">
 			<Option target="cproject3"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/optimazition.c">
+		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/optimazation.c">
 			<Option target="cproject3"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/optimazition.h">
+		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/optimazation.h">
 			<Option target="cproject3"/>
 		</Unit>
 		<Unit filename="/home/sunxudong/CLionProjects/cproject3/lexical_syntax/ParsingNode.c">

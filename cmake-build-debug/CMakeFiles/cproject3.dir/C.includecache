@@ -109,6 +109,8 @@ InterCode.h
 /home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h
 IC.h
 /home/sunxudong/CLionProjects/cproject3/intercode/IC.h
+optimazation.h
+/home/sunxudong/CLionProjects/cproject3/intercode/optimazation.h
 
 /home/sunxudong/CLionProjects/cproject3/intercode/ICTable.h
 InterCode.h
@@ -133,6 +135,20 @@ IC.h
 /home/sunxudong/CLionProjects/cproject3/common.h
 symbol_table.h
 /home/sunxudong/CLionProjects/cproject3/intercode/symbol_table.h
+
+/home/sunxudong/CLionProjects/cproject3/intercode/optimazation.c
+optimazation.h
+/home/sunxudong/CLionProjects/cproject3/intercode/optimazation.h
+InterCode.h
+/home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h
+
+/home/sunxudong/CLionProjects/cproject3/intercode/optimazation.h
+ICTable.h
+/home/sunxudong/CLionProjects/cproject3/intercode/ICTable.h
+InterCode.h
+/home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h
+IC.h
+/home/sunxudong/CLionProjects/cproject3/intercode/IC.h
 
 /home/sunxudong/CLionProjects/cproject3/lexical_syntax/ParsingNode.c
 stdio.h

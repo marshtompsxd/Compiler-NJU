@@ -71,6 +71,8 @@ extern InterCodeEntry* NewInterCodeEntryPARAM(Operand* parameter);
 
 extern ArgEntry* NewArgEntry(Operand* op);
 
+extern void DeleteInterCodeEntry(InterCodeEntry* ICE, InterCodeListHead* list);
+
 extern void PrintInterCodeList(InterCodeListHead* list);
 
 #endif //COMPILER_ICTABLE_H

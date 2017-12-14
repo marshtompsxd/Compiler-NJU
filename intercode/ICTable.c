@@ -8,8 +8,10 @@
 #include "../semantic/check.h"
 #include "InterCode.h"
 #include "IC.h"
+#include "optimazation.h"
 
 static char* ICFileName = "IC.ir";
+static char* SICFileName = "SIC.ir";
 
 void CheckElemInICVarTable(ICVarTableHead* table)
 {
@@ -322,6 +324,21 @@ void MergeInterCodeList(InterCodeListHead* sublist, InterCodeListHead* list)
     }
     sublist->head = NULL;
 }
+
+void DeleteInterCodeEntry(InterCodeEntry* ICE, InterCodeListHead* list)
+{
+    InterCodeEntry *pre, *next;
+    pre = ICE->prev;
+    next = ICE->next;
+    pre->next = next;
+    next->prev = pre;
+
+    if(list->head == ICE)
+    {
+        list->head = next;
+    }
+}
+
 
 InterCodeEntry* NewInterCodeEntryBINOP(int kind, Operand* result, Operand* op1, Operand* op2)
 {
@@ -687,22 +704,17 @@ void PrintInterCodeList(InterCodeListHead* list)
         PrintInterCodeEntry(fp, ICE);
     }
     fclose(fp);
-}
 
-
-void DeleteInterCodeEntry(InterCodeEntry* ICE, InterCodeListHead* list)
-{
-    InterCodeEntry *pre, *next;
-    pre = ICE->prev;
-    next = ICE->next;
-    pre->next = next;
-    next->prev = pre;
-
-    if(list->head == ICE)
+    fp=fopen(SICFileName, "w");
+    InterCodeOptimazation(list);
+    PrintInterCodeEntry(fp, list->head);
+    for(ICE = list->head->next; ICE!=list->head; ICE = ICE->next)
     {
-        list->head = next;
+        PrintInterCodeEntry(fp, ICE);
     }
+    fclose(fp);
 }
+
 
 
 
