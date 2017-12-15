@@ -66,6 +66,7 @@ CMakeFiles/cproject3.dir/semantic/list.c.o
  /home/sunxudong/CLionProjects/cproject3/semantic/symbol_table.h
 CMakeFiles/cproject3.dir/semantic/semantic.c.o
  /home/sunxudong/CLionProjects/cproject3/common.h
+ /home/sunxudong/CLionProjects/cproject3/intercode/IC.h
  /home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h
  /home/sunxudong/CLionProjects/cproject3/lexical_syntax/ParsingNode.h
  /home/sunxudong/CLionProjects/cproject3/semantic/check.h

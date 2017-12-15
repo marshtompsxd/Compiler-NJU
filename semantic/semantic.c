@@ -3,6 +3,7 @@
 #include "check.h"
 #include "symbol_table.h"
 #include <stdlib.h>
+#include "../intercode/IC.h"
 
 
 static FieldList* VarDecAnalysisInStruct(ParsingNode* node, Type* InheritType);
@@ -306,6 +307,8 @@ static Type* SpecifierAnalysis(ParsingNode* node)
 	}
 	else
 	{
+        // for Intermediate code generation, enable struct type
+		ICSwitch = false;
 		return StructSpecifierAnalysis(node->firstchild);
 	}
 }
@@ -945,7 +948,6 @@ static void ExtDefAnalysis(ParsingNode* node)
 			CompStAnalysis(thirdchild(node), InheritType, PL);
 		}
 	}
-	return;
 }
 
 static void ExtDefListAnalysis(ParsingNode* node)
@@ -977,6 +979,6 @@ void SemanticAnalysis(ParsingNode* node)
 	assert(CurrentSymbolTable == RootSymbolTable);
 	assert(CurrentStructTypeTable == RootStructTypeTable);
 
-	printf("check elem in root table\n");
-	CheckElemInTable(CurrentSymbolTable);
+	//printf("check elem in root table\n");
+	//CheckElemInTable(CurrentSymbolTable);
 }

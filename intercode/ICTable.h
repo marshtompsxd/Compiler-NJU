@@ -73,6 +73,10 @@ extern ArgEntry* NewArgEntry(Operand* op);
 
 extern void DeleteInterCodeEntry(InterCodeEntry* ICE, InterCodeListHead* list);
 
+extern void ReplaceInterCodeEntry(InterCodeEntry* new, InterCodeEntry* old, InterCodeListHead* list);
+
 extern void PrintInterCodeList(InterCodeListHead* list);
+
+extern void PrintInterCodeEntry(FILE *stream, InterCodeEntry* ICE);
 
 #endif //COMPILER_ICTABLE_H

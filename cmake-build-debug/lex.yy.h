@@ -327,7 +327,7 @@ extern int yylex (void);
 #undef YY_DECL
 #endif
 
-#line 74 "lexical_syntax/lexical.l"
+#line 72 "lexical_syntax/lexical.l"
 
 
 #line 334 "/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/lex.yy.h"

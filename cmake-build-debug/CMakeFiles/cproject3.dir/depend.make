@@ -65,6 +65,7 @@ CMakeFiles/cproject3.dir/semantic/list.c.o: ../semantic/list.c
 CMakeFiles/cproject3.dir/semantic/list.c.o: ../semantic/symbol_table.h
 
 CMakeFiles/cproject3.dir/semantic/semantic.c.o: ../common.h
+CMakeFiles/cproject3.dir/semantic/semantic.c.o: ../intercode/IC.h
 CMakeFiles/cproject3.dir/semantic/semantic.c.o: ../intercode/InterCode.h
 CMakeFiles/cproject3.dir/semantic/semantic.c.o: ../lexical_syntax/ParsingNode.h
 CMakeFiles/cproject3.dir/semantic/semantic.c.o: ../semantic/check.h

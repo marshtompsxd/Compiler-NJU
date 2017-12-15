@@ -255,6 +255,8 @@ symbol_table.h
 /home/sunxudong/CLionProjects/cproject3/semantic/symbol_table.h
 stdlib.h
 -
+../intercode/IC.h
+/home/sunxudong/CLionProjects/cproject3/intercode/IC.h
 
 /home/sunxudong/CLionProjects/cproject3/semantic/semantic.h
 symbol_table.h

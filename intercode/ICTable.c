@@ -117,17 +117,8 @@ int GetAccumulatedSizeReverse(ICVarEntry* VE, int rdim)
 void GenerateICVarTable(SymbolTableHead* table)
 {
     SymbolTableEntry* SE;
-    SymbolTableEntry* TE;
     for(SE = table->head; SE != NULL; SE = SE->tail)
     {
-        if(SE->kind == VAR && SE->Variable.VariableType->kind == STRUCTURE)
-        {
-            ICSwitch = false;
-            printf("\033[31mCannot translate: Code contains variables or parameters of structure type.\033[0m\n");
-            return;
-        }
-
-
         if(SE->kind == VAR)
         {
             ICVarEntry* VE = (ICVarEntry*)malloc(sizeof(ICVarEntry));
@@ -246,8 +237,8 @@ int ComputeNewInt(int kind, int x, int y)
     {
         case IADD: return x + y;
         case ISUB: return x - y;
-        case ASTAR: return x * y;
-        case ADIV: return x / y;
+        case IMUL: return x * y;
+        case IDIV: return x / y;
         default:assert(0);
     }
 }
@@ -342,6 +333,23 @@ void DeleteInterCodeEntry(InterCodeEntry* ICE, InterCodeListHead* list)
     }
 }
 
+void ReplaceInterCodeEntry(InterCodeEntry* new, InterCodeEntry* old, InterCodeListHead* list)
+{
+    InterCodeEntry *pre, *next;
+    pre = old->prev;
+    next = old->next;
+    new->prev = pre;
+    new->next = next;
+    pre->next = new;
+    next->prev = new;
+
+    if(list->head == old)
+    {
+        list->head = new;
+    }
+
+
+}
 
 InterCodeEntry* NewInterCodeEntryBINOP(int kind, Operand* result, Operand* op1, Operand* op2)
 {
@@ -604,7 +612,7 @@ static void PrintCond(FILE *stream, Cond* condition)
 
 }
 
-static void PrintInterCodeEntry(FILE *stream, InterCodeEntry* ICE)
+void PrintInterCodeEntry(FILE *stream, InterCodeEntry* ICE)
 {
     InterCode* code = ICE->IC;
     switch (code->kind)

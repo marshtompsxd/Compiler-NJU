@@ -27,7 +27,6 @@ FLOAT           ([0-9]*\.[0-9]+|[0-9]+\.)([eE][+-]?{digit}+)?
 INT             0|[1-9]{digit}*|0{oct_digit}+|0[xX]{hex_digit}+
 IL_OCT_INT      0{digit}+
 IL_HEX_INT      0[xX][0-9a-zA-Z]+
-IL_FLOAT        {digit}*\.{digit}*[eE][+-]?({digit}*[.]?{digit}*)
 ID              [a-zA-Z_]+[0-9a-zA-Z_]*
 RELOP           ">"|"<"|">="|"<="|"=="|"!="
 COMMENTLINE     \/\/[^\n]*
@@ -36,7 +35,6 @@ WS              [ \t]+
 
 %%
 {FLOAT}         {yylval.node = GenerateTypeNode(AFLOAT, yylineno, yytext);return FLOAT;}
-{IL_FLOAT}      {IllegalFloatNumberHandler(yytext, yylineno);yylval.node = GenerateTypeNode(AFLOAT, yylineno, "0.0");return FLOAT;}
 {INT}           {yylval.node = GenerateTypeNode(AINT, yylineno, yytext);return INT;}
 {IL_OCT_INT}    {IllegalOctNumberHandler(yytext, yylineno);yylval.node = GenerateTypeNode(AINT, yylineno, "0");return INT;}
 {IL_HEX_INT}    {IllegalHexNumberHandler(yytext, yylineno);yylval.node = GenerateTypeNode(AINT, yylineno, "0");return INT;}

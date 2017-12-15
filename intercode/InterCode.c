@@ -4,7 +4,7 @@
 #include "ParsingNode.h"
 #include "IC.h"
 
-static int StructSpecifierGenerate(ParsingNode* node);
+
 static int SpecifierGenerate(ParsingNode* node);
 
 static InterCodeListHead* VarDecGenerateInParam(ParsingNode* node);
@@ -39,10 +39,11 @@ ICVarTableHead* RootICVarTable;
 ICFunTableHead* RootICFunTable;
 InterCodeListHead* RootInterCodeList;
 int VIndex, TIndex, LIndex;
-bool ICSwitch;
+bool ICSwitch = true;
 
 static void InitICTable()
 {
+
     VIndex = TIndex = LIndex = 0;
     ICSwitch = true;
 
@@ -54,6 +55,8 @@ static void InitICTable()
 
     RootInterCodeList = (InterCodeListHead*)malloc(sizeof(InterCodeListHead));
     RootInterCodeList->head = NULL;
+
+
 
     GenerateICVarTable(RootSymbolTable);
     GenerateICFunTable(RootSymbolTable);
@@ -138,17 +141,15 @@ static InterCodeListHead* DecListGenerateInFunction(ParsingNode* node, int size)
     return list;
 }
 
-static int StructSpecifierGenerate(ParsingNode* node)
-{
-    assert(skind(node) == AStructSpecifier);
-    assert(0);
-}
 
 static int SpecifierGenerate(ParsingNode* node)
 {
     assert(skind(node) == ASpecifier);
     if(skind(firstchild(node)) == ATYPE)return 4;
-    else return StructSpecifierGenerate(firstchild(node));
+    else {
+        printf("\033[31mCannot translate: Code contains variables or parameters of structure type.\033[0m\n");
+        assert(0);
+    }
 }
 
 static InterCodeListHead* DefGenerateInFunction(ParsingNode* node)
@@ -482,7 +483,7 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
                 int kind = arithmeticConvert(skind(secondchild(node)));
                 InterCodeEntry* ICE;
 
-                if(op1->attr == OICONS && op2->attr == OICONS)
+                if(op1->kind == OICONS && op2->kind == OICONS)
                 {
                     int x = op1->ICons;
                     int y = op2->ICons;
@@ -490,20 +491,20 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
                     Operand* right = NewICOperand(newInt);
                     ICE = NewInterCodeEntryASSIGN(result, right);
                 }
-                else if( ((op1->attr == OICONS && op1->ICons == 1)
-                         || (op2->attr == OICONS && op2->ICons == 1))
+                else if( ((op1->kind == OICONS && op1->ICons == 1)
+                         || (op2->kind == OICONS && op2->ICons == 1))
                         && (kind == IMUL || kind == IDIV) )
                 {
-                    if(op1->attr == OICONS && op1->ICons == 1)
+                    if(op1->kind == OICONS && op1->ICons == 1)
                         ICE = NewInterCodeEntryASSIGN(result, op2);
                     else
                         ICE = NewInterCodeEntryASSIGN(result, op1);
                 }
-                else if( ((op1->attr == OICONS && op1->ICons == 0)
-                          || (op2->attr == OICONS && op2->ICons == 0))
+                else if( ((op1->kind == OICONS && op1->ICons == 0)
+                          || (op2->kind == OICONS && op2->ICons == 0))
                          && (kind == IADD || kind == ISUB) )
                 {
-                    if(op1->attr == OICONS && op1->ICons == 0)
+                    if(op1->kind == OICONS && op1->ICons == 0)
                         ICE = NewInterCodeEntryASSIGN(result, op2);
                     else
                         ICE = NewInterCodeEntryASSIGN(result, op1);
@@ -938,10 +939,14 @@ static void ProgramGenerate(ParsingNode* node)
 
 void InterCodeGenerator()
 {
-    InitICTable();
-
-    if(ICSwitch)
+    if(!ICSwitch)
     {
+        printf("\033[31mCannot translate: Code contains variables or parameters of structure type.\033[0m\n");
+        return;
+    }
+    else
+    {
+        InitICTable();
         printf("print ICVarTable\n");
         CheckElemInICVarTable(RootICVarTable);
         ProgramGenerate(ParsingRoot);

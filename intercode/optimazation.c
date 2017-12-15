@@ -32,7 +32,9 @@ static void RAPairProcess(InterCodeEntry* formerAssign, InterCodeEntry* laterCod
 {
     Operand* left = formerAssign->IC->ASSIGN.left;
     Operand* right = formerAssign->IC->ASSIGN.right;
-    if(laterCode->IC->kind == IADD || laterCode->IC->kind == ISUB || laterCode->IC->kind == IMUL
+    if(laterCode->IC->kind == IADD
+       || laterCode->IC->kind == ISUB
+       || laterCode->IC->kind == IMUL
        || laterCode->IC->kind == IDIV )
     {
         if( OperandEquivalence(laterCode->IC->BINOP.op1, left))
@@ -73,7 +75,9 @@ static void RAPairProcess(InterCodeEntry* formerAssign, InterCodeEntry* laterCod
 
 static bool Used(Operand* left, InterCodeEntry* laterCode)
 {
-    if(laterCode->IC->kind == IADD || laterCode->IC->kind == ISUB || laterCode->IC->kind == IMUL
+    if(laterCode->IC->kind == IADD
+       || laterCode->IC->kind == ISUB
+       || laterCode->IC->kind == IMUL
        || laterCode->IC->kind == IDIV )
     {
         if( OperandOverlap(laterCode->IC->BINOP.op1, left))
@@ -171,7 +175,7 @@ static bool Pollution(InterCodeEntry* formerAssign, InterCodeEntry* laterCode)
     return false;
 }
 
-static void RedundantAssignElimation(InterCodeEntry* formerAssign, InterCodeListHead* list)
+static bool RedundantAssignElimation(InterCodeEntry* formerAssign, InterCodeListHead* list)
 {
     assert(formerAssign->IC->kind == IASSIGN);
     InterCodeEntry* ICEHead = list->head;
@@ -194,11 +198,12 @@ static void RedundantAssignElimation(InterCodeEntry* formerAssign, InterCodeList
 
     while (entry != ICEHead)
     {
-        if(Used(left, entry))return;
+        if(Used(left, entry))return false;
         entry = entry->next;
     }
 
     DeleteInterCodeEntry(formerAssign, list);
+    return true;
 
 }
 
@@ -217,38 +222,119 @@ static void MeaningLessGOTOElimation(InterCodeEntry* formerGOTO, InterCodeListHe
 
 }
 
+
+static bool NaiveBinopMerge(InterCodeEntry* bin, InterCodeListHead* list)
+{
+    assert(bin->IC->kind == IADD || bin->IC->kind == ISUB
+           || bin->IC->kind == IMUL || bin->IC->kind == IDIV);
+
+    int kind = bin->IC->kind;
+    Operand* op1 = bin->IC->BINOP.op1;
+    Operand* op2 = bin->IC->BINOP.op2;
+    Operand* result = bin->IC->BINOP.result;
+    InterCodeEntry* ICE;
+
+    if(op1->kind == OICONS && op2->kind == OICONS)
+    {
+        int x = op1->ICons;
+        int y = op2->ICons;
+        int newInt = ComputeNewInt(kind, x, y);
+        Operand* left = result;
+        Operand* right = NewICOperand(newInt);
+        ICE = NewInterCodeEntryASSIGN(left, right);
+    }
+    else if( ((op1->kind == OICONS && op1->ICons == 1)
+              || (op2->kind == OICONS && op2->ICons == 1))
+             && (kind == IMUL || kind == IDIV) )
+    {
+        if(op1->kind == OICONS && op1->ICons == 1)
+            ICE = NewInterCodeEntryASSIGN(result, op2);
+        else
+            ICE = NewInterCodeEntryASSIGN(result, op1);
+    }
+    else if( ((op1->kind == OICONS && op1->ICons == 0)
+              || (op2->kind == OICONS && op2->ICons == 0))
+             && (kind == IADD || kind == ISUB) )
+    {
+        if(op1->kind == OICONS && op1->ICons == 0)
+            ICE = NewInterCodeEntryASSIGN(result, op2);
+        else
+            ICE = NewInterCodeEntryASSIGN(result, op1);
+    }
+    else return false;
+
+    ReplaceInterCodeEntry(ICE, bin, list);
+    return true;
+
+}
+
+
 void InterCodeOptimazation(InterCodeListHead* list)
 {
     InterCodeEntry* ICEHead = list->head;
     InterCodeEntry* entry = list->head->next;
+    InterCodeEntry* next;
+    bool OptContinue;
 
-    while (entry != ICEHead)
-    {
-        if(entry->IC->kind == IASSIGN && entry->IC->ASSIGN.left->kind == OTEMP
-                && entry->IC->ASSIGN.left->attr == OVALUE
-                && entry->IC->ASSIGN.right->attr == OVALUE)
-            RedundantAssignElimation(entry, list);
+    do{
+        OptContinue = false;
 
-        entry = entry->next;
-    }
+        entry = list->head->next;
+        while (entry != ICEHead)
+        {
+            next = entry->next;
+            if(entry->IC->kind == IASSIGN
+               && entry->IC->ASSIGN.left->kind == OTEMP
+               && entry->IC->ASSIGN.left->attr == OVALUE
+               && entry->IC->ASSIGN.right->attr == OVALUE)
+            {
+                if(RedundantAssignElimation(entry, list))
+                    OptContinue = true;
+                //PrintInterCodeEntry(stdout, entry);
+            }
 
-    entry = list->head->next;
-    while (entry != ICEHead)
-    {
-        if(entry->IC->kind == IASSIGN
-           && OperandEquivalence(entry->IC->ASSIGN.left, entry->IC->ASSIGN.right))
-            DeleteInterCodeEntry(entry, list);
 
-        entry = entry->next;
-    }
+            entry = next;
+        }
 
-    entry = list->head->next;
-    while (entry != ICEHead)
-    {
-        if(entry->IC->kind == IGOTO)
-            MeaningLessGOTOElimation(entry, list);
+        entry = list->head->next;
+        while (entry != ICEHead)
+        {
+            next = entry->next;
+            if(entry->IC->kind == IASSIGN
+               && OperandEquivalence(entry->IC->ASSIGN.left, entry->IC->ASSIGN.right))
+                DeleteInterCodeEntry(entry, list);
 
-        entry = entry->next;
-    }
+            entry = next;
+        }
+
+        entry = list->head->next;
+        while (entry != ICEHead)
+        {
+            next = entry->next;
+            if(entry->IC->kind == IGOTO)
+                MeaningLessGOTOElimation(entry, list);
+
+            entry = next;
+        }
+
+
+        entry = list->head->next;
+        while (entry != ICEHead)
+        {
+            next = entry->next;
+            if(entry->IC->kind == IADD || entry->IC->kind == ISUB
+               || entry->IC->kind == IMUL || entry->IC->kind == IDIV )
+            {
+                if(NaiveBinopMerge(entry, list))
+                    OptContinue = true;
+            }
+            entry = next;
+        }
+
+
+
+    }while (OptContinue);
+
 
 }
