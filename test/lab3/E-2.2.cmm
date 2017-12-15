@@ -1,0 +1,38 @@
+//E-2.2
+//输入
+int print(int array[3], int len) {
+    int i1 = 0;
+    while (i1 < len) {
+        write(array[i1]);
+        i1 = i1 + 1;
+    }
+    return 0;
+}
+
+int InnerP(int array1[3], int array2[3]) {
+    int result = 0;
+    int i = 0, N = 3;
+    while (i < N) {
+        result = result + array1[i] * array2[i];
+        i = i + 1;
+    }
+    return result;
+}
+
+int main() {
+    int p[3], q[3];
+    int k = 0, M = 3;
+    while (k < M) {
+        p[k] = k * k;
+        q[k] = 2 * k + 1;
+        k = k + 1;
+    }
+    print(p, 3);
+    print(q, 3);
+    write(InnerP(p, q));
+    return 0;
+}
+
+//输入:无;输出:0 1 4 1 3 5 23
+//说明:测试对于数组作为函数参数的翻译,是一个对一位数组表示的向量求内积的程序。针
+//对 3.2 分组,其他分组同学需要提示无法翻译且不输出中间代码。

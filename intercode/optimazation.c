@@ -6,9 +6,9 @@
 
 bool OperandEquivalence(Operand* op1, Operand* op2)
 {
+    if(op1 == NULL || op2 == NULL)return false;
     if(!(op1->attr == op2->attr && op1->kind == op2->kind))return false;
     if(op1->kind == OICONS)return op1->ICons == op2->ICons;
-    else if(op1->kind == OFCONS)return op1->FCons == op2->FCons;
     else if(op1->kind == OVAR)return op1->VIndex == op2->VIndex;
     else return op1->TIndex == op2->TIndex;
 
@@ -16,9 +16,9 @@ bool OperandEquivalence(Operand* op1, Operand* op2)
 
 bool OperandOverlap(Operand* op1, Operand* op2)
 {
+    if(op1 == NULL || op2 == NULL)return false;
     if(op1->kind != op2->kind)return false;
     if(op1->kind == OICONS)return op1->ICons == op2->ICons;
-    else if(op1->kind == OFCONS)return op1->FCons == op2->FCons;
     else if(op1->kind == OVAR)return op1->VIndex == op2->VIndex;
     else return op1->TIndex == op2->TIndex;
 }
@@ -202,6 +202,21 @@ static void RedundantAssignElimation(InterCodeEntry* formerAssign, InterCodeList
 
 }
 
+static void MeaningLessGOTOElimation(InterCodeEntry* formerGOTO, InterCodeListHead* list)
+{
+    assert(formerGOTO->IC->kind == IGOTO);
+    InterCodeEntry* ICEHead = list->head;
+    InterCodeEntry* ICETail = ICEHead->prev;
+    InterCodeEntry* next = formerGOTO->next;
+    if(formerGOTO == ICETail)return;
+    else
+    {
+        if(next->IC->kind == ILABEL && next->IC->LABELDEC.LIndex == formerGOTO->IC->GT.LIndex)
+            DeleteInterCodeEntry(formerGOTO, list);
+    }
+
+}
+
 void InterCodeOptimazation(InterCodeListHead* list)
 {
     InterCodeEntry* ICEHead = list->head;
@@ -212,9 +227,7 @@ void InterCodeOptimazation(InterCodeListHead* list)
         if(entry->IC->kind == IASSIGN && entry->IC->ASSIGN.left->kind == OTEMP
                 && entry->IC->ASSIGN.left->attr == OVALUE
                 && entry->IC->ASSIGN.right->attr == OVALUE)
-        {
             RedundantAssignElimation(entry, list);
-        }
 
         entry = entry->next;
     }
@@ -225,6 +238,15 @@ void InterCodeOptimazation(InterCodeListHead* list)
         if(entry->IC->kind == IASSIGN
            && OperandEquivalence(entry->IC->ASSIGN.left, entry->IC->ASSIGN.right))
             DeleteInterCodeEntry(entry, list);
+
+        entry = entry->next;
+    }
+
+    entry = list->head->next;
+    while (entry != ICEHead)
+    {
+        if(entry->IC->kind == IGOTO)
+            MeaningLessGOTOElimation(entry, list);
 
         entry = entry->next;
     }

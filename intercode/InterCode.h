@@ -18,7 +18,7 @@ typedef struct ICFunTableHead_ ICFunTableHead;
 typedef struct InterCodeListHead_ InterCodeListHead;
 typedef struct ArgListHead_ ArgListHead;
 
-enum { OVAR, OTEMP, OICONS, OFCONS }; 	//kind of Operand
+enum { OVAR, OTEMP, OICONS }; 	//kind of Operand
 enum { OVALUE, OADDR, OREF };			//attr of Operand
 enum { 	IASSIGN, IADD, ISUB, IMUL, IDIV, ILABEL, IGOTO, IIFGOTO,
 		IRETURN, IDEC, IARG, ICALL, IPARAM, IREAD, IWRITE, IFUNCTION }; //kind of InterCode
@@ -79,7 +79,6 @@ struct Operand_ {
         int VIndex;
         int TIndex;
         int ICons;
-		float FCons;
 	};
 
 };

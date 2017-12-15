@@ -1,0 +1,49 @@
+//A-2
+//输入
+int main() {
+    int month, year;
+    year = read();
+    month = read();
+    if (year == (year / 100 * 100)) {
+        if (year == (year / 400 * 400)) {
+            if (month == 2) {
+                write(29);
+            } else if (month == (month / 2 * 2)) {
+                write(30);
+            } else
+                write(31);
+        } else {
+            if (month == 2) {
+                write(28);
+            } else if (month == (month / 2 * 2)) {
+                write(30);
+            } else {
+                write(31);
+            }
+        }
+    } else if (year == (year / 4 * 4)) {
+        if (month == 2) {
+            write(29);
+        } else if (month == (month / 2 * 2)) {
+            write(30);
+        } else {
+            write(31);
+        }
+    } else {
+        if (month == 2) {
+            write(28);
+        } else if (month == (month / 2 * 2)) {
+            write(30);
+        } else {
+            write(31);
+        }
+    }
+    return 0;
+}
+
+//输入:1998 3;输出:31
+//输入:1999 10;输出:30
+//输入:2000 2;输出:29
+//输入:2100 2;输出:28
+//说明:这个测试用例主要针对分支语句进行测试,是一个输入年与月输出当月所包含的天
+//数的程序。注意,程序每次输入以空格隔开表示,每次输入一个数(下同)。

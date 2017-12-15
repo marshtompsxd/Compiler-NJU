@@ -25,8 +25,6 @@ extern Operand* NewTOperand(int attr);
 
 extern Operand* NewICOperand(int ICons);
 
-extern Operand* NewFCOperand(float FCons);
-
 extern Operand* GetLvalueIDOperand(ParsingNode* node);
 
 extern int GetAccumulatedSizeReverse(ICVarEntry* VE, int rdim);
@@ -42,6 +40,8 @@ extern void InsertEntryIntoInterCodeList(InterCodeEntry* entry, InterCodeListHea
 extern void MergeInterCodeList(InterCodeListHead* sublist, InterCodeListHead* list);
 
 extern int arithmeticConvert(int arithmetic);
+
+extern int ComputeNewInt(int kind, int x, int y);
 
 extern InterCodeEntry* NewInterCodeEntryBINOP(int kind, Operand* result, Operand* op1, Operand* op2);
 

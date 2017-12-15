@@ -228,15 +228,6 @@ Operand* NewICOperand(int ICons)
     return OP;
 }
 
-Operand* NewFCOperand(float FCons)
-{
-    Operand* OP = (Operand*)malloc(sizeof(Operand));
-    OP->kind = OFCONS;
-    OP->attr = OVALUE;
-    OP->FCons = FCons;
-    return OP;
-}
-
 int arithmeticConvert(int arithmetic)
 {
     switch (arithmetic)
@@ -246,6 +237,18 @@ int arithmeticConvert(int arithmetic)
         case ASTAR: return IMUL;
         case ADIV: return IDIV;
         default: assert(0);
+    }
+}
+
+int ComputeNewInt(int kind, int x, int y)
+{
+    switch (kind)
+    {
+        case IADD: return x + y;
+        case ISUB: return x - y;
+        case ASTAR: return x * y;
+        case ADIV: return x / y;
+        default:assert(0);
     }
 }
 
@@ -438,6 +441,7 @@ InterCodeEntry* NewInterCodeEntryCALL(Operand* ret, char* funName)
 
     IC->CALL.ret = (Operand*)malloc(sizeof(Operand));
     memcpy(IC->CALL.ret, ret, sizeof(Operand));
+
     IC->CALL.funName = (char*)malloc(sizeof(strlen(funName)));
     strcpy(IC->CALL.funName, funName);
 
@@ -587,10 +591,6 @@ static void PrintOperand(FILE *stream, Operand* op, bool flag)
     else if(op->kind == OICONS)
     {
         fprintf(stream, "#%d", op->ICons);
-    }
-    else if(op->kind == OFCONS)
-    {
-        fprintf(stream, "#%f", op->FCons);
     }
     else assert(0);
 }

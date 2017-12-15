@@ -405,7 +405,8 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
         }
         else if(skind(firstchild(node)) == AFLOAT)
         {
-            right = NewFCOperand(firstchild(node)->float_value);
+            //right = NewFCOperand(firstchild(node)->float_value);
+            assert(0);
         }
         else assert(0);
 
@@ -479,7 +480,40 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
             if(result!= NULL)
             {
                 int kind = arithmeticConvert(skind(secondchild(node)));
-                InterCodeEntry* ICE = NewInterCodeEntryBINOP(kind, result, op1, op2);
+                InterCodeEntry* ICE;
+
+                if(op1->attr == OICONS && op2->attr == OICONS)
+                {
+                    int x = op1->ICons;
+                    int y = op2->ICons;
+                    int newInt = ComputeNewInt(kind, x, y);
+                    Operand* right = NewICOperand(newInt);
+                    ICE = NewInterCodeEntryASSIGN(result, right);
+                }
+                else if( ((op1->attr == OICONS && op1->ICons == 1)
+                         || (op2->attr == OICONS && op2->ICons == 1))
+                        && (kind == IMUL || kind == IDIV) )
+                {
+                    if(op1->attr == OICONS && op1->ICons == 1)
+                        ICE = NewInterCodeEntryASSIGN(result, op2);
+                    else
+                        ICE = NewInterCodeEntryASSIGN(result, op1);
+                }
+                else if( ((op1->attr == OICONS && op1->ICons == 0)
+                          || (op2->attr == OICONS && op2->ICons == 0))
+                         && (kind == IADD || kind == ISUB) )
+                {
+                    if(op1->attr == OICONS && op1->ICons == 0)
+                        ICE = NewInterCodeEntryASSIGN(result, op2);
+                    else
+                        ICE = NewInterCodeEntryASSIGN(result, op1);
+                }
+                else
+                {
+                    ICE = NewInterCodeEntryBINOP(kind, result, op1, op2);
+                }
+
+
                 InsertEntryIntoInterCodeList(ICE, list);
             }
 
@@ -557,6 +591,10 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
             }
             else
             {
+                if(result == NULL)
+                {
+                    result = NewTOperand(OVALUE);
+                }
                 InterCodeEntry* ICE = NewInterCodeEntryCALL(result, firstchild(node)->IDname);
                 InsertEntryIntoInterCodeList(ICE, list);
             }
@@ -590,6 +628,10 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
                 {
                     InterCodeEntry* AICE = NewInterCodeEntryARG(AE->arg);
                     InsertEntryIntoInterCodeList(AICE, list);
+                }
+                if(result == NULL)
+                {
+                    result = NewTOperand(OVALUE);
                 }
                 InterCodeEntry* ICE = NewInterCodeEntryCALL(result, firstchild(node)->IDname);
                 InsertEntryIntoInterCodeList(ICE, list);
