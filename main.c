@@ -18,29 +18,24 @@ static void ParsingFinalPhase(char* filename)
 		SyntaxOutput(ParsingRoot);
 		printf("\033[32mParsing %s over(with no error).\033[0m\n", filename);
 	}
-	return;
+}
+
+static void SwitchInit()
+{
+    ParsingSwitch = SemanticSwitch = ICSwitch = true;
 }
 
 int main(int argc, char** argv)
 {
 	int i;
-	if (argc <= 1) return 1;
-	if (argc < 2)
+	if (argc <= 1)
 	{
-		yyparse();
-		if(!ParsingSwitch)
-		{
-			printf("\033[31mParsing over(with syntax or lexical error).\033[0m\n");
-		}
-		else
-		{
-			SyntaxOutput(ParsingRoot);
-			printf("\033[32mParsing over(with no error).\033[0m\n");
-		}
-		return 0;
+		printf("Please enter your c-minusminus file name.\n");
+        return 1;
 	}
 	for (i = 1; i < argc; ++i)
 	{
+        SwitchInit();
 		
 		FILE* f = fopen(argv[i], "r");
 		if (!f)
@@ -54,7 +49,7 @@ int main(int argc, char** argv)
 		yydebug = 1;
 #endif
 		yylineno = 1;
-		ParsingSwitch = true;
+		//ParsingSwitch = true;
 
 		// begin lexical and syntax analysis
 		printf("Parsing %s begin...\n", argv[i]);
@@ -73,13 +68,22 @@ int main(int argc, char** argv)
 			else
 				printf("\033[31mSemantic analysis %s over(with semantic error).\033[0m\n", argv[i]);
 		}
-		printf("\n");
 
         if(SemanticSwitch)
         {
             printf("InterCode generation of %s begin...\n", argv[i]);
-            InterCodeGenerator();
+            char* codefile = (char*)malloc(strlen(argv[i]) + 3);
+            strcpy(codefile, argv[i]);
+            strcat(codefile, ".ir");
+            InterCodeGenerator(codefile);
+            if(ICSwitch)
+                printf("\033[32mIntermediate code generation of %s over(with no error).\033[0m\n", argv[i]);
+            else
+                printf("\033[31mIntermediate code generation of %s over(with error).\033[0m\n", argv[i]);
         }
+
+        //PostorderFreeParsingTree(ParsingRoot);
+        printf("\n");
 		
 	}
 

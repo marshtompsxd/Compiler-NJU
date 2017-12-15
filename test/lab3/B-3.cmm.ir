@@ -1,0 +1,89 @@
+FUNCTION squaRever : 
+PARAM v1
+v2 := #0
+DEC v3 12
+v4 := #0
+t5 := &v3
+t3 := t5
+t8 := v1 / #100
+*t3 := t8
+t13 := &v3
+t15 := t13 + #4
+t11 := t15
+t17 := v1 / #10
+t25 := &v3
+t23 := t25
+t22 := *t23
+t18 := #10 * t22
+t16 := t17 - t18
+*t11 := t16
+t30 := &v3
+t32 := t30 + #8
+t28 := t32
+t42 := &v3
+t40 := t42
+t39 := *t40
+t37 := #100 * t39
+t34 := v1 - t37
+t49 := &v3
+t51 := t49 + #4
+t47 := t51
+t46 := *t47
+t35 := #10 * t46
+t33 := t34 - t35
+*t28 := t33
+t56 := &v3
+t54 := t56
+t52 := *t54
+t61 := &v3
+t63 := t61 + #8
+t59 := t63
+t53 := *t59
+IF t52 != t53 GOTO L1
+GOTO L2
+LABEL L1 :
+v2 := #0
+GOTO L3
+LABEL L2 :
+LABEL L4 :
+IF v4 < #12 GOTO L5
+GOTO L6
+LABEL L5 :
+t69 := v4 * v4
+t67 := t69 - v1
+IF t67 == #0 GOTO L7
+GOTO L8
+LABEL L7 :
+v2 := #1
+LABEL L8 :
+t74 := v4 + #1
+v4 := t74
+GOTO L4
+LABEL L6 :
+LABEL L3 :
+IF v2 == #1 GOTO L9
+GOTO L10
+LABEL L9 :
+RETURN #1
+GOTO L11
+LABEL L10 :
+RETURN #0
+LABEL L11 :
+FUNCTION main : 
+v5 := #100
+LABEL L12 :
+IF v5 < #150 GOTO L13
+GOTO L14
+LABEL L13 :
+ARG v5
+t84 := CALL squaRever
+IF t84 == #1 GOTO L15
+GOTO L16
+LABEL L15 :
+WRITE v5
+LABEL L16 :
+t86 := v5 + #1
+v5 := t86
+GOTO L12
+LABEL L14 :
+RETURN #0

@@ -1,0 +1,75 @@
+FUNCTION gcd1 : 
+PARAM v1
+PARAM v2
+t4 := v1 / v2
+t3 := t4 * v2
+t1 := v1 - t3
+v4 := t1
+LABEL L1 :
+IF v4 != #0 GOTO L2
+GOTO L3
+LABEL L2 :
+v1 := v2
+v2 := v4
+t15 := v1 / v2
+t14 := t15 * v2
+t12 := v1 - t14
+v4 := t12
+GOTO L1
+LABEL L3 :
+v3 := v2
+RETURN v3
+FUNCTION gcd2 : 
+PARAM v5
+PARAM v6
+v7 := #0
+IF v5 > v6 GOTO L4
+GOTO L5
+LABEL L4 :
+t27 := v5 / v6
+t26 := t27 * v6
+t24 := v5 - t26
+v7 := t24
+IF v7 == #0 GOTO L7
+GOTO L8
+LABEL L7 :
+RETURN v6
+GOTO L9
+LABEL L8 :
+ARG v7
+ARG v6
+t34 := CALL gcd2
+RETURN t34
+LABEL L9 :
+GOTO L6
+LABEL L5 :
+t38 := v6 / v5
+t37 := t38 * v5
+t35 := v6 - t37
+v7 := t35
+IF v7 == #0 GOTO L10
+GOTO L11
+LABEL L10 :
+RETURN v5
+GOTO L12
+LABEL L11 :
+ARG v7
+ARG v5
+t45 := CALL gcd2
+RETURN t45
+LABEL L12 :
+LABEL L6 :
+FUNCTION main : 
+READ t46
+v8 := t46
+READ t47
+v9 := t47
+ARG v9
+ARG v8
+t48 := CALL gcd1
+WRITE t48
+ARG v9
+ARG v8
+t49 := CALL gcd2
+WRITE t49
+RETURN #0

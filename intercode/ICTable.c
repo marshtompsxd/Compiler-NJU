@@ -1,16 +1,16 @@
 //
 // Created by sunxudong on 12/11/17.
 //
-#include <ParsingNode.h>
-#include <symbol_table.h>
+#include "../lexical_syntax/ParsingNode.h"
+#include "../semantic/symbol_table.h"
 #include "../common.h"
 #include "../semantic/list.h"
 #include "../semantic/check.h"
 #include "InterCode.h"
 #include "IC.h"
-#include "optimazation.h"
+#include "optimization.h"
 
-static char* ICFileName = "IC.ir";
+//static char* ICFileName = "IC.ir";
 static char* SICFileName = "SIC.ir";
 
 void CheckElemInICVarTable(ICVarTableHead* table)
@@ -702,19 +702,41 @@ void PrintInterCodeEntry(FILE *stream, InterCodeEntry* ICE)
     fprintf(stream, "\n");
 }
 
-void PrintInterCodeList(InterCodeListHead* list)
+void PrintInterCodeList(InterCodeListHead* list, char* filename)
 {
     InterCodeEntry* ICE;
-    FILE* fp=fopen(ICFileName, "w");
+    FILE* fp;
+
+    /*
+    if(filename == NULL)
+    {
+        fp=fopen(ICFileName, "w");
+    }
+    else
+    {
+        fp = fopen(filename, "w");
+    }
+
     PrintInterCodeEntry(fp, list->head);
     for(ICE = list->head->next; ICE!=list->head; ICE = ICE->next)
     {
         PrintInterCodeEntry(fp, ICE);
     }
     fclose(fp);
+     */
 
-    fp=fopen(SICFileName, "w");
-    InterCodeOptimazation(list);
+    /* after optimization */
+    if(filename == NULL)
+    {
+        fp=fopen(SICFileName, "w");
+    }
+    else
+    {
+        fp = fopen(filename, "w");
+    }
+
+
+    InterCodeOptimization(list);
     PrintInterCodeEntry(fp, list->head);
     for(ICE = list->head->next; ICE!=list->head; ICE = ICE->next)
     {
@@ -722,8 +744,3 @@ void PrintInterCodeList(InterCodeListHead* list)
     }
     fclose(fp);
 }
-
-
-
-
-

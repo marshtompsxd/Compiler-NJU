@@ -5,7 +5,7 @@
 #define COMPILER_ICTABLE_H
 
 #include "InterCode.h"
-#include "ParsingNode.h"
+#include "../lexical_syntax/ParsingNode.h"
 
 extern void GenerateICVarTable(SymbolTableHead* table);
 
@@ -75,7 +75,7 @@ extern void DeleteInterCodeEntry(InterCodeEntry* ICE, InterCodeListHead* list);
 
 extern void ReplaceInterCodeEntry(InterCodeEntry* new, InterCodeEntry* old, InterCodeListHead* list);
 
-extern void PrintInterCodeList(InterCodeListHead* list);
+extern void PrintInterCodeList(InterCodeListHead* list, char* filename);
 
 extern void PrintInterCodeEntry(FILE *stream, InterCodeEntry* ICE);
 

@@ -11,28 +11,17 @@ CFLAGS = -g \
 
 
 
-run: syntax lexical parser
-	./parser test/samples/1.cmm
+run: syntax lexical compiler
+	./compiler test/1.cmm
 
-test: syntax lexical parser
-	cd test/ && ../parser `ls *.cmm | sort -n`
+test: syntax lexical compiler
+	cd test/ && ../compiler `ls *.cmm | sort -n`
 
-ta: syntax lexical parser
-	cd test/p2/A && ../../../parser `ls *.cmm | sort -n`
+lab: syntax lexical compiler
+	cd test/lab3/ && ../../compiler `ls *.cmm | sort -n`
 
-tb: syntax lexical parser
-	cd test/p2/B && ../../../parser `ls *.cmm | sort -n`
 
-tc: syntax lexical parser
-	cd test/p2/C && ../../../parser `ls *.cmm | sort -n`
-
-td: syntax lexical parser
-	cd test/p2/D && ../../../parser `ls *.cmm | sort -n`
-
-te: syntax lexical parser
-	cd test/p2/E && ../../../parser `ls *.cmm | sort -n`
-
-compile: clean syntax lexical parser
+compile: clean syntax lexical compiler
 
 debug: clean debug_compile
 
@@ -46,8 +35,9 @@ lexical:
 syntax:
 	cd lexical_syntax && bison -d -v syntax.y
 
-parser:
-	gcc main.c lexical_syntax/syntax.tab.c lexical_syntax/lex.yy.c lexical_syntax/ParsingNode.c lexical_syntax/text.c semantic/semantic.c ${CFLAGS} -lfl -ly -o parser
+compiler:
+	gcc main.c lexical_syntax/syntax.tab.c lexical_syntax/lex.yy.c lexical_syntax/ParsingNode.c lexical_syntax/text.c \
+	semantic/semantic.c semantic/list.c semantic/check.c intercode/ICTable.c intercode/InterCode.c intercode/optimization.c ${CFLAGS} -lfl -ly -o compiler
 
 clean:
-	rm -f parser
+	rm -f compiler

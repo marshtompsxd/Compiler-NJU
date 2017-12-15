@@ -1,0 +1,246 @@
+FUNCTION display : 
+PARAM v1
+DEC v2 64
+v3 := #0
+v4 := #0
+LABEL L1 :
+IF v3 < #4 GOTO L2
+GOTO L3
+LABEL L2 :
+v4 := #0
+LABEL L4 :
+IF v4 < #4 GOTO L5
+GOTO L6
+LABEL L5 :
+t14 := &v2
+t15 := v3 * #16
+t16 := t14 + t15
+t11 := v4 * #4
+t12 := t16 + t11
+t8 := t12
+t23 := v3 * #4
+t19 := t23 + v4
+t21 := t19 * #4
+t22 := v1 + t21
+t18 := t22
+t17 := *t18
+*t8 := t17
+t27 := v4 + #1
+v4 := t27
+GOTO L4
+LABEL L6 :
+t30 := v3 + #1
+v3 := t30
+GOTO L1
+LABEL L3 :
+v3 := #0
+v4 := #0
+LABEL L7 :
+IF v3 < #4 GOTO L8
+GOTO L9
+LABEL L8 :
+v4 := #0
+LABEL L10 :
+IF v4 < #4 GOTO L11
+GOTO L12
+LABEL L11 :
+t48 := &v2
+t49 := v3 * #16
+t50 := t48 + t49
+t45 := v4 * #4
+t46 := t50 + t45
+t42 := t46
+t40 := *t42
+IF t40 == #1 GOTO L13
+GOTO L14
+LABEL L13 :
+WRITE v4
+LABEL L14 :
+t51 := v4 + #1
+v4 := t51
+GOTO L10
+LABEL L12 :
+t54 := v3 + #1
+v3 := t54
+GOTO L7
+LABEL L9 :
+RETURN #0
+FUNCTION PutQueen : 
+PARAM v5
+PARAM v6
+PARAM v7
+PARAM v8
+PARAM v9
+PARAM v10
+v11 := #0
+LABEL L15 :
+IF v11 < #4 GOTO L16
+GOTO L17
+LABEL L16 :
+t65 := v11 * #4
+t66 := v6 + t65
+t62 := t66
+t61 := *t62
+IF t61 != #0 GOTO L21
+GOTO L19
+LABEL L21 :
+t69 := v9 + v11
+t71 := t69 * #4
+t72 := v7 + t71
+t68 := t72
+t67 := *t68
+IF t67 != #0 GOTO L20
+GOTO L19
+LABEL L20 :
+t81 := v9 - v11
+t77 := t81 + #3
+t79 := t77 * #4
+t80 := v8 + t79
+t76 := t80
+t75 := *t76
+IF t75 != #0 GOTO L18
+GOTO L19
+LABEL L18 :
+t90 := v9 * #4
+t86 := t90 + v11
+t88 := t86 * #4
+t89 := v5 + t88
+t85 := t89
+t94 := #1
+*t85 := t94
+t98 := v11 * #4
+t99 := v6 + t98
+t95 := t99
+t100 := #0
+*t95 := t100
+t102 := v9 + v11
+t104 := t102 * #4
+t105 := v7 + t104
+t101 := t105
+t108 := #0
+*t101 := t108
+t114 := v9 - v11
+t110 := t114 + #3
+t112 := t110 * #4
+t113 := v8 + t112
+t109 := t113
+t118 := #0
+*t109 := t118
+IF v9 == #3 GOTO L22
+GOTO L23
+LABEL L22 :
+t121 := v10 + #1
+v10 := t121
+ARG v5
+t124 := CALL display
+GOTO L24
+LABEL L23 :
+t126 := v9 + #1
+ARG v10
+ARG t126
+ARG v8
+ARG v7
+ARG v6
+ARG v5
+t125 := CALL PutQueen
+v10 := t125
+LABEL L24 :
+t134 := v9 * #4
+t130 := t134 + v11
+t132 := t130 * #4
+t133 := v5 + t132
+t129 := t133
+t138 := #0
+*t129 := t138
+t140 := v9 + v11
+t142 := t140 * #4
+t143 := v7 + t142
+t139 := t143
+t146 := #1
+*t139 := t146
+t152 := v9 - v11
+t148 := t152 + #3
+t150 := t148 * #4
+t151 := v8 + t150
+t147 := t151
+t156 := #1
+*t147 := t156
+t160 := v11 * #4
+t161 := v6 + t160
+t157 := t161
+t162 := #1
+*t157 := t162
+LABEL L19 :
+t163 := v11 + #1
+v11 := t163
+GOTO L15
+LABEL L17 :
+RETURN v10
+FUNCTION main : 
+DEC v14 64
+DEC v15 16
+DEC v16 28
+DEC v17 28
+v18 := #0
+v19 := #0
+LABEL L25 :
+IF v19 < #16 GOTO L26
+GOTO L27
+LABEL L26 :
+t173 := &v14
+t174 := v19 * #4
+t175 := t173 + t174
+t171 := t175
+t176 := #0
+*t171 := t176
+t177 := v19 + #1
+v19 := t177
+GOTO L25
+LABEL L27 :
+v19 := #0
+LABEL L28 :
+IF v19 < #4 GOTO L29
+GOTO L30
+LABEL L29 :
+t185 := &v15
+t186 := v19 * #4
+t187 := t185 + t186
+t183 := t187
+t188 := #1
+*t183 := t188
+t189 := v19 + #1
+v19 := t189
+GOTO L28
+LABEL L30 :
+v19 := #0
+LABEL L31 :
+IF v19 < #7 GOTO L32
+GOTO L33
+LABEL L32 :
+t197 := &v16
+t198 := v19 * #4
+t199 := t197 + t198
+t195 := t199
+t200 := #1
+*t195 := t200
+t203 := &v17
+t204 := v19 * #4
+t205 := t203 + t204
+t201 := t205
+t206 := #1
+*t201 := t206
+t207 := v19 + #1
+v19 := t207
+GOTO L31
+LABEL L33 :
+t211 := #0
+ARG v18
+ARG t211
+ARG &v17
+ARG &v16
+ARG &v15
+ARG &v14
+t210 := CALL PutQueen
+v18 := t210
+WRITE v18
+RETURN #0

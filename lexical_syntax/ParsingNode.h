@@ -71,6 +71,8 @@ extern void SetDepthOfParsingTree(ParsingNode* node, int depth);
 
 extern void PreorderPrintParsingTree(ParsingNode* node);
 
+extern void PostorderFreeParsingTree(ParsingNode* node);
+
 extern void SyntaxOutput(ParsingNode* node);
 
 #endif 

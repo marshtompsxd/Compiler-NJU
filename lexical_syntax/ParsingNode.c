@@ -247,7 +247,6 @@ void SetDepthOfParsingTree(ParsingNode* node, int depth)
 		SetDepthOfParsingTree(child, depth+1);
 		child = child->nextsibiling;
 	}
-	return;
 }
 
 static void PrintSpace(ParsingNode* node)
@@ -278,7 +277,6 @@ static void PrintParsingNode(ParsingNode* node)
 			printf("%s: %f\n",symbolsTable[node->SymbolIndex], node->float_value );
 		else printf("%s\n",symbolsTable[node->SymbolIndex] );
 	}
-	return;
 }
 
 void PreorderPrintParsingTree(ParsingNode* node)
@@ -292,11 +290,33 @@ void PreorderPrintParsingTree(ParsingNode* node)
 		PreorderPrintParsingTree(child);
 		child = child->nextsibiling;
 	}
-	return;
+}
+
+void PostorderFreeParsingTree(ParsingNode* node)
+{
+    if(!ParsingSwitch)return;
+    if(node->kind == Terminal || node->kind == Dummy)
+    {
+        free(node->IDname);
+        free(node);
+    }
+    else
+    {
+        ParsingNode* child = node->firstchild;
+        int i;
+        for(i=0;i<node->childrenNum;i++)
+        {
+            PostorderFreeParsingTree(child);
+            child = child->nextsibiling;
+        }
+        free(node->IDname);
+        free(node);
+    }
+
 }
 
 void SyntaxOutput(ParsingNode* node)
 {
 	SetDepthOfParsingTree(node, 0);
-	PreorderPrintParsingTree(node);
+	//PreorderPrintParsingTree(node);
 }

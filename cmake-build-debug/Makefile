@@ -177,32 +177,32 @@ intercode/InterCode.c.s:
 	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/InterCode.c.s
 .PHONY : intercode/InterCode.c.s
 
-intercode/optimazation.o: intercode/optimazation.c.o
+intercode/optimization.o: intercode/optimization.c.o
 
-.PHONY : intercode/optimazation.o
+.PHONY : intercode/optimization.o
 
 # target to build an object file
-intercode/optimazation.c.o:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/optimazation.c.o
-.PHONY : intercode/optimazation.c.o
+intercode/optimization.c.o:
+	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/optimization.c.o
+.PHONY : intercode/optimization.c.o
 
-intercode/optimazation.i: intercode/optimazation.c.i
+intercode/optimization.i: intercode/optimization.c.i
 
-.PHONY : intercode/optimazation.i
+.PHONY : intercode/optimization.i
 
 # target to preprocess a source file
-intercode/optimazation.c.i:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/optimazation.c.i
-.PHONY : intercode/optimazation.c.i
+intercode/optimization.c.i:
+	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/optimization.c.i
+.PHONY : intercode/optimization.c.i
 
-intercode/optimazation.s: intercode/optimazation.c.s
+intercode/optimization.s: intercode/optimization.c.s
 
-.PHONY : intercode/optimazation.s
+.PHONY : intercode/optimization.s
 
 # target to generate assembly for a file
-intercode/optimazation.c.s:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/optimazation.c.s
-.PHONY : intercode/optimazation.c.s
+intercode/optimization.c.s:
+	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/optimization.c.s
+.PHONY : intercode/optimization.c.s
 
 lex.yy.o: lex.yy.c.o
 
@@ -435,9 +435,9 @@ help:
 	@echo "... intercode/InterCode.o"
 	@echo "... intercode/InterCode.i"
 	@echo "... intercode/InterCode.s"
-	@echo "... intercode/optimazation.o"
-	@echo "... intercode/optimazation.i"
-	@echo "... intercode/optimazation.s"
+	@echo "... intercode/optimization.o"
+	@echo "... intercode/optimization.i"
+	@echo "... intercode/optimization.s"
 	@echo "... lex.yy.o"
 	@echo "... lex.yy.i"
 	@echo "... lex.yy.s"

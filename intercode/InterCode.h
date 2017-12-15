@@ -2,7 +2,7 @@
 #define  __INTERCODE__
 
 #include "../common.h"
-#include "symbol_table.h"
+#include "../semantic/symbol_table.h"
 
 typedef struct Operand_ Operand;
 typedef struct InterCode_ InterCode;

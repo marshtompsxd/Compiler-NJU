@@ -20,10 +20,6 @@ stdlib.h
 ../common.h
 ../common.h
 
-../semantic/symbol_table.h
-../common.h
-../common.h
-
 /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/lex.yy.c
 stdio.h
 -
@@ -95,10 +91,10 @@ stdlib.h
 /home/sunxudong/CLionProjects/cproject3/intercode/IC.h
 
 /home/sunxudong/CLionProjects/cproject3/intercode/ICTable.c
-ParsingNode.h
--
-symbol_table.h
--
+../lexical_syntax/ParsingNode.h
+/home/sunxudong/CLionProjects/cproject3/lexical_syntax/ParsingNode.h
+../semantic/symbol_table.h
+/home/sunxudong/CLionProjects/cproject3/semantic/symbol_table.h
 ../common.h
 /home/sunxudong/CLionProjects/cproject3/common.h
 ../semantic/list.h
@@ -109,14 +105,14 @@ InterCode.h
 /home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h
 IC.h
 /home/sunxudong/CLionProjects/cproject3/intercode/IC.h
-optimazation.h
-/home/sunxudong/CLionProjects/cproject3/intercode/optimazation.h
+optimization.h
+/home/sunxudong/CLionProjects/cproject3/intercode/optimization.h
 
 /home/sunxudong/CLionProjects/cproject3/intercode/ICTable.h
 InterCode.h
 /home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h
-ParsingNode.h
-/home/sunxudong/CLionProjects/cproject3/intercode/ParsingNode.h
+../lexical_syntax/ParsingNode.h
+/home/sunxudong/CLionProjects/cproject3/lexical_syntax/ParsingNode.h
 
 /home/sunxudong/CLionProjects/cproject3/intercode/InterCode.c
 InterCode.h
@@ -125,24 +121,24 @@ InterCode.h
 /home/sunxudong/CLionProjects/cproject3/common.h
 ICTable.h
 /home/sunxudong/CLionProjects/cproject3/intercode/ICTable.h
-ParsingNode.h
-/home/sunxudong/CLionProjects/cproject3/intercode/ParsingNode.h
+../lexical_syntax/ParsingNode.h
+/home/sunxudong/CLionProjects/cproject3/lexical_syntax/ParsingNode.h
 IC.h
 /home/sunxudong/CLionProjects/cproject3/intercode/IC.h
 
 /home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h
 ../common.h
 /home/sunxudong/CLionProjects/cproject3/common.h
-symbol_table.h
-/home/sunxudong/CLionProjects/cproject3/intercode/symbol_table.h
+../semantic/symbol_table.h
+/home/sunxudong/CLionProjects/cproject3/semantic/symbol_table.h
 
-/home/sunxudong/CLionProjects/cproject3/intercode/optimazation.c
-optimazation.h
-/home/sunxudong/CLionProjects/cproject3/intercode/optimazation.h
+/home/sunxudong/CLionProjects/cproject3/intercode/optimization.c
+optimization.h
+/home/sunxudong/CLionProjects/cproject3/intercode/optimization.h
 InterCode.h
 /home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h
 
-/home/sunxudong/CLionProjects/cproject3/intercode/optimazation.h
+/home/sunxudong/CLionProjects/cproject3/intercode/optimization.h
 ICTable.h
 /home/sunxudong/CLionProjects/cproject3/intercode/ICTable.h
 InterCode.h

@@ -12,20 +12,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e2c9a04-a95a-4b73-bbde-7715ce90317e" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/test/test.cmm" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/IC.ir" afterPath="$PROJECT_DIR$/IC.ir" />
-      <change beforePath="$PROJECT_DIR$/SIC.ir" afterPath="$PROJECT_DIR$/SIC.ir" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/C.includecache" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/C.includecache" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/DependInfo.cmake" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/build.make" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/cmake_clean.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/cmake_clean.cmake" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/depend.internal" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/depend.internal" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/depend.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/depend.make" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/ICTable.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/ICTable.c.o" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/InterCode.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/InterCode.c.o" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/optimazation.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/optimazation.c.o" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/optimazation.c.o" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/lex.yy.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/lex.yy.c.o" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.o" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/link.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/link.txt" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/main.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/main.c.o" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/semantic/check.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/semantic/check.c.o" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/semantic/semantic.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/semantic/semantic.c.o" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Compiler.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/Compiler.cbp" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/cproject3" afterPath="$PROJECT_DIR$/cmake-build-debug/cproject3" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/lex.yy.c" afterPath="$PROJECT_DIR$/cmake-build-debug/lex.yy.c" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/lex.yy.h" afterPath="$PROJECT_DIR$/cmake-build-debug/lex.yy.h" />
+      <change beforePath="$PROJECT_DIR$/intercode/IC.h" afterPath="$PROJECT_DIR$/intercode/IC.h" />
       <change beforePath="$PROJECT_DIR$/intercode/ICTable.c" afterPath="$PROJECT_DIR$/intercode/ICTable.c" />
       <change beforePath="$PROJECT_DIR$/intercode/ICTable.h" afterPath="$PROJECT_DIR$/intercode/ICTable.h" />
       <change beforePath="$PROJECT_DIR$/intercode/InterCode.c" afterPath="$PROJECT_DIR$/intercode/InterCode.c" />
-      <change beforePath="$PROJECT_DIR$/intercode/optimazation.c" afterPath="$PROJECT_DIR$/intercode/optimazation.c" />
+      <change beforePath="$PROJECT_DIR$/intercode/InterCode.h" afterPath="$PROJECT_DIR$/intercode/InterCode.h" />
+      <change beforePath="$PROJECT_DIR$/intercode/optimazation.c" afterPath="$PROJECT_DIR$/intercode/optimization.c" />
+      <change beforePath="$PROJECT_DIR$/intercode/optimazation.h" afterPath="$PROJECT_DIR$/intercode/optimization.h" />
+      <change beforePath="$PROJECT_DIR$/lexical_syntax/ParsingNode.c" afterPath="$PROJECT_DIR$/lexical_syntax/ParsingNode.c" />
+      <change beforePath="$PROJECT_DIR$/lexical_syntax/ParsingNode.h" afterPath="$PROJECT_DIR$/lexical_syntax/ParsingNode.h" />
+      <change beforePath="$PROJECT_DIR$/lexical_syntax/lex.yy.c" afterPath="$PROJECT_DIR$/lexical_syntax/lex.yy.c" />
+      <change beforePath="$PROJECT_DIR$/lexical_syntax/lex.yy.h" afterPath="$PROJECT_DIR$/lexical_syntax/lex.yy.h" />
       <change beforePath="$PROJECT_DIR$/lexical_syntax/lexical.l" afterPath="$PROJECT_DIR$/lexical_syntax/lexical.l" />
+      <change beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
+      <change beforePath="$PROJECT_DIR$/makefile" afterPath="$PROJECT_DIR$/makefile" />
+      <change beforePath="$PROJECT_DIR$/parser" afterPath="" />
       <change beforePath="$PROJECT_DIR$/semantic/semantic.c" afterPath="$PROJECT_DIR$/semantic/semantic.c" />
+      <change beforePath="$PROJECT_DIR$/test/lab3/A-5.cmm" afterPath="$PROJECT_DIR$/test/lab3/A-5.cmm" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,53 +62,24 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6680929">
+    <splitter split-orientation="horizontal" split-proportion="0.4747537">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="InterCode.c" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/intercode/InterCode.c">
+          <file leaf-file-name="check.c" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/semantic/check.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="527">
-                  <caret line="939" column="25" lean-forward="true" selection-start-line="939" selection-start-column="25" selection-end-line="939" selection-end-column="25" />
-                  <folding>
-                    <element signature="e#0#22#0" expanded="true" />
-                    <element signature="e#4150#4851#0" expanded="false" />
-                    <element signature="e#5143#5550#0" expanded="false" />
-                    <element signature="e#5552#6106#0" expanded="false" />
-                    <element signature="e#6108#6952#0" expanded="false" />
-                    <element signature="e#6954#7620#0" expanded="false" />
-                    <element signature="e#7622#8286#0" expanded="false" />
-                    <element signature="e#8288#8489#0" expanded="false" />
-                    <element signature="e#8491#9102#0" expanded="false" />
-                    <element signature="e#9104#9933#0" expanded="false" />
-                  </folding>
+                <state relative-caret-position="365">
+                  <caret line="314" column="35" lean-forward="true" selection-start-line="314" selection-start-column="35" selection-end-line="314" selection-end-column="35" />
+                  <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ICTable.c" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/intercode/ICTable.c">
+          <file leaf-file-name="makefile" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/makefile">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1080">
-                  <caret line="118" column="25" lean-forward="false" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
-                  <folding>
-                    <element signature="e#43#67#0" expanded="true" />
-                    <element signature="e#831#1177#0" expanded="false" />
-                    <element signature="e#1179#1522#0" expanded="false" />
-                    <element signature="e#1524#1867#0" expanded="false" />
-                    <element signature="e#4349#4794#0" expanded="false" />
-                    <element signature="e#5175#5219#0" expanded="false" />
-                    <element signature="e#7671#7783#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="IC.ir" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/IC.ir">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-5287">
-                  <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+                <state relative-caret-position="756">
+                  <caret line="42" column="18" lean-forward="false" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
                   <folding />
                 </state>
               </provider>
@@ -92,10 +88,37 @@
           <file leaf-file-name="semantic.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/semantic/semantic.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="55">
-                  <caret line="285" column="5" lean-forward="true" selection-start-line="285" selection-start-column="5" selection-end-line="285" selection-end-column="5" />
+                <state relative-caret-position="142">
+                  <caret line="715" column="13" lean-forward="false" selection-start-line="715" selection-start-column="13" selection-end-line="715" selection-end-column="13" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ICTable.c" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/intercode/ICTable.c">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-18">
+                  <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
                   <folding>
-                    <element signature="e#0#21#0" expanded="true" />
+                    <element signature="e#863#1209#0" expanded="false" />
+                    <element signature="e#1211#1554#0" expanded="false" />
+                    <element signature="e#1556#1899#0" expanded="false" />
+                    <element signature="e#4381#4826#0" expanded="false" />
+                    <element signature="e#5207#5251#0" expanded="false" />
+                    <element signature="e#7703#7815#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="optimization.c" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/intercode/optimization.c">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-1759">
+                  <caret line="186" column="24" lean-forward="false" selection-start-line="186" selection-start-column="24" selection-end-line="186" selection-end-column="24" />
+                  <folding>
+                    <element signature="e#43#68#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -104,8 +127,30 @@
           <file leaf-file-name="main.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/main.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="450">
-                  <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+                <state relative-caret-position="351">
+                  <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#18#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ParsingNode.c" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lexical_syntax/ParsingNode.c">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="311">
+                  <caret line="292" column="1" lean-forward="false" selection-start-line="292" selection-start-column="1" selection-end-line="292" selection-end-column="1" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ParsingNode.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lexical_syntax/ParsingNode.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="995">
+                  <caret line="73" column="56" lean-forward="false" selection-start-line="73" selection-start-column="56" selection-end-line="73" selection-end-column="56" />
                   <folding />
                 </state>
               </provider>
@@ -118,17 +163,17 @@
           <file leaf-file-name="SIC.ir" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/SIC.ir">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="383">
-                  <caret line="222" column="12" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="246" selection-end-column="0" />
+                <state relative-caret-position="432">
+                  <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="syntax.y" pinned="false" current-in-tab="true">
+          <file leaf-file-name="syntax.y" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/lexical_syntax/syntax.y">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1899">
+                <state relative-caret-position="1629">
                   <caret line="140" column="0" lean-forward="false" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
                   <folding />
                 </state>
@@ -138,8 +183,8 @@
           <file leaf-file-name="InterCode.h" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/intercode/InterCode.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1399">
-                  <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+                <state relative-caret-position="36">
+                  <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
                   <folding>
                     <element signature="e#47#69#0" expanded="true" />
                   </folding>
@@ -147,21 +192,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="common.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/common.h">
+          <file leaf-file-name="IC.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/intercode/IC.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="72">
-                  <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+                <state relative-caret-position="126">
+                  <caret line="7" column="45" lean-forward="false" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ICTable.h" pinned="false" current-in-tab="false">
+          <file leaf-file-name="ICTable.h" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/intercode/ICTable.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="783">
-                  <caret line="79" column="67" lean-forward="false" selection-start-line="79" selection-start-column="67" selection-end-line="79" selection-end-column="67" />
+                <state relative-caret-position="306">
+                  <caret line="17" column="58" lean-forward="false" selection-start-line="17" selection-start-column="58" selection-end-line="17" selection-end-column="58" />
                   <folding>
                     <element signature="e#98#120#0" expanded="true" />
                   </folding>
@@ -186,6 +231,9 @@
       <find>t32</find>
       <find>NewInterCodeEntryDEC</find>
       <find>t9</find>
+      <find>GenerateParamString</find>
+      <find>GeneratePa</find>
+      <find>GenerateTypeString</find>
     </findStrings>
     <replaceStrings>
       <replace>Generate</replace>
@@ -202,15 +250,12 @@
         <option value="$PROJECT_DIR$/semantic/IC.h" />
         <option value="$PROJECT_DIR$/semantic/InterCode.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/main.c" />
         <option value="$PROJECT_DIR$/semantic/InterCode.c" />
         <option value="$PROJECT_DIR$/semantic/list.h" />
         <option value="$PROJECT_DIR$/semantic/list.c" />
         <option value="$PROJECT_DIR$/semantic/check.h" />
         <option value="$PROJECT_DIR$/common.h" />
         <option value="$PROJECT_DIR$/lexical_syntax/syntax.y" />
-        <option value="$PROJECT_DIR$/lexical_syntax/ParsingNode.h" />
-        <option value="$PROJECT_DIR$/lexical_syntax/ParsingNode.c" />
         <option value="$PROJECT_DIR$/lexical_syntax/text.c" />
         <option value="$PROJECT_DIR$/semantic/symbol_table.h" />
         <option value="$PROJECT_DIR$/semantic/check.c" />
@@ -218,20 +263,27 @@
         <option value="$PROJECT_DIR$/test/2.cmm" />
         <option value="$PROJECT_DIR$/test/3.cmm" />
         <option value="$PROJECT_DIR$/test/4.cmm" />
-        <option value="$PROJECT_DIR$/intercode/IC.h" />
         <option value="$PROJECT_DIR$/intercode/optimazation.h" />
         <option value="$PROJECT_DIR$/SIC.ir" />
         <option value="$PROJECT_DIR$/test/lab3/B-3.cmm" />
         <option value="$PROJECT_DIR$/test/lab3/C-2.cmm" />
         <option value="$PROJECT_DIR$/test/lab3/D-1.cmm" />
-        <option value="$PROJECT_DIR$/intercode/InterCode.h" />
         <option value="$PROJECT_DIR$/test/test.cmm" />
-        <option value="$PROJECT_DIR$/intercode/ICTable.h" />
         <option value="$PROJECT_DIR$/intercode/optimazation.c" />
+        <option value="$PROJECT_DIR$/test/lab3/A-5.cmm" />
         <option value="$PROJECT_DIR$/lexical_syntax/lexical.l" />
-        <option value="$PROJECT_DIR$/semantic/semantic.c" />
-        <option value="$PROJECT_DIR$/intercode/ICTable.c" />
+        <option value="$PROJECT_DIR$/intercode/optimization.h" />
+        <option value="$PROJECT_DIR$/intercode/IC.h" />
+        <option value="$PROJECT_DIR$/intercode/InterCode.h" />
+        <option value="$PROJECT_DIR$/intercode/ICTable.h" />
+        <option value="$PROJECT_DIR$/intercode/optimization.c" />
         <option value="$PROJECT_DIR$/intercode/InterCode.c" />
+        <option value="$PROJECT_DIR$/makefile" />
+        <option value="$PROJECT_DIR$/intercode/ICTable.c" />
+        <option value="$PROJECT_DIR$/lexical_syntax/ParsingNode.h" />
+        <option value="$PROJECT_DIR$/lexical_syntax/ParsingNode.c" />
+        <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/semantic/semantic.c" />
       </list>
     </option>
   </component>
@@ -293,12 +345,6 @@
               <item name="cproject3" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Compiler" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="cproject3" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="lab3" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -327,10 +373,10 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.cproject3">
-    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Compiler" RUN_TARGET_NAME="cproject3" EXPLICIT_BUILD_TARGET_NAME="all">
       <envs />
     </configuration>
-    <configuration name="cproject3" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="test/lab3/E-1.3.cmm" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Compiler" TARGET_NAME="cproject3" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Compiler" RUN_TARGET_NAME="cproject3">
+    <configuration name="cproject3" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="test/lab3/A-1.cmm test/lab3/A-2.cmm test/lab3/A-3.cmm test/lab3/A-4.cmm test/lab3/A-5.cmm test/lab3/B-1.cmm test/lab3/B-2.cmm test/lab3/B-3.cmm test/lab3/C-1.cmm test/lab3/C-2.cmm test/lab3/D-1.cmm test/lab3/E-1.1.cmm test/lab3/E-1.2.cmm test/lab3/E-1.3.cmm test/lab3/E-2.1.cmm test/lab3/E-2.2.cmm test/lab3/E-2.3.cmm" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Compiler" TARGET_NAME="cproject3" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Compiler" RUN_TARGET_NAME="cproject3">
       <envs />
     </configuration>
     <list size="2">
@@ -354,28 +400,28 @@
       <workItem from="1512993084057" duration="73000" />
       <workItem from="1512993172742" duration="46666000" />
       <workItem from="1513151736713" duration="16266000" />
-      <workItem from="1513175534276" duration="37671000" />
+      <workItem from="1513175534276" duration="44487000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100676000" />
+    <option name="totallyTimeSpent" value="107492000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1180593" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.124528304" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3438486" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3010204" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6256572" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280757" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31650895" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -396,62 +442,22 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>41</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
           <line>63</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>77</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>80</line>
-          <option name="timeStamp" value="38" />
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="39" />
+      <option name="time" value="40" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/intercode/ICTable.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="49" column="40" lean-forward="false" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
-          <folding>
-            <element signature="e#98#120#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#18#0" expanded="false" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -477,25 +483,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lexical_syntax/ParsingNode.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lexical_syntax/ParsingNode.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2772">
-          <caret line="160" column="54" lean-forward="false" selection-start-line="160" selection-start-column="54" selection-end-line="160" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/semantic/list.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -528,14 +520,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/semantic/check.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1656">
-          <caret line="184" column="27" lean-forward="false" selection-start-line="184" selection-start-column="27" selection-end-line="184" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -548,14 +532,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/intercode/IC.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -589,16 +565,6 @@
         <state relative-caret-position="306">
           <caret line="17" column="1" lean-forward="false" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/intercode/optimazation.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#109#129#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -642,72 +608,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab3/A-5.cmm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="17" lean-forward="true" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab3/C-1.cmm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab3/C-2.cmm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/test.cmm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="16" lean-forward="true" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/intercode/InterCode.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1399">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#47#69#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/intercode/ICTable.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="783">
-          <caret line="79" column="67" lean-forward="false" selection-start-line="79" selection-start-column="67" selection-end-line="79" selection-end-column="67" />
-          <folding>
-            <element signature="e#98#120#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/intercode/optimazation.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-517">
-          <caret line="266" column="16" lean-forward="true" selection-start-line="266" selection-start-column="16" selection-end-line="266" selection-end-column="16" />
-          <folding>
-            <element signature="e#43#68#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab3/B-3.cmm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -720,38 +624,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab3/D-1.cmm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="671">
-          <caret line="41" column="13" lean-forward="true" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab3/E-1.1.cmm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lexical_syntax/lexical.l">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/lab3/B-1.cmm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -760,34 +632,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab3/E-1.2.cmm">
+    <entry file="file://$PROJECT_DIR$/lexical_syntax/syntax.y">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="28" column="1" lean-forward="true" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab3/E-1.3.cmm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IC.ir">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5287">
-          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SIC.ir">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="222" column="12" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="246" selection-end-column="0" />
+        <state relative-caret-position="1629">
+          <caret line="140" column="0" lean-forward="false" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -800,10 +648,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SIC.ir">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IC.ir">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="83" column="8" lean-forward="true" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/lab3/E-2.2.cmm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="22" column="19" lean-forward="true" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab3/E-1.3.cmm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -816,55 +688,214 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lexical_syntax/syntax.y">
+    <entry file="file://$PROJECT_DIR$/test/lab3/D-1.cmm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1899">
-          <caret line="140" column="0" lean-forward="false" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+        <state relative-caret-position="671">
+          <caret line="41" column="13" lean-forward="true" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/semantic/semantic.c">
+    <entry file="file://$PROJECT_DIR$/test/lab3/C-2.cmm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="285" column="5" lean-forward="true" selection-start-line="285" selection-start-column="5" selection-end-line="285" selection-end-column="5" />
+        <state relative-caret-position="54">
+          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab3/C-1.cmm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab3/B-3.cmm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="17" lean-forward="true" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical_syntax/lexical.l">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="23" lean-forward="true" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab3/E-1.1.cmm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/intercode/IC.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="45" lean-forward="false" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/intercode/InterCode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
-            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#47#69#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/intercode/optimization.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="31" lean-forward="true" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+          <folding>
+            <element signature="e#109#129#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/1.cmm.ir">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="9" lean-forward="false" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/intercode/optimization.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1759">
+          <caret line="186" column="24" lean-forward="false" selection-start-line="186" selection-start-column="24" selection-end-line="186" selection-end-column="24" />
+          <folding>
+            <element signature="e#43#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab3/E-2.3.cmm.ir">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2686">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab3/A-5.cmm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab3/E-1.2.cmm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/intercode/ICTable.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="118" column="25" lean-forward="false" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
+        <state relative-caret-position="-18">
+          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
           <folding>
-            <element signature="e#43#67#0" expanded="true" />
-            <element signature="e#831#1177#0" expanded="false" />
-            <element signature="e#1179#1522#0" expanded="false" />
-            <element signature="e#1524#1867#0" expanded="false" />
-            <element signature="e#4349#4794#0" expanded="false" />
-            <element signature="e#5175#5219#0" expanded="false" />
-            <element signature="e#7671#7783#0" expanded="false" />
+            <element signature="e#863#1209#0" expanded="false" />
+            <element signature="e#1211#1554#0" expanded="false" />
+            <element signature="e#1556#1899#0" expanded="false" />
+            <element signature="e#4381#4826#0" expanded="false" />
+            <element signature="e#5207#5251#0" expanded="false" />
+            <element signature="e#7703#7815#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical_syntax/ParsingNode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="995">
+          <caret line="73" column="56" lean-forward="false" selection-start-line="73" selection-start-column="56" selection-end-line="73" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical_syntax/ParsingNode.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="292" column="1" lean-forward="false" selection-start-line="292" selection-start-column="1" selection-end-line="292" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/intercode/InterCode.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="939" column="25" lean-forward="true" selection-start-line="939" selection-start-column="25" selection-end-line="939" selection-end-column="25" />
+        <state relative-caret-position="1413">
+          <caret line="939" column="0" lean-forward="false" selection-start-line="939" selection-start-column="0" selection-end-line="939" selection-end-column="0" />
           <folding>
-            <element signature="e#0#22#0" expanded="true" />
-            <element signature="e#4150#4851#0" expanded="false" />
-            <element signature="e#5143#5550#0" expanded="false" />
-            <element signature="e#5552#6106#0" expanded="false" />
-            <element signature="e#6108#6952#0" expanded="false" />
-            <element signature="e#6954#7620#0" expanded="false" />
-            <element signature="e#7622#8286#0" expanded="false" />
-            <element signature="e#8288#8489#0" expanded="false" />
-            <element signature="e#8491#9102#0" expanded="false" />
-            <element signature="e#9104#9933#0" expanded="false" />
+            <element signature="e#0#22#0" expanded="false" />
+            <element signature="e#4168#4869#0" expanded="false" />
+            <element signature="e#5161#5568#0" expanded="false" />
+            <element signature="e#5570#6124#0" expanded="false" />
+            <element signature="e#6126#6970#0" expanded="false" />
+            <element signature="e#6972#7638#0" expanded="false" />
+            <element signature="e#7640#8304#0" expanded="false" />
+            <element signature="e#8306#8507#0" expanded="false" />
+            <element signature="e#8509#9120#0" expanded="false" />
+            <element signature="e#9122#9951#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="42" column="18" lean-forward="false" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/semantic/semantic.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="715" column="13" lean-forward="false" selection-start-line="715" selection-start-column="13" selection-end-line="715" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/semantic/check.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="314" column="35" lean-forward="true" selection-start-line="314" selection-start-column="35" selection-end-line="314" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/intercode/ICTable.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="58" lean-forward="false" selection-start-line="17" selection-start-column="58" selection-end-line="17" selection-end-column="58" />
+          <folding>
+            <element signature="e#98#120#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -715,11 +715,11 @@ static Type* ExpAnalysis(ParsingNode* node, ParamList* PL)
 			if(!CheckParamEquivalence(SPL, DPL))
 			{
 				SemanticSwitch = false;
-				char* str1 = GenerateParamString(SPL);
-				char* str2 = GenerateParamString(DPL);
+				//char* str1 = GenerateParamString(SPL);
+				//char* str2 = GenerateParamString(DPL);
 				
-				printf("\033[31mError type 9 at Line %d: Function \"%s%s\" is not applicable for arguments \"%s\".\033[0m\n", 
-					node->firstchild->lineno, SE->Function.FunName, str2, str1);
+				printf("\033[31mError type 9 at Line %d: Function \"%s\" is not applicable for arguments.\033[0m\n",
+					node->firstchild->lineno, SE->Function.FunName);
 				return NULL;
 			}
 
@@ -793,12 +793,12 @@ static Type* ExpAnalysis(ParsingNode* node, ParamList* PL)
 			{
 				SemanticSwitch = false;
 				// bugs in below two lines
-				char* str1 = GenerateParamString(SPL);
-				char* str2 = GenerateParamString(DPL);
+				//char* str1 = GenerateParamString(SPL);
+				//char* str2 = GenerateParamString(DPL);
 
 				
-				printf("\033[31mError type 9 at Line %d: Function \"%s%s\" is not applicable for arguments \"%s\".\033[0m\n", 
-					node->firstchild->lineno, SE->Function.FunName, str2, str1);
+				printf("\033[31mError type 9 at Line %d: Function \"%s\" is not applicable for arguments.\033[0m\n",
+					node->firstchild->lineno, SE->Function.FunName);
 				return NULL;
 			}
 

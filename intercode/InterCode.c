@@ -1,7 +1,7 @@
 #include "InterCode.h"
 #include "../common.h"
 #include "ICTable.h"
-#include "ParsingNode.h"
+#include "../lexical_syntax/ParsingNode.h"
 #include "IC.h"
 
 
@@ -659,6 +659,7 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
             return list;
         }
     }
+    else assert(0);
 
 
 }
@@ -937,7 +938,7 @@ static void ProgramGenerate(ParsingNode* node)
     ExtDefListGenerate(firstchild(node));
 }
 
-void InterCodeGenerator()
+void InterCodeGenerator(char* filename)
 {
     if(!ICSwitch)
     {
@@ -950,7 +951,7 @@ void InterCodeGenerator()
         printf("print ICVarTable\n");
         CheckElemInICVarTable(RootICVarTable);
         ProgramGenerate(ParsingRoot);
-        PrintInterCodeList(RootInterCodeList);
+        PrintInterCodeList(RootInterCodeList, filename);
     }
 
 }

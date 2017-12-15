@@ -9,6 +9,6 @@
 #include "InterCode.h"
 #include "IC.h"
 
-extern void InterCodeOptimazation(InterCodeListHead* list);
+extern void InterCodeOptimization(InterCodeListHead* list);
 
 #endif //COMPILER_OPTIMAZITION_H

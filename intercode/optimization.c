@@ -1,7 +1,7 @@
 //
 // Created by sunxudong on 12/14/17.
 //
-#include "optimazation.h"
+#include "optimization.h"
 #include "InterCode.h"
 
 bool OperandEquivalence(Operand* op1, Operand* op2)
@@ -181,13 +181,11 @@ static bool RedundantAssignElimation(InterCodeEntry* formerAssign, InterCodeList
     InterCodeEntry* ICEHead = list->head;
     InterCodeEntry* entry = formerAssign->next;
     Operand* left = formerAssign->IC->ASSIGN.left;
-    InterCodeEntry* stop = ICEHead;
 
     while (entry != ICEHead)
     {
         if(Pollution(formerAssign, entry))
         {
-            stop = entry;
             break;
         }
         RAPairProcess(formerAssign, entry);
@@ -269,7 +267,7 @@ static bool NaiveBinopMerge(InterCodeEntry* bin, InterCodeListHead* list)
 }
 
 
-void InterCodeOptimazation(InterCodeListHead* list)
+void InterCodeOptimization(InterCodeListHead* list)
 {
     InterCodeEntry* ICEHead = list->head;
     InterCodeEntry* entry = list->head->next;

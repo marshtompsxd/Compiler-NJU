@@ -309,28 +309,28 @@ CMakeFiles/cproject3.dir/intercode/ICTable.c.o.provides: CMakeFiles/cproject3.di
 CMakeFiles/cproject3.dir/intercode/ICTable.c.o.provides.build: CMakeFiles/cproject3.dir/intercode/ICTable.c.o
 
 
-CMakeFiles/cproject3.dir/intercode/optimazation.c.o: CMakeFiles/cproject3.dir/flags.make
-CMakeFiles/cproject3.dir/intercode/optimazation.c.o: ../intercode/optimazation.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/cproject3.dir/intercode/optimazation.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/intercode/optimazation.c.o   -c /home/sunxudong/CLionProjects/cproject3/intercode/optimazation.c
+CMakeFiles/cproject3.dir/intercode/optimization.c.o: CMakeFiles/cproject3.dir/flags.make
+CMakeFiles/cproject3.dir/intercode/optimization.c.o: ../intercode/optimization.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/cproject3.dir/intercode/optimization.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/intercode/optimization.c.o   -c /home/sunxudong/CLionProjects/cproject3/intercode/optimization.c
 
-CMakeFiles/cproject3.dir/intercode/optimazation.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cproject3.dir/intercode/optimazation.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/cproject3/intercode/optimazation.c > CMakeFiles/cproject3.dir/intercode/optimazation.c.i
+CMakeFiles/cproject3.dir/intercode/optimization.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cproject3.dir/intercode/optimization.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/cproject3/intercode/optimization.c > CMakeFiles/cproject3.dir/intercode/optimization.c.i
 
-CMakeFiles/cproject3.dir/intercode/optimazation.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cproject3.dir/intercode/optimazation.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/cproject3/intercode/optimazation.c -o CMakeFiles/cproject3.dir/intercode/optimazation.c.s
+CMakeFiles/cproject3.dir/intercode/optimization.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cproject3.dir/intercode/optimization.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/cproject3/intercode/optimization.c -o CMakeFiles/cproject3.dir/intercode/optimization.c.s
 
-CMakeFiles/cproject3.dir/intercode/optimazation.c.o.requires:
+CMakeFiles/cproject3.dir/intercode/optimization.c.o.requires:
 
-.PHONY : CMakeFiles/cproject3.dir/intercode/optimazation.c.o.requires
+.PHONY : CMakeFiles/cproject3.dir/intercode/optimization.c.o.requires
 
-CMakeFiles/cproject3.dir/intercode/optimazation.c.o.provides: CMakeFiles/cproject3.dir/intercode/optimazation.c.o.requires
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/optimazation.c.o.provides.build
-.PHONY : CMakeFiles/cproject3.dir/intercode/optimazation.c.o.provides
+CMakeFiles/cproject3.dir/intercode/optimization.c.o.provides: CMakeFiles/cproject3.dir/intercode/optimization.c.o.requires
+	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/optimization.c.o.provides.build
+.PHONY : CMakeFiles/cproject3.dir/intercode/optimization.c.o.provides
 
-CMakeFiles/cproject3.dir/intercode/optimazation.c.o.provides.build: CMakeFiles/cproject3.dir/intercode/optimazation.c.o
+CMakeFiles/cproject3.dir/intercode/optimization.c.o.provides.build: CMakeFiles/cproject3.dir/intercode/optimization.c.o
 
 
 # Object files for target cproject3
@@ -345,7 +345,7 @@ cproject3_OBJECTS = \
 "CMakeFiles/cproject3.dir/semantic/list.c.o" \
 "CMakeFiles/cproject3.dir/semantic/check.c.o" \
 "CMakeFiles/cproject3.dir/intercode/ICTable.c.o" \
-"CMakeFiles/cproject3.dir/intercode/optimazation.c.o"
+"CMakeFiles/cproject3.dir/intercode/optimization.c.o"
 
 # External object files for target cproject3
 cproject3_EXTERNAL_OBJECTS =
@@ -360,7 +360,7 @@ cproject3: CMakeFiles/cproject3.dir/main.c.o
 cproject3: CMakeFiles/cproject3.dir/semantic/list.c.o
 cproject3: CMakeFiles/cproject3.dir/semantic/check.c.o
 cproject3: CMakeFiles/cproject3.dir/intercode/ICTable.c.o
-cproject3: CMakeFiles/cproject3.dir/intercode/optimazation.c.o
+cproject3: CMakeFiles/cproject3.dir/intercode/optimization.c.o
 cproject3: CMakeFiles/cproject3.dir/build.make
 cproject3: /usr/lib/x86_64-linux-gnu/libfl.so
 cproject3: CMakeFiles/cproject3.dir/link.txt
@@ -382,7 +382,7 @@ CMakeFiles/cproject3.dir/requires: CMakeFiles/cproject3.dir/main.c.o.requires
 CMakeFiles/cproject3.dir/requires: CMakeFiles/cproject3.dir/semantic/list.c.o.requires
 CMakeFiles/cproject3.dir/requires: CMakeFiles/cproject3.dir/semantic/check.c.o.requires
 CMakeFiles/cproject3.dir/requires: CMakeFiles/cproject3.dir/intercode/ICTable.c.o.requires
-CMakeFiles/cproject3.dir/requires: CMakeFiles/cproject3.dir/intercode/optimazation.c.o.requires
+CMakeFiles/cproject3.dir/requires: CMakeFiles/cproject3.dir/intercode/optimization.c.o.requires
 
 .PHONY : CMakeFiles/cproject3.dir/requires
 
