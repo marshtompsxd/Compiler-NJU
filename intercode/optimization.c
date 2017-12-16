@@ -95,8 +95,7 @@ static bool Used(Operand* left, InterCodeEntry* laterCode)
         {
             return true;
         }
-        else if(OperandOverlap(laterCode->IC->ASSIGN.left, left)
-                && laterCode->IC->ASSIGN.left->attr == OREF)
+        else if(OperandOverlap(laterCode->IC->ASSIGN.left, left) )
         {
             return true;
         }
@@ -163,21 +162,45 @@ static bool Pollution(InterCodeEntry* formerAssign, InterCodeEntry* laterCode)
         else if(OperandEquivalence(laterCode->IC->ASSIGN.left, right))
             return true;
     }
-    else if(laterCode->IC->kind == ICALL)
+    else if(laterCode->IC->kind == IADD
+            || laterCode->IC->kind == ISUB
+            || laterCode->IC->kind == IMUL
+            || laterCode->IC->kind == IDIV )
     {
-        if(laterCode->IC->RET.ret->attr == OREF )
+        if(OperandEquivalence(laterCode->IC->BINOP.result, left))
             return true;
-        else if(OperandEquivalence(laterCode->IC->RET.ret, left))
-            return true;
-        else if(OperandEquivalence(laterCode->IC->RET.ret, right))
+        else if(OperandEquivalence(laterCode->IC->BINOP.result, right))
             return true;
     }
+    else if(laterCode->IC->kind == ICALL)
+        return true;
+    else if(laterCode->IC->kind == IRETURN)
+        return true;
+    else if(laterCode->IC->kind == IREAD)
+    {
+        if(laterCode->IC->READ.input->attr == OREF)
+            return true;
+        else if(OperandEquivalence(laterCode->IC->READ.input, left))
+            return true;
+        else if(OperandEquivalence(laterCode->IC->READ.input, right))
+            return true;
+    }
+    else if(laterCode->IC->kind == IIFGOTO)
+        return true;
+    else if(laterCode->IC->kind == IGOTO)
+        return true;
+
+
     return false;
 }
 
 static bool RedundantAssignElimation(InterCodeEntry* formerAssign, InterCodeListHead* list)
 {
     assert(formerAssign->IC->kind == IASSIGN);
+    assert(formerAssign->IC->ASSIGN.left->kind == OTEMP
+           && formerAssign->IC->ASSIGN.left->attr == OVALUE
+           && formerAssign->IC->ASSIGN.right->attr == OVALUE);
+
     InterCodeEntry* ICEHead = list->head;
     InterCodeEntry* entry = formerAssign->next;
     Operand* left = formerAssign->IC->ASSIGN.left;
@@ -192,11 +215,14 @@ static bool RedundantAssignElimation(InterCodeEntry* formerAssign, InterCodeList
         entry = entry->next;
     }
 
-    entry = formerAssign->next;
+    entry = list->head->next;
 
     while (entry != ICEHead)
     {
-        if(Used(left, entry))return false;
+        if(entry != formerAssign)
+        {
+            if(Used(left, entry))return false;
+        }
         entry = entry->next;
     }
 

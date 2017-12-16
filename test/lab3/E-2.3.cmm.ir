@@ -4,12 +4,16 @@ DEC v2 64
 v3 := #0
 v4 := #0
 LABEL L1 :
-IF v3 < #4 GOTO L2
+t3 := v3
+t4 := #4
+IF t3 < t4 GOTO L2
 GOTO L3
 LABEL L2 :
 v4 := #0
 LABEL L4 :
-IF v4 < #4 GOTO L5
+t6 := v4
+t7 := #4
+IF t6 < t7 GOTO L5
 GOTO L6
 LABEL L5 :
 t14 := &v2
@@ -36,12 +40,16 @@ LABEL L3 :
 v3 := #0
 v4 := #0
 LABEL L7 :
-IF v3 < #4 GOTO L8
+t35 := v3
+t36 := #4
+IF t35 < t36 GOTO L8
 GOTO L9
 LABEL L8 :
 v4 := #0
 LABEL L10 :
-IF v4 < #4 GOTO L11
+t38 := v4
+t39 := #4
+IF t38 < t39 GOTO L11
 GOTO L12
 LABEL L11 :
 t48 := &v2
@@ -51,7 +59,8 @@ t45 := v4 * #4
 t46 := t50 + t45
 t42 := t46
 t40 := *t42
-IF t40 == #1 GOTO L13
+t41 := #1
+IF t40 == t41 GOTO L13
 GOTO L14
 LABEL L13 :
 WRITE v4
@@ -64,7 +73,8 @@ t54 := v3 + #1
 v3 := t54
 GOTO L7
 LABEL L9 :
-RETURN #0
+t57 := #0
+RETURN t57
 FUNCTION PutQueen : 
 PARAM v5
 PARAM v6
@@ -74,7 +84,9 @@ PARAM v9
 PARAM v10
 v11 := #0
 LABEL L15 :
-IF v11 < #4 GOTO L16
+t59 := v11
+t60 := #4
+IF t59 < t60 GOTO L16
 GOTO L17
 LABEL L16 :
 t65 := v11 * #4
@@ -126,7 +138,9 @@ t113 := v8 + t112
 t109 := t113
 t118 := #0
 *t109 := t118
-IF v9 == #3 GOTO L22
+t119 := v9
+t120 := #3
+IF t119 == t120 GOTO L22
 GOTO L23
 LABEL L22 :
 t121 := v10 + #1
@@ -175,7 +189,8 @@ t163 := v11 + #1
 v11 := t163
 GOTO L15
 LABEL L17 :
-RETURN v10
+t166 := v10
+RETURN t166
 FUNCTION main : 
 DEC v14 64
 DEC v15 16
@@ -184,7 +199,9 @@ DEC v17 28
 v18 := #0
 v19 := #0
 LABEL L25 :
-IF v19 < #16 GOTO L26
+t169 := v19
+t170 := #16
+IF t169 < t170 GOTO L26
 GOTO L27
 LABEL L26 :
 t173 := &v14
@@ -199,7 +216,9 @@ GOTO L25
 LABEL L27 :
 v19 := #0
 LABEL L28 :
-IF v19 < #4 GOTO L29
+t181 := v19
+t182 := #4
+IF t181 < t182 GOTO L29
 GOTO L30
 LABEL L29 :
 t185 := &v15
@@ -214,7 +233,9 @@ GOTO L28
 LABEL L30 :
 v19 := #0
 LABEL L31 :
-IF v19 < #7 GOTO L32
+t193 := v19
+t194 := #7
+IF t193 < t194 GOTO L32
 GOTO L33
 LABEL L32 :
 t197 := &v16
@@ -243,4 +264,5 @@ ARG &v14
 t210 := CALL PutQueen
 v18 := t210
 WRITE v18
-RETURN #0
+t212 := #0
+RETURN t212

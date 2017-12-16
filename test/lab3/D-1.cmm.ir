@@ -24,7 +24,8 @@ v2 := #2
 t55 := v1 + #20
 t53 := t55 - #20
 v2 := t53
-RETURN v2
+t65 := v2
+RETURN t65
 FUNCTION main : 
 v3 := #2
 v4 := #4
@@ -49,7 +50,8 @@ t106 := t107 + v8
 v8 := t106
 LABEL L1 :
 t117 := v4 - v3
-IF t117 < v8 GOTO L2
+t118 := v8
+IF t117 < t118 GOTO L2
 GOTO L3
 LABEL L2 :
 t129 := v10 * #4
@@ -58,9 +60,10 @@ t124 := t126 + #3
 t122 := t124 + #4
 t121 := t122 + #5
 v9 := t121
+t139 := v8
 ARG v4
 t140 := CALL changeCal
-t137 := v8 - t140
+t137 := t139 - t140
 t138 := v3 * #2
 t135 := t137 + t138
 t136 := v5 * v6
@@ -78,9 +81,10 @@ v10 := t155
 t164 := v10 / #3
 t163 := t164 * #3
 t160 := v10 - t163
+t176 := v3
 ARG v3
 t177 := CALL changeCal
-t174 := v3 - t177
+t174 := t176 - t177
 t172 := t174 + v4
 t170 := t172 - v4
 t168 := t170 + v5
@@ -103,7 +107,9 @@ v12 := t188
 WRITE v12
 v10 := v9
 LABEL L6 :
-IF v9 >= #1222 GOTO L7
+t194 := v9
+t195 := #1222
+IF t194 >= t195 GOTO L7
 GOTO L8
 LABEL L7 :
 t198 := v9 + #1024
@@ -123,4 +129,5 @@ v4 := t208
 t211 := v3 + v4
 v5 := t211
 WRITE v5
-RETURN #0
+t214 := #0
+RETURN t214

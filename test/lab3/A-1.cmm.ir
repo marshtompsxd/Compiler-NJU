@@ -18,4 +18,5 @@ t17 := t24 - #4
 t15 := t16 + t17
 v4 := t15
 WRITE v4
-RETURN #0
+t28 := #0
+RETURN t28

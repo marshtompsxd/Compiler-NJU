@@ -3,26 +3,31 @@ READ t1
 v2 := t1
 READ t2
 v1 := t2
+t3 := v2
 t5 := v2 / #100
 t4 := t5 * #100
-IF v2 == t4 GOTO L1
+IF t3 == t4 GOTO L1
 GOTO L2
 LABEL L1 :
+t9 := v2
 t11 := v2 / #400
 t10 := t11 * #400
-IF v2 == t10 GOTO L4
+IF t9 == t10 GOTO L4
 GOTO L5
 LABEL L4 :
-IF v1 == #2 GOTO L7
+t15 := v1
+t16 := #2
+IF t15 == t16 GOTO L7
 GOTO L8
 LABEL L7 :
 t17 := #29
 WRITE t17
 GOTO L9
 LABEL L8 :
+t18 := v1
 t20 := v1 / #2
 t19 := t20 * #2
-IF v1 == t19 GOTO L10
+IF t18 == t19 GOTO L10
 GOTO L11
 LABEL L10 :
 t24 := #30
@@ -35,16 +40,19 @@ LABEL L12 :
 LABEL L9 :
 GOTO L6
 LABEL L5 :
-IF v1 == #2 GOTO L13
+t26 := v1
+t27 := #2
+IF t26 == t27 GOTO L13
 GOTO L14
 LABEL L13 :
 t28 := #28
 WRITE t28
 GOTO L15
 LABEL L14 :
+t29 := v1
 t31 := v1 / #2
 t30 := t31 * #2
-IF v1 == t30 GOTO L16
+IF t29 == t30 GOTO L16
 GOTO L17
 LABEL L16 :
 t35 := #30
@@ -58,21 +66,25 @@ LABEL L15 :
 LABEL L6 :
 GOTO L3
 LABEL L2 :
+t37 := v2
 t39 := v2 / #4
 t38 := t39 * #4
-IF v2 == t38 GOTO L19
+IF t37 == t38 GOTO L19
 GOTO L20
 LABEL L19 :
-IF v1 == #2 GOTO L22
+t43 := v1
+t44 := #2
+IF t43 == t44 GOTO L22
 GOTO L23
 LABEL L22 :
 t45 := #29
 WRITE t45
 GOTO L24
 LABEL L23 :
+t46 := v1
 t48 := v1 / #2
 t47 := t48 * #2
-IF v1 == t47 GOTO L25
+IF t46 == t47 GOTO L25
 GOTO L26
 LABEL L25 :
 t52 := #30
@@ -85,16 +97,19 @@ LABEL L27 :
 LABEL L24 :
 GOTO L21
 LABEL L20 :
-IF v1 == #2 GOTO L28
+t54 := v1
+t55 := #2
+IF t54 == t55 GOTO L28
 GOTO L29
 LABEL L28 :
 t56 := #28
 WRITE t56
 GOTO L30
 LABEL L29 :
+t57 := v1
 t59 := v1 / #2
 t58 := t59 * #2
-IF v1 == t58 GOTO L31
+IF t57 == t58 GOTO L31
 GOTO L32
 LABEL L31 :
 t63 := #30
@@ -107,4 +122,5 @@ LABEL L33 :
 LABEL L30 :
 LABEL L21 :
 LABEL L3 :
-RETURN #0
+t65 := #0
+RETURN t65

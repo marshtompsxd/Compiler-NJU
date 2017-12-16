@@ -6,7 +6,8 @@ t3 := t4 * v2
 t1 := v1 - t3
 v3 := t1
 v4 := v3
-RETURN v3
+t9 := v3
+RETURN t9
 FUNCTION power : 
 PARAM v5
 PARAM v6
@@ -14,12 +15,13 @@ t11 := #1 + v6
 t10 := t11 - v6
 v7 := t10
 LABEL L1 :
+t15 := v6
 t23 := v7 - v7
 t21 := t23 + #90
 t19 := t21 - #89
 t17 := t19 + #1
 t16 := t17 - #2
-IF v6 > t16 GOTO L2
+IF t15 > t16 GOTO L2
 GOTO L3
 LABEL L2 :
 t27 := v7 * v5
@@ -30,17 +32,23 @@ t30 := t31 - #1
 v6 := t30
 GOTO L1
 LABEL L3 :
-RETURN v7
+t41 := v7
+RETURN t41
 FUNCTION getNumDigits : 
 PARAM v8
 v9 := #0
-IF v8 < #0 GOTO L4
+t43 := v8
+t44 := #0
+IF t43 < t44 GOTO L4
 GOTO L5
 LABEL L4 :
-RETURN #-1
+t45 := #-1
+RETURN t45
 LABEL L5 :
 LABEL L6 :
-IF v8 > #0 GOTO L7
+t47 := v8
+t48 := #0
+IF t47 > t48 GOTO L7
 GOTO L8
 LABEL L7 :
 t49 := v8 / #10
@@ -53,7 +61,8 @@ t58 := v9 - #3
 v9 := t58
 GOTO L6
 LABEL L8 :
-RETURN v9
+t61 := v9
+RETURN t61
 FUNCTION isNarcissistic : 
 PARAM v10
 t64 := #1 + v10
@@ -64,7 +73,9 @@ v11 := t62
 v12 := #0
 v13 := v10
 LABEL L9 :
-IF v13 > #0 GOTO L10
+t70 := v13
+t71 := #0
+IF t70 > t71 GOTO L10
 GOTO L11
 LABEL L10 :
 t73 := #10
@@ -75,31 +86,39 @@ v14 := t72
 t75 := v13 - v14
 t74 := t75 / #10
 v13 := t74
+t80 := v12
 ARG v11
 ARG v14
 t81 := CALL power
-t79 := v12 + t81
+t79 := t80 + t81
 v12 := t79
 GOTO L9
 LABEL L11 :
-IF v12 == v10 GOTO L12
+t82 := v12
+t83 := v10
+IF t82 == t83 GOTO L12
 GOTO L13
 LABEL L12 :
-RETURN #1
+t84 := #1
+RETURN t84
 GOTO L14
 LABEL L13 :
-RETURN #0
+t85 := #0
+RETURN t85
 LABEL L14 :
 FUNCTION main : 
 v15 := #0
 v16 := #300
 LABEL L15 :
-IF v16 < #500 GOTO L16
+t88 := v16
+t89 := #500
+IF t88 < t89 GOTO L16
 GOTO L17
 LABEL L16 :
 ARG v16
 t90 := CALL isNarcissistic
-IF t90 == #1 GOTO L18
+t91 := #1
+IF t90 == t91 GOTO L18
 GOTO L19
 LABEL L18 :
 WRITE v16
@@ -111,4 +130,5 @@ v16 := t95
 GOTO L15
 LABEL L17 :
 WRITE v15
-RETURN v15
+t98 := v15
+RETURN t98

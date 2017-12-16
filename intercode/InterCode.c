@@ -948,8 +948,8 @@ void InterCodeGenerator(char* filename)
     else
     {
         InitICTable();
-        printf("print ICVarTable\n");
-        CheckElemInICVarTable(RootICVarTable);
+        //printf("print ICVarTable\n");
+        //CheckElemInICVarTable(RootICVarTable);
         ProgramGenerate(ParsingRoot);
         PrintInterCodeList(RootInterCodeList, filename);
     }

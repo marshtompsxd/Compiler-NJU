@@ -97,6 +97,7 @@ static void InsertReadWriteIntoSymbolTable()
     WRITE->Function.PL->head->Variable.VariableType = IntType;
     WRITE->Function.PL->head->Variable.VariableName = (char*)malloc(sizeof("???"));
     strcpy(WRITE->Function.PL->head->Variable.VariableName, "???");
+    WRITE->Function.PL->head->tail = NULL;
     InsertItemIntoSymbolTable(WRITE, RootSymbolTable);
 
 }
@@ -895,7 +896,7 @@ static void StmtAnalysis(ParsingNode* node, Type* RetType, ParamList* PL)
 		StmtAnalysis(seventhchild(node), RetType, PL);
 		
 	}
-	return;
+
 }
 
 static void StmtListAnalysis(ParsingNode* node, Type* RetType, ParamList* PL)
