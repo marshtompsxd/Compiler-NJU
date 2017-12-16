@@ -3,9 +3,7 @@ PARAM v1
 PARAM v2
 v3 := #0
 LABEL L1 :
-t2 := v3
-t3 := v2
-IF t2 < t3 GOTO L2
+IF v3 < v2 GOTO L2
 GOTO L3
 LABEL L2 :
 t8 := v3 * #4
@@ -17,8 +15,7 @@ t10 := v3 + #1
 v3 := t10
 GOTO L1
 LABEL L3 :
-t13 := #0
-RETURN t13
+RETURN #0
 FUNCTION InnerP : 
 PARAM v4
 PARAM v5
@@ -26,9 +23,7 @@ v6 := #0
 v7 := #0
 v8 := #3
 LABEL L4 :
-t17 := v7
-t18 := v8
-IF t17 < t18 GOTO L5
+IF v7 < v8 GOTO L5
 GOTO L6
 LABEL L5 :
 t27 := v7 * #4
@@ -46,17 +41,14 @@ t34 := v7 + #1
 v7 := t34
 GOTO L4
 LABEL L6 :
-t37 := v6
-RETURN t37
+RETURN v6
 FUNCTION main : 
 DEC v9 12
 DEC v10 12
 v11 := #0
 v12 := #3
 LABEL L7 :
-t40 := v11
-t41 := v12
-IF t40 < t41 GOTO L8
+IF v11 < v12 GOTO L8
 GOTO L9
 LABEL L8 :
 t44 := &v9
@@ -88,5 +80,4 @@ ARG &v10
 ARG &v9
 t67 := CALL InnerP
 WRITE t67
-t68 := #0
-RETURN t68
+RETURN #0

@@ -4,21 +4,16 @@ v2 := #0
 v3 := #1
 v4 := #1
 LABEL L1 :
-t5 := v4
-t6 := v1
-IF t5 <= t6 GOTO L2
+IF v4 <= v1 GOTO L2
 GOTO L3
 LABEL L2 :
 LABEL L4 :
-t7 := v3
-t8 := v4
-IF t7 <= t8 GOTO L5
+IF v3 <= v4 GOTO L5
 GOTO L6
 LABEL L5 :
-t9 := v4
 t11 := v4 / v3
 t10 := t11 * v3
-IF t9 == t10 GOTO L7
+IF v4 == t10 GOTO L7
 GOTO L8
 LABEL L7 :
 t15 := v2 + #1
@@ -28,9 +23,7 @@ t18 := v3 + #1
 v3 := t18
 GOTO L4
 LABEL L6 :
-t21 := v2
-t22 := #2
-IF t21 == t22 GOTO L9
+IF v2 == #2 GOTO L9
 GOTO L10
 LABEL L9 :
 WRITE v4
@@ -41,5 +34,4 @@ t25 := v4 + #1
 v4 := t25
 GOTO L1
 LABEL L3 :
-t28 := #0
-RETURN t28
+RETURN #0

@@ -587,6 +587,8 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
         {
             if(strcmp(firstchild(node)->IDname, "read") == 0)
             {
+                assert(result!=NULL);
+                // read must have ret value
                 InterCodeEntry* ICE = NewInterCodeEntryREAD(result);
                 InsertEntryIntoInterCodeList(ICE, list);
             }
@@ -618,6 +620,8 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
 
             if(strcmp(firstchild(node)->IDname, "write") == 0)
             {
+                assert(result == NULL);
+                // write must not have ret value
                 InterCodeEntry* ICE = NewInterCodeEntryWRITE(alist->head->arg);
                 InsertEntryIntoInterCodeList(ICE, list);
 

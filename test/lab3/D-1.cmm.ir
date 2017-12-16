@@ -24,8 +24,7 @@ v2 := #2
 t55 := v1 + #20
 t53 := t55 - #20
 v2 := t53
-t65 := v2
-RETURN t65
+RETURN v2
 FUNCTION main : 
 v3 := #2
 v4 := #4
@@ -50,8 +49,7 @@ t106 := t107 + v8
 v8 := t106
 LABEL L1 :
 t117 := v4 - v3
-t118 := v8
-IF t117 < t118 GOTO L2
+IF t117 < v8 GOTO L2
 GOTO L3
 LABEL L2 :
 t129 := v10 * #4
@@ -107,9 +105,7 @@ v12 := t188
 WRITE v12
 v10 := v9
 LABEL L6 :
-t194 := v9
-t195 := #1222
-IF t194 >= t195 GOTO L7
+IF v9 >= #1222 GOTO L7
 GOTO L8
 LABEL L7 :
 t198 := v9 + #1024
@@ -129,5 +125,4 @@ v4 := t208
 t211 := v3 + v4
 v5 := t211
 WRITE v5
-t214 := #0
-RETURN t214
+RETURN #0

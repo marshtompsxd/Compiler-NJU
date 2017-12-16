@@ -46,15 +46,12 @@ v2 := #0
 GOTO L3
 LABEL L2 :
 LABEL L4 :
-t65 := v4
-t66 := #12
-IF t65 < t66 GOTO L5
+IF v4 < #12 GOTO L5
 GOTO L6
 LABEL L5 :
 t69 := v4 * v4
 t67 := t69 - v1
-t68 := #0
-IF t67 == t68 GOTO L7
+IF t67 == #0 GOTO L7
 GOTO L8
 LABEL L7 :
 v2 := #1
@@ -64,30 +61,23 @@ v4 := t74
 GOTO L4
 LABEL L6 :
 LABEL L3 :
-t77 := v2
-t78 := #1
-IF t77 == t78 GOTO L9
+IF v2 == #1 GOTO L9
 GOTO L10
 LABEL L9 :
-t79 := #1
-RETURN t79
+RETURN #1
 GOTO L11
 LABEL L10 :
-t80 := #0
-RETURN t80
+RETURN #0
 LABEL L11 :
 FUNCTION main : 
 v5 := #100
 LABEL L12 :
-t82 := v5
-t83 := #150
-IF t82 < t83 GOTO L13
+IF v5 < #150 GOTO L13
 GOTO L14
 LABEL L13 :
 ARG v5
 t84 := CALL squaRever
-t85 := #1
-IF t84 == t85 GOTO L15
+IF t84 == #1 GOTO L15
 GOTO L16
 LABEL L15 :
 WRITE v5
@@ -96,5 +86,4 @@ t86 := v5 + #1
 v5 := t86
 GOTO L12
 LABEL L14 :
-t89 := #0
-RETURN t89
+RETURN #0

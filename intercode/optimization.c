@@ -167,15 +167,12 @@ static bool Pollution(InterCodeEntry* formerAssign, InterCodeEntry* laterCode)
             || laterCode->IC->kind == IMUL
             || laterCode->IC->kind == IDIV )
     {
+
         if(OperandEquivalence(laterCode->IC->BINOP.result, left))
             return true;
         else if(OperandEquivalence(laterCode->IC->BINOP.result, right))
             return true;
     }
-    else if(laterCode->IC->kind == ICALL)
-        return true;
-    else if(laterCode->IC->kind == IRETURN)
-        return true;
     else if(laterCode->IC->kind == IREAD)
     {
         if(laterCode->IC->READ.input->attr == OREF)
@@ -185,11 +182,15 @@ static bool Pollution(InterCodeEntry* formerAssign, InterCodeEntry* laterCode)
         else if(OperandEquivalence(laterCode->IC->READ.input, right))
             return true;
     }
-    else if(laterCode->IC->kind == IIFGOTO)
-        return true;
-    else if(laterCode->IC->kind == IGOTO)
-        return true;
-
+    else if(laterCode->IC->kind == ICALL)
+    {
+        if(laterCode->IC->CALL.ret->attr == OREF)
+            return true;
+        else if(OperandEquivalence(laterCode->IC->CALL.ret, left))
+            return true;
+        else if(OperandEquivalence(laterCode->IC->CALL.ret, right))
+            return true;
+    }
 
     return false;
 }
@@ -208,10 +209,16 @@ static bool RedundantAssignElimation(InterCodeEntry* formerAssign, InterCodeList
     while (entry != ICEHead)
     {
         if(Pollution(formerAssign, entry))
-        {
             break;
-        }
+
         RAPairProcess(formerAssign, entry);
+
+        if(entry->IC->kind == ICALL
+           || entry->IC->kind == IRETURN
+           || entry->IC->kind == IGOTO
+           || entry->IC->kind == IIFGOTO)
+            break;
+
         entry = entry->next;
     }
 

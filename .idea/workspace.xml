@@ -12,16 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e2c9a04-a95a-4b73-bbde-7715ce90317e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/IC.ir" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SIC.ir" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/InterCode.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/InterCode.c.o" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/semantic/semantic.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/semantic/semantic.c.o" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cproject3" afterPath="$PROJECT_DIR$/cmake-build-debug/cproject3" />
-      <change beforePath="$PROJECT_DIR$/compiler" afterPath="$PROJECT_DIR$/compiler" />
       <change beforePath="$PROJECT_DIR$/intercode/InterCode.c" afterPath="$PROJECT_DIR$/intercode/InterCode.c" />
       <change beforePath="$PROJECT_DIR$/intercode/optimization.c" afterPath="$PROJECT_DIR$/intercode/optimization.c" />
-      <change beforePath="$PROJECT_DIR$/semantic/semantic.c" afterPath="$PROJECT_DIR$/semantic/semantic.c" />
       <change beforePath="$PROJECT_DIR$/test/lab3/A-1.cmm.ir" afterPath="$PROJECT_DIR$/test/lab3/A-1.cmm.ir" />
       <change beforePath="$PROJECT_DIR$/test/lab3/A-2.cmm.ir" afterPath="$PROJECT_DIR$/test/lab3/A-2.cmm.ir" />
       <change beforePath="$PROJECT_DIR$/test/lab3/A-3.cmm.ir" afterPath="$PROJECT_DIR$/test/lab3/A-3.cmm.ir" />
@@ -50,11 +42,109 @@
     <splitter split-orientation="horizontal" split-proportion="0.57327586">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="optimization.c" pinned="false" current-in-tab="true">
+          <file leaf-file-name="InterCode.c" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/intercode/InterCode.c">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1602">
+                  <caret line="623" column="48" lean-forward="false" selection-start-line="623" selection-start-column="48" selection-end-line="623" selection-end-column="48" />
+                  <folding>
+                    <element signature="e#4168#4869#0" expanded="false" />
+                    <element signature="e#5161#5568#0" expanded="false" />
+                    <element signature="e#5570#6124#0" expanded="false" />
+                    <element signature="e#6126#6970#0" expanded="false" />
+                    <element signature="e#6972#7638#0" expanded="false" />
+                    <element signature="e#7640#8304#0" expanded="false" />
+                    <element signature="e#8306#8507#0" expanded="false" />
+                    <element signature="e#8509#9120#0" expanded="false" />
+                    <element signature="e#9122#9951#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ICTable.c" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/intercode/ICTable.c">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="393">
+                  <caret line="481" column="21" lean-forward="true" selection-start-line="481" selection-start-column="21" selection-end-line="481" selection-end-column="21" />
+                  <folding>
+                    <element signature="e#43#85#0" expanded="true" />
+                    <element signature="e#863#1209#0" expanded="false" />
+                    <element signature="e#1211#1554#0" expanded="false" />
+                    <element signature="e#1556#1899#0" expanded="false" />
+                    <element signature="e#4381#4826#0" expanded="false" />
+                    <element signature="e#5207#5251#0" expanded="false" />
+                    <element signature="e#7703#7815#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="optimization.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/intercode/optimization.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="162">
-                  <caret line="223" column="46" lean-forward="true" selection-start-line="223" selection-start-column="46" selection-end-line="223" selection-end-column="46" />
+                <state relative-caret-position="419">
+                  <caret line="215" column="10" lean-forward="true" selection-start-line="215" selection-start-column="10" selection-end-line="215" selection-end-column="10" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="E-2.3.cmm" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/lab3/E-2.3.cmm">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="170">
+                  <caret line="52" column="19" lean-forward="true" selection-start-line="52" selection-start-column="19" selection-end-line="52" selection-end-column="19" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="E-2.2.cmm" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/lab3/E-2.2.cmm">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="396">
+                  <caret line="22" column="19" lean-forward="true" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="E-2.1.cmm" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/lab3/E-2.1.cmm">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="314">
+                  <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="D-1.cmm.ir" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/lab3/D-1.cmm.ir">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-1360">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="D-1.cmm" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/lab3/D-1.cmm">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="314">
+                  <caret line="26" column="20" lean-forward="false" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="C-2.cmm" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/test/lab3/C-2.cmm">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="44">
+                  <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
                   <folding />
                 </state>
               </provider>
@@ -67,8 +157,8 @@
           <file leaf-file-name="E-2.3.cmm.ir" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/test/lab3/E-2.3.cmm.ir">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-4160">
-                  <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+                <state relative-caret-position="1599">
+                  <caret line="238" column="8" lean-forward="true" selection-start-line="238" selection-start-column="8" selection-end-line="238" selection-end-column="8" />
                   <folding />
                 </state>
               </provider>
@@ -77,8 +167,8 @@
           <file leaf-file-name="InterCode.h" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/intercode/InterCode.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="522">
-                  <caret line="105" column="16" lean-forward="true" selection-start-line="105" selection-start-column="16" selection-end-line="105" selection-end-column="16" />
+                <state relative-caret-position="630">
+                  <caret line="105" column="16" lean-forward="false" selection-start-line="105" selection-start-column="16" selection-end-line="105" selection-end-column="16" />
                   <folding />
                 </state>
               </provider>
@@ -276,12 +366,12 @@
       <workItem from="1512993084057" duration="73000" />
       <workItem from="1512993172742" duration="46666000" />
       <workItem from="1513151736713" duration="16266000" />
-      <workItem from="1513175534276" duration="50567000" />
+      <workItem from="1513175534276" duration="52577000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113572000" />
+    <option name="totallyTimeSpent" value="115582000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1857" height="1092" extended-state="6" />
@@ -293,7 +383,7 @@
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3010204" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32912722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09148265" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -327,14 +417,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/common.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/3.cmm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -421,21 +503,6 @@
           <caret line="4" column="31" lean-forward="true" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
           <folding>
             <element signature="e#109#129#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/intercode/ICTable.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18">
-          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding>
-            <element signature="e#863#1209#0" expanded="false" />
-            <element signature="e#1211#1554#0" expanded="false" />
-            <element signature="e#1556#1899#0" expanded="false" />
-            <element signature="e#4381#4826#0" expanded="false" />
-            <element signature="e#5207#5251#0" expanded="false" />
-            <element signature="e#7703#7815#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -588,24 +655,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/intercode/InterCode.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2561">
-          <caret line="933" column="1" lean-forward="false" selection-start-line="933" selection-start-column="1" selection-end-line="933" selection-end-column="1" />
-          <folding>
-            <element signature="e#4168#4869#0" expanded="false" />
-            <element signature="e#5161#5568#0" expanded="false" />
-            <element signature="e#5570#6124#0" expanded="false" />
-            <element signature="e#6126#6970#0" expanded="false" />
-            <element signature="e#6972#7638#0" expanded="false" />
-            <element signature="e#7640#8304#0" expanded="false" />
-            <element signature="e#8306#8507#0" expanded="false" />
-            <element signature="e#8509#9120#0" expanded="false" />
-            <element signature="e#9122#9951#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/1.cmm.ir">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -659,30 +708,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/intercode/InterCode.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="105" column="16" lean-forward="true" selection-start-line="105" selection-start-column="16" selection-end-line="105" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab3/E-2.3.cmm.ir">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4160">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab3/E-2.3.cmm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-56">
-          <caret line="52" column="19" lean-forward="true" selection-start-line="52" selection-start-column="19" selection-end-line="52" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/lab3/B-3.cmm.ir">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-216">
@@ -707,42 +732,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab3/E-2.2.cmm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="22" column="19" lean-forward="true" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/lab3/E-2.2.cmm.ir">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab3/E-2.1.cmm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab3/D-1.cmm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="41" column="13" lean-forward="true" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab3/C-2.cmm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-182">
-          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -763,10 +756,108 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/intercode/InterCode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="105" column="16" lean-forward="false" selection-start-line="105" selection-start-column="16" selection-end-line="105" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab3/E-2.3.cmm.ir">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1599">
+          <caret line="238" column="8" lean-forward="true" selection-start-line="238" selection-start-column="8" selection-end-line="238" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/intercode/InterCode.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1602">
+          <caret line="623" column="48" lean-forward="false" selection-start-line="623" selection-start-column="48" selection-end-line="623" selection-end-column="48" />
+          <folding>
+            <element signature="e#4168#4869#0" expanded="false" />
+            <element signature="e#5161#5568#0" expanded="false" />
+            <element signature="e#5570#6124#0" expanded="false" />
+            <element signature="e#6126#6970#0" expanded="false" />
+            <element signature="e#6972#7638#0" expanded="false" />
+            <element signature="e#7640#8304#0" expanded="false" />
+            <element signature="e#8306#8507#0" expanded="false" />
+            <element signature="e#8509#9120#0" expanded="false" />
+            <element signature="e#9122#9951#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/intercode/ICTable.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="481" column="21" lean-forward="true" selection-start-line="481" selection-start-column="21" selection-end-line="481" selection-end-column="21" />
+          <folding>
+            <element signature="e#43#85#0" expanded="true" />
+            <element signature="e#863#1209#0" expanded="false" />
+            <element signature="e#1211#1554#0" expanded="false" />
+            <element signature="e#1556#1899#0" expanded="false" />
+            <element signature="e#4381#4826#0" expanded="false" />
+            <element signature="e#5207#5251#0" expanded="false" />
+            <element signature="e#7703#7815#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/intercode/optimization.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="223" column="46" lean-forward="true" selection-start-line="223" selection-start-column="46" selection-end-line="223" selection-end-column="46" />
+        <state relative-caret-position="419">
+          <caret line="215" column="10" lean-forward="true" selection-start-line="215" selection-start-column="10" selection-end-line="215" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab3/E-2.3.cmm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="52" column="19" lean-forward="true" selection-start-line="52" selection-start-column="19" selection-end-line="52" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab3/E-2.2.cmm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="19" lean-forward="true" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab3/E-2.1.cmm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab3/D-1.cmm.ir">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1360">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab3/D-1.cmm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="26" column="20" lean-forward="false" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab3/C-2.cmm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
           <folding />
         </state>
       </provider>

@@ -3,9 +3,7 @@ PARAM v1
 v2 := #1
 v3 := #1
 LABEL L1 :
-t3 := v3
-t4 := v1
-IF t3 <= t4 GOTO L2
+IF v3 <= v1 GOTO L2
 GOTO L3
 LABEL L2 :
 t5 := v2 * v3
@@ -14,16 +12,13 @@ t8 := v3 + #1
 v3 := t8
 GOTO L1
 LABEL L3 :
-t11 := v2
-RETURN t11
+RETURN v2
 FUNCTION main : 
 DEC v4 20
 v5 := #0
 v6 := #5
 LABEL L4 :
-t14 := v5
-t15 := v6
-IF t14 < t15 GOTO L5
+IF v5 < v6 GOTO L5
 GOTO L6
 LABEL L5 :
 t18 := &v4
@@ -44,5 +39,4 @@ t31 := v5 + #1
 v5 := t31
 GOTO L4
 LABEL L6 :
-t34 := #0
-RETURN t34
+RETURN #0
