@@ -12,43 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e2c9a04-a95a-4b73-bbde-7715ce90317e" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/SPIM/spim.c" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/SPIM/spim.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/test/lab4/1.cmm" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/DependInfo.cmake" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/build.make" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/cmake_clean.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/cmake_clean.cmake" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/InterCode.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/InterCode.c.o" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/optimization.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/optimization.c.o" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/link.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/link.txt" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/progress.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/progress.make" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/semantic/semantic.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/semantic/semantic.c.o" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Compiler.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/Compiler.cbp" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cproject3" afterPath="$PROJECT_DIR$/cmake-build-debug/cproject3" />
-      <change beforePath="$PROJECT_DIR$/compiler" afterPath="$PROJECT_DIR$/compiler" />
-      <change beforePath="$PROJECT_DIR$/intercode/IC.h" afterPath="$PROJECT_DIR$/intercode/IC.h" />
-      <change beforePath="$PROJECT_DIR$/intercode/ICTable.c" afterPath="$PROJECT_DIR$/intercode/ICTable.c" />
-      <change beforePath="$PROJECT_DIR$/intercode/InterCode.c" afterPath="$PROJECT_DIR$/intercode/InterCode.c" />
-      <change beforePath="$PROJECT_DIR$/intercode/InterCode.h" afterPath="$PROJECT_DIR$/intercode/InterCode.h" />
-      <change beforePath="$PROJECT_DIR$/intercode/optimization.c" afterPath="$PROJECT_DIR$/intercode/optimization.c" />
-      <change beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
-      <change beforePath="$PROJECT_DIR$/makefile" afterPath="$PROJECT_DIR$/makefile" />
-      <change beforePath="$PROJECT_DIR$/semantic/semantic.c" afterPath="$PROJECT_DIR$/semantic/semantic.c" />
-      <change beforePath="$PROJECT_DIR$/test/1.cmm" afterPath="$PROJECT_DIR$/test/lab3/1.cmm" />
-      <change beforePath="$PROJECT_DIR$/test/1.cmm.ir" afterPath="$PROJECT_DIR$/test/lab3/1.cmm.ir" />
-      <change beforePath="$PROJECT_DIR$/test/2.cmm" afterPath="$PROJECT_DIR$/test/lab3/2.cmm" />
-      <change beforePath="$PROJECT_DIR$/test/2.cmm.ir" afterPath="$PROJECT_DIR$/test/lab3/2.cmm.ir" />
-      <change beforePath="$PROJECT_DIR$/test/3.cmm" afterPath="$PROJECT_DIR$/test/lab3/3.cmm" />
-      <change beforePath="$PROJECT_DIR$/test/4.cmm" afterPath="$PROJECT_DIR$/test/lab3/4.cmm" />
-      <change beforePath="$PROJECT_DIR$/test/4.cmm.ir" afterPath="$PROJECT_DIR$/test/lab3/4.cmm.ir" />
-      <change beforePath="$PROJECT_DIR$/test/test.cmm" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/test/test.cmm.ir" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/新建文本文档.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/SPIM/spim.c" afterPath="$PROJECT_DIR$/SPIM/spim.c" />
+      <change beforePath="$PROJECT_DIR$/SPIM/spim.h" afterPath="$PROJECT_DIR$/SPIM/spim.h" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,7 +25,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6423589">
+    <splitter split-orientation="horizontal" split-proportion="0.5453392">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="ICTable.c" pinned="false" current-in-tab="false">
@@ -94,10 +59,12 @@
           <file leaf-file-name="spim.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/SPIM/spim.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-355">
-                  <caret line="70" column="5" lean-forward="true" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+                <state relative-caret-position="131">
+                  <caret line="153" column="10" lean-forward="false" selection-start-line="153" selection-start-column="10" selection-end-line="153" selection-end-column="10" />
                   <folding>
                     <element signature="e#44#69#0" expanded="true" />
+                    <element signature="e#311#590#0" expanded="false" />
+                    <element signature="e#592#1922#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -119,21 +86,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="spim.h" pinned="false" current-in-tab="false">
+          <file leaf-file-name="spim.h" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/SPIM/spim.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="InterCode.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/intercode/InterCode.h">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="396">
-                  <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+                <state relative-caret-position="486">
+                  <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
                   <folding />
                 </state>
               </provider>
@@ -149,10 +106,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="check.c" pinned="false" current-in-tab="true">
+          <file leaf-file-name="check.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/semantic/check.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="149">
+                <state relative-caret-position="3096">
                   <caret line="176" column="5" lean-forward="true" selection-start-line="176" selection-start-column="5" selection-end-line="176" selection-end-column="5" />
                   <folding />
                 </state>
@@ -250,8 +207,8 @@
         <option value="$PROJECT_DIR$/intercode/IC.h" />
         <option value="$PROJECT_DIR$/main.c" />
         <option value="$PROJECT_DIR$/intercode/ICTable.c" />
-        <option value="$PROJECT_DIR$/SPIM/spim.h" />
         <option value="$PROJECT_DIR$/intercode/InterCode.h" />
+        <option value="$PROJECT_DIR$/SPIM/spim.h" />
         <option value="$PROJECT_DIR$/SPIM/spim.c" />
       </list>
     </option>
@@ -377,12 +334,12 @@
       <workItem from="1512993172742" duration="46666000" />
       <workItem from="1513151736713" duration="16266000" />
       <workItem from="1513175534276" duration="55252000" />
-      <workItem from="1514365982057" duration="7914000" />
+      <workItem from="1514365982057" duration="13566000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126171000" />
+    <option name="totallyTimeSpent" value="131823000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1857" height="1092" extended-state="6" />
@@ -757,14 +714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SPIM/spim.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/intercode/IC.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -813,28 +762,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/intercode/InterCode.h">
+    <entry file="file://$PROJECT_DIR$/semantic/check.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+        <state relative-caret-position="3096">
+          <caret line="176" column="5" lean-forward="true" selection-start-line="176" selection-start-column="5" selection-end-line="176" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/semantic/check.c">
+    <entry file="file://$PROJECT_DIR$/intercode/InterCode.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="176" column="5" lean-forward="true" selection-start-line="176" selection-start-column="5" selection-end-line="176" selection-end-column="5" />
+        <state relative-caret-position="72">
+          <caret line="23" column="25" lean-forward="true" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SPIM/spim.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SPIM/spim.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-355">
-          <caret line="70" column="5" lean-forward="true" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+        <state relative-caret-position="131">
+          <caret line="153" column="10" lean-forward="false" selection-start-line="153" selection-start-column="10" selection-end-line="153" selection-end-column="10" />
           <folding>
             <element signature="e#44#69#0" expanded="true" />
+            <element signature="e#311#590#0" expanded="false" />
+            <element signature="e#592#1922#0" expanded="false" />
           </folding>
         </state>
       </provider>

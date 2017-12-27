@@ -7,6 +7,7 @@
 #include "../intercode/IC.h"
 #include "../intercode/ICTable.h"
 #include "../intercode/InterCode.h"
+#include "spim.h"
 
 int VSize;
 int TSize;
@@ -14,6 +15,9 @@ int VBegin;
 int TBegin;
 int* VOffset;
 int* TOffset;
+
+AIRE* AIRV;
+AISE* AISV;
 
 void InitRootInterCodeList()
 {
@@ -23,6 +27,9 @@ void InitRootInterCodeList()
 
     ICVhead->prev = NULL;
     ICVtail->next = NULL;
+
+    AIRV = (AIRE*)malloc(sizeof(AIRE)*4);
+    AISV = (AISE*)malloc(sizeof(AISV)*100);
 }
 
 void GetVTSize()
@@ -73,7 +80,8 @@ void GetVTSize()
         offset++;
     }
 
-
+    VBegin = 8;                 // v_i is at ( $fp - ( VBegin + VOffset[i]*4 )) in stack
+    TBegin = VBegin + VSize*4;  // t_i is at ( $fp - ( TBegin + TOffset[i]*4 )) in stack
 }
 
 void MachineCodePreparation(FILE* stream)
@@ -101,21 +109,24 @@ void MachineCodePreparation(FILE* stream)
             "  jr $ra\n\n");
 }
 
-void FUNGenerator(InterCode* IC, FILE* stream)
+void FUNGenerator(InterCode* IC, FILE* stream, int argNum)
 {
     fprintf(stream, "%s:\n", IC->FUN.funName);
 
     if(strcmp(IC->FUN.funName, "main") == 0)
     {
-        int frameSize = (1 + VSize + TSize) * 4;
+        assert(argNum == 0);
+
+        int frameSize = (2 + VSize + TSize) * 4;
         fprintf(stream, "  subu $sp, $sp, %d\n", frameSize );
-        fprintf(stream, "  sw $fp, (%d - 4)($sp)\n", frameSize);
+        fprintf(stream, "  sw $fp, (%d - 8)($sp)\n", frameSize);
         fprintf(stream, "  addi $fp, $sp, %d\n", frameSize);
 
-
-        /* in main function:
+        /* now in main function:
          *
          *         --------------  <- $fp
+         *         |   blank    |
+         *         --------------
          *         |   old fp   |
          *         --------------  <- $fp + VBegin
          *         |            |
@@ -125,16 +136,75 @@ void FUNGenerator(InterCode* IC, FILE* stream)
          *         |            |
          *         |   T data   |
          *         |            |
-         *         --------------
+         *         --------------  <- $sp
          */
-
-        VBegin = 4;                 // v_i is at ($fp + VBegin + VOffset[i]*4) in stack
-        TBegin = VBegin + VSize*4;  // t_i is at ($fp + TBegin + TOffset[i]*4) in stack
-
     }
-    else{
+    else
+    {
+        int frameSize = (2 + VSize + TSize) * 4;
+        fprintf(stream, "  subu $sp, $sp, %d\n", frameSize );
+        fprintf(stream, "  sw $ra, (%d - 4)($sp)\n", frameSize);
+        fprintf(stream, "  sw $fp, (%d - 8)($sp)\n", frameSize);
+        fprintf(stream, "  addi $fp, $sp, %d\n", frameSize);
+
         assert(0);
+        // store the args in the V data
+
+       /* now in xxx function:
+        * 
+        *         --------------
+        *         |            |
+        *         |    args    |
+        *         |            |
+        *         --------------  <- $fp
+        *         |  ret addr  |
+        *         --------------
+        *         |   old fp   |
+        *         --------------  <- $fp + VBegin
+        *         |            |
+        *         |   V data   |
+        *         |            |
+        *         --------------  <- $fp + TBegin
+        *         |            |
+        *         |   T data   |
+        *         |            |
+        *         --------------  <- $sp
+        */
+
     }
+}
+
+
+InterCodeEntry* ParamFunGenerator(InterCodeEntry* ICV, FILE* stream)
+{
+    InterCodeEntry* entry;
+    int argNum = 0;
+    for( entry = ICV;entry->IC->kind==IPARAM; entry = entry->next)
+    {
+        if(argNum<=3)
+        {
+            Operand* op = entry->IC->PARAM.parameter;
+            AIRV[argNum].kind = op->kind;
+            assert(op->kind == OVAR);
+            AIRV[argNum].Index = op->VIndex;
+        }
+        else
+        {
+            Operand* op = entry->IC->PARAM.parameter;
+            AISV[argNum - 4].kind = op->kind;
+            assert(op->kind == OVAR);
+            AISV[argNum - 4].Index = op->VIndex;
+        }
+        argNum++;
+    }
+
+    assert(entry->IC->kind == IFUNCTION);
+
+    FUNGenerator(entry->IC, stream, argNum);
+
+    return entry;
+
+
 }
 
 void MachineCodeGenerator(char* filename)
@@ -151,7 +221,9 @@ void MachineCodeGenerator(char* filename)
         assert(fp != NULL);
     }
 
+    InitRootInterCodeList();
     MachineCodePreparation(fp);
+    GetVTSize();
 
 
     InterCodeEntry* ICV ;
@@ -160,8 +232,13 @@ void MachineCodeGenerator(char* filename)
         InterCode* IC = ICV->IC;
         switch (IC->kind)
         {
-            case IFUNCTION: FUNGenerator(IC, fp);break;
-            case IASSIGN:
+            case IFUNCTION: {
+                FUNGenerator(IC, fp, 0); break;
+            }
+            case IPARAM: {
+                ICV = ParamFunGenerator(ICV, fp); break;
+            }
+            case IASSIGN:break;
             default:assert(0);
         }
     }

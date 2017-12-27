@@ -5,13 +5,27 @@
 #ifndef COMPILER_SPIM_H
 #define COMPILER_SPIM_H
 
-typedef struct MachineCodeEntry_ MachineCodeEntry;
-typedef struct MachineCode_ MachineCode;
+enum { MTEMP, MVAR };
 
+typedef struct ArgInRegEntry_ AIRE;
+typedef struct ArgInStackEntry_ AISE;
 
 extern void MachineCodeGenerator(char* filename);
 
 
+struct ArgInRegEntry_ {
 
+    //int ARegNo;
+    int kind; // MTEMP or MVAR
+    int Index;
+
+};
+
+
+struct ArgInStackEntry_ {
+
+    int kind;
+    int Index;
+};
 
 #endif //COMPILER_SPIM_H
