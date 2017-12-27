@@ -12,14 +12,10 @@ CFLAGS = -g \
 
 
 run: syntax lexical compiler
-	./compiler test/1.cmm
+	./compiler test/lab4/1.cmm
 
 test: syntax lexical compiler
-	cd test/ && ../compiler `ls *.cmm | sort -n`
-
-lab: syntax lexical compiler
-	cd test/lab3/ && ../../compiler `ls *.cmm | sort -n`
-
+	cd test/lab4/ && ../../compiler `ls *.cmm | sort -n`
 
 compile: clean syntax lexical compiler
 

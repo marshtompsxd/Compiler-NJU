@@ -407,6 +407,7 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
         else if(skind(firstchild(node)) == AFLOAT)
         {
             //right = NewFCOperand(firstchild(node)->float_value);
+            printf("can not handle float point num!!!\n");
             assert(0);
         }
         else assert(0);
@@ -587,8 +588,12 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
         {
             if(strcmp(firstchild(node)->IDname, "read") == 0)
             {
-                assert(result!=NULL);
-                // read must have ret value
+                if(result == NULL)
+                {
+                    printf("read() must have ret value!!!\n");
+                    assert(0);
+                }
+
                 InterCodeEntry* ICE = NewInterCodeEntryREAD(result);
                 InsertEntryIntoInterCodeList(ICE, list);
             }
@@ -620,8 +625,12 @@ static InterCodeListHead* ExpGenerate(ParsingNode* node, Operand* result)
 
             if(strcmp(firstchild(node)->IDname, "write") == 0)
             {
-                assert(result == NULL);
-                // write must not have ret value
+                if(result != NULL)
+                {
+                    printf("write() must not have ret value!!!\n");
+                    assert(0);
+                }
+
                 InterCodeEntry* ICE = NewInterCodeEntryWRITE(alist->head->arg);
                 InsertEntryIntoInterCodeList(ICE, list);
 
@@ -952,8 +961,8 @@ void InterCodeGenerator(char* filename)
     else
     {
         InitICTable();
-        //printf("print ICVarTable\n");
-        //CheckElemInICVarTable(RootICVarTable);
+        printf("print ICVarTable\n");
+        CheckElemInICVarTable(RootICVarTable);
         ProgramGenerate(ParsingRoot);
         PrintInterCodeList(RootInterCodeList, filename);
     }

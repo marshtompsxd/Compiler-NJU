@@ -13,6 +13,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/cproject3.dir/semantic/check.c.o"
   "CMakeFiles/cproject3.dir/intercode/ICTable.c.o"
   "CMakeFiles/cproject3.dir/intercode/optimization.c.o"
+  "CMakeFiles/cproject3.dir/SPIM/spim.c.o"
   "cproject3.pdb"
   "cproject3"
 )

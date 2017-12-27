@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /home/sunxudong/CLionProjects/cproject3/cmake-build-debug
 CMakeFiles/cproject3.dir/all:
 	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/depend
 	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14 "Built target cproject3"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 "Built target cproject3"
 .PHONY : CMakeFiles/cproject3.dir/all
 
 # Include target in all.
@@ -76,7 +76,7 @@ all: CMakeFiles/cproject3.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/cproject3.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles 15
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/cproject3.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/cproject3.dir/rule

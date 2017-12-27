@@ -728,7 +728,7 @@ void PrintInterCodeList(InterCodeListHead* list, char* filename)
     /* after optimization */
     if(filename == NULL)
     {
-        fp=fopen(SICFileName, "w");
+        fp = stdout;
     }
     else
     {
@@ -742,5 +742,7 @@ void PrintInterCodeList(InterCodeListHead* list, char* filename)
     {
         PrintInterCodeEntry(fp, ICE);
     }
-    fclose(fp);
+
+    if(fp!=stdout)
+        fclose(fp);
 }

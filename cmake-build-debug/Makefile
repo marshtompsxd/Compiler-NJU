@@ -123,6 +123,33 @@ cproject3/fast:
 	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/build
 .PHONY : cproject3/fast
 
+SPIM/spim.o: SPIM/spim.c.o
+
+.PHONY : SPIM/spim.o
+
+# target to build an object file
+SPIM/spim.c.o:
+	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/SPIM/spim.c.o
+.PHONY : SPIM/spim.c.o
+
+SPIM/spim.i: SPIM/spim.c.i
+
+.PHONY : SPIM/spim.i
+
+# target to preprocess a source file
+SPIM/spim.c.i:
+	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/SPIM/spim.c.i
+.PHONY : SPIM/spim.c.i
+
+SPIM/spim.s: SPIM/spim.c.s
+
+.PHONY : SPIM/spim.s
+
+# target to generate assembly for a file
+SPIM/spim.c.s:
+	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/SPIM/spim.c.s
+.PHONY : SPIM/spim.c.s
+
 intercode/ICTable.o: intercode/ICTable.c.o
 
 .PHONY : intercode/ICTable.o
@@ -429,6 +456,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... cproject3"
+	@echo "... SPIM/spim.o"
+	@echo "... SPIM/spim.i"
+	@echo "... SPIM/spim.s"
 	@echo "... intercode/ICTable.o"
 	@echo "... intercode/ICTable.i"
 	@echo "... intercode/ICTable.s"

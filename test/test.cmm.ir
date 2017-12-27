@@ -1,7 +1,0 @@
-FUNCTION main : 
-v1 := #10
-v2 := #3
-t3 := v1 / v2
-v3 := t3
-WRITE v3
-RETURN #0

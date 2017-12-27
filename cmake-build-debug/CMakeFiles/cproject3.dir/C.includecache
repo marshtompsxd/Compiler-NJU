@@ -20,6 +20,18 @@ stdlib.h
 ../common.h
 ../common.h
 
+/home/sunxudong/CLionProjects/cproject3/SPIM/spim.c
+../common.h
+/home/sunxudong/CLionProjects/cproject3/common.h
+../intercode/IC.h
+/home/sunxudong/CLionProjects/cproject3/intercode/IC.h
+../intercode/ICTable.h
+/home/sunxudong/CLionProjects/cproject3/intercode/ICTable.h
+../intercode/InterCode.h
+/home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h
+
+/home/sunxudong/CLionProjects/cproject3/SPIM/spim.h
+
 /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/lex.yy.c
 stdio.h
 -
@@ -89,6 +101,8 @@ stdlib.h
 -
 
 /home/sunxudong/CLionProjects/cproject3/intercode/IC.h
+../common.h
+/home/sunxudong/CLionProjects/cproject3/common.h
 
 /home/sunxudong/CLionProjects/cproject3/intercode/ICTable.c
 ../lexical_syntax/ParsingNode.h
@@ -203,6 +217,8 @@ semantic/semantic.h
 /home/sunxudong/CLionProjects/cproject3/semantic/semantic.h
 intercode/IC.h
 /home/sunxudong/CLionProjects/cproject3/intercode/IC.h
+SPIM/spim.h
+/home/sunxudong/CLionProjects/cproject3/SPIM/spim.h
 
 /home/sunxudong/CLionProjects/cproject3/semantic/check.c
 symbol_table.h

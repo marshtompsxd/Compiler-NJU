@@ -6,10 +6,11 @@ LABEL L1 :
 RETURN v1
 GOTO L3
 LABEL L2 :
+t5 := v1
 t7 := v1 - #1
 ARG t7
 t6 := CALL fact
-t4 := v1 * t6
+t4 := t5 * t6
 RETURN t4
 LABEL L3 :
 FUNCTION main : 

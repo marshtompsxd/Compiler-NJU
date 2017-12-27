@@ -6,6 +6,7 @@
 #include "lexical_syntax/syntax.tab.h"
 #include "semantic/semantic.h"
 #include "intercode/IC.h"
+#include "SPIM/spim.h"
 
 static void ParsingFinalPhase(char* filename)
 {
@@ -81,6 +82,17 @@ int main(int argc, char** argv)
             else
                 printf("\033[31mIntermediate code generation of %s over(with error).\033[0m\n", argv[i]);
         }
+
+
+		if(ICSwitch)
+		{
+            printf("Machine Code generation of %s begin...\n", argv[i]);
+            char* codefile = (char*)malloc(strlen(argv[i]) + 2);
+            strcpy(codefile, argv[i]);
+            strcat(codefile, ".s");
+            MachineCodeGenerator(NULL);
+            printf("\033[32mIntermediate code generation of %s over.\033[0m\n", argv[i]);
+		}
 
         //PostorderFreeParsingTree(ParsingRoot);
         printf("\n");

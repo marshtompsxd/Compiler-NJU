@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/home/sunxudong/CLionProjects/cproject3/SPIM/spim.c" "/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles/cproject3.dir/SPIM/spim.c.o"
   "/home/sunxudong/CLionProjects/cproject3/intercode/ICTable.c" "/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/ICTable.c.o"
   "/home/sunxudong/CLionProjects/cproject3/intercode/InterCode.c" "/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/InterCode.c.o"
   "/home/sunxudong/CLionProjects/cproject3/intercode/optimization.c" "/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles/cproject3.dir/intercode/optimization.c.o"

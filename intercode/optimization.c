@@ -216,7 +216,8 @@ static bool RedundantAssignElimation(InterCodeEntry* formerAssign, InterCodeList
         if(entry->IC->kind == ICALL
            || entry->IC->kind == IRETURN
            || entry->IC->kind == IGOTO
-           || entry->IC->kind == IIFGOTO)
+           || entry->IC->kind == IIFGOTO
+           || entry->IC->kind == ILABEL)
             break;
 
         entry = entry->next;

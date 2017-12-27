@@ -90,6 +90,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/sunxudong/CLionProjects/cproject3/SPIM/spim.c">
+			<Option target="cproject3"/>
+		</Unit>
+		<Unit filename="/home/sunxudong/CLionProjects/cproject3/SPIM/spim.h">
+			<Option target="cproject3"/>
+		</Unit>
 		<Unit filename="/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/lex.yy.c">
 			<Option target="cproject3"/>
 		</Unit>

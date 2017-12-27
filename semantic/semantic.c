@@ -438,6 +438,7 @@ static ParamList* FunDecAnalysis(ParsingNode* node, Type* RetType)
 	strcpy(SE->Function.FunName, IDNode->IDname);
 	SE->Function.RetType = RetType;
 	SE->Function.PL = (ParamList*)malloc(sizeof(ParamList));
+    SE->tail = NULL;
 
 	if(node->childrenNum == 4)
 	{
