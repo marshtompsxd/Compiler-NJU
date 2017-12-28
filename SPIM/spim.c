@@ -80,25 +80,34 @@ void GetVTSize()
         offset++;
     }
 
-    VBegin = 8;                 // v_i is at ( $fp - ( VBegin + VOffset[i]*4 )) in stack
-    TBegin = VBegin + VSize*4;  // t_i is at ( $fp - ( TBegin + TOffset[i]*4 )) in stack
+    VBegin = 0;                 // v_i is at ( $gp + ( VBegin + VOffset[i]*4 )) in stack
+    TBegin = VBegin + VSize*4;  // t_i is at ( $gp + ( TBegin + TOffset[i]*4 )) in stack
+
+    assert(TSize + VSize <= 8*1024);
 
 
     /* now in static data segment(64K):
      *
-     *         --------------  high address
+     *         --------------  high address : 0x10010000
      *         |   T data   |
      *         --------------
      *         |   V data   |
-     *         --------------  <- $gp (points to the middle of 64K DATA SEGMENT)
+     *         --------------  <- $gp : 0x10008000 (points to the middle of first 64K DATA SEGMENT)
      *         |            |
      *         |            |
      *         |            |
-     *         --------------  low address
+     *         --------------  low address : 0x10000000
      */
 
 
 
+}
+
+int GetVTAddrRelGP(Operand* op)
+{
+    if(op->kind == OVAR)return VBegin+4*VOffset[op->VIndex];
+    else if(op->kind == OTEMP)return  TBegin+4*TOffset[op->TIndex];
+    else assert(0);
 }
 
 void MachineCodePreparation(FILE* stream)

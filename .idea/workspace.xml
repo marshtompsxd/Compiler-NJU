@@ -58,8 +58,8 @@
           <file leaf-file-name="spim.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/SPIM/spim.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2093">
-                  <caret line="161" column="52" lean-forward="false" selection-start-line="161" selection-start-column="52" selection-end-line="161" selection-end-column="52" />
+                <state relative-caret-position="630">
+                  <caret line="111" column="0" lean-forward="true" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
                   <folding>
                     <element signature="e#44#69#0" expanded="true" />
                     <element signature="e#311#590#0" expanded="false" />
@@ -332,12 +332,12 @@
       <workItem from="1512993172742" duration="46666000" />
       <workItem from="1513151736713" duration="16266000" />
       <workItem from="1513175534276" duration="55252000" />
-      <workItem from="1514365982057" duration="14816000" />
+      <workItem from="1514365982057" duration="16024000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133073000" />
+    <option name="totallyTimeSpent" value="134281000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1857" height="1092" extended-state="6" />
@@ -786,8 +786,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SPIM/spim.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2093">
-          <caret line="161" column="52" lean-forward="false" selection-start-line="161" selection-start-column="52" selection-end-line="161" selection-end-column="52" />
+        <state relative-caret-position="630">
+          <caret line="111" column="0" lean-forward="true" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
           <folding>
             <element signature="e#44#69#0" expanded="true" />
             <element signature="e#311#590#0" expanded="false" />
