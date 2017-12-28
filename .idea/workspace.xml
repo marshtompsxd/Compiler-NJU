@@ -13,7 +13,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6e2c9a04-a95a-4b73-bbde-7715ce90317e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/SPIM/spim.c" afterPath="$PROJECT_DIR$/SPIM/spim.c" />
-      <change beforePath="$PROJECT_DIR$/SPIM/spim.h" afterPath="$PROJECT_DIR$/SPIM/spim.h" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,7 +24,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5453392">
+    <splitter split-orientation="horizontal" split-proportion="0.6727964">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="ICTable.c" pinned="false" current-in-tab="false">
@@ -59,12 +58,11 @@
           <file leaf-file-name="spim.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/SPIM/spim.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="131">
-                  <caret line="153" column="10" lean-forward="false" selection-start-line="153" selection-start-column="10" selection-end-line="153" selection-end-column="10" />
+                <state relative-caret-position="2093">
+                  <caret line="161" column="52" lean-forward="false" selection-start-line="161" selection-start-column="52" selection-end-line="161" selection-end-column="52" />
                   <folding>
                     <element signature="e#44#69#0" expanded="true" />
                     <element signature="e#311#590#0" expanded="false" />
-                    <element signature="e#592#1922#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -334,12 +332,12 @@
       <workItem from="1512993172742" duration="46666000" />
       <workItem from="1513151736713" duration="16266000" />
       <workItem from="1513175534276" duration="55252000" />
-      <workItem from="1514365982057" duration="13566000" />
+      <workItem from="1514365982057" duration="14816000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131823000" />
+    <option name="totallyTimeSpent" value="133073000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1857" height="1092" extended-state="6" />
@@ -788,12 +786,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SPIM/spim.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="153" column="10" lean-forward="false" selection-start-line="153" selection-start-column="10" selection-end-line="153" selection-end-column="10" />
+        <state relative-caret-position="2093">
+          <caret line="161" column="52" lean-forward="false" selection-start-line="161" selection-start-column="52" selection-end-line="161" selection-end-column="52" />
           <folding>
             <element signature="e#44#69#0" expanded="true" />
             <element signature="e#311#590#0" expanded="false" />
-            <element signature="e#592#1922#0" expanded="false" />
           </folding>
         </state>
       </provider>

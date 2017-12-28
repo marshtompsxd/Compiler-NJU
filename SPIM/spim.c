@@ -82,6 +82,23 @@ void GetVTSize()
 
     VBegin = 8;                 // v_i is at ( $fp - ( VBegin + VOffset[i]*4 )) in stack
     TBegin = VBegin + VSize*4;  // t_i is at ( $fp - ( TBegin + TOffset[i]*4 )) in stack
+
+
+    /* now in static data segment(64K):
+     *
+     *         --------------  high address
+     *         |   T data   |
+     *         --------------
+     *         |   V data   |
+     *         --------------  <- $gp (points to the middle of 64K DATA SEGMENT)
+     *         |            |
+     *         |            |
+     *         |            |
+     *         --------------  low address
+     */
+
+
+
 }
 
 void MachineCodePreparation(FILE* stream)
@@ -117,41 +134,35 @@ void FUNGenerator(InterCode* IC, FILE* stream, int argNum)
     {
         assert(argNum == 0);
 
-        int frameSize = (2 + VSize + TSize) * 4;
+        int frameSize = 2 * 4;
         fprintf(stream, "  subu $sp, $sp, %d\n", frameSize );
         fprintf(stream, "  sw $fp, (%d - 8)($sp)\n", frameSize);
         fprintf(stream, "  addi $fp, $sp, %d\n", frameSize);
 
         /* now in main function:
          *
+         *                         high address
          *         --------------  <- $fp
          *         |   blank    |
          *         --------------
          *         |   old fp   |
-         *         --------------  <- $fp + VBegin
-         *         |            |
-         *         |   V data   |
-         *         |            |
-         *         --------------  <- $fp + TBegin
-         *         |            |
-         *         |   T data   |
-         *         |            |
          *         --------------  <- $sp
+         *                         low address
          */
     }
     else
     {
-        int frameSize = (2 + VSize + TSize) * 4;
+        int frameSize = 2 * 4;
         fprintf(stream, "  subu $sp, $sp, %d\n", frameSize );
         fprintf(stream, "  sw $ra, (%d - 4)($sp)\n", frameSize);
         fprintf(stream, "  sw $fp, (%d - 8)($sp)\n", frameSize);
         fprintf(stream, "  addi $fp, $sp, %d\n", frameSize);
 
         assert(0);
-        // store the args in the V data
+        // To-Do: load args into static data segment
 
        /* now in xxx function:
-        * 
+        *                         high address
         *         --------------
         *         |            |
         *         |    args    |
@@ -160,15 +171,8 @@ void FUNGenerator(InterCode* IC, FILE* stream, int argNum)
         *         |  ret addr  |
         *         --------------
         *         |   old fp   |
-        *         --------------  <- $fp + VBegin
-        *         |            |
-        *         |   V data   |
-        *         |            |
-        *         --------------  <- $fp + TBegin
-        *         |            |
-        *         |   T data   |
-        *         |            |
         *         --------------  <- $sp
+        *                         low address
         */
 
     }
@@ -199,6 +203,7 @@ InterCodeEntry* ParamFunGenerator(InterCodeEntry* ICV, FILE* stream)
     }
 
     assert(entry->IC->kind == IFUNCTION);
+
 
     FUNGenerator(entry->IC, stream, argNum);
 
