@@ -12,14 +12,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e2c9a04-a95a-4b73-bbde-7715ce90317e" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/test/lab4/2.cmm" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/SPIM/spim.c" afterPath="$PROJECT_DIR$/SPIM/spim.c" />
-      <change beforePath="$PROJECT_DIR$/SPIM/spim.h" afterPath="$PROJECT_DIR$/SPIM/spim.h" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/SPIM/spim.c.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/SPIM/spim.c.o" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cproject3.dir/main.c.o" afterPath="" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/cproject3" afterPath="$PROJECT_DIR$/cmake-build-debug/cproject3" />
-      <change beforePath="$PROJECT_DIR$/main.c" afterPath="$PROJECT_DIR$/main.c" />
+      <change beforePath="$PROJECT_DIR$/test/lab4/1.cmm.s" afterPath="$PROJECT_DIR$/test/lab4/1.cmm.s" />
+      <change beforePath="$PROJECT_DIR$/test/lab4/2.cmm.s" afterPath="$PROJECT_DIR$/test/lab4/2.cmm.s" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,7 +29,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5846544">
+    <splitter split-orientation="horizontal" split-proportion="0.57070386">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="1.cmm" pinned="false" current-in-tab="false">
@@ -47,8 +45,18 @@
           <file leaf-file-name="2.cmm" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test/lab4/2.cmm">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="54">
-                  <caret line="3" column="17" lean-forward="true" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+                <state relative-caret-position="306">
+                  <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="2.cmm.ir" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/lab4/2.cmm.ir">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="540">
+                  <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -57,8 +65,8 @@
           <file leaf-file-name="spim.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/SPIM/spim.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-3054">
-                  <caret line="215" column="53" lean-forward="false" selection-start-line="215" selection-start-column="53" selection-end-line="215" selection-end-column="53" />
+                <state relative-caret-position="72">
+                  <caret line="364" column="21" lean-forward="true" selection-start-line="364" selection-start-column="21" selection-end-line="364" selection-end-column="21" />
                   <folding>
                     <element signature="e#44#66#0" expanded="true" />
                   </folding>
@@ -66,34 +74,14 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="2.cmm.s" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/test/lab4/2.cmm.s">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-282">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="main.c" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/main.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
+                <state relative-caret-position="539">
                   <caret line="92" column="41" lean-forward="false" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="1.cmm.s" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/test/lab4/1.cmm.s">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="396">
-                  <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -112,11 +100,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="2.cmm.ir" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/test/lab4/2.cmm.ir">
+          <file leaf-file-name="1.cmm.s" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/test/lab4/1.cmm.s">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state relative-caret-position="-180">
+                  <caret line="14" column="11" lean-forward="true" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="2.cmm.s" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/lab4/2.cmm.s">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1656">
+                  <caret line="92" column="16" lean-forward="true" selection-start-line="92" selection-start-column="16" selection-end-line="92" selection-end-column="16" />
                   <folding />
                 </state>
               </provider>
@@ -164,11 +162,13 @@
       <find>GenerateParamString</find>
       <find>malloc</find>
       <find>move</find>
+      <find>gp</find>
     </findStrings>
     <replaceStrings>
       <replace>Generate</replace>
       <replace>void</replace>
       <replace>fprintf</replace>
+      <replace>fp</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -215,8 +215,8 @@
         <option value="$PROJECT_DIR$/intercode/InterCode.h" />
         <option value="$PROJECT_DIR$/test/lab4/1.cmm" />
         <option value="$PROJECT_DIR$/main.c" />
-        <option value="$PROJECT_DIR$/test/lab4/2.cmm" />
         <option value="$PROJECT_DIR$/SPIM/spim.h" />
+        <option value="$PROJECT_DIR$/test/lab4/2.cmm" />
         <option value="$PROJECT_DIR$/SPIM/spim.c" />
       </list>
     </option>
@@ -328,7 +328,7 @@
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Compiler" RUN_TARGET_NAME="cproject3" EXPLICIT_BUILD_TARGET_NAME="all">
       <envs />
     </configuration>
-    <configuration name="cproject3" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="test/lab4/2.cmm" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Compiler" TARGET_NAME="cproject3" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Compiler" RUN_TARGET_NAME="cproject3">
+    <configuration name="cproject3" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="test/lab4/1.cmm test/lab4/2.cmm" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Compiler" TARGET_NAME="cproject3" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Compiler" RUN_TARGET_NAME="cproject3">
       <envs />
     </configuration>
     <list size="2">
@@ -353,12 +353,12 @@
       <workItem from="1512993172742" duration="46666000" />
       <workItem from="1513151736713" duration="16266000" />
       <workItem from="1513175534276" duration="55252000" />
-      <workItem from="1514365982057" duration="30607000" />
+      <workItem from="1514365982057" duration="40538000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148864000" />
+    <option name="totallyTimeSpent" value="158795000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1857" height="1092" extended-state="6" />
@@ -370,7 +370,7 @@
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3010204" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3396425" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33123028" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -392,13 +392,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/SPIM/spim.c</url>
-          <line>498</line>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="42" />
     </breakpoint-manager>
     <watches-manager />
@@ -748,6 +741,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SPIM/spim.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab4/2.cmm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab4/2.cmm.s">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1656">
+          <caret line="92" column="16" lean-forward="true" selection-start-line="92" selection-start-column="16" selection-end-line="92" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab4/2.cmm.ir">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/lab4/1.cmm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -756,11 +781,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab4/1.cmm.s">
+    <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="539">
+          <caret line="92" column="41" lean-forward="false" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -772,52 +799,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SPIM/spim.h">
+    <entry file="file://$PROJECT_DIR$/test/lab4/1.cmm.s">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab4/2.cmm.ir">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab4/2.cmm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="17" lean-forward="true" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="92" column="41" lean-forward="false" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab4/2.cmm.s">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-282">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="-180">
+          <caret line="14" column="11" lean-forward="true" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SPIM/spim.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3054">
-          <caret line="215" column="53" lean-forward="false" selection-start-line="215" selection-start-column="53" selection-end-line="215" selection-end-column="53" />
+        <state relative-caret-position="72">
+          <caret line="364" column="21" lean-forward="true" selection-start-line="364" selection-start-column="21" selection-end-line="364" selection-end-column="21" />
           <folding>
             <element signature="e#44#66#0" expanded="true" />
           </folding>
