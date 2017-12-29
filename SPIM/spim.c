@@ -286,16 +286,16 @@ void AssignGenerator(InterCode* IC, FILE* stream)
 
         if(right->attr == OREF)
         {
-            assert(0);
+            //assert(0);
             fprintf(stream, "  lw $t0, %d($fp)\n", rightAddr);
             fprintf(stream, "  lw $t0, 0($t0)\n");
 
         }
         else if(right->attr == OADDR)
         {
-            assert(0);
-            fprintf(stream, "  move $t0, %d\n", rightAddr);
-            fprintf(stream, "  addi $t0, $t0, %x\n", 0x10008000);
+            //assert(0);
+            fprintf(stream, "  li $t0, %d\n", rightAddr);
+            fprintf(stream, "  add $t0, $t0, $fp\n");
         }
         else
         {
@@ -304,7 +304,7 @@ void AssignGenerator(InterCode* IC, FILE* stream)
 
         if(left->attr == OREF)
         {
-            assert(0);
+            //assert(0);
             fprintf(stream, "  lw $t1, %d($fp)\n", leftAddr);
             fprintf(stream, "  sw $t0, 0($t1)\n");
 
@@ -580,6 +580,7 @@ void MachineCodeGenerator(char* filename)
             case IDIV:BINOPGenerator(IC, fp);break;
             case IARG:ICE = ArgGenerator(ICE, fp);break;
             case IRETURN:ReturnGenerator(IC, fp);break;
+            case IDEC:break;
             default:assert(0);
         }
     }
