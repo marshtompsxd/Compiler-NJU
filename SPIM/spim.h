@@ -5,6 +5,11 @@
 #ifndef COMPILER_SPIM_H
 #define COMPILER_SPIM_H
 
+#include "../common.h"
+#include "../intercode/IC.h"
+#include "../intercode/ICTable.h"
+#include "../intercode/InterCode.h"
+
 enum { MTEMP, MVAR };
 
 typedef struct ArgInRegEntry_ AIRE;
@@ -16,16 +21,14 @@ extern void MachineCodeGenerator(char* filename);
 struct ArgInRegEntry_ {
 
     //int ARegNo;
-    int kind; // MTEMP or MVAR
-    int Index;
+    Operand* op;
 
 };
 
 
 struct ArgInStackEntry_ {
 
-    int kind;
-    int Index;
+   Operand* op;
 };
 
 #endif //COMPILER_SPIM_H

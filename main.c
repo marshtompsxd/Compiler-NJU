@@ -90,7 +90,7 @@ int main(int argc, char** argv)
             char* codefile = (char*)malloc(strlen(argv[i]) + 2);
             strcpy(codefile, argv[i]);
             strcat(codefile, ".s");
-            MachineCodeGenerator(NULL);
+            MachineCodeGenerator(codefile);
             printf("\033[32mIntermediate code generation of %s over.\033[0m\n", argv[i]);
 		}
 

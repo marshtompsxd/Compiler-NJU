@@ -2,8 +2,6 @@
 // Created by sunxudong on 12/27/17.
 //
 
-#include <symbol_table.h>
-#include <stdatomic.h>
 #include "../common.h"
 #include "../intercode/IC.h"
 #include "../intercode/ICTable.h"
@@ -19,6 +17,7 @@ int* TOffset;
 
 AIRE* AIRV;
 AISE* AISV;
+int argNum;
 
 void InitRootInterCodeList()
 {
@@ -137,8 +136,36 @@ void MachineCodePreparation(FILE* stream)
             "  jr $ra\n");
 }
 
-void FUNGenerator(InterCode* IC, FILE* stream, int argNum)
+
+InterCodeEntry* ParamGenerator(InterCodeEntry* ICE, FILE* stream)
 {
+    assert(ICE->IC->kind == IPARAM);
+
+    InterCodeEntry* entry;
+    argNum = 0;
+    for( entry = ICE;entry->IC->kind==IPARAM; entry = entry->next)
+    {
+        if(argNum<=3)
+        {
+            AIRV[argNum].op = entry->IC->PARAM.parameter;
+        }
+        else
+        {
+            AISV[argNum - 4].op = entry->IC->PARAM.parameter;
+        }
+        argNum++;
+    }
+
+    return entry->prev;
+
+
+}
+
+
+
+InterCodeEntry* FUNGenerator(InterCodeEntry* ICE, FILE* stream)
+{
+    InterCode* IC = ICE->IC;
     assert(IC->kind == IFUNCTION);
 
     fprintf(stream, "\n%s:\n", IC->FUN.funName);
@@ -148,7 +175,7 @@ void FUNGenerator(InterCode* IC, FILE* stream, int argNum)
         assert(argNum == 0);
 
         fprintf(stream, "  subu $sp, $sp, 8\n");
-        fprintf(stream, "  sw $fp, (0)($sp)\n");
+        fprintf(stream, "  sw $fp, 0($sp)\n");
         fprintf(stream, "  addi $fp, $sp, 8\n");
 
         /* now in main function:
@@ -164,13 +191,52 @@ void FUNGenerator(InterCode* IC, FILE* stream, int argNum)
     }
     else
     {
+        if(ICE->next->IC->kind == IPARAM)
+        {
+            ICE = ParamGenerator(ICE->next, stream);
+        }
+
+
         fprintf(stream, "  subu $sp, $sp, 8\n");
-        fprintf(stream, "  sw $ra, (4)($sp)\n");
-        fprintf(stream, "  sw $fp, (0)($sp)\n");
+        fprintf(stream, "  sw $ra, 4($sp)\n");
+        fprintf(stream, "  sw $fp, 0($sp)\n");
         fprintf(stream, "  addi $fp, $sp, 8\n");
 
-        assert(0);
-        // To-Do: load args into static data segment
+        // To-Do: save args into static data segment
+
+        if(argNum<=4)
+        {
+            int i;
+            for(i = 0;i<argNum;i++)
+            {
+                Operand* param = AIRV[i].op;
+                int paramAddr;
+                assert(param->kind == OVAR);
+                paramAddr = GetVTAddrRelGP(param);
+                fprintf(stream, "  sw $a%d, %d($gp)\n", i, paramAddr);
+            }
+        }
+        else
+        {
+            int i;
+            for(i = 0;i<4;i++)
+            {
+                Operand* param = AIRV[i].op;
+                int paramAddr;
+                assert(param->kind == OVAR);
+                paramAddr = GetVTAddrRelGP(param);
+                fprintf(stream, "  sw $a%d, %d($gp)\n", i, paramAddr);
+            }
+            for(i = 4;i<argNum;i++)
+            {
+                Operand* param = AIRV[i].op;
+                int paramAddr;
+                assert(param->kind == OVAR);
+                paramAddr = GetVTAddrRelGP(param);
+                fprintf(stream, "  lw $t0, %d($fp)\n", (i-4)*4);
+                fprintf(stream, "  sw $t0, %d($gp)\n", paramAddr);
+            }
+        }
 
        /* now in xxx function:
         *                         high address
@@ -187,43 +253,11 @@ void FUNGenerator(InterCode* IC, FILE* stream, int argNum)
         */
 
     }
+
+    return ICE;
 }
 
 
-InterCodeEntry* ParamFunGenerator(InterCodeEntry* ICV, FILE* stream)
-{
-    assert(ICV->IC->kind == IPARAM);
-
-    InterCodeEntry* entry;
-    int argNum = 0;
-    for( entry = ICV;entry->IC->kind==IPARAM; entry = entry->next)
-    {
-        if(argNum<=3)
-        {
-            Operand* op = entry->IC->PARAM.parameter;
-            AIRV[argNum].kind = op->kind;
-            assert(op->kind == OVAR);
-            AIRV[argNum].Index = op->VIndex;
-        }
-        else
-        {
-            Operand* op = entry->IC->PARAM.parameter;
-            AISV[argNum - 4].kind = op->kind;
-            assert(op->kind == OVAR);
-            AISV[argNum - 4].Index = op->VIndex;
-        }
-        argNum++;
-    }
-
-    assert(entry->IC->kind == IFUNCTION);
-
-
-    FUNGenerator(entry->IC, stream, argNum);
-
-    return entry;
-
-
-}
 
 void AssignGenerator(InterCode* IC, FILE* stream)
 {
@@ -248,7 +282,7 @@ void AssignGenerator(InterCode* IC, FILE* stream)
         {
             assert(0);
             fprintf(stream, "  lw $t0, %d($gp)\n", rightAddr);
-            fprintf(stream, "  lw $t0, (0)($t0)\n");
+            fprintf(stream, "  lw $t0, 0($t0)\n");
 
         }
         else if(right->attr == OADDR)
@@ -266,7 +300,7 @@ void AssignGenerator(InterCode* IC, FILE* stream)
         {
             assert(0);
             fprintf(stream, "  lw $t1, %d($gp)\n", leftAddr);
-            fprintf(stream, "  sw $t0, (0)($t1)\n");
+            fprintf(stream, "  sw $t0, 0($t1)\n");
 
         }
         else
@@ -309,7 +343,7 @@ void WRITEGenerator(InterCode* IC, FILE* stream)
             "  sw $ra, 0($sp)\n"
             "  jal write\n"
             "  lw $ra, 0($sp)\n"
-            "  addi $sp, $sp, 4");
+            "  addi $sp, $sp, 4\n");
 }
 
 void ReturnGenerator(InterCode* IC, FILE* stream)
@@ -327,7 +361,7 @@ void ReturnGenerator(InterCode* IC, FILE* stream)
         int retAddr = GetVTAddrRelGP(ret);
         fprintf(stream, "  lw $v0, %d($gp)\n", retAddr);
     }
-    fprintf(stream, "  jr $ra");
+    fprintf(stream, "  jr $ra\n");
 
 
 
@@ -349,11 +383,26 @@ void IFGOTOGenerator(InterCode* IC, FILE* stream)
     op2 = IC->IFGT.condition->op2;
 
     int op1Addr, op2Addr;
-    op1Addr = GetVTAddrRelGP(op1);
-    op2Addr = GetVTAddrRelGP(op2);
 
-    fprintf(stream, "  lw $t0, %d($gp)\n", op1Addr);
-    fprintf(stream, "  lw $t1, %d($gp)\n", op2Addr);
+    if(op1->kind == OICONS)
+    {
+        fprintf(stream, "  li $t0, %d\n", op1->ICons);
+    }
+    else
+    {
+        op1Addr = GetVTAddrRelGP(op1);
+        fprintf(stream, "  lw $t0, %d($gp)\n", op1Addr);
+    }
+
+    if(op2->kind == OICONS)
+    {
+        fprintf(stream, "  li $t1, %d\n", op2->ICons);
+    }
+    else
+    {
+        op2Addr = GetVTAddrRelGP(op1);
+        fprintf(stream, "  lw $t1, %d($gp)\n", op2Addr);
+    }
 
     switch (IC->IFGT.condition->relop)
     {
@@ -399,7 +448,7 @@ void BINOPGenerator(InterCode* IC, FILE* stream)
 
     if(op1->kind == OICONS)
     {
-        fprintf(stream, "  move $t0, %d\n", op1->ICons);
+        fprintf(stream, "  li $t0, %d\n", op1->ICons);
     }
     else
     {
@@ -409,7 +458,7 @@ void BINOPGenerator(InterCode* IC, FILE* stream)
 
     if(op2->kind == OICONS)
     {
-        fprintf(stream, "  move $t1, %d\n", op2->ICons);
+        fprintf(stream, "  li $t1, %d\n", op2->ICons);
     }
     else
     {
@@ -430,6 +479,21 @@ void BINOPGenerator(InterCode* IC, FILE* stream)
 
 }
 
+void PrintSize()
+{
+    printf("\nVBegin : %d, Tbegin : %d\n", VBegin, TBegin);
+    printf("offset table:\n");
+    int i;
+    for(i=1;i<VIndex;i++)
+    {
+        printf("v%d : %d\n", i, VOffset[i]*4 + VBegin);
+    }
+    for(i=1;i<TIndex;i++)
+    {
+        printf("t%d : %d\n", i, TOffset[i]*4 + TBegin);
+    }
+}
+
 void MachineCodeGenerator(char* filename)
 {
     FILE* fp;
@@ -447,16 +511,15 @@ void MachineCodeGenerator(char* filename)
     InitRootInterCodeList();
     MachineCodePreparation(fp);
     GetVTSize();
+    PrintSize();
 
-
-    InterCodeEntry* ICV ;
-    for (ICV = RootInterCodeList->head;  ICV->next!=NULL ; ICV = ICV->next)
+    InterCodeEntry* ICE ;
+    for (ICE = RootInterCodeList->head;  ICE!=NULL ; ICE = ICE->next)
     {
-        InterCode* IC = ICV->IC;
+        InterCode* IC = ICE->IC;
         switch (IC->kind)
         {
-            case IFUNCTION: FUNGenerator(IC, fp, 0); break;
-            case IPARAM: ICV = ParamFunGenerator(ICV, fp); break;
+            case IFUNCTION: ICE = FUNGenerator(ICE, fp); break;
             case IASSIGN: AssignGenerator(IC, fp); break;
             case IREAD:READGenerator(IC, fp);break;
             case IWRITE:WRITEGenerator(IC,fp);break;
