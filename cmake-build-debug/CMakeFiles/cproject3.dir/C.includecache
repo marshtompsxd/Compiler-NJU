@@ -20,7 +20,15 @@ stdlib.h
 ../common.h
 ../common.h
 
+../semantic/symbol_table.h
+../common.h
+../common.h
+
 /home/sunxudong/CLionProjects/cproject3/SPIM/spim.c
+symbol_table.h
+-
+stdatomic.h
+-
 ../common.h
 /home/sunxudong/CLionProjects/cproject3/common.h
 ../intercode/IC.h
@@ -29,6 +37,8 @@ stdlib.h
 /home/sunxudong/CLionProjects/cproject3/intercode/ICTable.h
 ../intercode/InterCode.h
 /home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h
+spim.h
+/home/sunxudong/CLionProjects/cproject3/SPIM/spim.h
 
 /home/sunxudong/CLionProjects/cproject3/SPIM/spim.h
 

@@ -3,6 +3,7 @@
 //
 
 #include <symbol_table.h>
+#include <stdatomic.h>
 #include "../common.h"
 #include "../intercode/IC.h"
 #include "../intercode/ICTable.h"
@@ -112,6 +113,7 @@ int GetVTAddrRelGP(Operand* op)
 
 void MachineCodePreparation(FILE* stream)
 {
+
     fprintf(stream,
             ".data\n"
             "_prompt: .asciiz \"Enter an integer:\"\n"
@@ -132,21 +134,22 @@ void MachineCodePreparation(FILE* stream)
             "  la $a0, _ret\n"
             "  syscall\n"
             "  move $v0, $0\n"
-            "  jr $ra\n\n");
+            "  jr $ra\n");
 }
 
 void FUNGenerator(InterCode* IC, FILE* stream, int argNum)
 {
-    fprintf(stream, "%s:\n", IC->FUN.funName);
+    assert(IC->kind == IFUNCTION);
+
+    fprintf(stream, "\n%s:\n", IC->FUN.funName);
 
     if(strcmp(IC->FUN.funName, "main") == 0)
     {
         assert(argNum == 0);
 
-        int frameSize = 2 * 4;
-        fprintf(stream, "  subu $sp, $sp, %d\n", frameSize );
-        fprintf(stream, "  sw $fp, (%d - 8)($sp)\n", frameSize);
-        fprintf(stream, "  addi $fp, $sp, %d\n", frameSize);
+        fprintf(stream, "  subu $sp, $sp, 8\n");
+        fprintf(stream, "  sw $fp, (0)($sp)\n");
+        fprintf(stream, "  addi $fp, $sp, 8\n");
 
         /* now in main function:
          *
@@ -161,11 +164,10 @@ void FUNGenerator(InterCode* IC, FILE* stream, int argNum)
     }
     else
     {
-        int frameSize = 2 * 4;
-        fprintf(stream, "  subu $sp, $sp, %d\n", frameSize );
-        fprintf(stream, "  sw $ra, (%d - 4)($sp)\n", frameSize);
-        fprintf(stream, "  sw $fp, (%d - 8)($sp)\n", frameSize);
-        fprintf(stream, "  addi $fp, $sp, %d\n", frameSize);
+        fprintf(stream, "  subu $sp, $sp, 8\n");
+        fprintf(stream, "  sw $ra, (4)($sp)\n");
+        fprintf(stream, "  sw $fp, (0)($sp)\n");
+        fprintf(stream, "  addi $fp, $sp, 8\n");
 
         assert(0);
         // To-Do: load args into static data segment
@@ -190,6 +192,8 @@ void FUNGenerator(InterCode* IC, FILE* stream, int argNum)
 
 InterCodeEntry* ParamFunGenerator(InterCodeEntry* ICV, FILE* stream)
 {
+    assert(ICV->IC->kind == IPARAM);
+
     InterCodeEntry* entry;
     int argNum = 0;
     for( entry = ICV;entry->IC->kind==IPARAM; entry = entry->next)
@@ -221,6 +225,211 @@ InterCodeEntry* ParamFunGenerator(InterCodeEntry* ICV, FILE* stream)
 
 }
 
+void AssignGenerator(InterCode* IC, FILE* stream)
+{
+    assert(IC->kind == IASSIGN);
+
+    Operand *left, *right;
+    left = IC->ASSIGN.left;
+    right = IC->ASSIGN.right;
+    if(right->kind == OICONS)
+    {
+        int leftAddr = GetVTAddrRelGP(left);
+
+        fprintf(stream, "  li $t0, %d\n", right->ICons);
+        fprintf(stream, "  sw $t0, %d($gp)\n", leftAddr);
+    }
+    else
+    {
+        int rightAddr = GetVTAddrRelGP(right);
+        int leftAddr = GetVTAddrRelGP(left);
+
+        if(right->attr == OREF)
+        {
+            assert(0);
+            fprintf(stream, "  lw $t0, %d($gp)\n", rightAddr);
+            fprintf(stream, "  lw $t0, (0)($t0)\n");
+
+        }
+        else if(right->attr == OADDR)
+        {
+            assert(0);
+            fprintf(stream, "  move $t0, %d\n", rightAddr);
+            fprintf(stream, "  addi $t0, $t0, %x\n", 0x10008000);
+        }
+        else
+        {
+            fprintf(stream, "  lw $t0, %d($gp)\n", rightAddr);
+        }
+
+        if(left->attr == OREF)
+        {
+            assert(0);
+            fprintf(stream, "  lw $t1, %d($gp)\n", leftAddr);
+            fprintf(stream, "  sw $t0, (0)($t1)\n");
+
+        }
+        else
+        {
+            fprintf(stream, "  sw $t0, %d($gp)\n", leftAddr);
+        }
+
+
+
+    }
+}
+
+void READGenerator(InterCode* IC, FILE* stream)
+{
+    assert(IC->kind == IREAD);
+
+    fprintf(stream,
+            "  addi $sp, $sp, -4\n"
+            "  sw $ra, 0($sp)\n"
+            "  jal read\n"
+            "  lw $ra, 0($sp)\n"
+            "  addi $sp, $sp, 4\n"
+            "  move $t0, $v0\n");
+
+    Operand* input = IC->READ.input;
+    int inputAddr = GetVTAddrRelGP(input);
+    fprintf(stream, "  sw $t0, %d($gp)\n", inputAddr);
+}
+
+void WRITEGenerator(InterCode* IC, FILE* stream)
+{
+    assert(IC->kind == IWRITE);
+
+    Operand* ouput = IC->WRITE.output;
+    int outputAddr = GetVTAddrRelGP(ouput);
+    fprintf(stream, "  lw $t0, %d($gp)\n", outputAddr);
+    fprintf(stream,
+            "  move $a0, $t0\n"
+            "  addi $sp, $sp, -4\n"
+            "  sw $ra, 0($sp)\n"
+            "  jal write\n"
+            "  lw $ra, 0($sp)\n"
+            "  addi $sp, $sp, 4");
+}
+
+void ReturnGenerator(InterCode* IC, FILE* stream)
+{
+    assert(IC->kind == IRETURN);
+
+    Operand* ret = IC->RET.ret;
+
+    if(ret->kind == OICONS)
+    {
+        fprintf(stream, "  li $v0, %d\n", ret->ICons);
+    }
+    else
+    {
+        int retAddr = GetVTAddrRelGP(ret);
+        fprintf(stream, "  lw $v0, %d($gp)\n", retAddr);
+    }
+    fprintf(stream, "  jr $ra");
+
+
+
+}
+
+void LABELGenerator(InterCode* IC, FILE* stream)
+{
+    assert(IC->kind == ILABEL);
+
+    fprintf(stream, "label%d:\n", IC->LABELDEC.LIndex);
+}
+
+void IFGOTOGenerator(InterCode* IC, FILE* stream)
+{
+    assert(IC->kind == IIFGOTO);
+
+    Operand *op1, *op2;
+    op1 = IC->IFGT.condition->op1;
+    op2 = IC->IFGT.condition->op2;
+
+    int op1Addr, op2Addr;
+    op1Addr = GetVTAddrRelGP(op1);
+    op2Addr = GetVTAddrRelGP(op2);
+
+    fprintf(stream, "  lw $t0, %d($gp)\n", op1Addr);
+    fprintf(stream, "  lw $t1, %d($gp)\n", op2Addr);
+
+    switch (IC->IFGT.condition->relop)
+    {
+        case EQ:fprintf(stream, "  beq ");break;
+        case LT:fprintf(stream, "  blt ");break;
+        case GT:fprintf(stream, "  bgt ");break;
+        case NEQ:fprintf(stream, "  bne ");break;
+        case LEQ:fprintf(stream, "  ble ");break;
+        case GEQ:fprintf(stream, "  bge ");break;
+        default:assert(0);
+    }
+
+    fprintf(stream, "$t0, $t1, label%d\n", IC->IFGT.LIndex);
+
+}
+
+void GOTOGenerator(InterCode* IC, FILE* stream)
+{
+    assert(IC->kind == IGOTO);
+
+    fprintf(stream, "  j label%d\n", IC->GT.LIndex);
+}
+
+void BINOPGenerator(InterCode* IC, FILE* stream)
+{
+    assert(IC->kind == IADD
+           || IC->kind == ISUB
+           || IC->kind == IMUL
+           || IC->kind == IDIV);
+
+    assert(IC->BINOP.result->kind == OTEMP || IC->BINOP.result->kind == OVAR);
+    assert(IC->BINOP.result->attr == OVALUE
+           && IC->BINOP.op1->attr == OVALUE
+           && IC->BINOP.op2->attr == OVALUE);
+
+    Operand *op1, *op2, *result;
+    op1 = IC->BINOP.op1;
+    op2 = IC->BINOP.op2;
+    result = IC->BINOP.result;
+
+    int op1Addr, op2Addr, resultAddr;
+    resultAddr = GetVTAddrRelGP(result);
+
+    if(op1->kind == OICONS)
+    {
+        fprintf(stream, "  move $t0, %d\n", op1->ICons);
+    }
+    else
+    {
+        op1Addr = GetVTAddrRelGP(op1);
+        fprintf(stream, "  lw $t0, %d($gp)\n", op1Addr);
+    }
+
+    if(op2->kind == OICONS)
+    {
+        fprintf(stream, "  move $t1, %d\n", op2->ICons);
+    }
+    else
+    {
+        op2Addr = GetVTAddrRelGP(op2);
+        fprintf(stream, "  lw $t1, %d($gp)\n", op2Addr);
+    }
+
+    switch (IC->kind)
+    {
+        case IADD:fprintf(stream, "  add $t2, $t0, $t1\n");break;
+        case ISUB:fprintf(stream, "  sub $t2, $t0, $t1\n");break;
+        case IMUL:fprintf(stream, "  mul $t2, $t0, $t1\n");break;
+        case IDIV:fprintf(stream, "  div $t0, $t1\n  mflo $t2\n");break;
+        default:assert(0);
+    }
+
+    fprintf(stream, "  sw $t2, %d($gp)\n", resultAddr);
+
+}
+
 void MachineCodeGenerator(char* filename)
 {
     FILE* fp;
@@ -246,15 +455,22 @@ void MachineCodeGenerator(char* filename)
         InterCode* IC = ICV->IC;
         switch (IC->kind)
         {
-            case IFUNCTION: {
-                FUNGenerator(IC, fp, 0); break;
-            }
-            case IPARAM: {
-                ICV = ParamFunGenerator(ICV, fp); break;
-            }
-            case IASSIGN:break;
+            case IFUNCTION: FUNGenerator(IC, fp, 0); break;
+            case IPARAM: ICV = ParamFunGenerator(ICV, fp); break;
+            case IASSIGN: AssignGenerator(IC, fp); break;
+            case IREAD:READGenerator(IC, fp);break;
+            case IWRITE:WRITEGenerator(IC,fp);break;
+            case ILABEL:LABELGenerator(IC, fp);break;
+            case IIFGOTO:IFGOTOGenerator(IC, fp);break;
+            case IGOTO:GOTOGenerator(IC, fp);break;
+            case IADD:
+            case ISUB:
+            case IMUL:
+            case IDIV:BINOPGenerator(IC, fp);break;
+            case IRETURN:ReturnGenerator(IC, fp);break;
             default:assert(0);
         }
     }
+    fprintf(fp, "\n");
 
 }
