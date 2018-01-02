@@ -141,7 +141,7 @@ void MachineCodePreparation(FILE* stream)
             "  jr $ra\n");
 }
 
-InterCodeEntry* ParamGenerator(InterCodeEntry* ICE, FILE* stream)
+InterCodeEntry* ParamGenerator(InterCodeEntry* ICE)
 {
     assert(ICE->IC->kind == IPARAM);
 
@@ -199,7 +199,7 @@ InterCodeEntry* FUNGenerator(InterCodeEntry* ICE, FILE* stream)
     {
         if(ICE->next->IC->kind == IPARAM)
         {
-            ICE = ParamGenerator(ICE->next, stream);
+            ICE = ParamGenerator(ICE->next);
         }
 
 
@@ -564,7 +564,7 @@ void MachineCodeGenerator(char* filename)
     InitRootInterCodeList();
     MachineCodePreparation(fp);
     GetVTSize();
-    PrintSize();
+    //PrintSize();
 
     InterCodeEntry* ICE ;
     for (ICE = RootInterCodeList->head;  ICE!=NULL ; ICE = ICE->next)

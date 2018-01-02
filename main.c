@@ -91,7 +91,7 @@ int main(int argc, char** argv)
             strcpy(codefile, argv[i]);
             strcat(codefile, ".s");
             MachineCodeGenerator(codefile);
-            printf("\033[32mIntermediate code generation of %s over.\033[0m\n", argv[i]);
+            printf("\033[32mMachine code generation of %s over.\033[0m\n", argv[i]);
 		}
 
         PostorderFreeParsingTree(ParsingRoot);

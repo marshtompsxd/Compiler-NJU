@@ -33,7 +33,8 @@ syntax:
 
 compiler:
 	gcc main.c lexical_syntax/syntax.tab.c lexical_syntax/lex.yy.c lexical_syntax/ParsingNode.c lexical_syntax/text.c \
-	semantic/semantic.c semantic/list.c semantic/check.c intercode/ICTable.c intercode/InterCode.c intercode/optimization.c ${CFLAGS} -lfl -ly -o compiler
+	semantic/semantic.c semantic/list.c semantic/check.c intercode/ICTable.c intercode/InterCode.c intercode/optimization.c ${CFLAGS} -lfl -ly -o compiler \
+	SPIM/spim.c
 
 clean:
 	rm -f compiler

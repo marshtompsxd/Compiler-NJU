@@ -11,7 +11,7 @@
 #include "optimization.h"
 
 //static char* ICFileName = "IC.ir";
-static char* SICFileName = "SIC.ir";
+//static char* SICFileName = "SIC.ir";
 
 void CheckElemInICVarTable(ICVarTableHead* table)
 {
