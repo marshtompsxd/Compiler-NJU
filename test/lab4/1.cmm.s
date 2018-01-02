@@ -35,8 +35,8 @@ main:
   jal read
   lw $ra, -4($fp)
   move $t0, $v0
-  sw $t0, -52($fp)
-  lw $t0, -52($fp)
+  sw $t0, -56($fp)
+  lw $t0, -56($fp)
   sw $t0, -76($fp)
 label1:
   lw $t0, -80($fp)
@@ -47,8 +47,8 @@ label2:
   lw $t0, -88($fp)
   lw $t1, -84($fp)
   add $t2, $t0, $t1
-  sw $t2, -40($fp)
-  lw $t0, -40($fp)
+  sw $t2, -44($fp)
+  lw $t0, -44($fp)
   sw $t0, -72($fp)
   lw $t0, -84($fp)
   move $a0, $t0
@@ -61,8 +61,8 @@ label2:
   lw $t0, -80($fp)
   li $t1, 1
   add $t2, $t0, $t1
-  sw $t2, -20($fp)
-  lw $t0, -20($fp)
+  sw $t2, -24($fp)
+  lw $t0, -24($fp)
   sw $t0, -80($fp)
   j label1
 label3:

@@ -8,45 +8,45 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/sunxudong/CLionProjects/cproject3/cmake-build-debug"/>
+				<Option working_dir="/home/sunxudong/CLionProjects/compiler/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/sunxudong/CLionProjects/cproject3/cmake-build-debug"/>
+				<Option working_dir="/home/sunxudong/CLionProjects/compiler/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/sunxudong/CLionProjects/cproject3/cmake-build-debug"/>
+				<Option working_dir="/home/sunxudong/CLionProjects/compiler/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="cproject3">
-				<Option output="/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/cproject3" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/sunxudong/CLionProjects/cproject3/cmake-build-debug"/>
+			<Target title="compiler">
+				<Option output="/home/sunxudong/CLionProjects/compiler/cmake-build-debug/compiler" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/sunxudong/CLionProjects/compiler/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/sunxudong/CLionProjects/cproject3/cmake-build-debug"/>
-					<Add directory="/home/sunxudong/CLionProjects/cproject3/lexical_syntax"/>
-					<Add directory="/home/sunxudong/CLionProjects/cproject3/semantic"/>
+					<Add directory="/home/sunxudong/CLionProjects/compiler/cmake-build-debug"/>
+					<Add directory="/home/sunxudong/CLionProjects/compiler/lexical_syntax"/>
+					<Add directory="/home/sunxudong/CLionProjects/compiler/semantic"/>
 					<Add directory="/usr/include/c++/5"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
 					<Add directory="/usr/include/c++/5/backward"/>
@@ -57,22 +57,22 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 cproject3"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 compiler"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="cproject3/fast">
-				<Option output="/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/cproject3" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/sunxudong/CLionProjects/cproject3/cmake-build-debug"/>
+			<Target title="compiler/fast">
+				<Option output="/home/sunxudong/CLionProjects/compiler/cmake-build-debug/compiler" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/sunxudong/CLionProjects/compiler/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/sunxudong/CLionProjects/cproject3/cmake-build-debug"/>
-					<Add directory="/home/sunxudong/CLionProjects/cproject3/lexical_syntax"/>
-					<Add directory="/home/sunxudong/CLionProjects/cproject3/semantic"/>
+					<Add directory="/home/sunxudong/CLionProjects/compiler/cmake-build-debug"/>
+					<Add directory="/home/sunxudong/CLionProjects/compiler/lexical_syntax"/>
+					<Add directory="/home/sunxudong/CLionProjects/compiler/semantic"/>
 					<Add directory="/usr/include/c++/5"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
 					<Add directory="/usr/include/c++/5/backward"/>
@@ -83,101 +83,101 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 cproject3/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 compiler/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sunxudong/CLionProjects/compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/SPIM/spim.c">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/SPIM/spim.c">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/SPIM/spim.h">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/SPIM/spim.h">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/lex.yy.c">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/cmake-build-debug/lex.yy.c">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/lex.yy.c.rule">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/cmake-build-debug/lex.yy.c.rule">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/syntax.tab.c">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/cmake-build-debug/syntax.tab.c">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/syntax.tab.c.rule">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/cmake-build-debug/syntax.tab.c.rule">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/syntax.tab.h">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/cmake-build-debug/syntax.tab.h">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/common.h">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/common.h">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/IC.h">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/intercode/IC.h">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/ICTable.c">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/intercode/ICTable.c">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/ICTable.h">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/intercode/ICTable.h">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/InterCode.c">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/intercode/InterCode.c">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/InterCode.h">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/intercode/InterCode.h">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/optimization.c">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/intercode/optimization.c">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/intercode/optimization.h">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/intercode/optimization.h">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/lexical_syntax/ParsingNode.c">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/lexical_syntax/ParsingNode.c">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/lexical_syntax/ParsingNode.h">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/lexical_syntax/ParsingNode.h">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/lexical_syntax/lexical.l">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/lexical_syntax/lexical.l">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/lexical_syntax/syntax.y">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/lexical_syntax/syntax.y">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/lexical_syntax/text.c">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/lexical_syntax/text.c">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/lexical_syntax/text.h">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/lexical_syntax/text.h">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/main.c">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/main.c">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/semantic/check.c">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/semantic/check.c">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/semantic/check.h">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/semantic/check.h">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/semantic/list.c">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/semantic/list.c">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/semantic/list.h">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/semantic/list.h">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/semantic/semantic.c">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/semantic/semantic.c">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/semantic/semantic.h">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/semantic/semantic.h">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/semantic/symbol_table.h">
-			<Option target="cproject3"/>
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/semantic/symbol_table.h">
+			<Option target="compiler"/>
 		</Unit>
-		<Unit filename="/home/sunxudong/CLionProjects/cproject3/CMakeLists.txt">
+		<Unit filename="/home/sunxudong/CLionProjects/compiler/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

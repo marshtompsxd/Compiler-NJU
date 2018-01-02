@@ -295,11 +295,15 @@ void PreorderPrintParsingTree(ParsingNode* node)
 void PostorderFreeParsingTree(ParsingNode* node)
 {
     if(!ParsingSwitch)return;
-    if(node->kind == Terminal || node->kind == Dummy)
+    if(node->kind == Terminal)
     {
-        free(node->IDname);
+        if(node->SymbolIndex == AID)free(node->IDname);
         free(node);
     }
+    else if(node->kind == Dummy)
+	{
+		free(node);
+	}
     else
     {
         ParsingNode* child = node->firstchild;
@@ -309,7 +313,6 @@ void PostorderFreeParsingTree(ParsingNode* node)
             PostorderFreeParsingTree(child);
             child = child->nextsibiling;
         }
-        free(node->IDname);
         free(node);
     }
 

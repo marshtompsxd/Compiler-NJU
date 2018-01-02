@@ -40,29 +40,29 @@ label1:
 label2:
   li $t0, -376
   add $t0, $t0, $fp
-  sw $t0, -304($fp)
+  sw $t0, -308($fp)
   lw $t0, -348($fp)
   li $t1, 4
   mul $t2, $t0, $t1
-  sw $t2, -300($fp)
-  lw $t0, -304($fp)
-  lw $t1, -300($fp)
+  sw $t2, -304($fp)
+  lw $t0, -308($fp)
+  lw $t1, -304($fp)
   add $t2, $t0, $t1
-  sw $t2, -296($fp)
-  lw $t0, -296($fp)
-  sw $t0, -312($fp)
+  sw $t2, -300($fp)
+  lw $t0, -300($fp)
+  sw $t0, -316($fp)
   jal read
   lw $ra, -4($fp)
   move $t0, $v0
-  sw $t0, -292($fp)
-  lw $t0, -292($fp)
-  lw $t1, -312($fp)
+  sw $t0, -296($fp)
+  lw $t0, -296($fp)
+  lw $t1, -316($fp)
   sw $t0, 0($t1)
   lw $t0, -348($fp)
   li $t1, 1
   add $t2, $t0, $t1
-  sw $t2, -288($fp)
-  lw $t0, -288($fp)
+  sw $t2, -292($fp)
+  lw $t0, -292($fp)
   sw $t0, -348($fp)
   j label1
 label3:
@@ -78,135 +78,135 @@ label7:
   lw $t0, -348($fp)
   li $t1, 1
   sub $t2, $t0, $t1
-  sw $t2, -260($fp)
+  sw $t2, -264($fp)
   lw $t0, -340($fp)
-  lw $t1, -260($fp)
+  lw $t1, -264($fp)
   blt $t0, $t1, label8
   j label9
 label8:
   li $t0, -376
   add $t0, $t0, $fp
-  sw $t0, -232($fp)
+  sw $t0, -236($fp)
   lw $t0, -340($fp)
   li $t1, 4
   mul $t2, $t0, $t1
-  sw $t2, -228($fp)
-  lw $t0, -232($fp)
-  lw $t1, -228($fp)
+  sw $t2, -232($fp)
+  lw $t0, -236($fp)
+  lw $t1, -232($fp)
   add $t2, $t0, $t1
-  sw $t2, -224($fp)
-  lw $t0, -224($fp)
-  sw $t0, -240($fp)
-  lw $t0, -240($fp)
+  sw $t2, -228($fp)
+  lw $t0, -228($fp)
+  sw $t0, -244($fp)
+  lw $t0, -244($fp)
   lw $t0, 0($t0)
-  sw $t0, -248($fp)
+  sw $t0, -252($fp)
   lw $t0, -340($fp)
   li $t1, 1
   add $t2, $t0, $t1
-  sw $t2, -216($fp)
+  sw $t2, -220($fp)
   li $t0, -376
   add $t0, $t0, $fp
-  sw $t0, -212($fp)
-  lw $t0, -216($fp)
+  sw $t0, -216($fp)
+  lw $t0, -220($fp)
   li $t1, 4
   mul $t2, $t0, $t1
-  sw $t2, -208($fp)
-  lw $t0, -212($fp)
-  lw $t1, -208($fp)
+  sw $t2, -212($fp)
+  lw $t0, -216($fp)
+  lw $t1, -212($fp)
   add $t2, $t0, $t1
-  sw $t2, -204($fp)
-  lw $t0, -204($fp)
-  sw $t0, -220($fp)
-  lw $t0, -220($fp)
+  sw $t2, -208($fp)
+  lw $t0, -208($fp)
+  sw $t0, -224($fp)
+  lw $t0, -224($fp)
   lw $t0, 0($t0)
-  sw $t0, -244($fp)
-  lw $t0, -248($fp)
-  lw $t1, -244($fp)
+  sw $t0, -248($fp)
+  lw $t0, -252($fp)
+  lw $t1, -248($fp)
   bgt $t0, $t1, label10
   j label11
 label10:
   li $t0, -376
   add $t0, $t0, $fp
-  sw $t0, -180($fp)
+  sw $t0, -184($fp)
   lw $t0, -340($fp)
   li $t1, 4
   mul $t2, $t0, $t1
-  sw $t2, -176($fp)
-  lw $t0, -180($fp)
-  lw $t1, -176($fp)
+  sw $t2, -180($fp)
+  lw $t0, -184($fp)
+  lw $t1, -180($fp)
   add $t2, $t0, $t1
-  sw $t2, -172($fp)
-  lw $t0, -172($fp)
-  sw $t0, -188($fp)
-  lw $t0, -188($fp)
-  lw $t0, 0($t0)
+  sw $t2, -176($fp)
+  lw $t0, -176($fp)
   sw $t0, -192($fp)
   lw $t0, -192($fp)
+  lw $t0, 0($t0)
+  sw $t0, -196($fp)
+  lw $t0, -196($fp)
   sw $t0, -352($fp)
   li $t0, -376
   add $t0, $t0, $fp
-  sw $t0, -160($fp)
+  sw $t0, -164($fp)
   lw $t0, -340($fp)
   li $t1, 4
   mul $t2, $t0, $t1
-  sw $t2, -156($fp)
-  lw $t0, -160($fp)
-  lw $t1, -156($fp)
+  sw $t2, -160($fp)
+  lw $t0, -164($fp)
+  lw $t1, -160($fp)
   add $t2, $t0, $t1
-  sw $t2, -152($fp)
-  lw $t0, -152($fp)
-  sw $t0, -168($fp)
+  sw $t2, -156($fp)
+  lw $t0, -156($fp)
+  sw $t0, -172($fp)
   lw $t0, -340($fp)
   li $t1, 1
   add $t2, $t0, $t1
-  sw $t2, -140($fp)
+  sw $t2, -144($fp)
   li $t0, -376
   add $t0, $t0, $fp
-  sw $t0, -136($fp)
-  lw $t0, -140($fp)
+  sw $t0, -140($fp)
+  lw $t0, -144($fp)
   li $t1, 4
   mul $t2, $t0, $t1
-  sw $t2, -132($fp)
-  lw $t0, -136($fp)
-  lw $t1, -132($fp)
+  sw $t2, -136($fp)
+  lw $t0, -140($fp)
+  lw $t1, -136($fp)
   add $t2, $t0, $t1
-  sw $t2, -128($fp)
-  lw $t0, -128($fp)
-  sw $t0, -144($fp)
-  lw $t0, -144($fp)
-  lw $t0, 0($t0)
+  sw $t2, -132($fp)
+  lw $t0, -132($fp)
   sw $t0, -148($fp)
   lw $t0, -148($fp)
-  lw $t1, -168($fp)
+  lw $t0, 0($t0)
+  sw $t0, -152($fp)
+  lw $t0, -152($fp)
+  lw $t1, -172($fp)
   sw $t0, 0($t1)
   lw $t0, -340($fp)
   li $t1, 1
   add $t2, $t0, $t1
-  sw $t2, -112($fp)
+  sw $t2, -116($fp)
   li $t0, -376
   add $t0, $t0, $fp
-  sw $t0, -108($fp)
-  lw $t0, -112($fp)
+  sw $t0, -112($fp)
+  lw $t0, -116($fp)
   li $t1, 4
   mul $t2, $t0, $t1
-  sw $t2, -104($fp)
-  lw $t0, -108($fp)
-  lw $t1, -104($fp)
+  sw $t2, -108($fp)
+  lw $t0, -112($fp)
+  lw $t1, -108($fp)
   add $t2, $t0, $t1
-  sw $t2, -100($fp)
-  lw $t0, -100($fp)
-  sw $t0, -116($fp)
+  sw $t2, -104($fp)
+  lw $t0, -104($fp)
+  sw $t0, -120($fp)
   lw $t0, -352($fp)
-  sw $t0, -88($fp)
-  lw $t0, -88($fp)
-  lw $t1, -116($fp)
+  sw $t0, -92($fp)
+  lw $t0, -92($fp)
+  lw $t1, -120($fp)
   sw $t0, 0($t1)
 label11:
   lw $t0, -340($fp)
   li $t1, 1
   add $t2, $t0, $t1
-  sw $t2, -84($fp)
-  lw $t0, -84($fp)
+  sw $t2, -88($fp)
+  lw $t0, -88($fp)
   sw $t0, -340($fp)
   j label7
 label9:
@@ -215,8 +215,8 @@ label9:
   lw $t0, -348($fp)
   li $t1, 1
   sub $t2, $t0, $t1
-  sw $t2, -68($fp)
-  lw $t0, -68($fp)
+  sw $t2, -72($fp)
+  lw $t0, -72($fp)
   sw $t0, -348($fp)
   j label4
 label6:
@@ -230,29 +230,29 @@ label12:
 label13:
   li $t0, -376
   add $t0, $t0, $fp
-  sw $t0, -32($fp)
+  sw $t0, -36($fp)
   lw $t0, -348($fp)
   li $t1, 4
   mul $t2, $t0, $t1
-  sw $t2, -28($fp)
-  lw $t0, -32($fp)
-  lw $t1, -28($fp)
+  sw $t2, -32($fp)
+  lw $t0, -36($fp)
+  lw $t1, -32($fp)
   add $t2, $t0, $t1
-  sw $t2, -24($fp)
-  lw $t0, -24($fp)
-  sw $t0, -40($fp)
-  lw $t0, -40($fp)
-  lw $t0, 0($t0)
+  sw $t2, -28($fp)
+  lw $t0, -28($fp)
   sw $t0, -44($fp)
   lw $t0, -44($fp)
+  lw $t0, 0($t0)
+  sw $t0, -48($fp)
+  lw $t0, -48($fp)
   move $a0, $t0
   jal write
   lw $ra, -4($fp)
   lw $t0, -348($fp)
   li $t1, 1
   add $t2, $t0, $t1
-  sw $t2, -20($fp)
-  lw $t0, -20($fp)
+  sw $t2, -24($fp)
+  lw $t0, -24($fp)
   sw $t0, -348($fp)
   j label12
 label14:

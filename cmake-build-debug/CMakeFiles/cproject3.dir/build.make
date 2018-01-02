@@ -43,10 +43,10 @@ RM = /home/sunxudong/clion-2017.3/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sunxudong/CLionProjects/cproject3
+CMAKE_SOURCE_DIR = /home/sunxudong/CLionProjects/compiler
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sunxudong/CLionProjects/cproject3/cmake-build-debug
+CMAKE_BINARY_DIR = /home/sunxudong/CLionProjects/compiler/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/cproject3.dir/depend.make
@@ -58,28 +58,28 @@ include CMakeFiles/cproject3.dir/progress.make
 include CMakeFiles/cproject3.dir/flags.make
 
 syntax.tab.c: ../lexical_syntax/syntax.y
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "[BISON][Parser] Building parser with bison 3.0.4"
-	cd /home/sunxudong/CLionProjects/cproject3 && /usr/bin/bison --defines=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/syntax.tab.h -d -o /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/syntax.tab.c lexical_syntax/syntax.y
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "[BISON][Parser] Building parser with bison 3.0.4"
+	cd /home/sunxudong/CLionProjects/compiler && /usr/bin/bison --defines=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/syntax.tab.h -d -o /home/sunxudong/CLionProjects/compiler/cmake-build-debug/syntax.tab.c lexical_syntax/syntax.y
 
 syntax.tab.h: syntax.tab.c
 	@$(CMAKE_COMMAND) -E touch_nocreate syntax.tab.h
 
 lex.yy.c: ../lexical_syntax/lexical.l
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "[FLEX][Scanner] Building scanner with flex 2.6.0"
-	cd /home/sunxudong/CLionProjects/cproject3 && /usr/bin/flex --header-file=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/lex.yy.h -o/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/lex.yy.c lexical_syntax/lexical.l
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "[FLEX][Scanner] Building scanner with flex 2.6.0"
+	cd /home/sunxudong/CLionProjects/compiler && /usr/bin/flex --header-file=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/lex.yy.h -o/home/sunxudong/CLionProjects/compiler/cmake-build-debug/lex.yy.c lexical_syntax/lexical.l
 
 CMakeFiles/cproject3.dir/syntax.tab.c.o: CMakeFiles/cproject3.dir/flags.make
 CMakeFiles/cproject3.dir/syntax.tab.c.o: syntax.tab.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/cproject3.dir/syntax.tab.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/syntax.tab.c.o   -c /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/syntax.tab.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/cproject3.dir/syntax.tab.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/syntax.tab.c.o   -c /home/sunxudong/CLionProjects/compiler/cmake-build-debug/syntax.tab.c
 
 CMakeFiles/cproject3.dir/syntax.tab.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cproject3.dir/syntax.tab.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/syntax.tab.c > CMakeFiles/cproject3.dir/syntax.tab.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/compiler/cmake-build-debug/syntax.tab.c > CMakeFiles/cproject3.dir/syntax.tab.c.i
 
 CMakeFiles/cproject3.dir/syntax.tab.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cproject3.dir/syntax.tab.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/syntax.tab.c -o CMakeFiles/cproject3.dir/syntax.tab.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/compiler/cmake-build-debug/syntax.tab.c -o CMakeFiles/cproject3.dir/syntax.tab.c.s
 
 CMakeFiles/cproject3.dir/syntax.tab.c.o.requires:
 
@@ -95,16 +95,16 @@ CMakeFiles/cproject3.dir/syntax.tab.c.o.provides.build: CMakeFiles/cproject3.dir
 CMakeFiles/cproject3.dir/lex.yy.c.o: CMakeFiles/cproject3.dir/flags.make
 CMakeFiles/cproject3.dir/lex.yy.c.o: lex.yy.c
 CMakeFiles/cproject3.dir/lex.yy.c.o: syntax.tab.h
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/cproject3.dir/lex.yy.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/lex.yy.c.o   -c /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/lex.yy.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/cproject3.dir/lex.yy.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/lex.yy.c.o   -c /home/sunxudong/CLionProjects/compiler/cmake-build-debug/lex.yy.c
 
 CMakeFiles/cproject3.dir/lex.yy.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cproject3.dir/lex.yy.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/lex.yy.c > CMakeFiles/cproject3.dir/lex.yy.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/compiler/cmake-build-debug/lex.yy.c > CMakeFiles/cproject3.dir/lex.yy.c.i
 
 CMakeFiles/cproject3.dir/lex.yy.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cproject3.dir/lex.yy.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/lex.yy.c -o CMakeFiles/cproject3.dir/lex.yy.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/compiler/cmake-build-debug/lex.yy.c -o CMakeFiles/cproject3.dir/lex.yy.c.s
 
 CMakeFiles/cproject3.dir/lex.yy.c.o.requires:
 
@@ -119,16 +119,16 @@ CMakeFiles/cproject3.dir/lex.yy.c.o.provides.build: CMakeFiles/cproject3.dir/lex
 
 CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.o: CMakeFiles/cproject3.dir/flags.make
 CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.o: ../lexical_syntax/ParsingNode.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.o   -c /home/sunxudong/CLionProjects/cproject3/lexical_syntax/ParsingNode.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.o   -c /home/sunxudong/CLionProjects/compiler/lexical_syntax/ParsingNode.c
 
 CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/cproject3/lexical_syntax/ParsingNode.c > CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/compiler/lexical_syntax/ParsingNode.c > CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.i
 
 CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/cproject3/lexical_syntax/ParsingNode.c -o CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/compiler/lexical_syntax/ParsingNode.c -o CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.s
 
 CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.o.requires:
 
@@ -143,16 +143,16 @@ CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.o.provides.build: CMakeFil
 
 CMakeFiles/cproject3.dir/lexical_syntax/text.c.o: CMakeFiles/cproject3.dir/flags.make
 CMakeFiles/cproject3.dir/lexical_syntax/text.c.o: ../lexical_syntax/text.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/cproject3.dir/lexical_syntax/text.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/lexical_syntax/text.c.o   -c /home/sunxudong/CLionProjects/cproject3/lexical_syntax/text.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/cproject3.dir/lexical_syntax/text.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/lexical_syntax/text.c.o   -c /home/sunxudong/CLionProjects/compiler/lexical_syntax/text.c
 
 CMakeFiles/cproject3.dir/lexical_syntax/text.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cproject3.dir/lexical_syntax/text.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/cproject3/lexical_syntax/text.c > CMakeFiles/cproject3.dir/lexical_syntax/text.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/compiler/lexical_syntax/text.c > CMakeFiles/cproject3.dir/lexical_syntax/text.c.i
 
 CMakeFiles/cproject3.dir/lexical_syntax/text.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cproject3.dir/lexical_syntax/text.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/cproject3/lexical_syntax/text.c -o CMakeFiles/cproject3.dir/lexical_syntax/text.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/compiler/lexical_syntax/text.c -o CMakeFiles/cproject3.dir/lexical_syntax/text.c.s
 
 CMakeFiles/cproject3.dir/lexical_syntax/text.c.o.requires:
 
@@ -167,16 +167,16 @@ CMakeFiles/cproject3.dir/lexical_syntax/text.c.o.provides.build: CMakeFiles/cpro
 
 CMakeFiles/cproject3.dir/semantic/semantic.c.o: CMakeFiles/cproject3.dir/flags.make
 CMakeFiles/cproject3.dir/semantic/semantic.c.o: ../semantic/semantic.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/cproject3.dir/semantic/semantic.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/semantic/semantic.c.o   -c /home/sunxudong/CLionProjects/cproject3/semantic/semantic.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/cproject3.dir/semantic/semantic.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/semantic/semantic.c.o   -c /home/sunxudong/CLionProjects/compiler/semantic/semantic.c
 
 CMakeFiles/cproject3.dir/semantic/semantic.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cproject3.dir/semantic/semantic.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/cproject3/semantic/semantic.c > CMakeFiles/cproject3.dir/semantic/semantic.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/compiler/semantic/semantic.c > CMakeFiles/cproject3.dir/semantic/semantic.c.i
 
 CMakeFiles/cproject3.dir/semantic/semantic.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cproject3.dir/semantic/semantic.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/cproject3/semantic/semantic.c -o CMakeFiles/cproject3.dir/semantic/semantic.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/compiler/semantic/semantic.c -o CMakeFiles/cproject3.dir/semantic/semantic.c.s
 
 CMakeFiles/cproject3.dir/semantic/semantic.c.o.requires:
 
@@ -191,16 +191,16 @@ CMakeFiles/cproject3.dir/semantic/semantic.c.o.provides.build: CMakeFiles/cproje
 
 CMakeFiles/cproject3.dir/intercode/InterCode.c.o: CMakeFiles/cproject3.dir/flags.make
 CMakeFiles/cproject3.dir/intercode/InterCode.c.o: ../intercode/InterCode.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/cproject3.dir/intercode/InterCode.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/intercode/InterCode.c.o   -c /home/sunxudong/CLionProjects/cproject3/intercode/InterCode.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/cproject3.dir/intercode/InterCode.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/intercode/InterCode.c.o   -c /home/sunxudong/CLionProjects/compiler/intercode/InterCode.c
 
 CMakeFiles/cproject3.dir/intercode/InterCode.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cproject3.dir/intercode/InterCode.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/cproject3/intercode/InterCode.c > CMakeFiles/cproject3.dir/intercode/InterCode.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/compiler/intercode/InterCode.c > CMakeFiles/cproject3.dir/intercode/InterCode.c.i
 
 CMakeFiles/cproject3.dir/intercode/InterCode.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cproject3.dir/intercode/InterCode.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/cproject3/intercode/InterCode.c -o CMakeFiles/cproject3.dir/intercode/InterCode.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/compiler/intercode/InterCode.c -o CMakeFiles/cproject3.dir/intercode/InterCode.c.s
 
 CMakeFiles/cproject3.dir/intercode/InterCode.c.o.requires:
 
@@ -215,16 +215,16 @@ CMakeFiles/cproject3.dir/intercode/InterCode.c.o.provides.build: CMakeFiles/cpro
 
 CMakeFiles/cproject3.dir/main.c.o: CMakeFiles/cproject3.dir/flags.make
 CMakeFiles/cproject3.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/cproject3.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/main.c.o   -c /home/sunxudong/CLionProjects/cproject3/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/cproject3.dir/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/main.c.o   -c /home/sunxudong/CLionProjects/compiler/main.c
 
 CMakeFiles/cproject3.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cproject3.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/cproject3/main.c > CMakeFiles/cproject3.dir/main.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/compiler/main.c > CMakeFiles/cproject3.dir/main.c.i
 
 CMakeFiles/cproject3.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cproject3.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/cproject3/main.c -o CMakeFiles/cproject3.dir/main.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/compiler/main.c -o CMakeFiles/cproject3.dir/main.c.s
 
 CMakeFiles/cproject3.dir/main.c.o.requires:
 
@@ -239,16 +239,16 @@ CMakeFiles/cproject3.dir/main.c.o.provides.build: CMakeFiles/cproject3.dir/main.
 
 CMakeFiles/cproject3.dir/semantic/list.c.o: CMakeFiles/cproject3.dir/flags.make
 CMakeFiles/cproject3.dir/semantic/list.c.o: ../semantic/list.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/cproject3.dir/semantic/list.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/semantic/list.c.o   -c /home/sunxudong/CLionProjects/cproject3/semantic/list.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/cproject3.dir/semantic/list.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/semantic/list.c.o   -c /home/sunxudong/CLionProjects/compiler/semantic/list.c
 
 CMakeFiles/cproject3.dir/semantic/list.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cproject3.dir/semantic/list.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/cproject3/semantic/list.c > CMakeFiles/cproject3.dir/semantic/list.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/compiler/semantic/list.c > CMakeFiles/cproject3.dir/semantic/list.c.i
 
 CMakeFiles/cproject3.dir/semantic/list.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cproject3.dir/semantic/list.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/cproject3/semantic/list.c -o CMakeFiles/cproject3.dir/semantic/list.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/compiler/semantic/list.c -o CMakeFiles/cproject3.dir/semantic/list.c.s
 
 CMakeFiles/cproject3.dir/semantic/list.c.o.requires:
 
@@ -263,16 +263,16 @@ CMakeFiles/cproject3.dir/semantic/list.c.o.provides.build: CMakeFiles/cproject3.
 
 CMakeFiles/cproject3.dir/semantic/check.c.o: CMakeFiles/cproject3.dir/flags.make
 CMakeFiles/cproject3.dir/semantic/check.c.o: ../semantic/check.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/cproject3.dir/semantic/check.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/semantic/check.c.o   -c /home/sunxudong/CLionProjects/cproject3/semantic/check.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/cproject3.dir/semantic/check.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/semantic/check.c.o   -c /home/sunxudong/CLionProjects/compiler/semantic/check.c
 
 CMakeFiles/cproject3.dir/semantic/check.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cproject3.dir/semantic/check.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/cproject3/semantic/check.c > CMakeFiles/cproject3.dir/semantic/check.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/compiler/semantic/check.c > CMakeFiles/cproject3.dir/semantic/check.c.i
 
 CMakeFiles/cproject3.dir/semantic/check.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cproject3.dir/semantic/check.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/cproject3/semantic/check.c -o CMakeFiles/cproject3.dir/semantic/check.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/compiler/semantic/check.c -o CMakeFiles/cproject3.dir/semantic/check.c.s
 
 CMakeFiles/cproject3.dir/semantic/check.c.o.requires:
 
@@ -287,16 +287,16 @@ CMakeFiles/cproject3.dir/semantic/check.c.o.provides.build: CMakeFiles/cproject3
 
 CMakeFiles/cproject3.dir/intercode/ICTable.c.o: CMakeFiles/cproject3.dir/flags.make
 CMakeFiles/cproject3.dir/intercode/ICTable.c.o: ../intercode/ICTable.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/cproject3.dir/intercode/ICTable.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/intercode/ICTable.c.o   -c /home/sunxudong/CLionProjects/cproject3/intercode/ICTable.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/cproject3.dir/intercode/ICTable.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/intercode/ICTable.c.o   -c /home/sunxudong/CLionProjects/compiler/intercode/ICTable.c
 
 CMakeFiles/cproject3.dir/intercode/ICTable.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cproject3.dir/intercode/ICTable.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/cproject3/intercode/ICTable.c > CMakeFiles/cproject3.dir/intercode/ICTable.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/compiler/intercode/ICTable.c > CMakeFiles/cproject3.dir/intercode/ICTable.c.i
 
 CMakeFiles/cproject3.dir/intercode/ICTable.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cproject3.dir/intercode/ICTable.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/cproject3/intercode/ICTable.c -o CMakeFiles/cproject3.dir/intercode/ICTable.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/compiler/intercode/ICTable.c -o CMakeFiles/cproject3.dir/intercode/ICTable.c.s
 
 CMakeFiles/cproject3.dir/intercode/ICTable.c.o.requires:
 
@@ -311,16 +311,16 @@ CMakeFiles/cproject3.dir/intercode/ICTable.c.o.provides.build: CMakeFiles/cproje
 
 CMakeFiles/cproject3.dir/intercode/optimization.c.o: CMakeFiles/cproject3.dir/flags.make
 CMakeFiles/cproject3.dir/intercode/optimization.c.o: ../intercode/optimization.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/cproject3.dir/intercode/optimization.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/intercode/optimization.c.o   -c /home/sunxudong/CLionProjects/cproject3/intercode/optimization.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/cproject3.dir/intercode/optimization.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/intercode/optimization.c.o   -c /home/sunxudong/CLionProjects/compiler/intercode/optimization.c
 
 CMakeFiles/cproject3.dir/intercode/optimization.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cproject3.dir/intercode/optimization.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/cproject3/intercode/optimization.c > CMakeFiles/cproject3.dir/intercode/optimization.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/compiler/intercode/optimization.c > CMakeFiles/cproject3.dir/intercode/optimization.c.i
 
 CMakeFiles/cproject3.dir/intercode/optimization.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cproject3.dir/intercode/optimization.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/cproject3/intercode/optimization.c -o CMakeFiles/cproject3.dir/intercode/optimization.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/compiler/intercode/optimization.c -o CMakeFiles/cproject3.dir/intercode/optimization.c.s
 
 CMakeFiles/cproject3.dir/intercode/optimization.c.o.requires:
 
@@ -335,16 +335,16 @@ CMakeFiles/cproject3.dir/intercode/optimization.c.o.provides.build: CMakeFiles/c
 
 CMakeFiles/cproject3.dir/SPIM/spim.c.o: CMakeFiles/cproject3.dir/flags.make
 CMakeFiles/cproject3.dir/SPIM/spim.c.o: ../SPIM/spim.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/cproject3.dir/SPIM/spim.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/SPIM/spim.c.o   -c /home/sunxudong/CLionProjects/cproject3/SPIM/spim.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/cproject3.dir/SPIM/spim.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cproject3.dir/SPIM/spim.c.o   -c /home/sunxudong/CLionProjects/compiler/SPIM/spim.c
 
 CMakeFiles/cproject3.dir/SPIM/spim.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cproject3.dir/SPIM/spim.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/cproject3/SPIM/spim.c > CMakeFiles/cproject3.dir/SPIM/spim.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/sunxudong/CLionProjects/compiler/SPIM/spim.c > CMakeFiles/cproject3.dir/SPIM/spim.c.i
 
 CMakeFiles/cproject3.dir/SPIM/spim.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cproject3.dir/SPIM/spim.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/cproject3/SPIM/spim.c -o CMakeFiles/cproject3.dir/SPIM/spim.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/sunxudong/CLionProjects/compiler/SPIM/spim.c -o CMakeFiles/cproject3.dir/SPIM/spim.c.s
 
 CMakeFiles/cproject3.dir/SPIM/spim.c.o.requires:
 
@@ -390,7 +390,7 @@ cproject3: CMakeFiles/cproject3.dir/SPIM/spim.c.o
 cproject3: CMakeFiles/cproject3.dir/build.make
 cproject3: /usr/lib/x86_64-linux-gnu/libfl.so
 cproject3: CMakeFiles/cproject3.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking C executable cproject3"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking C executable cproject3"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cproject3.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -420,6 +420,6 @@ CMakeFiles/cproject3.dir/clean:
 CMakeFiles/cproject3.dir/depend: syntax.tab.c
 CMakeFiles/cproject3.dir/depend: syntax.tab.h
 CMakeFiles/cproject3.dir/depend: lex.yy.c
-	cd /home/sunxudong/CLionProjects/cproject3/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sunxudong/CLionProjects/cproject3 /home/sunxudong/CLionProjects/cproject3 /home/sunxudong/CLionProjects/cproject3/cmake-build-debug /home/sunxudong/CLionProjects/cproject3/cmake-build-debug /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles/cproject3.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sunxudong/CLionProjects/compiler/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sunxudong/CLionProjects/compiler /home/sunxudong/CLionProjects/compiler /home/sunxudong/CLionProjects/compiler/cmake-build-debug /home/sunxudong/CLionProjects/compiler/cmake-build-debug /home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles/cproject3.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/cproject3.dir/depend
 

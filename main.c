@@ -94,9 +94,9 @@ int main(int argc, char** argv)
             printf("\033[32mIntermediate code generation of %s over.\033[0m\n", argv[i]);
 		}
 
-        //PostorderFreeParsingTree(ParsingRoot);
+        PostorderFreeParsingTree(ParsingRoot);
         printf("\n");
-		
+
 	}
 
 	return 0;

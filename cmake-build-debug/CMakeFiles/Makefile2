@@ -54,45 +54,45 @@ RM = /home/sunxudong/clion-2017.3/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sunxudong/CLionProjects/cproject3
+CMAKE_SOURCE_DIR = /home/sunxudong/CLionProjects/compiler
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sunxudong/CLionProjects/cproject3/cmake-build-debug
+CMAKE_BINARY_DIR = /home/sunxudong/CLionProjects/compiler/cmake-build-debug
 
 #=============================================================================
-# Target rules for target CMakeFiles/cproject3.dir
+# Target rules for target CMakeFiles/compiler.dir
 
 # All Build rule for target.
-CMakeFiles/cproject3.dir/all:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/depend
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 "Built target cproject3"
-.PHONY : CMakeFiles/cproject3.dir/all
+CMakeFiles/compiler.dir/all:
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/depend
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 "Built target compiler"
+.PHONY : CMakeFiles/compiler.dir/all
 
 # Include target in all.
-all: CMakeFiles/cproject3.dir/all
+all: CMakeFiles/compiler.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/cproject3.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles 15
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/cproject3.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/cproject3.dir/rule
+CMakeFiles/compiler.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles 15
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/compiler.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/compiler.dir/rule
 
 # Convenience name for target.
-cproject3: CMakeFiles/cproject3.dir/rule
+compiler: CMakeFiles/compiler.dir/rule
 
-.PHONY : cproject3
-
-# clean rule for target.
-CMakeFiles/cproject3.dir/clean:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/clean
-.PHONY : CMakeFiles/cproject3.dir/clean
+.PHONY : compiler
 
 # clean rule for target.
-clean: CMakeFiles/cproject3.dir/clean
+CMakeFiles/compiler.dir/clean:
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/clean
+.PHONY : CMakeFiles/compiler.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/compiler.dir/clean
 
 .PHONY : clean
 

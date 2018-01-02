@@ -49,14 +49,18 @@ void GetVTSize()
         else assert(0);
     }
 
-    VOffset = (int*)malloc((unsigned)4*VIndex);
-    TOffset = (int*)malloc((unsigned)4*TIndex);
+    VOffset = (int*)malloc(sizeof(int)*VIndex);
+    TOffset = (int*)malloc(sizeof(int)*TIndex);
 
     int i;
     int offset = 0;
-    VOffset[0] = 0;
+    VOffset[1] = 0;
+
+    int k=1;
+
     for(ICV = RootICVarTable->head; ICV->next != NULL; ICV = ICV->next)
     {
+        k++;
         ICVarEntry* ICVnxt = ICV->next;
         Type* TP = ICV->VariableType;
         if(TP->kind == BASIC)
@@ -72,9 +76,10 @@ void GetVTSize()
         }
         else assert(0);
     }
+    assert(k==VIndex);
 
     offset = 0;
-    for(i = 0; i<TIndex; i++)
+    for(i = 1; i<=TIndex; i++)
     {
         TOffset[i] = offset;
         offset++;
@@ -90,13 +95,14 @@ void GetVTSize()
 void PrintSize()
 {
     printf("\nVBegin : %d, Tbegin : %d\n", VBegin, TBegin);
+    printf("VNum : %d, TNum : %d\n", VIndex, TIndex);
     printf("offset table:\n");
     int i;
-    for(i=1;i<VIndex;i++)
+    for(i=1;i<=VIndex;i++)
     {
         printf("v%d : %d\n", i, VOffset[i]*4 + VBegin);
     }
-    for(i=1;i<TIndex;i++)
+    for(i=1;i<=TIndex;i++)
     {
         printf("t%d : %d\n", i, TOffset[i]*4 + TBegin);
     }
@@ -134,7 +140,6 @@ void MachineCodePreparation(FILE* stream)
             "  move $v0, $0\n"
             "  jr $ra\n");
 }
-
 
 InterCodeEntry* ParamGenerator(InterCodeEntry* ICE, FILE* stream)
 {
@@ -586,4 +591,6 @@ void MachineCodeGenerator(char* filename)
     }
     fprintf(fp, "\n");
 
+    //free(VOffset);
+    //free(TOffset);
 }

@@ -48,10 +48,10 @@ RM = /home/sunxudong/clion-2017.3/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sunxudong/CLionProjects/cproject3
+CMAKE_SOURCE_DIR = /home/sunxudong/CLionProjects/compiler
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sunxudong/CLionProjects/cproject3/cmake-build-debug
+CMAKE_BINARY_DIR = /home/sunxudong/CLionProjects/compiler/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles /home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sunxudong/CLionProjects/cproject3/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sunxudong/CLionProjects/compiler/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named cproject3
+# Target rules for targets named compiler
 
 # Build rule for target.
-cproject3: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cproject3
-.PHONY : cproject3
+compiler: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 compiler
+.PHONY : compiler
 
 # fast build rule for target.
-cproject3/fast:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/build
-.PHONY : cproject3/fast
+compiler/fast:
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/build
+.PHONY : compiler/fast
 
 SPIM/spim.o: SPIM/spim.c.o
 
@@ -129,7 +129,7 @@ SPIM/spim.o: SPIM/spim.c.o
 
 # target to build an object file
 SPIM/spim.c.o:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/SPIM/spim.c.o
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/SPIM/spim.c.o
 .PHONY : SPIM/spim.c.o
 
 SPIM/spim.i: SPIM/spim.c.i
@@ -138,7 +138,7 @@ SPIM/spim.i: SPIM/spim.c.i
 
 # target to preprocess a source file
 SPIM/spim.c.i:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/SPIM/spim.c.i
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/SPIM/spim.c.i
 .PHONY : SPIM/spim.c.i
 
 SPIM/spim.s: SPIM/spim.c.s
@@ -147,7 +147,7 @@ SPIM/spim.s: SPIM/spim.c.s
 
 # target to generate assembly for a file
 SPIM/spim.c.s:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/SPIM/spim.c.s
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/SPIM/spim.c.s
 .PHONY : SPIM/spim.c.s
 
 intercode/ICTable.o: intercode/ICTable.c.o
@@ -156,7 +156,7 @@ intercode/ICTable.o: intercode/ICTable.c.o
 
 # target to build an object file
 intercode/ICTable.c.o:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/ICTable.c.o
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/intercode/ICTable.c.o
 .PHONY : intercode/ICTable.c.o
 
 intercode/ICTable.i: intercode/ICTable.c.i
@@ -165,7 +165,7 @@ intercode/ICTable.i: intercode/ICTable.c.i
 
 # target to preprocess a source file
 intercode/ICTable.c.i:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/ICTable.c.i
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/intercode/ICTable.c.i
 .PHONY : intercode/ICTable.c.i
 
 intercode/ICTable.s: intercode/ICTable.c.s
@@ -174,7 +174,7 @@ intercode/ICTable.s: intercode/ICTable.c.s
 
 # target to generate assembly for a file
 intercode/ICTable.c.s:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/ICTable.c.s
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/intercode/ICTable.c.s
 .PHONY : intercode/ICTable.c.s
 
 intercode/InterCode.o: intercode/InterCode.c.o
@@ -183,7 +183,7 @@ intercode/InterCode.o: intercode/InterCode.c.o
 
 # target to build an object file
 intercode/InterCode.c.o:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/InterCode.c.o
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/intercode/InterCode.c.o
 .PHONY : intercode/InterCode.c.o
 
 intercode/InterCode.i: intercode/InterCode.c.i
@@ -192,7 +192,7 @@ intercode/InterCode.i: intercode/InterCode.c.i
 
 # target to preprocess a source file
 intercode/InterCode.c.i:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/InterCode.c.i
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/intercode/InterCode.c.i
 .PHONY : intercode/InterCode.c.i
 
 intercode/InterCode.s: intercode/InterCode.c.s
@@ -201,7 +201,7 @@ intercode/InterCode.s: intercode/InterCode.c.s
 
 # target to generate assembly for a file
 intercode/InterCode.c.s:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/InterCode.c.s
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/intercode/InterCode.c.s
 .PHONY : intercode/InterCode.c.s
 
 intercode/optimization.o: intercode/optimization.c.o
@@ -210,7 +210,7 @@ intercode/optimization.o: intercode/optimization.c.o
 
 # target to build an object file
 intercode/optimization.c.o:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/optimization.c.o
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/intercode/optimization.c.o
 .PHONY : intercode/optimization.c.o
 
 intercode/optimization.i: intercode/optimization.c.i
@@ -219,7 +219,7 @@ intercode/optimization.i: intercode/optimization.c.i
 
 # target to preprocess a source file
 intercode/optimization.c.i:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/optimization.c.i
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/intercode/optimization.c.i
 .PHONY : intercode/optimization.c.i
 
 intercode/optimization.s: intercode/optimization.c.s
@@ -228,7 +228,7 @@ intercode/optimization.s: intercode/optimization.c.s
 
 # target to generate assembly for a file
 intercode/optimization.c.s:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/intercode/optimization.c.s
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/intercode/optimization.c.s
 .PHONY : intercode/optimization.c.s
 
 lex.yy.o: lex.yy.c.o
@@ -237,7 +237,7 @@ lex.yy.o: lex.yy.c.o
 
 # target to build an object file
 lex.yy.c.o:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/lex.yy.c.o
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/lex.yy.c.o
 .PHONY : lex.yy.c.o
 
 lex.yy.i: lex.yy.c.i
@@ -246,7 +246,7 @@ lex.yy.i: lex.yy.c.i
 
 # target to preprocess a source file
 lex.yy.c.i:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/lex.yy.c.i
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/lex.yy.c.i
 .PHONY : lex.yy.c.i
 
 lex.yy.s: lex.yy.c.s
@@ -255,7 +255,7 @@ lex.yy.s: lex.yy.c.s
 
 # target to generate assembly for a file
 lex.yy.c.s:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/lex.yy.c.s
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/lex.yy.c.s
 .PHONY : lex.yy.c.s
 
 lexical_syntax/ParsingNode.o: lexical_syntax/ParsingNode.c.o
@@ -264,7 +264,7 @@ lexical_syntax/ParsingNode.o: lexical_syntax/ParsingNode.c.o
 
 # target to build an object file
 lexical_syntax/ParsingNode.c.o:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.o
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/lexical_syntax/ParsingNode.c.o
 .PHONY : lexical_syntax/ParsingNode.c.o
 
 lexical_syntax/ParsingNode.i: lexical_syntax/ParsingNode.c.i
@@ -273,7 +273,7 @@ lexical_syntax/ParsingNode.i: lexical_syntax/ParsingNode.c.i
 
 # target to preprocess a source file
 lexical_syntax/ParsingNode.c.i:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.i
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/lexical_syntax/ParsingNode.c.i
 .PHONY : lexical_syntax/ParsingNode.c.i
 
 lexical_syntax/ParsingNode.s: lexical_syntax/ParsingNode.c.s
@@ -282,7 +282,7 @@ lexical_syntax/ParsingNode.s: lexical_syntax/ParsingNode.c.s
 
 # target to generate assembly for a file
 lexical_syntax/ParsingNode.c.s:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/lexical_syntax/ParsingNode.c.s
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/lexical_syntax/ParsingNode.c.s
 .PHONY : lexical_syntax/ParsingNode.c.s
 
 lexical_syntax/text.o: lexical_syntax/text.c.o
@@ -291,7 +291,7 @@ lexical_syntax/text.o: lexical_syntax/text.c.o
 
 # target to build an object file
 lexical_syntax/text.c.o:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/lexical_syntax/text.c.o
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/lexical_syntax/text.c.o
 .PHONY : lexical_syntax/text.c.o
 
 lexical_syntax/text.i: lexical_syntax/text.c.i
@@ -300,7 +300,7 @@ lexical_syntax/text.i: lexical_syntax/text.c.i
 
 # target to preprocess a source file
 lexical_syntax/text.c.i:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/lexical_syntax/text.c.i
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/lexical_syntax/text.c.i
 .PHONY : lexical_syntax/text.c.i
 
 lexical_syntax/text.s: lexical_syntax/text.c.s
@@ -309,7 +309,7 @@ lexical_syntax/text.s: lexical_syntax/text.c.s
 
 # target to generate assembly for a file
 lexical_syntax/text.c.s:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/lexical_syntax/text.c.s
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/lexical_syntax/text.c.s
 .PHONY : lexical_syntax/text.c.s
 
 main.o: main.c.o
@@ -318,7 +318,7 @@ main.o: main.c.o
 
 # target to build an object file
 main.c.o:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/main.c.o
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/main.c.o
 .PHONY : main.c.o
 
 main.i: main.c.i
@@ -327,7 +327,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/main.c.i
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -336,7 +336,7 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/main.c.s
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/main.c.s
 .PHONY : main.c.s
 
 semantic/check.o: semantic/check.c.o
@@ -345,7 +345,7 @@ semantic/check.o: semantic/check.c.o
 
 # target to build an object file
 semantic/check.c.o:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/semantic/check.c.o
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/semantic/check.c.o
 .PHONY : semantic/check.c.o
 
 semantic/check.i: semantic/check.c.i
@@ -354,7 +354,7 @@ semantic/check.i: semantic/check.c.i
 
 # target to preprocess a source file
 semantic/check.c.i:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/semantic/check.c.i
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/semantic/check.c.i
 .PHONY : semantic/check.c.i
 
 semantic/check.s: semantic/check.c.s
@@ -363,7 +363,7 @@ semantic/check.s: semantic/check.c.s
 
 # target to generate assembly for a file
 semantic/check.c.s:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/semantic/check.c.s
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/semantic/check.c.s
 .PHONY : semantic/check.c.s
 
 semantic/list.o: semantic/list.c.o
@@ -372,7 +372,7 @@ semantic/list.o: semantic/list.c.o
 
 # target to build an object file
 semantic/list.c.o:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/semantic/list.c.o
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/semantic/list.c.o
 .PHONY : semantic/list.c.o
 
 semantic/list.i: semantic/list.c.i
@@ -381,7 +381,7 @@ semantic/list.i: semantic/list.c.i
 
 # target to preprocess a source file
 semantic/list.c.i:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/semantic/list.c.i
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/semantic/list.c.i
 .PHONY : semantic/list.c.i
 
 semantic/list.s: semantic/list.c.s
@@ -390,7 +390,7 @@ semantic/list.s: semantic/list.c.s
 
 # target to generate assembly for a file
 semantic/list.c.s:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/semantic/list.c.s
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/semantic/list.c.s
 .PHONY : semantic/list.c.s
 
 semantic/semantic.o: semantic/semantic.c.o
@@ -399,7 +399,7 @@ semantic/semantic.o: semantic/semantic.c.o
 
 # target to build an object file
 semantic/semantic.c.o:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/semantic/semantic.c.o
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/semantic/semantic.c.o
 .PHONY : semantic/semantic.c.o
 
 semantic/semantic.i: semantic/semantic.c.i
@@ -408,7 +408,7 @@ semantic/semantic.i: semantic/semantic.c.i
 
 # target to preprocess a source file
 semantic/semantic.c.i:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/semantic/semantic.c.i
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/semantic/semantic.c.i
 .PHONY : semantic/semantic.c.i
 
 semantic/semantic.s: semantic/semantic.c.s
@@ -417,7 +417,7 @@ semantic/semantic.s: semantic/semantic.c.s
 
 # target to generate assembly for a file
 semantic/semantic.c.s:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/semantic/semantic.c.s
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/semantic/semantic.c.s
 .PHONY : semantic/semantic.c.s
 
 syntax.tab.o: syntax.tab.c.o
@@ -426,7 +426,7 @@ syntax.tab.o: syntax.tab.c.o
 
 # target to build an object file
 syntax.tab.c.o:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/syntax.tab.c.o
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/syntax.tab.c.o
 .PHONY : syntax.tab.c.o
 
 syntax.tab.i: syntax.tab.c.i
@@ -435,7 +435,7 @@ syntax.tab.i: syntax.tab.c.i
 
 # target to preprocess a source file
 syntax.tab.c.i:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/syntax.tab.c.i
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/syntax.tab.c.i
 .PHONY : syntax.tab.c.i
 
 syntax.tab.s: syntax.tab.c.s
@@ -444,7 +444,7 @@ syntax.tab.s: syntax.tab.c.s
 
 # target to generate assembly for a file
 syntax.tab.c.s:
-	$(MAKE) -f CMakeFiles/cproject3.dir/build.make CMakeFiles/cproject3.dir/syntax.tab.c.s
+	$(MAKE) -f CMakeFiles/compiler.dir/build.make CMakeFiles/compiler.dir/syntax.tab.c.s
 .PHONY : syntax.tab.c.s
 
 # Help Target
@@ -455,7 +455,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... cproject3"
+	@echo "... compiler"
 	@echo "... SPIM/spim.o"
 	@echo "... SPIM/spim.i"
 	@echo "... SPIM/spim.s"
