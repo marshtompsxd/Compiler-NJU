@@ -520,7 +520,7 @@ void MachineCodeGenerator(char* filename)
     InitRootInterCodeList();
     MachineCodePreparation(fp);
     GetVTSize();
-    PrintSize();
+    //PrintSize();
 
     InterCodeEntry* ICE ;
     for (ICE = RootInterCodeList->head;  ICE!=NULL ; ICE = ICE->next)
