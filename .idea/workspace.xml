@@ -11,11 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e2c9a04-a95a-4b73-bbde-7715ce90317e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/SPIM/spim.c" afterPath="$PROJECT_DIR$/SPIM/spim.c" />
-      <change beforePath="$PROJECT_DIR$/intercode/InterCode.c" afterPath="$PROJECT_DIR$/intercode/InterCode.c" />
-    </list>
+    <list default="true" id="6e2c9a04-a95a-4b73-bbde-7715ce90317e" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -55,8 +51,8 @@
           <file leaf-file-name="InterCode.c" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/intercode/InterCode.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="594">
-                  <caret line="964" column="10" lean-forward="false" selection-start-line="964" selection-start-column="10" selection-end-line="964" selection-end-column="10" />
+                <state relative-caret-position="522">
+                  <caret line="960" column="8" lean-forward="true" selection-start-line="960" selection-start-column="8" selection-end-line="960" selection-end-column="8" />
                   <folding />
                 </state>
               </provider>
@@ -129,8 +125,8 @@
           <file leaf-file-name="9.cmm.ir" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/test/lab4/9.cmm.ir">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="378">
-                  <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+                <state relative-caret-position="360">
+                  <caret line="20" column="15" lean-forward="true" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
                   <folding />
                 </state>
               </provider>
@@ -364,12 +360,12 @@
       <workItem from="1514365982057" duration="41625000" />
       <workItem from="1514892704530" duration="181000" />
       <workItem from="1514892886874" duration="4060000" />
-      <workItem from="1515631688131" duration="3943000" />
+      <workItem from="1515631688131" duration="4425000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="168066000" />
+    <option name="totallyTimeSpent" value="168548000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1857" height="1092" extended-state="6" />
@@ -771,14 +767,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/lab4/9.cmm.ir">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/lab4/9.cmm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -810,8 +798,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/intercode/InterCode.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="964" column="10" lean-forward="false" selection-start-line="964" selection-start-column="10" selection-end-line="964" selection-end-column="10" />
+        <state relative-caret-position="522">
+          <caret line="960" column="8" lean-forward="true" selection-start-line="960" selection-start-column="8" selection-end-line="960" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/lab4/9.cmm.ir">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="15" lean-forward="true" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
           <folding />
         </state>
       </provider>
