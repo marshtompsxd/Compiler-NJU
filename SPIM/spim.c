@@ -15,7 +15,6 @@ int TBegin;
 int* VOffset;
 int* TOffset;
 
-AIRE* AIRV;
 AISE* AISV;
 int argNum;
 
@@ -28,8 +27,7 @@ void InitRootInterCodeList()
     ICVhead->prev = NULL;
     ICVtail->next = NULL;
 
-    AIRV = (AIRE*)malloc(sizeof(AIRE)*4);
-    AISV = (AISE*)malloc(sizeof(AISV)*100);
+    AISV = (AISE*)malloc(sizeof(AISE)*20);
 }
 
 void GetVTSize()
@@ -149,14 +147,8 @@ InterCodeEntry* ParamGenerator(InterCodeEntry* ICE)
     argNum = 0;
     for( entry = ICE;entry->IC->kind==IPARAM; entry = entry->next)
     {
-        if(argNum<=3)
-        {
-            AIRV[argNum].op = entry->IC->PARAM.parameter;
-        }
-        else
-        {
-            AISV[argNum - 4].op = entry->IC->PARAM.parameter;
-        }
+        AISV[argNum].op = entry->IC->PARAM.parameter;
+
         argNum++;
     }
     return entry->prev;
@@ -212,38 +204,16 @@ InterCodeEntry* FUNGenerator(InterCodeEntry* ICE, FILE* stream)
 
         // To-Do: save args into static data segment
 
-        if(argNum<=4)
+
+        int i;
+        for(i = 0;i<argNum;i++)
         {
-            int i;
-            for(i = 0;i<argNum;i++)
-            {
-                Operand* param = AIRV[i].op;
-                int paramAddr;
-                assert(param->kind == OVAR);
-                paramAddr = GetVTAddrRelFP(param);
-                fprintf(stream, "  sw $a%d, %d($fp)\n", i, paramAddr);
-            }
-        }
-        else
-        {
-            int i;
-            for(i = 0;i<4;i++)
-            {
-                Operand* param = AIRV[i].op;
-                int paramAddr;
-                assert(param->kind == OVAR);
-                paramAddr = GetVTAddrRelFP(param);
-                fprintf(stream, "  sw $a%d, %d($fp)\n", i, paramAddr);
-            }
-            for(i = 4;i<argNum;i++)
-            {
-                Operand* param = AIRV[i].op;
-                int paramAddr;
-                assert(param->kind == OVAR);
-                paramAddr = GetVTAddrRelFP(param);
-                fprintf(stream, "  lw $t0, %d($fp)\n", (i-4)*4);
-                fprintf(stream, "  sw $t0, %d($fp)\n", paramAddr);
-            }
+            Operand* param = AISV[i].op;
+            int paramAddr;
+            assert(param->kind == OVAR);
+            paramAddr = GetVTAddrRelFP(param);
+            fprintf(stream, "  lw $t0, %d($fp)\n", i*4);
+            fprintf(stream, "  sw $t0, %d($fp)\n", paramAddr);
         }
 
         argNum = 0;
@@ -512,10 +482,8 @@ InterCodeEntry* ArgGenerator(InterCodeEntry* ICE, FILE* stream)
         num++;
     }
 
-    if(num>4)
-    {
-        fprintf(stream, "  subu $sp, $sp, %d\n", 4*(num-4));
-    }
+
+    fprintf(stream, "  subu $sp, $sp, %d\n", 4*num);
 
     int i=0;
     for(entry = ICE;entry->IC->kind==IARG;entry=entry->next)
@@ -523,25 +491,13 @@ InterCodeEntry* ArgGenerator(InterCodeEntry* ICE, FILE* stream)
         Operand* op = entry->IC->ARG.argument;
         int opAddr = GetVTAddrRelFP(op);
         fprintf(stream, "  lw $t0, %d($fp)\n", opAddr);
-
-        if(i<4)
-        {
-            fprintf(stream, "  move $a%d, $t0\n", i);
-        }
-        else
-        {
-            fprintf(stream, "  sw $t0, %d($sp)\n", 4*(i-4));
-        }
+        fprintf(stream, "  sw $t0, %d($sp)\n", 4*(num - i - 1));
         i++;
     }
 
     CallGenerator(entry->IC, stream);
     fprintf(stream, "  lw $ra, -4($fp)\n");
-
-    if(num>4)
-    {
-        fprintf(stream, "  addi $sp, $sp, %d\n", 4*(num-4));
-    }
+    fprintf(stream, "  addi $sp, $sp, %d\n", 4*num);
 
     return entry;
 }
@@ -564,7 +520,7 @@ void MachineCodeGenerator(char* filename)
     InitRootInterCodeList();
     MachineCodePreparation(fp);
     GetVTSize();
-    //PrintSize();
+    PrintSize();
 
     InterCodeEntry* ICE ;
     for (ICE = RootInterCodeList->head;  ICE!=NULL ; ICE = ICE->next)

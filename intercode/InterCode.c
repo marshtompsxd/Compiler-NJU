@@ -962,7 +962,7 @@ void InterCodeGenerator(char* filename)
     {
         InitICTable();
         //printf("print ICVarTable\n");
-        //CheckElemInICVarTable(RootICVarTable);
+        CheckElemInICVarTable(RootICVarTable);
         ProgramGenerate(ParsingRoot);
         PrintInterCodeList(RootInterCodeList, filename);
     }

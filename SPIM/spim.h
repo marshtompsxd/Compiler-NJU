@@ -12,18 +12,9 @@
 
 enum { MTEMP, MVAR };
 
-typedef struct ArgInRegEntry_ AIRE;
 typedef struct ArgInStackEntry_ AISE;
 
 extern void MachineCodeGenerator(char* filename);
-
-
-struct ArgInRegEntry_ {
-
-    //int ARegNo;
-    Operand* op;
-
-};
 
 
 struct ArgInStackEntry_ {

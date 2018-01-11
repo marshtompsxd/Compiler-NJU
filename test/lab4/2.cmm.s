@@ -26,7 +26,8 @@ fact:
   sw $fp, 0($sp)
   addi $fp, $sp, 8
   subu $sp, $sp, 72
-  sw $a0, -80($fp)
+  lw $t0, 0($fp)
+  sw $t0, -80($fp)
   lw $t0, -80($fp)
   li $t1, 1
   beq $t0, $t1, label1
@@ -45,11 +46,13 @@ label2:
   li $t1, 1
   sub $t2, $t0, $t1
   sw $t2, -44($fp)
+  subu $sp, $sp, 4
   lw $t0, -44($fp)
-  move $a0, $t0
+  sw $t0, 0($sp)
   jal fact
   sw $v0, -48($fp)
   lw $ra, -4($fp)
+  addi $sp, $sp, 4
   lw $t0, -52($fp)
   lw $t1, -48($fp)
   mul $t2, $t0, $t1
@@ -78,11 +81,13 @@ main:
   bgt $t0, $t1, label4
   j label5
 label4:
+  subu $sp, $sp, 4
   lw $t0, -76($fp)
-  move $a0, $t0
+  sw $t0, 0($sp)
   jal fact
   sw $v0, -20($fp)
   lw $ra, -4($fp)
+  addi $sp, $sp, 4
   lw $t0, -20($fp)
   sw $t0, -72($fp)
   j label6

@@ -1,0 +1,128 @@
+FUNCTION changeCal : 
+PARAM v1
+t10 := v1 + #345
+t8 := t10 - #345
+t9 := v1 * v2
+t6 := t8 + t9
+t7 := v1 * v2
+t4 := t6 - t7
+t5 := v1 * v1
+t2 := t4 + t5
+t3 := v1 * v1
+t1 := t2 - t3
+v2 := t1
+t31 := v2 * #2
+t32 := v2 * #3
+t29 := t31 - t32
+t30 := v2 * #2
+t27 := t29 + t30
+t25 := t27 + #17
+t23 := t25 + #3
+t22 := t23 - #20
+v2 := t22
+v2 := #2
+t55 := v1 + #20
+t53 := t55 - #20
+v2 := t53
+RETURN v2
+FUNCTION main : 
+v3 := #2
+v4 := #4
+v5 := #14
+t88 := v3 + v4
+t87 := t88 - v5
+v6 := t87
+t93 := v3 + v4
+t94 := v5 * #2
+t92 := t93 + t94
+v7 := t92
+t100 := v3 + v4
+t99 := t100 + v5
+v8 := t99
+v9 := #42
+v10 := #0
+t113 := v3 + v4
+t111 := t113 + v5
+t109 := t111 - v6
+t107 := t109 - v7
+t106 := t107 + v8
+v8 := t106
+LABEL L1 :
+t117 := v4 - v3
+IF t117 < v8 GOTO L2
+GOTO L3
+LABEL L2 :
+t129 := v10 * #4
+t126 := v9 + t129
+t124 := t126 + #3
+t122 := t124 + #4
+t121 := t122 + #5
+v9 := t121
+t139 := v8
+ARG v4
+t140 := CALL changeCal
+t137 := t139 - t140
+t138 := v3 * #2
+t135 := t137 + t138
+t136 := v5 * v6
+t133 := t135 + t136
+t132 := t133 - v8
+v11 := t132
+t146 := v10 + #1
+v10 := t146
+t151 := v10 + #3
+t150 := t151 + #1
+v10 := t150
+t156 := v10 - #2
+t155 := t156 - #2
+v10 := t155
+t164 := v10 / #3
+t163 := t164 * #3
+t160 := v10 - t163
+t176 := v3
+ARG v3
+t177 := CALL changeCal
+t174 := t176 - t177
+t172 := t174 + v4
+t170 := t172 - v4
+t168 := t170 + v5
+t161 := t168 - v5
+IF t160 == t161 GOTO L4
+GOTO L5
+LABEL L4 :
+t179 := v8 + #1
+t178 := t179 + #1
+v8 := t178
+LABEL L5 :
+t184 := v8 - #2
+t183 := t184 + #1
+v8 := t183
+GOTO L1
+LABEL L3 :
+t189 := v9 - #2
+t188 := t189 + #3
+v12 := t188
+WRITE v12
+v10 := v9
+LABEL L6 :
+IF v9 >= #1222 GOTO L7
+GOTO L8
+LABEL L7 :
+t198 := v9 + #1024
+v10 := t198
+ARG v9
+t202 := CALL changeCal
+t201 := t202 - #1
+v9 := t201
+v10 := v9
+GOTO L6
+LABEL L8 :
+WRITE v9
+t205 := v3 + v4
+v3 := t205
+t208 := v3 + v4
+v4 := t208
+t211 := v3 + v4
+v5 := t211
+WRITE v5
+RETURN #0
