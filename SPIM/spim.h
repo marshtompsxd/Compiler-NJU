@@ -14,12 +14,11 @@ enum { MTEMP, MVAR };
 
 typedef struct ArgInStackEntry_ AISE;
 
-extern void MachineCodeGenerator(char* filename);
-
+extern void MachineCodeGenerator(char *filename);
 
 struct ArgInStackEntry_ {
 
-   Operand* op;
+  Operand *op;
 };
 
-#endif //COMPILER_SPIM_H
+#endif // COMPILER_SPIM_H

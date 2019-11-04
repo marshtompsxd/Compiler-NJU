@@ -7,8 +7,8 @@
 
 #include "../common.h"
 
-extern void InterCodeGenerator(char* filename);
+extern void InterCodeGenerator(char *filename);
 
 extern bool ICSwitch;
 
-#endif //COMPILER_IC_H
+#endif // COMPILER_IC_H

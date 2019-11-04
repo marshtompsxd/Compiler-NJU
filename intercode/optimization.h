@@ -5,10 +5,10 @@
 #ifndef COMPILER_OPTIMAZITION_H
 #define COMPILER_OPTIMAZITION_H
 
+#include "IC.h"
 #include "ICTable.h"
 #include "InterCode.h"
-#include "IC.h"
 
-extern void InterCodeOptimization(InterCodeListHead* list);
+extern void InterCodeOptimization(InterCodeListHead *list);
 
-#endif //COMPILER_OPTIMAZITION_H
+#endif // COMPILER_OPTIMAZITION_H

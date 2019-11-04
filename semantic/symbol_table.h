@@ -16,56 +16,63 @@ enum { VAR, FUN };
 enum { LV, RV };
 enum { VarName, StructName, FieldName };
 
-struct Type_
-{
-	int kind;
-	union
-	{
-		int basic;
-		struct { Type* elem; int size; int * DimSize; int dim;} array;
-		struct { char* structname; FieldList* member;} structure;
-	};
+struct Type_ {
+  int kind;
+  union {
+    int basic;
+    struct {
+      Type *elem;
+      int size;
+      int *DimSize;
+      int dim;
+    } array;
+    struct {
+      char *structname;
+      FieldList *member;
+    } structure;
+  };
 };
 
-struct FieldList_
-{
-	char* name; 
-	Type* type; 
-	int lineno;
-	FieldList* tail; 
+struct FieldList_ {
+  char *name;
+  Type *type;
+  int lineno;
+  FieldList *tail;
 };
 
-struct SymbolTableEntry_
-{
-	int kind;
-	int lineno;
-	union {
-		struct { char* VariableName; Type* VariableType; } Variable;
-		struct { char* FunName; Type* RetType; ParamList* PL; } Function;
-	};
-	SymbolTableEntry* tail;
+struct SymbolTableEntry_ {
+  int kind;
+  int lineno;
+  union {
+    struct {
+      char *VariableName;
+      Type *VariableType;
+    } Variable;
+    struct {
+      char *FunName;
+      Type *RetType;
+      ParamList *PL;
+    } Function;
+  };
+  SymbolTableEntry *tail;
 };
 
-struct SymbolTableHead_
-{
-	SymbolTableEntry* head;
+struct SymbolTableHead_ {
+  SymbolTableEntry *head;
 };
 
-struct StructTypeTableEntry_
-{
-	int lineno;
-	Type* TP;
-	StructTypeTableEntry* tail;
+struct StructTypeTableEntry_ {
+  int lineno;
+  Type *TP;
+  StructTypeTableEntry *tail;
 };
 
-struct StructTypeTableHead_
-{
-	StructTypeTableEntry* head;
+struct StructTypeTableHead_ {
+  StructTypeTableEntry *head;
 };
 
-struct ParamList_
-{
-	SymbolTableEntry* head;
+struct ParamList_ {
+  SymbolTableEntry *head;
 };
 
 #define STACK_SIZE 100
@@ -73,12 +80,12 @@ struct ParamList_
 extern int sym_top;
 extern int struct_top;
 
-extern SymbolTableHead* RootSymbolTable;
-extern SymbolTableHead* CurrentSymbolTable;
-extern SymbolTableHead* SymbolTableStack[STACK_SIZE];
+extern SymbolTableHead *RootSymbolTable;
+extern SymbolTableHead *CurrentSymbolTable;
+extern SymbolTableHead *SymbolTableStack[STACK_SIZE];
 
-extern StructTypeTableHead* RootStructTypeTable;
-extern StructTypeTableHead* CurrentStructTypeTable;
-extern StructTypeTableHead* StructTypeTableStack[STACK_SIZE];
+extern StructTypeTableHead *RootStructTypeTable;
+extern StructTypeTableHead *CurrentStructTypeTable;
+extern StructTypeTableHead *StructTypeTableStack[STACK_SIZE];
 
 #endif

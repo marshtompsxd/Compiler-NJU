@@ -31,10 +31,10 @@
    version 2.2 of Bison.  */
 
 #ifndef YY_YY_SYNTAX_TAB_H_INCLUDED
-# define YY_YY_SYNTAX_TAB_H_INCLUDED
+#define YY_YY_SYNTAX_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
-# define YYDEBUG 0
+#define YYDEBUG 0
 #endif
 #if YYDEBUG
 extern int yydebug;
@@ -42,64 +42,61 @@ extern int yydebug;
 
 /* Token type.  */
 #ifndef YYTOKENTYPE
-# define YYTOKENTYPE
-  enum yytokentype
-  {
-    INT = 258,
-    FLOAT = 259,
-    ID = 260,
-    SEMI = 261,
-    COMMA = 262,
-    ASSIGNOP = 263,
-    RELOP = 264,
-    PLUS = 265,
-    MINUS = 266,
-    STAR = 267,
-    DIV = 268,
-    OR = 269,
-    AND = 270,
-    DOT = 271,
-    NOT = 272,
-    TYPE = 273,
-    LP = 274,
-    RP = 275,
-    LB = 276,
-    RB = 277,
-    LC = 278,
-    RC = 279,
-    STRUCT = 280,
-    RETURN = 281,
-    IF = 282,
-    ELSE = 283,
-    WHILE = 284,
-    END = 285,
-    LOWER_THAN_RP = 286,
-    LOWER_THAN_ELSE = 287,
-    LOWER_THAN_SEMI = 288,
-    LOWER_THAN_RC = 289
-  };
+#define YYTOKENTYPE
+enum yytokentype {
+  INT = 258,
+  FLOAT = 259,
+  ID = 260,
+  SEMI = 261,
+  COMMA = 262,
+  ASSIGNOP = 263,
+  RELOP = 264,
+  PLUS = 265,
+  MINUS = 266,
+  STAR = 267,
+  DIV = 268,
+  OR = 269,
+  AND = 270,
+  DOT = 271,
+  NOT = 272,
+  TYPE = 273,
+  LP = 274,
+  RP = 275,
+  LB = 276,
+  RB = 277,
+  LC = 278,
+  RC = 279,
+  STRUCT = 280,
+  RETURN = 281,
+  IF = 282,
+  ELSE = 283,
+  WHILE = 284,
+  END = 285,
+  LOWER_THAN_RP = 286,
+  LOWER_THAN_ELSE = 287,
+  LOWER_THAN_SEMI = 288,
+  LOWER_THAN_RC = 289
+};
 #endif
 
 /* Value type.  */
-#if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
+#if !defined YYSTYPE && !defined YYSTYPE_IS_DECLARED
 
-union YYSTYPE
-{
+union YYSTYPE {
 #line 14 "syntax.y" /* yacc.c:1909  */
 
-    struct ParsingNode *node;
+  struct ParsingNode *node;
 
 #line 93 "syntax.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
-# define YYSTYPE_IS_TRIVIAL 1
-# define YYSTYPE_IS_DECLARED 1
+#define YYSTYPE_IS_TRIVIAL 1
+#define YYSTYPE_IS_DECLARED 1
 #endif
-
 
 extern YYSTYPE yylval;
 
-int yyparse (void);
+int yyparse(void);
 
 #endif /* !YY_YY_SYNTAX_TAB_H_INCLUDED  */
