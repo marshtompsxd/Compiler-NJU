@@ -2,9 +2,9 @@
 #define __COMMON__
 
 #include <assert.h>
-#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define int_type 0
 #define float_type 1
@@ -26,7 +26,5 @@ typedef int bool;
 #define fifthchild(node) fourthchild(node)->nextsibiling
 #define sixthchild(node) fifthchild(node)->nextsibiling
 #define seventhchild(node) sixthchild(node)->nextsibiling
-
-
 
 #endif
